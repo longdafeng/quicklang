@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source_url": "https://github.com/suilang/ink-learner",
+  "source_revision": "b1b4d9513cf51cb4e562a49b6fa208aa269b61a3",
+  "license": "CC-BY-SA-4.0",
+  "files": [
+    {
+      "path": "seeds/ink/ink-bec.json",
+      "sha256": "299811c61114c5d8caa9095d0ad79c52602ffa91ac21d506a69661c5595a1e5f"
+    },
+    {
+      "path": "seeds/ink/ink-cet4.json",
+      "sha256": "714e1cf4da9f802bd8eb99d3dd7acbe4355d83f427d1f05af3438637dfad4766"
+    },
+    {
+      "path": "seeds/ink/ink-cet6.json",
+      "sha256": "209a38ead8acf3a6d6cf7ba5c04a523640bfa767c6a9389165da9f7a5cb97553"
+    },
+    {
+      "path": "seeds/ink/ink-gmat.json",
+      "sha256": "6a29223353d108f71f355c060daf53dd5a863cf84b99c5ceea33b103a409556c"
+    },
+    {
+      "path": "seeds/ink/ink-gre.json",
+      "sha256": "e4ae2e5aade281c4802e0f73d445f282450612e7c8481137ccefd147a2701185"
+    },
+    {
+      "path": "seeds/ink/ink-ielts.json",
+      "sha256": "1b7e0120c99c1a6c16e672825a2949b74593496865217976518180915f39fe6a"
+    },
+    {
+      "path": "seeds/ink/ink-junior.json",
+      "sha256": "e971ea383d6adc3f0fd976db6a83f73165dc3235a47477ff76e76395ae24550c"
+    },
+    {
+      "path": "seeds/ink/ink-postgraduate.json",
+      "sha256": "8b02b727469e8aff3b0e4958530563a2a286f374407c5b73c216f082f6056959"
+    },
+    {
+      "path": "seeds/ink/ink-sat.json",
+      "sha256": "a4c1f44785698dabfe8bfc6308b52f254f9278492566b37ebec5f59e6c95bd11"
+    },
+    {
+      "path": "seeds/ink/ink-senior.json",
+      "sha256": "846873f8eae03656e82a971e26984c6ac2d2101bed8eed80d4f58551c7eb4159"
+    },
+    {
+      "path": "seeds/ink/ink-toefl.json",
+      "sha256": "d58d931100ae0c3b4f23d5abb516f1f02a6252e5738a6d1c6176409dc30a26cf"
+    },
+    {
+      "path": "seeds/LICENSE_ASSETS",
+      "sha256": "28a9529c7d0bb4dc51f4bf5c116a3d16ef247a052f7591466768ddf563fd1cf5"
+    },
+    {
+      "path": "docs/reference/acknowledgments.md",
+      "sha256": "07917f0881aedd6f252bc30d5ca98420c2f5ca14b7b86f4d3d67e9535fb27e61"
+    }
+  ]
+}

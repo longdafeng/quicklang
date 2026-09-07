@@ -1,0 +1,18 @@
+[package]
+name = "quicklang-shell"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+[lib]
+name = "quicklang_shell"
+crate-type = ["staticlib", "cdylib", "rlib"]
+[[bin]]
+name = "quicklang"
+path = "src/main.rs"
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+[dependencies]
+tauri = { version = "2", features = [] }
+serde.workspace = true
+quicklang-domain.workspace = true
+quicklang-typing-engine.workspace = true

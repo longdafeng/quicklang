@@ -1,0 +1,8 @@
+[package]
+name = "quicklang-storage-seekdb"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+[dependencies]
+quicklang-domain.workspace = true
+quicklang-storage-port.workspace = true

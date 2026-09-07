@@ -1,0 +1,10 @@
+{
+  "name": "@quicklang/docs",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "vitepress build . --outDir ../build/docs/site",
+    "dev": "vitepress dev . --host 127.0.0.1"
+  }
+}

@@ -1,0 +1,16 @@
+export type Rating = "again" | "hard" | "good" | "easy";
+export interface TypingMetrics { hint_count: number; backspaces: number }
+export interface TypingResult {
+  correct: boolean;
+  expected: string;
+  actual: string;
+  mismatches: number[];
+  suggested_rating: Rating;
+}
+export interface RuntimeStatus {
+  phase: string;
+  storage: string;
+  persistence_ready: boolean;
+}
+export interface Word { id: string; spelling: string; meaning: string }
+export type StudyMode = "spelling" | "flashcard" | "auto";

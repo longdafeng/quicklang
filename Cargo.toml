@@ -1,0 +1,22 @@
+[workspace]
+resolver = "2"
+members = ["src/crates/*", "src/server", "src/shell", "tests/rust"]
+default-members = ["src/crates/*", "src/server", "tests/rust"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+rust-version = "1.93"
+
+[workspace.dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "2.0"
+quicklang-domain = { path = "src/crates/domain" }
+quicklang-scheduler = { path = "src/crates/scheduler" }
+quicklang-typing-engine = { path = "src/crates/typing-engine" }
+quicklang-storage-port = { path = "src/crates/storage-port" }
+quicklang-application = { path = "src/crates/application" }
+quicklang-storage-seekdb = { path = "src/crates/storage-seekdb" }
+quicklang-sync-core = { path = "src/crates/sync-core" }

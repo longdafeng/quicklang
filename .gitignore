@@ -1,0 +1,14 @@
+/repos/
+/repos.gz
+/deps/cache/
+/node_modules/
+**/node_modules/
+/build/
+/dist/
+/target/
+/src/shell/gen/
+**/tsconfig.tsbuildinfo
+.env
+.env.*
+!.env.example
+.DS_Store

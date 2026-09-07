@@ -1,0 +1,7 @@
+[package]
+name = "quicklang-storage-oceanbase"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+[dependencies]
+quicklang-domain.workspace = true

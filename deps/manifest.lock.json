@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "license_profile": "clean-room",
+  "dependencies": [],
+  "runtime": {
+    "name": "seekdb",
+    "status": "not_integrated",
+    "sqlite_allowed": false
+  },
+  "notes": "npm/Cargo dependency versions are locked in root lockfiles. No unverified seekdb binary is downloaded or packaged."
+}

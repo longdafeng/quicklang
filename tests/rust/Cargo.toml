@@ -1,0 +1,29 @@
+[package]
+name = "quicklang-tests"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+[lib]
+path = "lib.rs"
+[dev-dependencies]
+quicklang-domain.workspace = true
+quicklang-scheduler.workspace = true
+quicklang-typing-engine.workspace = true
+quicklang-storage-port.workspace = true
+quicklang-application.workspace = true
+quicklang-storage-seekdb.workspace = true
+quicklang-sync-core.workspace = true
+quicklang-server = { path = "../../src/server" }
+tower = { version = "0.5", features = ["util"] }
+axum = "0.8"
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+[[test]]
+name = "core"
+path = "../unit/rust/core.rs"
+[[test]]
+name = "repository"
+path = "../contract/repository.rs"
+[[test]]
+name = "server"
+path = "../integration/server.rs"

@@ -1,0 +1,5 @@
+* text=auto
+*.md whitespace=-blank-at-eol
+*.png binary
+*.icns binary
+*.ico binary
