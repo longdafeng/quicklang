@@ -8,9 +8,19 @@
 
 ## 第二章：功能
 
-下面是当前界面的实际截图（本地浏览器预览）：
+从选词书、记单词到听说练习，下面用 6 张实际截图展示主要功能（本地浏览器预览，点击图片可查看原图）。
 
-![QuickLang 界面：左侧功能菜单与词书选择](docs/images/quicklang-overview.png)
+| 选书：按学习目标选择词书 | 自动飘单词：边听边记单词和例句 |
+| --- | --- |
+| [![选书：内置词书列表](docs/images/quicklang-01-books.png)](docs/images/quicklang-01-books.png) | [![自动飘单词：单词、中文释义和双语例句](docs/images/quicklang-02-auto-recite.png)](docs/images/quicklang-02-auto-recite.png) |
+
+| 强化学习：听发音，停顿回忆 | 拼写背诵：输入单词，即时检查 |
+| --- | --- |
+| [![强化学习：单词朗读与回忆阶段](docs/images/quicklang-03-flashcard.png)](docs/images/quicklang-03-flashcard.png) | [![拼写背诵：拼写正确反馈与释义例句](docs/images/quicklang-04-spelling.png)](docs/images/quicklang-04-spelling.png) |
+
+| 听说练习：结合双语字幕练听写 | 单词查询：随时查释义和例句 |
+| --- | --- |
+| [![听说练习：旅行改签场景的双语字幕与听写](docs/images/quicklang-05-conversation.png)](docs/images/quicklang-05-conversation.png) | [![单词查询：当前词书中的查询结果](docs/images/quicklang-06-search.png)](docs/images/quicklang-06-search.png) |
 
 左侧菜单分为四组，二级菜单及功能如下。
 
