@@ -34,7 +34,8 @@ const cargoLock = readFileSync(join(root, "Cargo.lock"), "utf8");
 if (/name = "(?:rusqlite|libsqlite3-sys|sqlx-sqlite)"/.test(cargoLock))
   throw new Error("SQLite Rust dependency is prohibited");
 const report = { profile: policy.license_profile, checked_source_files: checked.length, npm_dependencies: dependencies,
-  limitations: ["Rust transitive license texts require release auditing", "Source fingerprint checks do not prove legal independence", "No seekdb runtime bundled"] };
+  native_runtime: policy.runtime,
+  limitations: ["Rust and engine transitive licenses require release auditing", "Source fingerprint checks do not prove legal independence", "Native hashes are verified by scripts/bootstrap/seekdb.mjs"] };
 mkdirSync(join(root, "build/compliance"), { recursive: true });
 writeFileSync(join(root, "build/compliance/dependencies.json"), JSON.stringify(report, null, 2) + "\n");
 console.log("License/layout checks passed (" + checked.length + " source files). Release audit limitations are recorded.");

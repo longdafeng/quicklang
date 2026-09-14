@@ -1,0 +1,225 @@
+{
+  "schema_version": 2,
+  "source_url": "https://github.com/suilang/ink-learner",
+  "source_revision": "b1b4d9513cf51cb4e562a49b6fa208aa269b61a3",
+  "license": "CC-BY-SA-4.0",
+  "files": [
+    {
+      "path": "seeds/ink/ink-bec.json",
+      "sha256": "299811c61114c5d8caa9095d0ad79c52602ffa91ac21d506a69661c5595a1e5f"
+    },
+    {
+      "path": "seeds/ink/ink-cet4.json",
+      "sha256": "714e1cf4da9f802bd8eb99d3dd7acbe4355d83f427d1f05af3438637dfad4766"
+    },
+    {
+      "path": "seeds/ink/ink-cet6.json",
+      "sha256": "209a38ead8acf3a6d6cf7ba5c04a523640bfa767c6a9389165da9f7a5cb97553"
+    },
+    {
+      "path": "seeds/ink/ink-gmat.json",
+      "sha256": "6a29223353d108f71f355c060daf53dd5a863cf84b99c5ceea33b103a409556c"
+    },
+    {
+      "path": "seeds/ink/ink-gre.json",
+      "sha256": "e4ae2e5aade281c4802e0f73d445f282450612e7c8481137ccefd147a2701185"
+    },
+    {
+      "path": "seeds/ink/ink-ielts.json",
+      "sha256": "1b7e0120c99c1a6c16e672825a2949b74593496865217976518180915f39fe6a"
+    },
+    {
+      "path": "seeds/ink/ink-junior.json",
+      "sha256": "e971ea383d6adc3f0fd976db6a83f73165dc3235a47477ff76e76395ae24550c"
+    },
+    {
+      "path": "seeds/ink/ink-postgraduate.json",
+      "sha256": "8b02b727469e8aff3b0e4958530563a2a286f374407c5b73c216f082f6056959"
+    },
+    {
+      "path": "seeds/ink/ink-sat.json",
+      "sha256": "a4c1f44785698dabfe8bfc6308b52f254f9278492566b37ebec5f59e6c95bd11"
+    },
+    {
+      "path": "seeds/ink/ink-senior.json",
+      "sha256": "846873f8eae03656e82a971e26984c6ac2d2101bed8eed80d4f58551c7eb4159"
+    },
+    {
+      "path": "seeds/ink/ink-toefl.json",
+      "sha256": "d58d931100ae0c3b4f23d5abb516f1f02a6252e5738a6d1c6176409dc30a26cf"
+    },
+    {
+      "path": "seeds/LICENSE_ASSETS",
+      "sha256": "28a9529c7d0bb4dc51f4bf5c116a3d16ef247a052f7591466768ddf563fd1cf5"
+    },
+    {
+      "path": "docs/reference/acknowledgments.md",
+      "sha256": "07917f0881aedd6f252bc30d5ca98420c2f5ca14b7b86f4d3d67e9535fb27e61"
+    },
+    {
+      "path": "seeds/dictionary/manifest.json",
+      "sha256": "8379d2aaed821d281861881f5d113f4b66136b2f98b7f923396fbebf9fb9a53d"
+    },
+    {
+      "path": "seeds/dictionary/shards/a.json",
+      "sha256": "daf71e56ff887f15ccf67f72cebae817536c81363e53683333f51ea1956f3d4b"
+    },
+    {
+      "path": "seeds/dictionary/shards/b.json",
+      "sha256": "273c43b2e0feb37451f4ddb5ee6ab3136f0b680670d38484960d0ba9eef7c847"
+    },
+    {
+      "path": "seeds/dictionary/shards/c.json",
+      "sha256": "e61f623c9fa5f49430009e852577f8be3e9c405d8c844a68d7955f24bd7144f7"
+    },
+    {
+      "path": "seeds/dictionary/shards/d.json",
+      "sha256": "e45c23c412fe575f5db30dd962d444c89b990e1ba4729ed29fc1ad1675e1ea39"
+    },
+    {
+      "path": "seeds/dictionary/shards/e.json",
+      "sha256": "c2db6c2283f56a7f68e6aec78d415a5adcd21dc5afa2b66ce71da00998c630dd"
+    },
+    {
+      "path": "seeds/dictionary/shards/f.json",
+      "sha256": "a63897f7b25a7d128f3d886b9d19025a22db3ff84ccded897446e4ee9b77ef32"
+    },
+    {
+      "path": "seeds/dictionary/shards/g.json",
+      "sha256": "2f1d2d36722d110c1a29d28f05c723f4df61734fd09a8acecaca57c6b7c9e9bf"
+    },
+    {
+      "path": "seeds/dictionary/shards/h.json",
+      "sha256": "b41ae5be3eeab07f80384d43499816110661a86769f295387e9574a4634ba176"
+    },
+    {
+      "path": "seeds/dictionary/shards/i.json",
+      "sha256": "e4a9f80e132d817579c4708cdc653efe4f8b15c72293bd2f6b8f69649b7c83bd"
+    },
+    {
+      "path": "seeds/dictionary/shards/j.json",
+      "sha256": "c106eb854489f89aba13a524ecb940f4359c0430ce666833e2e0970d5a1fcd0d"
+    },
+    {
+      "path": "seeds/dictionary/shards/k.json",
+      "sha256": "6258301654f9fb93c46a31aa175d78b1d90d020e00900d81262fc7f432fd64d1"
+    },
+    {
+      "path": "seeds/dictionary/shards/l.json",
+      "sha256": "8d388aa2a55cf5fffef5726b889dac7411353650e98287bbdd60399a4da135cb"
+    },
+    {
+      "path": "seeds/dictionary/shards/m.json",
+      "sha256": "931d1d54c758696938ff07031affa43274217a68310fca4f723899100d1e2c13"
+    },
+    {
+      "path": "seeds/dictionary/shards/n.json",
+      "sha256": "79d6bffba6bbcd8b8b55959b128a38012e48ace376ae3c7946f82a78229fcb16"
+    },
+    {
+      "path": "seeds/dictionary/shards/o.json",
+      "sha256": "d5f05edbe2204b1c41f431dc43c63d1f82047d0b493930bcd4378598f83102e1"
+    },
+    {
+      "path": "seeds/dictionary/shards/p.json",
+      "sha256": "1889c331638d1d52f6a0a7fa7b51c7ddb313133414a713d0f59eb81f0eff7ab3"
+    },
+    {
+      "path": "seeds/dictionary/shards/q.json",
+      "sha256": "0524fa1e49896341163bc31b7080911cd5914622c3f986a7efc3217d7ee55c11"
+    },
+    {
+      "path": "seeds/dictionary/shards/r.json",
+      "sha256": "528ff242f43ad1fac786e031191130dcaad74b5175bf04c70b73a703454e8cc0"
+    },
+    {
+      "path": "seeds/dictionary/shards/s.json",
+      "sha256": "4272b0367b0e8b242e4f2e9c435425d5f4debeb0f825f94ac3ad06ea9dd19603"
+    },
+    {
+      "path": "seeds/dictionary/shards/t.json",
+      "sha256": "3ccbfc0b3ed0422198782d805635b66fad2d5c4d79b4143497cd41dc57daa23f"
+    },
+    {
+      "path": "seeds/dictionary/shards/u.json",
+      "sha256": "f876444212c4a4dcc0481718f785eefbb6f0bdd0bdc7c95792f6ce2b3ee776ea"
+    },
+    {
+      "path": "seeds/dictionary/shards/v.json",
+      "sha256": "1fd7d8b1ff3290c87536705fafdeb09fda9916b6886132d190e36c93f8adfbf3"
+    },
+    {
+      "path": "seeds/dictionary/shards/w.json",
+      "sha256": "50de86a256ada11533e5936f33736627c8ba0251c252557d2a72a514fd843d47"
+    },
+    {
+      "path": "seeds/dictionary/shards/x.json",
+      "sha256": "6f4b94adb4b3c20d5be80e1f2a948816c713f3fe3312f5536d51cb252ae88f21"
+    },
+    {
+      "path": "seeds/dictionary/shards/y.json",
+      "sha256": "697a5b29f764333052415cc2c1361b7057f5bfa343f5c290b29247b6cb3b2053"
+    },
+    {
+      "path": "seeds/dictionary/shards/z.json",
+      "sha256": "b082120fb7833aaaa7bc9d29b586af455e53b10ebd0331b63d46527ea491221b"
+    }
+  ],
+  "modifications": "Normalized spellings and dictionary lookup keys, deterministic content keys, duplicate removal and chapter assignment. Joined Chinese definitions, phonetics and bilingual sentences from pinned Ink dictionary shards. Preserved upstream examples. Filled gaps with original AI-authored QuickLang bilingual sentences labelled quicklang-ai-authored. Corrected documented spelling errors while preserving content IDs.",
+  "supplements": [
+    {
+      "path": "src/content/supplements/ink-spelling-corrections.json",
+      "sha256": "e9182f38886e24887b7bdba0fb376180558de11105c84fb81d7c86f0e402fed6"
+    },
+    {
+      "path": "src/content/supplements/ink-examples-authored.tsv",
+      "sha256": "692d1c89adb7abd6c477c322ac1ce2366d4ccbdb7a8e5c0bb38c3c2c1af33e63"
+    }
+  ],
+  "counts": [
+    {
+      "id": "ink-bec",
+      "entries": 2825
+    },
+    {
+      "id": "ink-cet4",
+      "entries": 4544
+    },
+    {
+      "id": "ink-cet6",
+      "entries": 3991
+    },
+    {
+      "id": "ink-gmat",
+      "entries": 3312
+    },
+    {
+      "id": "ink-gre",
+      "entries": 9984
+    },
+    {
+      "id": "ink-ielts",
+      "entries": 5275
+    },
+    {
+      "id": "ink-junior",
+      "entries": 1987
+    },
+    {
+      "id": "ink-postgraduate",
+      "entries": 5047
+    },
+    {
+      "id": "ink-sat",
+      "entries": 4464
+    },
+    {
+      "id": "ink-senior",
+      "entries": 3743
+    },
+    {
+      "id": "ink-toefl",
+      "entries": 4264
+    }
+  ]
+}

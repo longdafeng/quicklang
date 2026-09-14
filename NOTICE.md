@@ -13,3 +13,10 @@ Upstream: https://github.com/suilang/ink-learner
 License: https://creativecommons.org/licenses/by-sa/4.0/
 
 Third-party software retains its respective license.
+
+The macOS embedded runtime includes seekdb 1.4.0 and its C bindings
+(Apache-2.0), MariaDB Connector/C (LGPL-2.1), and OpenSSL 3.5.8 (Apache-2.0).
+Original licenses, MariaDB and binding-layer corresponding source archives,
+and rebuild instructions accompany the replaceable driver in seekdb/sources.
+QuickLang does not restrict modification or reverse engineering needed to
+debug modifications to these libraries. Exact versions: deps/seekdb/runtime.lock.json.

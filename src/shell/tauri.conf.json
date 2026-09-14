@@ -22,7 +22,7 @@
       }
     ],
     "security": {
-      "csp": "default-src 'self'; connect-src ipc: http://ipc.localhost; style-src 'self' 'unsafe-inline'; img-src 'self' data:",
+      "csp": "default-src 'self'; connect-src 'self' ipc: http://ipc.localhost; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self' blob:",
       "capabilities": [
         "main"
       ]
@@ -38,6 +38,7 @@
       "minimumSystemVersion": "15.0"
     },
     "resources": {
+      "../../deps/cache/seekdb-runtime/": "seekdb/",
       "../../NOTICE.md": "NOTICE.md",
       "../../LICENSE": "LICENSE",
       "../../deps/licenses/": "licenses/"

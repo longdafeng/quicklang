@@ -1,0 +1,12 @@
+{
+  "version": "1.4.0",
+  "platform": "darwin-arm64",
+  "engine_url": "https://github.com/oceanbase/seekdb/releases/download/v1.4.0/seekdb-1.4.0.0-100000092026051510-macos15-arm64.pkg",
+  "engine_sha256": "1419bbbd10c00275410ce66788ab55adad72be8e4aaa3c86a1d288a6bdefde93",
+  "bindings_repository": "https://github.com/oceanbase/seekdb-bindings.git",
+  "bindings_commit": "086008a97d1ec1bd07ae09933a51069dad38dd08",
+  "connector_commit": "46880b003653a000e9588bd73c8b1dd65088c686",
+  "openssl_version": "3.5.8",
+  "openssl_url": "https://www.openssl.org/source/openssl-3.5.8.tar.gz",
+  "openssl_sha256": "a8f84a39918ec6415ce765d9b429d313ba97b8143169c172e734b9514464f5b2"
+}

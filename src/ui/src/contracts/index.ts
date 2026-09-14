@@ -12,5 +12,5 @@ export interface RuntimeStatus {
   storage: string;
   persistence_ready: boolean;
 }
-export interface Word { id: string; spelling: string; meaning: string }
+export interface Word { id: string; spelling: string; meaning: string; example?: string; exampleTranslation?: string; translations?: string[]; phoneticUs?: string; phoneticUk?: string; sentences?: { textEn: string; textZh: string; source: string }[] }
 export type StudyMode = "spelling" | "flashcard" | "auto";

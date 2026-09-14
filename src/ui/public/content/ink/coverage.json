@@ -1,0 +1,101 @@
+[
+  {
+    "id": "ink-bec",
+    "entries": 2825,
+    "generatedExamples": 105,
+    "withMeaning": 2825,
+    "withExamples": 2825,
+    "missingMeaning": [],
+    "missingExamples": []
+  },
+  {
+    "id": "ink-cet4",
+    "entries": 4544,
+    "generatedExamples": 10,
+    "withMeaning": 4544,
+    "withExamples": 4544,
+    "missingMeaning": [],
+    "missingExamples": []
+  },
+  {
+    "id": "ink-cet6",
+    "entries": 3991,
+    "generatedExamples": 23,
+    "withMeaning": 3991,
+    "withExamples": 3991,
+    "missingMeaning": [],
+    "missingExamples": []
+  },
+  {
+    "id": "ink-gmat",
+    "entries": 3312,
+    "generatedExamples": 130,
+    "withMeaning": 3312,
+    "withExamples": 3312,
+    "missingMeaning": [],
+    "missingExamples": []
+  },
+  {
+    "id": "ink-gre",
+    "entries": 9984,
+    "generatedExamples": 1307,
+    "withMeaning": 9984,
+    "withExamples": 9984,
+    "missingMeaning": [],
+    "missingExamples": []
+  },
+  {
+    "id": "ink-ielts",
+    "entries": 5275,
+    "generatedExamples": 86,
+    "withMeaning": 5275,
+    "withExamples": 5275,
+    "missingMeaning": [],
+    "missingExamples": []
+  },
+  {
+    "id": "ink-junior",
+    "entries": 1987,
+    "generatedExamples": 3,
+    "withMeaning": 1987,
+    "withExamples": 1987,
+    "missingMeaning": [],
+    "missingExamples": []
+  },
+  {
+    "id": "ink-postgraduate",
+    "entries": 5047,
+    "generatedExamples": 14,
+    "withMeaning": 5047,
+    "withExamples": 5047,
+    "missingMeaning": [],
+    "missingExamples": []
+  },
+  {
+    "id": "ink-sat",
+    "entries": 4464,
+    "generatedExamples": 207,
+    "withMeaning": 4464,
+    "withExamples": 4464,
+    "missingMeaning": [],
+    "missingExamples": []
+  },
+  {
+    "id": "ink-senior",
+    "entries": 3743,
+    "generatedExamples": 16,
+    "withMeaning": 3743,
+    "withExamples": 3743,
+    "missingMeaning": [],
+    "missingExamples": []
+  },
+  {
+    "id": "ink-toefl",
+    "entries": 4264,
+    "generatedExamples": 42,
+    "withMeaning": 4264,
+    "withExamples": 4264,
+    "missingMeaning": [],
+    "missingExamples": []
+  }
+]

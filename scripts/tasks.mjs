@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 // Cross-platform task runner. Make stays a thin, stable interface.
+import { homedir } from "node:os";
+import { readFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, cpSync, lstatSync } from "node:fs";
 import { resolve, join, delimiter } from "node:path";
@@ -7,6 +9,7 @@ import { fileURLToPath } from "node:url";
 const root = fileURLToPath(new URL("../", import.meta.url));
 process.chdir(root);
 const env = { ...process.env };
+if (env.QUICKLANG_DATA_DIR) env.QUICKLANG_DATA_DIR = resolve(root, env.QUICKLANG_DATA_DIR);
 const localCargo = join(root, "deps/cache/cargo");
 if (existsSync(join(localCargo, "bin/cargo"))) {
   env.CARGO_HOME = localCargo; env.RUSTUP_HOME = join(root, "deps/cache/rustup");
@@ -23,12 +26,22 @@ const cargo = (...args) => run("cargo", args);
 const tauri = (...args) => run(process.execPath, [join(root, "node_modules/@tauri-apps/cli/tauri.js"), ...args], join(root, "src/shell"));
 function checkLicense() { run(process.execPath, ["scripts/compliance/check.mjs"]); }
 function help() {
-  console.log("QuickLang: make init / doctor / dev / build / install / test / docs / license-check / content / review");
-  console.log("Framework preview: seekdb integration is pending. build creates an unsigned desktop application.");
+  console.log("QuickLang: make init / doctor / dev / build / install / test / test-db / test-coverage / test-coverage-db / docs / license-check / content / review");
+  console.log("seekdb 1.4.0 embedded runtime: macOS ARM64. build creates an unsigned desktop application.");
   console.log("Alternative on Windows: node scripts/tasks.mjs <target>");
+}
+function initLibrary() {
+  // Match Tauri app_data_dir on the supported macOS runtime.
+  const config = JSON.parse(readFileSync(join(root, "src/shell/tauri.conf.json"), "utf8"));
+  const data = env.QUICKLANG_DATA_DIR ? resolve(env.QUICKLANG_DATA_DIR)
+    : join(homedir(), "Library/Application Support", config.identifier, "seekdb-1.4.0");
+  run(process.execPath, ["scripts/content/generate-word-library.mjs"]);
+  cargo("run", "--locked", "--offline", "-p", "quicklang-storage-seekdb", "--bin", "init-word-library", "--",
+    join(root, "build/content/word-library"), data, join(root, "deps/cache/seekdb-runtime"));
 }
 function doctor() { run(process.execPath, ["--version"]); npm("--version"); cargo("--version"); }
 function build() {
+  run(process.execPath, ["scripts/bootstrap/seekdb.mjs", "--offline-check"]);
   checkLicense();
   npm("run", "build");
   cargo("build", "--locked", "--offline", "--release", "-p", "quicklang-server");
@@ -58,19 +71,41 @@ try {
     case "doctor": doctor(); break;
     case "init":
       doctor(); npm("ci"); cargo("fetch", "--locked");
-      console.log("Dependencies ready. seekdb runtime is pending; see deps/seekdb/README.md."); break;
+      run(process.execPath, ["scripts/bootstrap/seekdb.mjs"]);
+      initLibrary(); break;
     case "dev":
       tauri("dev"); break;
     case "build": build(); break;
     case "install": install(); break;
     case "test":
       checkLicense(); cargo("fmt", "--all", "--", "--check");
-      cargo("clippy", "--locked", "--offline", "--all-targets", "--", "-D", "warnings");
-      cargo("test", "--locked", "--offline"); npm("run", "typecheck");
+      cargo("clippy", "--locked", "--offline", "--workspace", "--all-targets", "--", "-D", "warnings");
+      cargo("test", "--locked", "--offline", "--workspace"); npm("run", "typecheck");
       npm("test"); npm("run", "test:scripts"); break;
+    case "test-coverage":
+      npm("run", "test:coverage"); npm("run", "test:scripts:coverage");
+      cargo("llvm-cov", "--workspace", "--locked", "--offline", "--lcov", "--output-path", "build/coverage/rust-unit.lcov");
+      run(process.execPath, ["scripts/testing/rust-coverage.mjs", "build/coverage/rust-unit.lcov", "build/coverage/rust-unit-summary.json", "55"]); break;
+    case "test-coverage-db":
+      run(process.execPath, ["scripts/content/generate-word-library.mjs"]);
+      run(process.execPath, ["scripts/bootstrap/seekdb.mjs", "--offline-check"]);
+      cargo("llvm-cov", "clean", "--workspace");
+      cargo("llvm-cov", "--workspace", "--locked", "--offline", "--no-report");
+      cargo("llvm-cov", "--workspace", "--locked", "--offline", "--no-report", "--", "--ignored", "--test-threads=1");
+      cargo("llvm-cov", "report", "--lcov", "--output-path", "build/coverage/rust-db.lcov");
+      run(process.execPath, ["scripts/testing/rust-coverage.mjs", "build/coverage/rust-db.lcov", "build/coverage/rust-db-summary.json", "75"]); break;
+    case "test-db":
+      run(process.execPath, ["scripts/content/generate-word-library.mjs"]);
+      run(process.execPath, ["scripts/bootstrap/seekdb.mjs", "--offline-check"]);
+      cargo("test", "--locked", "--offline", "-p", "quicklang-tests", "--test", "seekdb", "--", "--ignored", "--nocapture", "--test-threads=1");
+      cargo("test", "--locked", "--offline", "-p", "quicklang-tests", "--test", "word_library_schema", "--", "--ignored", "--nocapture", "--test-threads=1");
+      cargo("test", "--locked", "--offline", "-p", "quicklang-storage-seekdb", "--lib", "--", "--ignored", "--nocapture", "--test-threads=1");
+      cargo("test", "--locked", "--offline", "-p", "quicklang-shell", "--lib"); break;
     case "docs": npm("run", "docs"); break;
     case "license-check": checkLicense(); break;
-    case "content": run(process.execPath, ["scripts/content/import-ink.mjs"]); break;
+    case "content":
+      run(process.execPath, ["scripts/content/import-ink.mjs"]);
+      run(process.execPath, ["scripts/content/generate-word-library.mjs"]); break;
     case "review":
       checkLicense(); run("git", ["diff", "--check"]);
       cargo("clippy", "--locked", "--offline", "--workspace", "--all-targets", "--", "-D", "warnings");

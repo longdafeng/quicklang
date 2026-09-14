@@ -7,6 +7,7 @@ publish = false
 [lib]
 path = "lib.rs"
 [dev-dependencies]
+libloading = "0.8.9"
 quicklang-domain.workspace = true
 quicklang-scheduler.workspace = true
 quicklang-typing-engine.workspace = true
@@ -27,3 +28,10 @@ path = "../contract/repository.rs"
 [[test]]
 name = "server"
 path = "../integration/server.rs"
+[[test]]
+name = "seekdb"
+path = "../integration/seekdb.rs"
+
+[[test]]
+name = "word_library_schema"
+path = "../integration/word_library_schema.rs"

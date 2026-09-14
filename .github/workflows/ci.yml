@@ -14,10 +14,16 @@ jobs:
           node-version: '24'
           cache: npm
       - name: Install pinned Rust
-        run: rustup toolchain install 1.93.1 --profile minimal --component rustfmt --component clippy
+        run: rustup toolchain install 1.93.1 --profile minimal --component rustfmt --component clippy --component llvm-tools-preview
+      - name: Native build tools
+        run: cmake --version
+      - name: Install coverage tooling
+        run: cargo install cargo-llvm-cov --version 0.9.1 --locked
       - run: make init
       - run: npm audit --audit-level=high
       - run: make test
+      - run: make test-coverage
+      - run: make test-coverage-db
       - run: make docs
       - run: make build
       - run: make review
@@ -27,5 +33,6 @@ jobs:
           path: |
             dist/
             build/test-results/
+            build/coverage/
             build/compliance/
             build/docs/site/

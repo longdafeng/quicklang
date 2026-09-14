@@ -31,7 +31,13 @@
           "normalized_spelling",
           "language",
           "chapter",
-          "ordinal"
+          "ordinal",
+          "meaning",
+          "translations",
+          "example",
+          "exampleTranslation",
+          "sentences",
+          "contentStatus"
         ],
         "properties": {
           "id": {
@@ -57,6 +63,75 @@
           "ordinal": {
             "type": "integer",
             "minimum": 0
+          },
+          "meaning": {
+            "type": "string",
+            "minLength": 1
+          },
+          "translations": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          },
+          "example": {
+            "type": "string"
+          },
+          "exampleTranslation": {
+            "type": "string"
+          },
+          "phoneticUs": {
+            "type": "string"
+          },
+          "phoneticUk": {
+            "type": "string"
+          },
+          "sentences": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "textEn",
+                "textZh",
+                "source"
+              ],
+              "properties": {
+                "textEn": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "textZh": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "source": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          "contentStatus": {
+            "type": "object",
+            "required": [
+              "meaning",
+              "examples"
+            ],
+            "properties": {
+              "meaning": {
+                "enum": [
+                  "available",
+                  "missing"
+                ]
+              },
+              "examples": {
+                "enum": [
+                  "available",
+                  "missing"
+                ]
+              }
+            }
           }
         }
       }

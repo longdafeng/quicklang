@@ -11,6 +11,7 @@ export default defineConfig({
         { text: "概览", link: "/" }, { text: "开发指南", link: "/development/getting-started" },
         { text: "实现与验证", link: "/development/implementation" }, { text: "架构", link: "/architecture/overview" },
         { text: "许可与来源", link: "/reference/licenses" },
+        { text: "大模型统一接入", link: "/development/llm-gateway" },
       ] },
       { text: "详细设计", link: "/quicklang-product-technical-design-v1" },
     ],

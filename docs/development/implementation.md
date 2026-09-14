@@ -1,5 +1,30 @@
 # 框架实现与验证
 
+## 2026-09-13：seekdb 1.4.0 接入更新
+
+以下历史框架记录中的“真实存储未接通”由本节更新：macOS ARM64 已新增官方 C driver FFI、
+专用数据库线程、目录互斥锁、版本标记与 checksum 迁移执行器。复习事件/调度状态原子保存，
+支持幂等重试、过期版本拒绝、错误回滚及关闭重开持久化测试。没有 SQLite 回退。
+
+桌面提供 get_runtime_status、load_review_state 和 rate_card；ready 来自真实数据库启动结果。
+界面学习流程有并行修改，本次不覆盖这些改动；仅有命令接口并不代表 UI 已调用并保存。
+词库实体、整场会话、远程 OceanBase、备份和设备同步仍不在本次范围。
+
+1.4 embedded 是应用管理的本地数据库子进程，经 Unix socket 连接，不是进程内数据库。
+默认 memory_budget=1G、log_disk_size=2G。iOS 不能直接使用本方案，Windows 未适配。
+旧版 1.0–1.3 必须逻辑迁移，禁止原地升级。
+
+make init 构建固定引擎/C driver/OpenSSL；make build 离线检查哈希并携带运行库、许可和对应源码。
+make test-db 单独运行真实数据库测试，默认 make test 中明确标为 ignored，不把未执行算通过。
+详细版本、IPC 和第三方库替换步骤参见仓库 deps/seekdb/README.md。
+
+本次实测：make test（14 个 Rust、15 个 UI/状态机、3 个脚本用例）、make review、make docs、make build 通过。
+真实 seekdb 综合测试分别使用开发运行库与 QuickLang.app 中的运行库通过，包含独立进程读取/提交、
+幂等、冲突、目录锁、回滚、迁移 checksum 及版本拒绝。原生 GUI 点击和 UI→数据库完整流程未验收。
+桌面工作线程的“启动失败不得报告 ready”回归测试也通过，已加入 make test-db。
+
+以下为 2026-09-07 历史记录，日期早于本次接入。
+
 ## 已实现
 
 - 根目录契约、npm/Cargo workspaces、锁文件、跨平台 Node 脚本与薄 Makefile。

@@ -4,5 +4,10 @@ version.workspace = true
 edition.workspace = true
 license.workspace = true
 [dependencies]
+libloading = "0.8.9"
+fs2 = "0.4.3"
+sha2 = "0.10.9"
+serde.workspace = true
+serde_json.workspace = true
 quicklang-domain.workspace = true
 quicklang-storage-port.workspace = true

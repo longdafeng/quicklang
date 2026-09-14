@@ -4,8 +4,10 @@
   "dependencies": [],
   "runtime": {
     "name": "seekdb",
-    "status": "not_integrated",
+    "status": "embedded_macos_arm64",
+    "version": "1.4.0",
+    "lockfile": "deps/seekdb/runtime.lock.json",
     "sqlite_allowed": false
   },
-  "notes": "npm/Cargo dependency versions are locked in root lockfiles. No unverified seekdb binary is downloaded or packaged."
+  "notes": "Native runtime versions and hashes use deps/seekdb/runtime.lock.json. MariaDB LGPL-2.1 source and licenses accompany the replaceable dynamic driver."
 }

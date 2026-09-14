@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS ql_review_state (
+  card_id VARCHAR(128) COLLATE utf8mb4_bin PRIMARY KEY,
+  version BIGINT UNSIGNED NOT NULL,
+  payload LONGTEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS ql_review_event (
+  event_id VARCHAR(128) COLLATE utf8mb4_bin PRIMARY KEY,
+  card_id VARCHAR(128) COLLATE utf8mb4_bin NOT NULL,
+  payload LONGTEXT NOT NULL
+);
