@@ -1,7 +1,7 @@
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { createReadStream } from "node:fs";
-import { accessSync, constants, existsSync, mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
+import { accessSync, constants, cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { verify } from "../bootstrap/seekdb.mjs";
 
@@ -80,6 +80,7 @@ export async function createRelease(root) {
   try {
     const staging = join(temporary, name);
     mkdirSync(staging);
+    cpSync(join(root, "version"), join(staging, "version"));
     const app = join(staging, "QuickLang.app");
     output("ditto", [join(root, "build/cargo/release/bundle/macos/QuickLang.app"), app]);
     verifyApplication(app, root);
@@ -89,10 +90,14 @@ export async function createRelease(root) {
     const extracted = join(temporary, "extracted");
     output("ditto", ["-x", "-k", archive, extracted]);
     verifyApplication(join(extracted, name, "QuickLang.app"), root);
+    if (!readFileSync(join(extracted, name, "version")).equals(readFileSync(join(root, "version")))) {
+      throw new Error("Release version file does not match the project version file");
+    }
     const checksum = `${await sha256(archive)}  ${name}.zip\n`;
     writeFileSync(join(temporary, "SHA256SUMS"), checksum);
     renameSync(archive, join(destination, `${name}.zip`));
     renameSync(join(temporary, "SHA256SUMS"), join(destination, `${name}.zip.sha256`));
+    cpSync(join(staging, "version"), join(destination, "version"));
     console.log(`All-in-one release: ${join(destination, `${name}.zip`)}`);
   } finally {
     rmSync(temporary, { recursive: true, force: true });

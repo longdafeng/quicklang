@@ -52,6 +52,9 @@ async function build() {
   const source = join(root, "build/cargo/release/bundle");
   const destination = join(root, "dist", process.platform + "-" + process.arch);
   mkdirSync(destination, { recursive: true }); cpSync(source, destination, { recursive: true });
+  cpSync(join(root, "version"), join(root, "build/cargo/release/version"));
+  cpSync(join(root, "version"), join(destination, "version"));
+  cpSync(join(root, "version"), join(destination, process.platform === "darwin" ? "macos" : "nsis", "version"));
 }
 /** Build and install the application without overwriting an existing installation. */
 async function install() {
