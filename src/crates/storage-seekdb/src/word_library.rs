@@ -246,6 +246,31 @@ fn decode_array(value: Option<&str>) -> Result<Vec<String>, AppError> {
     Ok(words)
 }
 impl SeekDbEmbeddedAdapter {
+    /// Verify the bundled seed, recreate missing library tables, and insert missing rows.
+    /// Existing rows remain unchanged; invalid resources or database failures prevent readiness.
+    pub fn ensure_library(&self, directory: &Path) -> Result<ImportReport, AppError> {
+        let seed = LibrarySeed::load(directory)?;
+        let tables: HashSet<String> = self.native.execute(
+            "SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME IN ('ql_word','wordbook')",
+        )?.into_iter().filter_map(|row| row.into_iter().next().flatten()).collect();
+        // Only issue DDL for absent tables; redundant seekdb DDL can stall on reopen.
+        let schema = include_str!("../../../migrations/embedded/V0003__word_library.sql")
+            .lines()
+            .filter(|line| !line.trim_start().starts_with("--"))
+            .collect::<Vec<_>>()
+            .join("\n");
+        for statement in schema.split(';').map(str::trim).filter(|s| !s.is_empty()) {
+            let table = statement
+                .split_whitespace()
+                .nth(5)
+                .ok_or_else(|| invalid("Invalid bundled library schema"))?;
+            if !tables.contains(table) {
+                self.native.execute(statement)?;
+            }
+        }
+        self.import_library(&seed)
+    }
+
     pub fn import_library(&self, seed: &LibrarySeed) -> Result<ImportReport, AppError> {
         // The adapter already holds the process-wide database file lock.
         self.native.transaction(|| {
@@ -368,7 +393,9 @@ mod tests {
             .execute("SELECT material_id FROM ql_listening")
             .unwrap()
             .is_empty());
-        let report = db.import_library(&seed).unwrap();
+        let report = db
+            .ensure_library(&root.join("build/content/word-library"))
+            .unwrap();
         assert_eq!(report.inserted_words, seed.words.len());
         assert_eq!(report.inserted_books, 11);
         let key = seed.words[0]["spelling"].as_str().unwrap();
@@ -388,7 +415,9 @@ mod tests {
             .unwrap();
         drop(db);
         let db = SeekDbEmbeddedAdapter::open_with_runtime(&directory, &runtime).unwrap();
-        let report = db.import_library(&seed).unwrap();
+        let report = db
+            .ensure_library(&root.join("build/content/word-library"))
+            .unwrap();
         assert_eq!(report.inserted_words, 0);
         assert_eq!(report.inserted_books, 0);
         assert_eq!(
@@ -409,6 +438,37 @@ mod tests {
                 .unwrap()[0],
             vec![Some("Custom".into()), Some("[]".into())]
         );
+        // Repair partial data even when row counts are nonzero.
+        db.native
+            .execute(&format!(
+                "DELETE FROM ql_word WHERE spelling={}",
+                literal(seed.words[1]["spelling"].as_str().unwrap())
+            ))
+            .unwrap();
+        db.native
+            .execute(&format!(
+                "DELETE FROM wordbook WHERE id={}",
+                literal(&seed.books[1].id)
+            ))
+            .unwrap();
+        let report = db
+            .ensure_library(&root.join("build/content/word-library"))
+            .unwrap();
+        assert_eq!(report.inserted_words, 1);
+        assert_eq!(report.inserted_books, 1);
+        // A missing table must be restored even with an up-to-date migration journal.
+        db.native.execute("DROP TABLE wordbook").unwrap();
+        let report = db
+            .ensure_library(&root.join("build/content/word-library"))
+            .unwrap();
+        assert_eq!(report.inserted_words, 0);
+        assert_eq!(report.inserted_books, 11);
+        db.native.execute("DROP TABLE ql_word").unwrap();
+        let report = db
+            .ensure_library(&root.join("build/content/word-library"))
+            .unwrap();
+        assert_eq!(report.inserted_words, seed.words.len());
+        assert_eq!(report.inserted_books, 0);
         // Force a failure after the word insert; the whole data import must roll back.
         db.native
             .execute(

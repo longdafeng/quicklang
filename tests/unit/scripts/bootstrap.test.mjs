@@ -1,11 +1,37 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, writeFileSync, readFileSync, rmSync, symlinkSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync, symlinkSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { createHash } from 'node:crypto';
-import { verify } from '../../../scripts/bootstrap/seekdb.mjs';
+import { verify, prepareDriverSource } from '../../../scripts/bootstrap/seekdb.mjs';
 const hash = data => createHash('sha256').update(data).digest('hex');
+test('driver checkout supports fresh clones and retries while preserving local changes', () => {
+  const root = mkdtempSync(join(tmpdir(), 'quicklang-driver-'));
+  const repository = join(root, 'upstream'), directory = join(root, 'driver');
+  try {
+    mkdirSync(repository);
+    execFileSync('git', ['init', repository]);
+    writeFileSync(join(repository, 'LICENSE'), 'original');
+    execFileSync('git', ['-C', repository, 'add', 'LICENSE']);
+    execFileSync('git', ['-C', repository, '-c', 'user.name=Test', '-c', 'user.email=test@example.com', '-c', 'commit.gpgsign=false', 'commit', '-m', 'fixture']);
+    const commit = execFileSync('git', ['-C', repository, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
+    prepareDriverSource(repository, commit, directory);
+    assert.equal(readFileSync(join(directory, 'LICENSE'), 'utf8'), 'original');
+    assert.equal(execFileSync('git', ['-C', directory, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(), commit);
+    const legacy = join(root, 'legacy');
+    execFileSync('git', ['clone', '--no-checkout', repository, legacy]);
+    prepareDriverSource(repository, commit, legacy);
+    assert.equal(readFileSync(join(legacy, 'LICENSE'), 'utf8'), 'original');
+    assert.doesNotThrow(() => prepareDriverSource(repository, commit, directory));
+    writeFileSync(join(directory, 'LICENSE'), 'local changes');
+    assert.throws(() => prepareDriverSource(repository, commit, directory), /Driver source is modified/);
+    assert.equal(readFileSync(join(directory, 'LICENSE'), 'utf8'), 'local changes');
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
 function fixture(run) {
   const root = mkdtempSync(join(tmpdir(), 'quicklang-runtime-')); const pin = join(root, '..', `${root.split('/').pop()}.pin`);
   try {

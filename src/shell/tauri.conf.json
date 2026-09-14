@@ -39,6 +39,7 @@
     },
     "resources": {
       "../../deps/cache/seekdb-runtime/": "seekdb/",
+      "../../build/content/word-library/": "word-library/",
       "../../NOTICE.md": "NOTICE.md",
       "../../LICENSE": "LICENSE",
       "../../deps/licenses/": "licenses/"

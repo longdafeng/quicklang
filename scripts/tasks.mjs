@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 // Cross-platform task runner. Make stays a thin, stable interface.
-import { homedir } from "node:os";
-import { readFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, cpSync, lstatSync } from "node:fs";
 import { resolve, join, delimiter } from "node:path";
@@ -9,6 +7,8 @@ import { fileURLToPath } from "node:url";
 const root = fileURLToPath(new URL("../", import.meta.url));
 process.chdir(root);
 const env = { ...process.env };
+const localNpm = join(root, "deps/cache/npm/node_modules/.bin");
+if (existsSync(join(localNpm, "npm"))) env.PATH = localNpm + delimiter + env.PATH;
 if (env.QUICKLANG_DATA_DIR) env.QUICKLANG_DATA_DIR = resolve(root, env.QUICKLANG_DATA_DIR);
 const localCargo = join(root, "deps/cache/cargo");
 if (existsSync(join(localCargo, "bin/cargo"))) {
@@ -18,6 +18,12 @@ if (existsSync(join(localCargo, "bin/cargo"))) {
 function run(command, args, cwd = root) {
   console.log("> " + command + " " + args.join(" "));
   const result = spawnSync(command, args, { cwd, env, stdio: "inherit", shell: process.platform === "win32" && command === "npm" });
+  if (result.error?.code === "ENOENT") {
+    const guidance = command === "cargo"
+      ? "Run make init to automatically install project-local Rust 1.93.1 (including rustfmt and clippy). See README.md for prerequisites."
+      : `Install ${command} and ensure it is available on PATH.`;
+    throw new Error(`Required command not found: ${command}. ${guidance}`);
+  }
   if (result.error) throw result.error;
   if (result.status !== 0) throw new Error(command + " failed (" + result.status + ")");
 }
@@ -26,36 +32,31 @@ const cargo = (...args) => run("cargo", args);
 const tauri = (...args) => run(process.execPath, [join(root, "node_modules/@tauri-apps/cli/tauri.js"), ...args], join(root, "src/shell"));
 function checkLicense() { run(process.execPath, ["scripts/compliance/check.mjs"]); }
 function help() {
-  console.log("QuickLang: make init / doctor / dev / build / install / test / test-db / test-coverage / test-coverage-db / docs / license-check / content / review");
+  console.log("QuickLang: make init / doctor / dev / build / release / install / test / test-db / test-coverage / test-coverage-db / docs / license-check / content / review");
   console.log("seekdb 1.4.0 embedded runtime: macOS ARM64. build creates an unsigned desktop application.");
   console.log("Alternative on Windows: node scripts/tasks.mjs <target>");
 }
-function initLibrary() {
-  // Match Tauri app_data_dir on the supported macOS runtime.
-  const config = JSON.parse(readFileSync(join(root, "src/shell/tauri.conf.json"), "utf8"));
-  const data = env.QUICKLANG_DATA_DIR ? resolve(env.QUICKLANG_DATA_DIR)
-    : join(homedir(), "Library/Application Support", config.identifier, "seekdb-1.4.0");
-  run(process.execPath, ["scripts/content/generate-word-library.mjs"]);
-  cargo("run", "--locked", "--offline", "-p", "quicklang-storage-seekdb", "--bin", "init-word-library", "--",
-    join(root, "build/content/word-library"), data, join(root, "deps/cache/seekdb-runtime"));
-}
 function doctor() { run(process.execPath, ["--version"]); npm("--version"); cargo("--version"); }
-function build() {
+/** Build desktop artifacts, retrying only compiler startup kills at most twice. */
+async function build() {
+  const { runCommand } = await import("./bootstrap/process.mjs");
   run(process.execPath, ["scripts/bootstrap/seekdb.mjs", "--offline-check"]);
   checkLicense();
+  run(process.execPath, ["scripts/content/generate-word-library.mjs"]);
   npm("run", "build");
-  cargo("build", "--locked", "--offline", "--release", "-p", "quicklang-server");
+  await runCommand("cargo", ["build", "--locked", "--offline", "--release", "-p", "quicklang-server"], { cwd: root, env, retryKilled: true });
   if (!["darwin", "win32"].includes(process.platform)) throw new Error("Desktop packaging is currently configured for macOS/Windows only");
   const args = ["build", "--no-sign", "--bundles", process.platform === "darwin" ? "app" : "nsis"];
   if (process.platform === "win32") args.push("--config", "tauri.windows.conf.json");
-  tauri(...args, "--", "--locked", "--offline");
+  await runCommand(process.execPath, [join(root, "node_modules/@tauri-apps/cli/tauri.js"), ...args, "--", "--locked", "--offline"], { cwd: join(root, "src/shell"), env, retryKilled: true });
   const source = join(root, "build/cargo/release/bundle");
   const destination = join(root, "dist", process.platform + "-" + process.arch);
   mkdirSync(destination, { recursive: true }); cpSync(source, destination, { recursive: true });
 }
-function install() {
+/** Build and install the application without overwriting an existing installation. */
+async function install() {
   if (process.platform !== "darwin") throw new Error("Run the generated Windows installer from dist; automatic install is macOS-only");
-  build();
+  await build();
   const application = join(root, "dist/darwin-" + process.arch, "macos/QuickLang.app");
   const applications = process.env.INSTALL_DIR || join(process.env.HOME, "Applications");
   const destination = resolve(applications, "QuickLang.app");
@@ -69,14 +70,24 @@ try {
   switch (process.argv[2] || "help") {
     case "--help": case "help": help(); break;
     case "doctor": doctor(); break;
-    case "init":
-      doctor(); npm("ci"); cargo("fetch", "--locked");
-      run(process.execPath, ["scripts/bootstrap/seekdb.mjs"]);
-      initLibrary(); break;
+    case "init": {
+      const { initialize } = await import("./bootstrap/init.mjs");
+      await initialize(root, env); break;
+    }
     case "dev":
+      run(process.execPath, ["scripts/content/generate-word-library.mjs"]);
       tauri("dev"); break;
-    case "build": build(); break;
-    case "install": install(); break;
+    case "build": await build(); break;
+    case "release": {
+      if (process.platform !== "darwin" || process.arch !== "arm64") {
+        throw new Error("All-in-one releases currently require macOS 15+ Apple Silicon");
+      }
+      await build();
+      const { createRelease } = await import("./release/package.mjs");
+      await createRelease(root);
+      break;
+    }
+    case "install": await install(); break;
     case "test":
       checkLicense(); cargo("fmt", "--all", "--", "--check");
       cargo("clippy", "--locked", "--offline", "--workspace", "--all-targets", "--", "-D", "warnings");
@@ -100,7 +111,7 @@ try {
       cargo("test", "--locked", "--offline", "-p", "quicklang-tests", "--test", "seekdb", "--", "--ignored", "--nocapture", "--test-threads=1");
       cargo("test", "--locked", "--offline", "-p", "quicklang-tests", "--test", "word_library_schema", "--", "--ignored", "--nocapture", "--test-threads=1");
       cargo("test", "--locked", "--offline", "-p", "quicklang-storage-seekdb", "--lib", "--", "--ignored", "--nocapture", "--test-threads=1");
-      cargo("test", "--locked", "--offline", "-p", "quicklang-shell", "--lib"); break;
+      cargo("test", "--locked", "--offline", "-p", "quicklang-shell", "--lib", "--", "--include-ignored", "--test-threads=1"); break;
     case "docs": npm("run", "docs"); break;
     case "license-check": checkLicense(); break;
     case "content":

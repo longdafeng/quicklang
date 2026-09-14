@@ -1,70 +1,138 @@
 # QuickLang
 
-个人背单词应用框架：Tauri 2 + React/TypeScript + Rust。首发 macOS 15+ Apple Silicon，
-预留 iPhone/iPad 与 Windows 扩展。QuickLang 自有代码采用 Apache-2.0；Ink 词库单独遵循 CC BY-SA 4.0。
+一款面向个人的英语学习应用，围绕单词背诵、听说训练和 AI 陪练，帮助你持续练习英语。
 
-## 当前交付范围
+## 第一章：背景
 
-可运行的桌面框架、拼写/卡片/自动默念预览、独立实现的调度与输入核心、
-事务仓库接口、同步消息校验、失败关闭的 API 服务入口、Ink 单词清单导入器、
-测试和 VitePress 文档站。
+因为自家孩子学英语总是磨洋工, 而且背单词效率非常低下, 故将我自己的学单词的方法, 沉淀到软件中, 帮助小朋友更快的背单词. 
 
-**当前不是完整学习产品。** macOS ARM64 已接入 seekdb 1.4.0 原生驱动和桌面复习持久化命令；
-界面学习流程需接入这些命令才会写入 seekdb。OceanBase 服务、认证、同步和备份尚待实现。没有 SQLite 或生产数据库回退。
-内存仓库只出现在测试中。
+## 第二章：功能
 
-## 快速开始
+下面是当前界面的实际截图（本地浏览器预览）：
 
-需要 Node.js 22.12+、GNU Make、CMake、Perl、Rust 1.93.1，以及 macOS Command Line Tools。
-iOS 构建另需完整 Xcode、iOS SDK 与开发签名。Windows 桌面构建还需 MSVC/WebView2，
-当前没有 Windows/iOS 真机验收结论。
+![QuickLang 界面：左侧功能菜单与词书选择](docs/images/quicklang-overview.png)
+
+左侧菜单分为四组，二级菜单及功能如下。
+
+### 单词背诵
+
+| 二级菜单 | 功能介绍 |
+| --- | --- |
+| 选书 | 选择内置词书，各词书分别保存学习进度。 |
+| 自动飘单词 | 按设定的单词数量、朗读次数和间隔自动展示并朗读单词。 |
+| 强化学习 | 通过朗读、停顿回忆和释义卡片强化单词记忆。 |
+| 背诵 | 通过拼写练习检验记忆，并将拼错的单词自动加入生词表。 |
+| 生词表 | 集中查看、收藏和移除当前词书中需要重点学习的单词。 |
+| 学习进度 | 按词书查看强化学习、背诵进度和生词数量，并继续学习。 |
+
+### 听说训练
+
+| 二级菜单 | 功能介绍 |
+| --- | --- |
+| 听说练习 | 围绕练习材料完成听写、理解题、录音跟读和脱稿表达。 |
+| 听力训练 | 导入本地音频及 SRT/VTT 字幕，进行精听、跟读、盲听、复述和间隔复习。 |
+| AI 陪练 | 用文字或录音回答场景问题，获取 AI 表达反馈并继续回答追问。 |
+
+### 工具
+
+| 二级菜单 | 功能介绍 |
+| --- | --- |
+| 查询 | 在词书中检索单词，查看释义和例句。 |
+| 词库维护 | 创建词书并维护其中的单词、释义和例句。 |
+
+### 设置
+
+| 二级菜单 | 功能介绍 |
+| --- | --- |
+| 用户设置 | 创建或切换本机用户，设置名称和英语水平，并分别保存学习记录。 |
+| 系统设置 | 配置 AI 服务地址、对话模型、语音转写模型和 API Key。 |
+
+内置 11 本 词书，附有中文释义和双语例句，可离线阅读；AI 补充例句在界面中单独标记。AI 反馈和转写需要网络及相应服务配置，基础单词学习无需配置 AI。
+
+当前项目仍在开发中，学习记录保存在当前设备，尚未提供跨设备同步；浏览器可预览界面，但听力训练的音频和进度持久化需要桌面版。更多说明见[听力训练文档](docs/development/listening.md)。
+
+## 第三章：快速上手
+
+### 普通用户：下载发布包
+
+1. 打开 [GitHub Releases](https://github.com/longdafeng/quicklang/releases)，在目标版本的 **Assets** 中下载 `QuickLang-<version>-macos-arm64.zip`。
+2. 解压后，将 `QuickLang.app` 拖入“应用程序”文件夹，双击启动。
+3. 首次启动会初始化本机数据库并加载内置词库，随后创建用户、选择英语水平和词书，即可开始学习。
+4. 如需 AI 陪练或语音转写，在“设置 → 系统设置”中填写相应服务配置。
+
+> 当前发布包面向 **macOS 15 及以上的 Apple Silicon（M 系列芯片）Mac**，无需安装 Node.js、Rust、Homebrew 或数据库。仓库目前尚未上传 Release；发布后即可按上述步骤下载使用。
+
+当前打包流程尚未配置 Apple Developer ID 签名和公证；若 macOS 阻止打开，请确认下载来源可信后，在“系统设置 → 隐私与安全性”中允许打开。
+
+### 开发者：从源码运行
+
+项目使用 **Tauri 2 + React / TypeScript + Rust + seekdb**。
+
+#### 1. 准备环境
+
+- macOS 15 及以上，Apple Silicon 芯片。
+- Node.js 22.12 及以上。
+- Apple Command Line Tools，可执行 `xcode-select --install` 安装。
+- CMake；如果已安装 Homebrew，初始化脚本会在缺少 CMake 时自动安装，否则需自行准备。
+
+初始化脚本会按项目锁定版本准备本地 Rust 工具链和 npm，下载、校验并构建 seekdb 原生依赖，无需预先安装 Rust 或数据库。
+
+#### 2. 获取源码并初始化
 
 ```sh
+git clone https://github.com/longdafeng/quicklang.git
+cd quicklang
 make init
-make test
-make test-db
-make docs
-make build
-make install
-make dev
 ```
 
-- `make init` 安装锁定依赖，下载核验 seekdb 1.4.0 并构建原生驱动/OpenSSL；首次需要联网和数分钟编译。随后生成两表词库数据、执行 V0003 建表并导入 11 本词书；重复执行仅补缺，不覆盖已有内容。
-- `make test` 使用离线 Cargo 与本地前端测试，不需要数据库或公网。
-- `make test-db` 运行真实数据库持久化/并发/回滚测试，保留隔离测试数据便于排查。
-- `make build` 构建 UI、同步服务与未公证桌面应用；输出 `dist/<platform>-<arch>/`。
-- `make install` 在 macOS 首次安装到用户 Applications；目标存在时拒绝覆盖。
-- `make dev` 启动 Tauri；浏览器开发预览可用 `npm run dev`。
-- `make content` 从固定版本 Ink 源目录生成 11 本单词清单，并生成数据库种子到 `build/content/word-library/`。
-- `make review` 执行全 workspace clippy、类型检查及代码边界检查。
-- Windows 可用 Node 任务入口做框架检查；嵌入式运行包当前仅支持 macOS ARM64，Windows/iOS 不应视为可发行。
+首次初始化需要联网下载依赖并编译原生组件，同时创建数据库和导入内置词库；重复执行会补齐缺失内容并保留已有数据。完整流程与故障处理见[初始化脚本说明](scripts/README.md)。
 
-若没有全局 Rust，可把 rustup 的 CARGO_HOME/RUSTUP_HOME 安装在
-`deps/cache/cargo` / `deps/cache/rustup`，任务入口会自动使用它们。
-初始化不会自动安装系统工具或更改 shell 配置。
+#### 3. 启动开发环境
 
-macOS 默认数据库目录为 `~/Library/Application Support/io.github.longdafeng.quicklang/seekdb-1.4.0/`，
-与桌面应用一致。可通过 `QUICKLANG_DATA_DIR=/absolute/path make init` 指定独立数据库；
-启动 `make dev` 时使用相同变量。数据库被应用占用时初始化会报 `DB_LOCKED`，请先退出应用。
-生成数据包含 `words.jsonl`、`wordbooks.jsonl`、旧 ID/章节映射、许可文件及 SHA-256 清单。
-本次接入仅负责建表和导入；学习界面的词库读取仍使用现有本地资源。详见
-[词库数据库说明](docs/development/word-library-schema.md)。
+```sh
+# 启动 macOS 桌面应用
+make build
+```
+```
+cd build/cargo/release/bundle/macos/
+open QuickLang.app
+```
 
-## 目录
 
-- `src/`：产品源码、壳、领域 crates、服务、迁移和内容契约。
-- `tests/`：Rust/React/脚本测试、仓库契约与 HTTP 集成测试。
-- `scripts/`：跨平台 Node 任务、内容导入、许可检查。
-- `deps/`：第三方材料、锁定声明、许可证；cache 不提交。
-- `docs/`：Markdown 和 VitePress 静态站；设计原文保留。
-- `repos/`：只读参考，不提交、不参与构建。
-- `build/`、`dist/`：生成物，不保存用户数据。
 
-详细范围与验证结果见 `docs/development/implementation.md`。
-原生版本锁定、资源预算、IPC 和许可重建说明见 `deps/seekdb/README.md`。
+仅开发或预览前端界面时，可以启动浏览器预览：
 
-## 听力训练
+```sh
+npm run dev
+```
 
-侧栏新增「听力训练」：导入本地音频和 SRT/VTT 字幕，完成精听、跟读、盲听、复述与七轮间隔复习；支持难句/语境闪卡和可选 AI 字幕、解析、转写反馈。桌面版的音频和进度通过 Rust 存储线程保存到 seekdb，按用户隔离；浏览器只提供临时预览。详见[听力训练架构与使用说明](docs/development/listening.md)。
+默认访问地址为 <http://127.0.0.1:1420>；浏览器预览不具备完整的桌面原生能力。
 
-测试覆盖率、运行命令、CI 门槛及本轮修复见 [测试覆盖率与代码审查记录](docs/development/coverage-and-review.md)。
+#### 4. 测试与打包
+
+| 命令 | 用途 |
+| --- | --- |
+| `make test` | 运行不依赖数据库的本地测试。 |
+| `make test-db` | 运行真实数据库的持久化、并发和回滚测试。 |
+| `make review` | 运行 Rust clippy、类型检查和代码边界检查。 |
+| `make docs` | 构建文档站。 |
+| `make build` | 构建前端、服务和桌面应用，输出到 `dist/<platform>-<arch>/`。 |
+| `make release` | 重新构建并生成 macOS ARM64 发布 ZIP 及 SHA-256 校验文件，输出到 `dist/releases/`。 |
+| `make install` | 将构建的应用安装到当前用户的 Applications 目录，目标存在时拒绝覆盖。 |
+
+默认数据库目录为 `~/Library/Application Support/io.github.longdafeng.quicklang/seekdb-1.4.0/`。开发时可用 `QUICKLANG_DATA_DIR=/absolute/path make init` 指定独立数据库，并在 `make dev` 时使用相同变量；初始化前请退出占用该数据库的应用。
+
+源码位于 `src/`，测试位于 `tests/`，开发文档位于 `docs/`。进一步阅读：[实现说明](docs/development/implementation.md)、[词库数据库说明](docs/development/word-library-schema.md)、[原生依赖说明](deps/seekdb/README.md)。
+
+QuickLang 自有代码采用 Apache-2.0 许可证；Ink-Learner 词库单独遵循 CC BY-SA 4.0，详见[词库署名说明](src/ui/public/content/ink/ATTRIBUTION.md)。
+
+## 第四章：未来 Milestone
+
+以下为后续版本规划。
+
+| 版本 | 计划 |
+| --- | --- |
+| **1.0** | 发布 Mac 桌面版，完善所有单词学习功能。 |
+| **2.0** | 发布 Mac 桌面版升级版本，完善所有听说训练功能，支持辅助参加英文视频会议。 |
+| **3.0** | 发布苹果手机 iPhone（iOS）版本，让应用可以在手机上运行。 |
+| **4.0** | 发布苹果 iPad（iPadOS）版本，让应用可以在 iPad 上运行。 |

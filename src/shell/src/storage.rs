@@ -49,7 +49,8 @@ fn unavailable() -> AppError {
     AppError::new("DB_UNAVAILABLE", "Storage worker is unavailable", true)
 }
 impl StorageService {
-    pub fn start(data: PathBuf, runtime: PathBuf) -> Self {
+    /// Start storage on its owning thread; report ready only after the library is complete.
+    pub fn start(data: PathBuf, runtime: PathBuf, library: PathBuf) -> Self {
         let (sender, receiver) = mpsc::sync_channel(32);
         let status = Arc::new(Mutex::new(RuntimeStatus {
             phase: "starting".into(),
@@ -59,7 +60,10 @@ impl StorageService {
         }));
         let worker_status = status.clone();
         std::thread::spawn(move || {
-            let opened = SeekDbEmbeddedAdapter::open_with_runtime(&data, &runtime);
+            let opened = SeekDbEmbeddedAdapter::open_with_runtime(&data, &runtime).and_then(|db| {
+                db.ensure_library(&library)?;
+                Ok(db)
+            });
             let mut db = match opened {
                 Ok(db) => db,
                 Err(error) => {
@@ -156,10 +160,59 @@ async fn receive<T: Send + 'static>(
 #[cfg(test)]
 mod tests {
     use super::*;
+    /// Wait for the real storage worker to finish startup, bounded to three minutes.
+    fn wait_for_startup(service: &StorageService) -> RuntimeStatus {
+        let deadline = std::time::Instant::now() + std::time::Duration::from_secs(180);
+        loop {
+            let status = service.status();
+            if status.phase != "starting" {
+                return status;
+            }
+            assert!(
+                std::time::Instant::now() < deadline,
+                "Storage startup timed out"
+            );
+            std::thread::sleep(std::time::Duration::from_millis(100));
+        }
+    }
+
+    /// Verify that real startup reports readiness only with a valid bundled library.
+    #[test]
+    #[ignore = "requires real seekdb and generated seed"]
+    fn startup_requires_complete_library() {
+        let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../..");
+        let directory = root.join(format!(
+            "build/test-databases/startup-{}-{}",
+            std::process::id(),
+            WallClock.now_ms()
+        ));
+        let runtime = root.join("deps/cache/seekdb-runtime");
+        let service = StorageService::start(
+            directory.clone(),
+            runtime.clone(),
+            root.join("build/content/word-library"),
+        );
+        let status = wait_for_startup(&service);
+        assert!(status.persistence_ready, "{:?}", status.error);
+        assert_eq!(status.phase, "ready");
+        let failed = StorageService::start(
+            directory.with_extension("missing-seed"),
+            runtime,
+            root.join("missing-library"),
+        );
+        let status = wait_for_startup(&failed);
+        assert_eq!(status.phase, "error");
+        assert!(!status.persistence_ready);
+        assert!(status.error.is_some());
+    }
+
     #[test]
     fn failed_startup_is_not_reported_ready() {
-        let service =
-            StorageService::start(PathBuf::from("unused"), PathBuf::from("missing-runtime"));
+        let service = StorageService::start(
+            PathBuf::from("unused"),
+            PathBuf::from("missing-runtime"),
+            PathBuf::from("missing-library"),
+        );
         let error = tauri::async_runtime::block_on(service.load("a".into())).unwrap_err();
         assert_eq!(error.code, "DB_UNAVAILABLE");
         let status = service.status();
@@ -169,8 +222,11 @@ mod tests {
     }
     #[test]
     fn disconnected_and_full_workers_return_retryable_errors() {
-        let service =
-            StorageService::start(PathBuf::from("unused"), PathBuf::from("missing-runtime"));
+        let service = StorageService::start(
+            PathBuf::from("unused"),
+            PathBuf::from("missing-runtime"),
+            PathBuf::from("missing-library"),
+        );
         let _ = tauri::async_runtime::block_on(service.load("a".into()));
         let error = tauri::async_runtime::block_on(service.rate(
             "a".into(),

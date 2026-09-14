@@ -2,7 +2,8 @@
 // Pinned, repository-local runtime; never runs the macOS package installer.
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
-import { readFileSync, writeFileSync, existsSync, mkdirSync, copyFileSync, chmodSync, readdirSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync, mkdirSync, copyFileSync, chmodSync, readdirSync, renameSync } from "node:fs";
+import { downloadVerified } from "./download.mjs";
 import { join, basename, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 const root = fileURLToPath(new URL("../../", import.meta.url));
@@ -20,14 +21,18 @@ function run(command, args, cwd = root) {
   const result = spawnSync(command, args, { cwd, encoding: "utf8", stdio: "inherit" });
   if (result.error || result.status !== 0) throw result.error || new Error(`${command} failed (${result.status})`);
 }
+/** Read command output, retrying only startup kills of these read-only probes. */
 function output(command, args, cwd = root, includeStderr = false) {
-  const result = spawnSync(command, args, { cwd, encoding: "utf8" });
-  if (result.error || result.status !== 0) throw result.error || new Error(result.stderr);
-  return (result.stdout + (includeStderr ? result.stderr : "")).trim();
-}
-function download(url, path, digest) {
-  if (!existsSync(path)) run("curl", ["-fLsS", "--retry", "2", url, "-o", path]);
-  if (hash(path) !== digest) throw new Error(`Checksum mismatch: ${path}. Move the incomplete file aside and retry.`);
+  for (let attempt = 0; ; attempt++) {
+    const result = spawnSync(command, args, { cwd, encoding: "utf8" });
+    if (result.signal === "SIGKILL" && attempt < 2) {
+      console.warn(`${command} was killed during startup; retrying (${attempt + 1}/2).`);
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 1000);
+      continue;
+    }
+    if (result.error || result.status !== 0) throw result.error || new Error(`${command} failed (${result.signal || result.status}): ${result.stderr}`);
+    return (result.stdout + (includeStderr ? result.stderr : "")).trim();
+  }
 }
 function files(dir, prefix = "") {
   return readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
@@ -35,6 +40,16 @@ function files(dir, prefix = "") {
     if (entry.isSymbolicLink()) throw new Error(`Unexpected symlink: ${name}`);
     return entry.isDirectory() ? files(join(dir, entry.name), name + "/") : [name];
   });
+}
+/** Prepare a pinned driver checkout, rejecting existing local changes before checkout. */
+export function prepareDriverSource(repository, commit, directory) {
+  if (!existsSync(directory)) run("git", ["clone", repository, directory]);
+  // Recover the old --no-checkout clone only when no worktree or index was ever created.
+  if (!existsSync(join(directory, ".git/index")) && readdirSync(directory).every(name => name === ".git")) {
+    run("git", ["checkout", "--detach", commit], directory);
+  }
+  if (output("git", ["status", "--porcelain"], directory)) throw new Error(`Driver source is modified: ${directory}; preserve changes and rebuild in a separate checkout`);
+  run("git", ["checkout", "--detach", commit], directory);
 }
 export function verify(runtimeDirectory = runtime, pinFile = pinPath) {
   const manifest = JSON.parse(readFileSync(join(runtimeDirectory, "manifest.json"), "utf8"));
@@ -54,24 +69,32 @@ try {
   }
   if (process.platform !== "darwin" || process.arch !== "arm64") throw new Error("Embedded seekdb packaging currently requires macOS 15+ ARM64");
   if (process.argv.includes("--offline-check")) { verify(); process.exit(0); }
-  if (existsSync(join(runtime, "manifest.json"))) { verify(); process.exit(0); }
+  if (existsSync(join(runtime, "manifest.json"))) {
+    try { verify(); process.exit(0); }
+    catch (error) {
+      const backup = `${runtime}.invalid-${Date.now()}`;
+      renameSync(runtime, backup);
+      console.warn(`${error.message}. Preserved runtime at ${backup}; rebuilding.`);
+    }
+  }
   mkdirSync(downloads, { recursive: true }); mkdirSync(runtime, { recursive: true });
   const pkg = join(downloads, "seekdb-1.4.0-macos-arm64.pkg");
-  download(pin.engine_url, pkg, pin.engine_sha256);
+  await downloadVerified(pin.engine_url, pkg, pin.engine_sha256);
   const expanded = join(downloads, "pkg");
+  if (existsSync(expanded) && !existsSync(join(expanded, "_pkg_component.pkg/Payload/opt/seekdb/bin/seekdb"))) renameSync(expanded, `${expanded}.incomplete-${Date.now()}`);
   if (!existsSync(expanded)) run("pkgutil", ["--expand-full", pkg, expanded]);
   const engine = join(expanded, "_pkg_component.pkg/Payload/opt/seekdb/bin/seekdb");
   if (!output(engine, ["-V"], root, true).includes(`seekdb ${pin.version}.0`)) throw new Error("Unexpected engine version");
   const sslArchive = join(downloads, `openssl-${pin.openssl_version}.tar.gz`);
-  download(pin.openssl_url, sslArchive, pin.openssl_sha256);
+  await downloadVerified(pin.openssl_url, sslArchive, pin.openssl_sha256);
+  if (existsSync(sslSource) && !existsSync(join(sslSource, "Configure"))) renameSync(sslSource, `${sslSource}.incomplete-${Date.now()}`);
   if (!existsSync(sslSource)) run("tar", ["-xzf", sslArchive, "-C", downloads]);
-  if (!existsSync(join(sslPrefix, "lib/libcrypto.3.dylib"))) {
+  if (!["lib/libcrypto.3.dylib", "lib/libssl.3.dylib", "include/openssl/ssl.h", ".quicklang-complete"].every(name => existsSync(join(sslPrefix, name)))) {
     run("perl", ["Configure", "darwin64-arm64-cc", "shared", "no-tests", "no-apps", "no-docs", `--prefix=${sslPrefix}`, "--libdir=lib", "-mmacosx-version-min=15.0"], sslSource);
     run("make", ["-s", "-j4"], sslSource); run("make", ["-s", "install_sw"], sslSource);
+    writeFileSync(join(sslPrefix, ".quicklang-complete"), pin.openssl_sha256 + "\n");
   }
-  if (!existsSync(source)) run("git", ["clone", "--no-checkout", pin.bindings_repository, source]);
-  if (output("git", ["status", "--porcelain"], source)) throw new Error("Driver source is modified; preserve changes and rebuild in a separate checkout");
-  run("git", ["checkout", "--detach", pin.bindings_commit], source);
+  prepareDriverSource(pin.bindings_repository, pin.bindings_commit, source);
   run("git", ["submodule", "update", "--init", "--recursive", "--", "deps/mariadb-connector-c"], source);
   const connector = join(source, "deps/mariadb-connector-c");
   if (output("git", ["rev-parse", "HEAD"], connector) !== pin.connector_commit) throw new Error("Connector pin mismatch");

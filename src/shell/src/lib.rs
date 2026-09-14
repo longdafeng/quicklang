@@ -57,7 +57,13 @@ pub fn run() {
             } else {
                 app.path().resource_dir()?.join("seekdb")
             };
-            app.manage(StorageService::start(data, runtime));
+            let library = if cfg!(debug_assertions) {
+                std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+                    .join("../../build/content/word-library")
+            } else {
+                app.path().resource_dir()?.join("word-library")
+            };
+            app.manage(StorageService::start(data, runtime, library));
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![

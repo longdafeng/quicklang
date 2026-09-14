@@ -114,7 +114,14 @@ impl SeekDbEmbeddedAdapter {
         Ok(db)
     }
     fn migrate(&self) -> Result<(), AppError> {
-        self.native.execute("CREATE TABLE IF NOT EXISTS ql_schema_migration (version BIGINT PRIMARY KEY, checksum VARCHAR(64) NOT NULL)")?;
+        // Avoid redundant DDL on reopen: seekdb can stall even with IF NOT EXISTS.
+        // The adapter's database file lock serializes schema initialization.
+        let journal = self.native.execute(
+            "SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='ql_schema_migration'",
+        )?;
+        if journal.is_empty() {
+            self.native.execute("CREATE TABLE IF NOT EXISTS ql_schema_migration (version BIGINT PRIMARY KEY, checksum VARCHAR(64) NOT NULL)")?;
+        }
         let rows = self
             .native
             .execute("SELECT version, checksum FROM ql_schema_migration ORDER BY version")?;
