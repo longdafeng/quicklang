@@ -72,9 +72,9 @@
 
 > 当前发布包面向 **macOS 15 及以上的 Apple Silicon（M 系列芯片）Mac**，无需安装 Node.js、Rust、Homebrew 或数据库。
 
-安装包也通过仓库的 [GitHub Packages](https://github.com/longdafeng/quicklang/pkgs/container/quicklang) 发布，版本地址为 `ghcr.io/longdafeng/quicklang:0.1.0`。该容器仅保存 macOS 安装 ZIP 和 SHA-256 校验文件，不是可运行的 Linux 应用。普通用户直接从 Releases 下载即可。
+[直接下载 QuickLang 0.1.0 ZIP](https://github.com/longdafeng/quicklang/releases/download/v0.1.0/QuickLang-0.1.0-macos-arm64.zip)。用户只需下载这一个 ZIP，校验文件可按需下载。
 
-维护者执行 `make release` 并将 ZIP 和 `.sha256` 上传到对应 `v<version>` Release 后，可运行 `gh workflow run publish-package.yml -f version=<version>` 发布同版本的 Packages 包；工作流会先校验文件，再通过仓库令牌推送到 GHCR。
+维护者执行 `make release`，将 `dist/releases/` 中生成的带版本号 ZIP 和 `.sha256` 校验文件上传到对应 GitHub Release。
 
 当前打包流程尚未配置 Apple Developer ID 签名和公证；若 macOS 阻止打开，请确认下载来源可信后，在“系统设置 → 隐私与安全性”中允许打开。
 

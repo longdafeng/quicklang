@@ -1,49 +1,26 @@
-name: Publish desktop package
-
+name: Remove obsolete desktop container
 on:
   workflow_dispatch:
-    inputs:
-      version:
-        description: Release version without the v prefix
-        required: true
-        default: '0.1.0'
-
 permissions:
   contents: read
   packages: write
-
 jobs:
-  publish:
+  remove:
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ github.token }}
-      VERSION: ${{ inputs.version }}
-      REPOSITORY: ${{ github.repository }}
     steps:
-      - name: Download and verify release
+      - name: Delete the obsolete QuickLang container package
         shell: bash
         run: |
           set -euo pipefail
-          [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
-          mkdir artifacts
-          gh release download "v$VERSION" --repo "$REPOSITORY" --dir artifacts \
-            --pattern "QuickLang-$VERSION-macos-arm64.zip" \
-            --pattern "QuickLang-$VERSION-macos-arm64.zip.sha256"
-          cd artifacts
-          sha256sum --check "QuickLang-$VERSION-macos-arm64.zip.sha256"
-      - name: Publish versioned archive container
-        shell: bash
-        run: |
-          set -euo pipefail
-          IMAGE="ghcr.io/${REPOSITORY,,}:$VERSION"
-          printf '%s' "$GH_TOKEN" | docker login ghcr.io --username "$GITHUB_ACTOR" --password-stdin
-          trap 'docker logout ghcr.io' EXIT
-          printf 'FROM scratch\nCOPY artifacts/ /\n' > Dockerfile
-          docker build --platform linux/arm64 \
-            --label "org.opencontainers.image.source=https://github.com/$REPOSITORY" \
-            --label "org.opencontainers.image.version=$VERSION" \
-            --label 'org.opencontainers.image.description=QuickLang macOS ARM64 installer archive; extract the ZIP, this container is not executable.' \
-            --tag "$IMAGE" .
-          docker push "$IMAGE"
-          docker buildx imagetools inspect "$IMAGE"
-          printf 'Published `%s` containing the verified macOS installer ZIP and SHA-256 checksum.\n' "$IMAGE" >> "$GITHUB_STEP_SUMMARY"
+          endpoint=users/longdafeng/packages/container/quicklang
+          gh api "$endpoint" > package.json
+          jq -e '.name == "quicklang" and .repository.full_name == "longdafeng/quicklang"' package.json
+          gh api --method DELETE "$endpoint"
+          if gh api "$endpoint" > remaining.json 2> error.txt; then
+            echo "Package still exists"
+            exit 1
+          fi
+          grep -q 'HTTP 404' error.txt
+          echo "Verified QuickLang container package deleted" >> "$GITHUB_STEP_SUMMARY"
