@@ -6,9 +6,9 @@ LiteLLM 覆盖 OpenAI、Anthropic、Gemini、Azure、Bedrock、DeepSeek、Ollama
 
 ## 本机启动
 
-网关作为独立服务安装。按[官方快速开始](https://docs.litellm.ai/docs/proxy/quick_start)安装 `litellm[proxy]`，实际部署时固定经过验证的版本。本仓库提供配置示例，尚未锁定或打包网关依赖。
+网关作为独立服务安装。按[官方快速开始](https://docs.litellm.ai/docs/proxy/quick_start)安装 `litellm[proxy]`，实际部署时固定经过验证的版本。本仓库不提供网关配置模板，也未锁定或打包网关依赖。
 
-在仓库根目录的终端设置以下环境变量（密钥填自己的值，不提交到仓库）：
+按[官方配置文档](https://docs.litellm.ai/docs/proxy/configs)自行创建并维护配置文件，配置 `quicklang-chat` 和可选的 `quicklang-transcribe` 模型别名，并引用下列环境变量。在终端设置环境变量（密钥填自己的值，不提交到仓库），将命令中的配置路径替换为实际路径：
 
 ```sh
 export LITELLM_MASTER_KEY='sk-替换为本机网关密钥'
@@ -16,7 +16,7 @@ export QUICKLANG_CHAT_MODEL='deepseek/deepseek-chat'
 export QUICKLANG_CHAT_API_KEY='替换为对话厂商密钥'
 export QUICKLANG_TRANSCRIPTION_MODEL='openai/whisper-1'
 export QUICKLANG_TRANSCRIPTION_API_KEY='替换为转写厂商密钥'
-litellm --config deploy/litellm/config.yaml --host 127.0.0.1 --port 4000
+litellm --config /path/to/litellm-config.yaml --host 127.0.0.1 --port 4000
 ```
 
 模型名称必须是所选厂商账户当前可用的标识。仅使用文字对话时，可从配置中删除 `quicklang-transcribe` 条目，不必设置转写环境变量。
@@ -34,7 +34,7 @@ litellm --config deploy/litellm/config.yaml --host 127.0.0.1 --port 4000
 
 ## 切换厂商与增加模型
 
-`deploy/litellm/config.yaml` 中的 `model_name` 是应用使用的稳定别名，`litellm_params.model` 是带提供商前缀的真实模型名。把 `QUICKLANG_CHAT_MODEL` 改为 `anthropic/<模型 ID>` 或 `gemini/<模型 ID>` 并更新密钥，重启网关即可保留应用设置不变。需要多个模型同时可选时，增加不同 `model_name` 的条目，在应用中填写相应别名。
+自行维护的网关配置文件中的 `model_name` 是应用使用的稳定别名，`litellm_params.model` 是带提供商前缀的真实模型名。把 `QUICKLANG_CHAT_MODEL` 改为 `anthropic/<模型 ID>` 或 `gemini/<模型 ID>` 并更新密钥，重启网关即可保留应用设置不变。需要多个模型同时可选时，增加不同 `model_name` 的条目，在应用中填写相应别名。
 
 OpenAI 兼容服务可使用 `openai/<模型 ID>`，同时在对应 `litellm_params` 添加 `api_base`。Azure 需要部署名称、地址和 API 版本，Bedrock 需要 AWS 身份配置，不能仅替换通用 API Key；配置方式见[官方配置文档](https://docs.litellm.ai/docs/proxy/configs)。
 
@@ -44,4 +44,4 @@ OpenAI 兼容服务可使用 `openai/<模型 ID>`，同时在对应 `litellm_par
 
 厂商密钥只放在网关环境中；应用仅在内存中保留网关密钥。远程或多人部署使用 HTTPS 和受限的网关访问密钥，不向客户端分发管理密钥；虚拟密钥、预算和用量管理需要按 LiteLLM 文档额外配置。浏览器预览需允许对应来源的 CORS，桌面版通过 Rust 发请求。
 
-本仓库的客户端协议测试使用模拟响应，不产生厂商费用。真实验收需启动网关并配置有效凭据，分别完成文字对话、语音转写，再更换对话厂商确认别名不变仍可使用。当前配置示例不代表这些真实厂商调用已经验收。
+本仓库的客户端协议测试使用模拟响应，不产生厂商费用。真实验收需启动网关并配置有效凭据，分别完成文字对话、语音转写，再更换对话厂商确认别名不变仍可使用。上述接入说明不代表这些真实厂商调用已经验收。

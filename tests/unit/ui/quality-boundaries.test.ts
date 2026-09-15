@@ -1,10 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { parseSubtitles, validateCues, mediaMime, alignment, advance as advanceMaterial, newMaterial } from "../../../src/ui/src/features/listening/model";
-import { startSession, grade, advance, beginRetry } from "../../../src/ui/src/features/spelling/session";
-import { loadProfiles, saveProfiles, storageKey } from "../../../src/ui/src/features/users/profiles";
-import { wait } from "../../../src/ui/src/features/study/shared";
-import { endpoint, askCoach, transcribe, coachMessages } from "../../../src/ui/src/features/conversation/ai";
-import { generateSubtitles } from "../../../src/ui/src/features/listening/ai";
+import { parseSubtitles, validateCues, mediaMime, alignment, advance as advanceMaterial, newMaterial } from "../../../src/mac_ui/src/features/listening/model";
+import { startSession, grade, advance, beginRetry } from "../../../src/mac_ui/src/features/spelling/session";
+import { loadProfiles, saveProfiles, storageKey } from "../../../src/mac_ui/src/features/users/profiles";
+import { wait } from "../../../src/mac_ui/src/features/study/shared";
+import { endpoint, askCoach, transcribe, coachMessages } from "../../../src/mac_ui/src/features/conversation/ai";
+import { generateSubtitles } from "../../../src/mac_ui/src/features/listening/ai";
 
 beforeEach(() => localStorage.clear());
 afterEach(() => { vi.restoreAllMocks(); vi.unstubAllGlobals(); vi.useRealTimers(); });

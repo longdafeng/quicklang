@@ -70,7 +70,11 @@
 3. 首次启动会初始化本机数据库并加载内置词库，随后创建用户、选择英语水平和词书，即可开始学习。
 4. 如需 AI 陪练或语音转写，在“设置 → 系统设置”中填写相应服务配置。
 
-> 当前发布包面向 **macOS 15 及以上的 Apple Silicon（M 系列芯片）Mac**，无需安装 Node.js、Rust、Homebrew 或数据库。仓库目前尚未上传 Release；发布后即可按上述步骤下载使用。
+> 当前发布包面向 **macOS 15 及以上的 Apple Silicon（M 系列芯片）Mac**，无需安装 Node.js、Rust、Homebrew 或数据库。
+
+安装包也通过仓库的 [GitHub Packages](https://github.com/longdafeng/quicklang/pkgs/container/quicklang) 发布，版本地址为 `ghcr.io/longdafeng/quicklang:0.1.0`。该容器仅保存 macOS 安装 ZIP 和 SHA-256 校验文件，不是可运行的 Linux 应用。普通用户直接从 Releases 下载即可。
+
+维护者执行 `make release` 并将 ZIP 和 `.sha256` 上传到对应 `v<version>` Release 后，可运行 `gh workflow run publish-package.yml -f version=<version>` 发布同版本的 Packages 包；工作流会先校验文件，再通过仓库令牌推送到 GHCR。
 
 当前打包流程尚未配置 Apple Developer ID 签名和公证；若 macOS 阻止打开，请确认下载来源可信后，在“系统设置 → 隐私与安全性”中允许打开。
 
@@ -127,6 +131,7 @@ npm run dev
 | `make review` | 运行 Rust clippy、类型检查和代码边界检查。 |
 | `make docs` | 构建文档站。 |
 | `make build` | 构建前端、服务和桌面应用，输出到 `dist/<platform>-<arch>/`。 |
+| `make clean` | 清理 `build/`、`dist/`、`target/`、Tauri 生成文件、原生驱动构建目录、Vite/VitePress 缓存、TypeScript 增量文件及 `.DS_Store`；保留依赖、工具链和用户数据库。 |
 | `make release` | 重新构建并生成 macOS ARM64 发布 ZIP 及 SHA-256 校验文件，输出到 `dist/releases/`。 |
 | `make install` | 将构建的应用安装到当前用户的 Applications 目录，目标存在时拒绝覆盖。 |
 
@@ -134,7 +139,7 @@ npm run dev
 
 源码位于 `src/`，测试位于 `tests/`，开发文档位于 `docs/`。进一步阅读：[实现说明](docs/development/implementation.md)、[词库数据库说明](docs/development/word-library-schema.md)、[原生依赖说明](deps/seekdb/README.md)。
 
-QuickLang 自有代码采用 Apache-2.0 许可证；Ink-Learner 词库单独遵循 CC BY-SA 4.0，详见[词库署名说明](src/ui/public/content/ink/ATTRIBUTION.md)。
+QuickLang 自有代码采用 Apache-2.0 许可证；Ink-Learner 词库单独遵循 CC BY-SA 4.0，详见[词库署名说明](src/mac_ui/public/content/ink/ATTRIBUTION.md)。
 
 ## 第四章：未来 Milestone
 

@@ -1,7 +1,7 @@
 import { afterEach, expect, it, vi } from "vitest";
 import { invoke, isTauri } from "@tauri-apps/api/core";
-import { listMaterials, deleteMaterial, saveMaterial, loadAudio } from "../../../src/ui/src/features/listening/repository";
-import { newMaterial } from "../../../src/ui/src/features/listening/model";
+import { listMaterials, deleteMaterial, saveMaterial, loadAudio } from "../../../src/mac_ui/src/features/listening/repository";
+import { newMaterial } from "../../../src/mac_ui/src/features/listening/model";
 vi.mock("@tauri-apps/api/core", () => ({ invoke: vi.fn(), isTauri: vi.fn(() => true) }));
 const entry = { id: "lesson", version: 3, payload: newMaterial("Lesson", "audio/mpeg") };
 afterEach(() => { vi.clearAllMocks(); vi.mocked(isTauri).mockReturnValue(true); });

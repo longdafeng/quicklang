@@ -1,7 +1,7 @@
 import { beforeEach, expect, it, vi } from "vitest";
 const api = vi.hoisted(() => ({ invoke: vi.fn(), isTauri: vi.fn() }));
 vi.mock("@tauri-apps/api/core", () => api);
-import { loadStoredReview, submitStoredReview } from "../../../src/ui/src/adapters/seekdb";
+import { loadStoredReview, submitStoredReview } from "../../../src/mac_ui/src/adapters/seekdb";
 beforeEach(() => { vi.clearAllMocks(); api.isTauri.mockReturnValue(true); });
 it("does not silently persist in browser storage", async () => {
   api.isTauri.mockReturnValue(false);

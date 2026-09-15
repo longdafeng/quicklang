@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
-import App from "../../../src/ui/src/app/App";
-import { loadProfiles, storageKey } from "../../../src/ui/src/features/users/profiles";
+import App from "../../../src/mac_ui/src/app/App";
+import { loadProfiles, storageKey } from "../../../src/mac_ui/src/features/users/profiles";
 beforeEach(() => localStorage.clear());
 afterEach(() => { cleanup(); vi.restoreAllMocks(); });
 function create(name: string, level = "A1") {

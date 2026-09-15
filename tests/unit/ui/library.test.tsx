@@ -1,7 +1,7 @@
 import React from "react";
 import { beforeEach, afterEach, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
-import App from "../../../src/ui/src/app/App";
+import App from "../../../src/mac_ui/src/app/App";
 beforeEach(() => { localStorage.clear(); localStorage.setItem("quicklang:profiles", JSON.stringify([{ id: "test", name: "测试用户", level: "A1" }])); });
 function renderApp() { return render(<App />); }
 afterEach(() => { cleanup(); vi.restoreAllMocks(); });

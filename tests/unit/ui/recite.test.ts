@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { initialReciteState, tick } from "../../../src/ui/src/features/auto-recite/machine";
+import { initialReciteState, tick } from "../../../src/mac_ui/src/features/auto-recite/machine";
 describe("automatic recitation", () => {
   it("spells Unicode characters, holds, waits and completes without looping", () => {
     let s = { ...initialReciteState };

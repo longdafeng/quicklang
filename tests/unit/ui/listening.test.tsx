@@ -1,9 +1,9 @@
 import { afterEach, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { parseSubtitles, advance, newMaterial, intervals, alignment } from "../../../src/ui/src/features/listening/model";
-import { Listening } from "../../../src/ui/src/features/listening/Listening";
-import { ProfileContext } from "../../../src/ui/src/features/users/profiles";
-import * as repository from "../../../src/ui/src/features/listening/repository";
+import { parseSubtitles, advance, newMaterial, intervals, alignment } from "../../../src/mac_ui/src/features/listening/model";
+import { Listening } from "../../../src/mac_ui/src/features/listening/Listening";
+import { ProfileContext } from "../../../src/mac_ui/src/features/users/profiles";
+import * as repository from "../../../src/mac_ui/src/features/listening/repository";
 const subtitles = "1\n00:00:01,000 --> 00:00:03,000\nHello, world.\n\n2\n00:00:04,000 --> 00:00:06,500\nKeep practicing.";
 afterEach(() => { cleanup(); vi.restoreAllMocks(); vi.unstubAllGlobals(); });
 it("parses SRT and VTT timings and rejects overlapping, malformed and empty subtitles", () => {
@@ -63,7 +63,7 @@ it("restores the sentence and stage, and does not advance on a failed desktop sa
 });
 
 it("requires real ASR timing segments and propagates cancellation", async () => {
-  const { generateSubtitles } = await import("../../../src/ui/src/features/listening/ai");
+  const { generateSubtitles } = await import("../../../src/mac_ui/src/features/listening/ai");
   const fetcher = vi.fn().mockResolvedValue(new Response(JSON.stringify({ text: "Untimed transcript" })));
   vi.stubGlobal("fetch", fetcher);
   const settings = { baseUrl: "https://models.example/v1", model: "chat", transcriptionModel: "asr" };
@@ -132,7 +132,7 @@ it("imports timed subtitles and handles malformed or out-of-range subtitles", as
   upload(100, subtitles); await screen.findByRole("button", { name: "下一句" }); expect(save).toHaveBeenCalledWith("alice", expect.anything(), expect.objectContaining({ cues: parseSubtitles(subtitles) }));
 });
 it("saves AI sentence explanations and supports sentence selection and player errors", async () => {
-  const ai = await import("../../../src/ui/src/features/conversation/ai"); vi.spyOn(ai, "askCoach").mockResolvedValue("中文讲解");
+  const ai = await import("../../../src/mac_ui/src/features/conversation/ai"); vi.spyOn(ai, "askCoach").mockResolvedValue("中文讲解");
   const { save } = await openLesson(); fireEvent.click(screen.getByText("AI 翻译、意群与词汇讲解")); expect(await screen.findByText("中文讲解")).toBeInTheDocument();
   expect(save).toHaveBeenLastCalledWith("alice", expect.anything(), expect.objectContaining({ notes: { 0: "中文讲解" } }));
   fireEvent.click(screen.getByRole("button", { name: "下一句" })); await waitFor(() => expect(screen.getByRole("button", { name: "上一句" })).toBeEnabled());
@@ -143,7 +143,7 @@ it("saves AI sentence explanations and supports sentence selection and player er
   fireEvent.error(screen.getByLabelText("学习音频")); expect(screen.getByRole("alert")).toHaveTextContent("无法读取此音频");
 });
 it("saves a retelling and displays AI feedback without changing the draft", async () => {
-  const ai = await import("../../../src/ui/src/features/conversation/ai"); const ask = vi.spyOn(ai, "askCoach").mockResolvedValue("Try a clearer ending.");
+  const ai = await import("../../../src/mac_ui/src/features/conversation/ai"); const ask = vi.spyOn(ai, "askCoach").mockResolvedValue("Try a clearer ending.");
   const { save } = await openLesson({ stage: 3 }); fireEvent.change(screen.getByLabelText("我的复述"), { target: { value: "My story" } });
   fireEvent.click(screen.getByText("保存复述草稿")); await waitFor(() => expect(save).toHaveBeenCalledWith("alice", expect.anything(), expect.objectContaining({ retelling: "My story" })));
   await waitFor(() => expect(screen.getByText("发送复述并获取 AI 反馈")).toBeEnabled()); fireEvent.click(screen.getByText("发送复述并获取 AI 反馈"));

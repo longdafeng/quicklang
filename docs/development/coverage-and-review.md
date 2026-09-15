@@ -15,7 +15,7 @@
 | Node 脚本行 | 未测基线 | 60.85% |
 | Node 脚本分支 | 未测基线 | 84.62% |
 
-前端使用 Vitest V8，统计 `src/ui/src` 所有 TS/TSX 业务文件，仅排除挂载入口 `main.tsx`；未导入的文件也包含在统计范围。最终前端统计包含执行期间其他任务新增的朗读设置代码，所以分母也有增长。
+前端使用 Vitest V8，统计 `src/mac_ui/src` 所有 TS/TSX 业务文件，仅排除挂载入口 `main.tsx`；未导入的文件也包含在统计范围。最终前端统计包含执行期间其他任务新增的朗读设置代码，所以分母也有增长。
 
 Rust 使用 cargo-llvm-cov 0.9.1、Rust 1.93.1 的 llvm-tools-preview。原生 LLVM 报告会把同文件内的测试函数也算入分母和分子，因此新增 `scripts/testing/rust-coverage.mjs`，从 LCOV 中剔除顶层 `#[cfg(test)]` / `#[cfg(all(test, unix))]` 模块，仅比较业务代码。没有剔除未覆盖的桌面启动、命令转发或二进制入口。较早记录的 Rust 29.13% 是包含测试体的原始数值，应使用本表修正后的 27.68% 基线。原始 JSON/LCOV 留存供复查。
 

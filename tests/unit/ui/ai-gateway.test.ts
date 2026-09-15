@@ -1,5 +1,5 @@
 import { afterEach, expect, it, vi } from "vitest";
-import { askCoach, transcribe } from "../../../src/ui/src/features/conversation/ai";
+import { askCoach, transcribe } from "../../../src/mac_ui/src/features/conversation/ai";
 
 vi.mock("@tauri-apps/api/core", () => ({ isTauri: () => false, invoke: vi.fn() }));
 afterEach(() => vi.unstubAllGlobals());

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Word } from "../../contracts";
 import { PositionPreview, speak, wait, useSaved, WordCard } from "../study/shared";
+import { loadSpeechSettings } from "../speech/speech";
 // Keep dictionary labels on the card, but omit them from spoken definitions.
 export function spokenMeaning(meaning: string): string {
   return meaning.replace(/(?<=^|[\s，,；;：:、（(\[/&])(?:n|v|vt|vi|adj|adv|ad|prep|pron|conj|art|num|int|interj|aux|det|abbr|phr|pl|sing|un|cn)\.\s*/gi, "")
@@ -45,9 +46,11 @@ export function AutoRecite({ words }: { words: readonly Word[] }) {
             setStage(`第 ${n + 1} / ${repeats} 次 · 中文`);
             await speak(meaning, "zh-CN", signal);
           }
+          const spellingSettings = loadSpeechSettings();
+          spellingSettings.rate *= 1.2;
           for (const letter of words[index].spelling) {
             setStage(`逐字母朗读 · ${letter.toUpperCase()}`);
-            await speak(letter, "en-US", signal);
+            await speak(letter, "en-US", signal, spellingSettings, 0.5);
           }
           setStage(`第 ${n + 1} / ${repeats} 次 · 整词复读`);
           await speak(words[index].spelling, "en-US", signal);
@@ -57,9 +60,7 @@ export function AutoRecite({ words }: { words: readonly Word[] }) {
         else { setComplete(true); setRunning(false); }
       } catch (e) { if (!signal.aborted) { setError((e as Error).message); setRunning(false); } }
     })();
-    const pause = () => setRunning(false);
-    window.addEventListener("blur", pause);
-    return () => { controller.abort(); window.removeEventListener("blur", pause); };
+    return () => { controller.abort(); };
   }, [running, index, repeats, gap, words, session]);
   if (!words.length) return <p>当前词书为空。</p>;
   const valid = Number.isInteger(startPosition) && startPosition >= 1 && startPosition <= words.length

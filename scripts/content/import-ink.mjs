@@ -92,7 +92,7 @@ function main() {
   copyFileSync(join(source, "seeds/LICENSE_ASSETS"), join(output, "LICENSE"));
   writeFileSync(join(output, "ATTRIBUTION.md"), readFileSync(join(source, "docs/reference/acknowledgments.md"), "utf8") + "\n\n## QuickLang example supplements\n\nMissing examples were filled with AI-authored QuickLang examples (`quicklang-ai-authored`). Existing upstream examples are unchanged. Supplementary examples are distributed under CC BY-SA 4.0. AI-authored examples are not quotations from the upstream dictionary. Spelling corrections retain the original spelling and stable content ID. See the bundled manifest for input checksums.\n");
   // Ship separately licensed, verified assets with both browser and desktop builds.
-  const bundled = join(root, "src/ui/public/content/ink");
+  const bundled = join(root, "src/mac_ui/public/content/ink");
   mkdirSync(bundled, { recursive: true });
   for (const book of books) writeFileSync(join(bundled, book.id + ".json"), JSON.stringify(book) + "\n");
   writeFileSync(join(bundled, "catalog.json"), JSON.stringify(books.map((book, index) => ({ id: book.id, title: book.title, count: book.entries.length,

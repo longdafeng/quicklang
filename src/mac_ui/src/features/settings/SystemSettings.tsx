@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { emptySettings, endpoint, type AISettings } from "../conversation/ai";
+import { SpeechSettings } from "./SpeechSettings";
 
 const storageKey = "quicklang:ai-settings";
 
@@ -41,7 +42,7 @@ export function SystemSettings({ settings, apiKey, onSave }: Props) {
     catch { setError("设置保存失败，请检查本机存储空间后重试。"); return; }
     onSave(next, key.trim()); setDraft(next); setKey(key.trim()); setSaved(true);
   }
-  return <section className="study-card system-settings" aria-labelledby="model-settings-title">
+  return <><SpeechSettings /><section className="study-card system-settings" aria-labelledby="model-settings-title">
     <h2 id="model-settings-title">大模型设置</h2>
     <p className="muted">推荐通过 LiteLLM 网关统一接入多家模型服务，用于 AI 对话和语音转写。也可填写兼容 OpenAI 接口的服务地址。</p>
     <button type="button" onClick={() => {
@@ -64,5 +65,5 @@ export function SystemSettings({ settings, apiKey, onSave }: Props) {
       {error && <p className="notice" role="alert">{error}</p>}
       {saved && <p role="status">设置已保存，API Key 仅在当前运行期间保留。</p>}
     </form>
-  </section>;
+  </section></>;
 }

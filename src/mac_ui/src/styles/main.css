@@ -24,3 +24,19 @@
 .nav-group-title{padding:0;margin:0}.nav-group-title button{display:flex;align-items:center;justify-content:space-between;width:100%;padding:10px 12px;font:inherit;color:inherit}.nav-group-title button[aria-expanded=true]{color:#355b43;background:#e5eddd}.nav-group-title span{font-size:18px;line-height:1}.nav-items{margin-top:7px}.nav-items[hidden]{display:none}@media(max-width:600px){.main-nav{grid-template-columns:minmax(0,1fr);gap:8px}.nav-group-title{padding:0}}
 
 .user-settings .study-card{min-height:0}.user-settings>section+section{margin-top:32px}
+
+.progress-featured{min-height:440px;text-align:left;padding:40px;display:flex;flex-direction:column;align-items:flex-start;background:linear-gradient(135deg,#edf4e7,#fff 75%);border-color:#c8d7bf}
+.progress-featured h2{font-size:30px;line-height:1.35;margin:20px 0 0;overflow-wrap:anywhere;max-width:100%}
+.progress-metrics{width:100%;display:grid;gap:12px}.progress-metrics p{margin:0 0 8px}.progress-metrics progress{display:block;height:10px}
+.progress-featured .progress-metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin:28px 0 14px;font-size:18px;font-weight:600}.progress-featured progress{height:16px}
+.progress-featured .actions{margin-top:auto;padding-top:20px}.progress-featured .primary{min-width:160px}
+.progress-others{margin-top:32px}.progress-others>h2{font-size:17px;margin:0 0 16px;color:#617652}
+.progress-book-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+.progress-book-card{min-width:0;padding:16px;border:1px solid #dfe5da;border-radius:12px;background:#fff;display:flex;flex-direction:column;font-size:12px}
+.progress-book-card h3{font-size:14px;line-height:1.5;margin:0 0 16px;overflow-wrap:anywhere}.progress-book-card .progress-metrics{margin-top:auto}.progress-book-card .muted{font-size:12px;margin:12px 0}.progress-book-card button{padding:7px 10px;font-size:12px;align-self:flex-start}
+@media(max-width:850px){.progress-featured{padding:28px}.progress-featured h2{font-size:26px}.progress-featured .progress-metrics{gap:20px;font-size:16px}}
+@media(max-width:600px){.progress-featured{min-height:400px;padding:24px 20px}.progress-featured h2{font-size:24px}.progress-featured .progress-metrics{grid-template-columns:1fr;gap:22px;margin-top:20px}.progress-book-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.progress-book-card{padding:12px}}
+
+.phonetics{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 24px;color:#5b715e;font-size:18px;line-height:1.6;overflow-wrap:anywhere}.feedback .phonetics{font-size:18px}
+.speech-controls{display:grid;gap:12px}.speech-controls select{width:100%;min-width:0;padding:12px;border:1px solid #ccd7c6;border-radius:8px;background:#fafcf8;color:inherit}.system-settings details{margin-top:24px}.system-settings summary{cursor:pointer}
+.speech-download-help{padding:14px 16px;border:1px solid #ccd7c6;border-radius:8px;background:#fafcf8;font-size:.9rem;line-height:1.6}.speech-download-help ol{margin:8px 0;padding-left:22px}.speech-download-help li+li{margin-top:6px}

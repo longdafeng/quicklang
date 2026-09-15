@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import { invoke } from "@tauri-apps/api/core";
-import { askCoach, transcribe } from "../../../src/ui/src/features/conversation/ai";
-import { generateSubtitles } from "../../../src/ui/src/features/listening/ai";
+import { askCoach, transcribe } from "../../../src/mac_ui/src/features/conversation/ai";
+import { generateSubtitles } from "../../../src/mac_ui/src/features/listening/ai";
 vi.mock("@tauri-apps/api/core", () => ({ isTauri: () => true, invoke: vi.fn() }));
 const settings = { baseUrl: "https://example.com/v1", model: "chat", transcriptionModel: "asr" };
 beforeEach(() => { vi.mocked(invoke).mockReset(); });

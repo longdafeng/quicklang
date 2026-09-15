@@ -1,8 +1,8 @@
 import React from "react";
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
-import App from "../../../src/ui/src/app/App";
-import { loadAISettings } from "../../../src/ui/src/features/settings/SystemSettings";
+import App from "../../../src/mac_ui/src/app/App";
+import { loadAISettings } from "../../../src/mac_ui/src/features/settings/SystemSettings";
 
 beforeEach(() => localStorage.clear());
 afterEach(() => { cleanup(); vi.restoreAllMocks(); });

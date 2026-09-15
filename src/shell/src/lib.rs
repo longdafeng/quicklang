@@ -1,4 +1,5 @@
 mod coach;
+mod speech;
 mod storage;
 use quicklang_domain::{AppError, Rating, ReviewState};
 use quicklang_typing_engine::{evaluate, TypingMetrics, TypingResult};
@@ -47,6 +48,7 @@ fn evaluate_spelling(
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_opener::init())
         .setup(|app| {
             let data = std::env::var_os("QUICKLANG_DATA_DIR")
                 .map(std::path::PathBuf::from)
@@ -67,6 +69,8 @@ pub fn run() {
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
+            speech::speech_voices,
+            speech::speech_render,
             get_runtime_status,
             listening_repository,
             evaluate_spelling,

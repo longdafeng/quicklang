@@ -7,7 +7,7 @@
     "node": ">=22.12.0"
   },
   "workspaces": [
-    "src/ui",
+    "src/mac_ui",
     "docs"
   ],
   "scripts": {

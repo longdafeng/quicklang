@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Word } from "../../contracts";
-import { PositionPreview, speak, wait, useSaved, WordCard } from "../study/shared";
+import { PositionPreview, speak, wait, useSaved, WordCard, WordPhonetics } from "../study/shared";
 export function Flashcard({ words, bookId = "demo" }: { words: readonly Word[]; bookId?: string }) {
   const [count, setCount] = useSaved("flash-count", 100);
   const [gap, setGap] = useSaved("flash-gap", 10);
@@ -16,6 +16,7 @@ export function Flashcard({ words, bookId = "demo" }: { words: readonly Word[]; 
   const [page, setPage] = useState(0);
   const pageSize = 50;
   const openNavigation = () => {
+    setRevealed(false);
     setQuery("");
     setPage(Math.floor((active ? progress.learned : Math.max(0, startPosition - 1)) / pageSize));
     setNavigating(true);
@@ -27,12 +28,23 @@ export function Flashcard({ words, bookId = "demo" }: { words: readonly Word[]; 
     setNavigating(false);
   };
   const active = progress.learned < progress.end && progress.learned < words.length;
+  /** Save completion of the current word and move to the next session position. */
+  const advance = () => {
+    setRevealed(false);
+    setStartPosition(Math.min(words.length, progress.learned + 2));
+    setProgress({ ...progress, learned: progress.learned + 1 });
+  };
   useEffect(() => {
-    if (!active || navigating) return;
+    if (!active || navigating || (revealed && error)) return;
     const controller = new AbortController(); const signal = controller.signal;
-    setRevealed(false); setError("");
+    setError("");
     void (async () => {
       try {
+        if (revealed) {
+          await wait(gap * 1000, signal);
+          if (!signal.aborted) advance();
+          return;
+        }
         for (let n = 0; n < repeats; n++) {
           setStage(`第 ${n + 1} / ${repeats} 次朗读`);
           await speak(words[progress.learned].spelling, "en-US", signal);
@@ -40,13 +52,28 @@ export function Flashcard({ words, bookId = "demo" }: { words: readonly Word[]; 
           setStage(`第 ${n + 1} / ${repeats} 次朗读结束 · 停顿 ${gap} 秒`);
           await wait(gap * 1000, signal);
         }
-        if (!signal.aborted) setRevealed(true);
+        if (signal.aborted) return;
+        setRevealed(true);
       } catch (e) {
         if (!signal.aborted) { setError((e as Error).message); setRevealed(true); }
       }
     })();
     return () => controller.abort();
-  }, [active, navigating, progress.learned, retry, words, gap, repeats]);
+  }, [active, navigating, progress.learned, retry, words, gap, repeats, revealed]);
+  useEffect(() => {
+    if (!active || navigating) return;
+    /** Advance one learning step for Enter while leaving text entry untouched. */
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Enter" || event.isComposing || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+      if (event.target instanceof Element && event.target.closest("input, textarea, select, [contenteditable]:not([contenteditable=\"false\"]), a")) return;
+      event.preventDefault();
+      if (event.repeat) return;
+      if (revealed) advance();
+      else setRevealed(true);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [active, navigating, revealed, progress, words.length]);
   const valid = Number.isInteger(startPosition) && startPosition >= 1 && startPosition <= words.length
     && Number.isInteger(count) && count >= 1 && count <= 10000
     && Number.isInteger(repeats) && repeats >= 1 && repeats <= 100
@@ -88,7 +115,7 @@ export function Flashcard({ words, bookId = "demo" }: { words: readonly Word[]; 
       <label>本次背诵数量<input type="number" min="1" max="10000" required value={count || ""} onChange={e => setCount(Number(e.target.value))} /></label>
       <label>停顿时间（秒）<input type="number" min="0" max="600" step="any" required value={Number.isFinite(gap) ? gap : ""} onChange={e => setGap(e.target.value === "" ? NaN : Number(e.target.value))} /></label>
       <label>单词朗读次数<input type="number" min="1" max="100" required value={repeats || ""} onChange={e => setRepeats(Number(e.target.value))} /></label>
-      <p className="muted">每读完一次单词停顿设定时间，最后一次停顿结束后显示中文和例句。默认停顿 10 秒、朗读 1 次，此后沿用上次设置。</p>
+      <p className="muted">每读完一次单词停顿设定时间，最后一次停顿结束后显示中文和例句，再停顿设定时间后自动进入下一个单词，也可手动提前进入。默认停顿 10 秒、朗读 1 次，此后沿用上次设置。</p>
       <p className="muted">{valid ? `本次从第 ${startPosition} 个单词开始，最多学习 ${Math.min(count, words.length - startPosition + 1)} 个。` : "请在允许范围内填写设置。"}</p>
       <button className="primary" type="submit" disabled={!valid}>开始学习</button>
     </form>
@@ -98,14 +125,13 @@ export function Flashcard({ words, bookId = "demo" }: { words: readonly Word[]; 
   </section>;
   return <section className="study-card">
     <p>强化学习 · 已经背诵 {progress.learned} 个 · 本次还剩 {progress.end - progress.learned} 个</p>
-    {revealed ? <WordCard word={words[progress.learned]} /> : <><h2 className="word">{words[progress.learned].spelling}</h2><p role="status">{stage}</p></>}
+    {revealed ? <WordCard word={words[progress.learned]} /> : <><h2 className="word">{words[progress.learned].spelling}</h2><WordPhonetics word={words[progress.learned]} /><p role="status">{stage}</p></>}
+    {revealed && !error && <p role="status">{gap} 秒后自动进入下一个单词</p>}
+    <p className="muted">按 Enter {revealed ? "进入下一个单词" : "显示中文和例句"}</p>
     <div className="actions">
-      <button onClick={() => setRetry(retry + 1)}>重新朗读</button>
+      <button onClick={() => { setRevealed(false); setRetry(retry + 1); }}>重新朗读</button>
       <button onClick={openNavigation}>单词导航</button>
-      <button className="primary" disabled={!revealed} onClick={() => {
-        setStartPosition(Math.min(words.length, progress.learned + 2));
-        setProgress({ ...progress, learned: progress.learned + 1 });
-      }}>记住了，下一个</button>
+      <button className="primary" disabled={!revealed} onClick={advance}>记住了，下一个</button>
       <button onClick={() => {
         setStartPosition(progress.learned + 1);
         setProgress({ ...progress, end: progress.learned });

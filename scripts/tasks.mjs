@@ -32,7 +32,7 @@ const cargo = (...args) => run("cargo", args);
 const tauri = (...args) => run(process.execPath, [join(root, "node_modules/@tauri-apps/cli/tauri.js"), ...args], join(root, "src/shell"));
 function checkLicense() { run(process.execPath, ["scripts/compliance/check.mjs"]); }
 function help() {
-  console.log("QuickLang: make init / doctor / dev / build / release / install / test / test-db / test-coverage / test-coverage-db / docs / license-check / content / review");
+  console.log("QuickLang: make init / doctor / dev / build / clean / release / install / test / test-db / test-coverage / test-coverage-db / docs / license-check / content / review");
   console.log("seekdb 1.4.0 embedded runtime: macOS ARM64. build creates an unsigned desktop application.");
   console.log("Alternative on Windows: node scripts/tasks.mjs <target>");
 }
@@ -81,6 +81,10 @@ try {
       run(process.execPath, ["scripts/content/generate-word-library.mjs"]);
       tauri("dev"); break;
     case "build": await build(); break;
+    case "clean": {
+      const { clean } = await import("./clean.mjs");
+      clean(root); break;
+    }
     case "release": {
       if (process.platform !== "darwin" || process.arch !== "arm64") {
         throw new Error("All-in-one releases currently require macOS 15+ Apple Silicon");

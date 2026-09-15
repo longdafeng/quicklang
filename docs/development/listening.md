@@ -14,7 +14,7 @@ QuickLang 的听力训练独立实现 Echo Loop 介绍中的训练方法，沿�
 
 ## 架构
 
-- `src/ui/src/features/listening/model.ts`：字幕校验、训练状态机、七轮调度、文字对齐纯函数。
+- `src/mac_ui/src/features/listening/model.ts`：字幕校验、训练状态机、七轮调度、文字对齐纯函数。
 - `Listening.tsx`、`Recorder.tsx`、`PhraseCards.tsx`：材料库、播放器、录音和语境闪卡。
 - `repository.ts`：类型化 Tauri IPC，复用当前 Profile ID；桌面数据库失败不会回退到浏览器存储。浏览器仅提供明确标记的临时页面预览，离开页面后丢失材料。
 - `src/shell/src/storage.rs`：所有听力读写进入现有专用数据库线程，使用有界请求队列。

@@ -1,12 +1,13 @@
 import React from "react";
 import { describe, expect, it, vi, afterEach, beforeEach } from "vitest";
 import { fireEvent, render, screen, act, cleanup, within } from "@testing-library/react";
-import { Spelling } from "../../../src/ui/src/features/spelling/Spelling";
-import { AutoRecite, spokenMeaning } from "../../../src/ui/src/features/auto-recite/AutoRecite";
-import { Flashcard } from "../../../src/ui/src/features/flashcard/Flashcard";
-import App from "../../../src/ui/src/app/App";
+import { Spelling } from "../../../src/mac_ui/src/features/spelling/Spelling";
+import { AutoRecite, spokenMeaning } from "../../../src/mac_ui/src/features/auto-recite/AutoRecite";
+import { Flashcard } from "../../../src/mac_ui/src/features/flashcard/Flashcard";
+import { WordPhonetics } from "../../../src/mac_ui/src/features/study/shared";
+import App from "../../../src/mac_ui/src/app/App";
 const words = [{ id: "1", spelling: "word", meaning: "单词", example: "A new word." }, { id: "2", spelling: "next", meaning: "下一个" }];
-let spoken: { text: string; lang: string; onend?: () => void }[];
+let spoken: { text: string; lang: string; rate: number; onend?: () => void }[];
 beforeEach(() => {
   localStorage.clear(); spoken = [];
   vi.stubGlobal("SpeechSynthesisUtterance", class { lang = ""; constructor(public text: string) {} });
@@ -19,7 +20,118 @@ async function answer(value: string) {
   fireEvent.submit(screen.getByLabelText("英文拼写").closest("form")!);
   await screen.findByText(/拼写正确|拼写错误/);
 }
+describe("study phonetics", () => {
+  const phoneticWords = [
+    { ...words[0], phoneticUs: "/wɝːd/", phoneticUk: "/wɜːd/" },
+    { ...words[1], phoneticUs: "/nekst/" },
+  ];
+  it("shows available accents and handles missing or blank phonetics", () => {
+    const view = render(<WordPhonetics word={phoneticWords[0]} />);
+    expect(screen.getByLabelText("发音音标")).toHaveTextContent("美式 /wɝːd/英式 /wɜːd/");
+    view.rerender(<WordPhonetics word={phoneticWords[1]} />);
+    expect(screen.getByLabelText("发音音标")).toHaveTextContent("美式 /nekst/");
+    expect(screen.queryByText(/英式/)).not.toBeInTheDocument();
+    view.rerender(<WordPhonetics word={{ ...words[0], phoneticUs: "  ", phoneticUk: "/wɜːd/" }} />);
+    expect(screen.getByLabelText("发音音标")).toHaveTextContent("英式 /wɜːd/");
+    expect(screen.queryByText(/美式/)).not.toBeInTheDocument();
+    view.rerender(<WordPhonetics word={{ ...words[0], phoneticUs: "  " }} />);
+    expect(screen.getByText("暂无音标")).toBeInTheDocument();
+  });
+  it("displays phonetics when auto recitation starts", () => {
+    render(<AutoRecite words={phoneticWords} />);
+    fireEvent.click(screen.getByText("开始朗读"));
+    expect(screen.getByLabelText("发音音标")).toHaveTextContent("美式 /wɝːd/英式 /wɜːd/");
+  });
+  it("keeps phonetics visible before and after flashcard reveal and updates on advance", async () => {
+    vi.useFakeTimers();
+    render(<Flashcard words={phoneticWords} />); start();
+    expect(screen.getByText("/wɝːd/")).toBeInTheDocument();
+    expect(screen.queryByText("单词")).not.toBeInTheDocument();
+    await act(async () => { spoken[0].onend?.(); });
+    await act(async () => { await vi.advanceTimersByTimeAsync(10000); });
+    expect(screen.getByText("单词")).toBeInTheDocument();
+    expect(screen.getAllByLabelText("发音音标")).toHaveLength(1);
+    expect(screen.getByText("/wɜːd/")).toBeInTheDocument();
+    fireEvent.click(screen.getByText("记住了，下一个"));
+    expect(screen.getByText("/nekst/")).toBeInTheDocument();
+    expect(screen.queryByText("/wɝːd/")).not.toBeInTheDocument();
+  });
+  it("shows phonetics during spelling, feedback and wrong-word retry without revealing the answer early", async () => {
+    render(<Spelling words={[phoneticWords[0]]} />); start();
+    expect(screen.getByText("/wɝːd/")).toBeInTheDocument();
+    expect(screen.queryByText("word")).not.toBeInTheDocument();
+    expect(screen.queryByText("单词")).not.toBeInTheDocument();
+    await answer("wrong");
+    expect(screen.getAllByLabelText("发音音标")).toHaveLength(1);
+    expect(screen.getByText("/wɜːd/")).toBeInTheDocument();
+    fireEvent.click(screen.getByText(/查看本轮结果/));
+    fireEvent.click(screen.getByText("确认，开始错词复习"));
+    expect(screen.getByText("/wɝːd/")).toBeInTheDocument();
+    expect(screen.queryByText("word")).not.toBeInTheDocument();
+  });
+});
+
 describe("study interactions", () => {
+  it("advances flashcards one step per Enter and cancels stale speech and timers", async () => {
+    vi.useFakeTimers();
+    render(<Flashcard words={words} />); start();
+    const interrupted = spoken[0];
+    fireEvent.keyDown(window, { key: "Enter", isComposing: true });
+    fireEvent.keyDown(window, { key: "Enter", ctrlKey: true });
+    expect(screen.queryByText("单词")).not.toBeInTheDocument();
+    fireEvent.keyDown(window, { key: "Enter" });
+    expect(screen.getByText("单词")).toBeInTheDocument();
+    expect(window.speechSynthesis.cancel).toHaveBeenCalled();
+    fireEvent.keyDown(window, { key: "Enter", repeat: true });
+    expect(spoken).toHaveLength(1);
+    await act(async () => { interrupted.onend?.(); await vi.advanceTimersByTimeAsync(5000); });
+    fireEvent.keyDown(screen.getByText("记住了，下一个"), { key: "Enter" });
+    expect(spoken.at(-1)?.text).toBe("next");
+    expect(screen.queryByText("单词")).not.toBeInTheDocument();
+    await act(async () => { await vi.advanceTimersByTimeAsync(5000); });
+    expect(screen.getByText(/已经背诵 1 个 · 本次还剩 1 个/)).toBeInTheDocument();
+    expect(screen.queryByText("下一个")).not.toBeInTheDocument();
+    fireEvent.keyDown(window, { key: "Enter" });
+    fireEvent.keyDown(window, { key: "Enter" });
+    expect(screen.getByText("设置本次学习")).toBeInTheDocument();
+    await act(async () => { await vi.runAllTimersAsync(); });
+    expect(vi.getTimerCount()).toBe(0);
+  });
+  it("does not advance flashcards with Enter while configuring or navigating", () => {
+    const view = render(<Flashcard words={words} />);
+    fireEvent.keyDown(screen.getByLabelText("起始单词位置"), { key: "Enter" });
+    expect(spoken).toHaveLength(0);
+    start();
+    fireEvent.click(screen.getByText("单词导航"));
+    fireEvent.keyDown(screen.getByLabelText("搜索单词、释义或位置"), { key: "Enter" });
+    fireEvent.keyDown(window, { key: "Enter" });
+    fireEvent.click(screen.getByText("返回学习"));
+    expect(screen.getByText(/已经背诵 0 个 · 本次还剩 2 个/)).toBeInTheDocument();
+    expect(screen.queryByText("单词")).not.toBeInTheDocument();
+    view.unmount();
+    expect(fireEvent.keyDown(window, { key: "Enter" })).toBe(true);
+  });
+  it("returns from spelling to setup, stops speech and preserves learned progress", async () => {
+    const view = render(<Spelling words={words} />); start();
+    await answer("word");
+    fireEvent.click(screen.getByRole("button", { name: /下一个单词/ }));
+    fireEvent.change(screen.getByLabelText("英文拼写"), { target: { value: "unfinished" } });
+    vi.mocked(window.speechSynthesis.cancel).mockClear();
+    fireEvent.click(screen.getByRole("button", { name: "返回", exact: true }));
+    expect(window.speechSynthesis.cancel).toHaveBeenCalled();
+    expect(screen.getByText("设置本次学习")).toBeInTheDocument();
+    expect(screen.getByText("已经背诵 1 个单词 · 剩余 1 个")).toBeInTheDocument();
+    expect(screen.getByLabelText("本次背诵数量")).toHaveValue(100);
+    expect(screen.queryByLabelText("英文拼写")).not.toBeInTheDocument();
+    start();
+    expect(screen.getByLabelText("英文拼写")).toHaveValue("");
+    expect(spoken.at(-1)?.text).toBe("next");
+    fireEvent.click(screen.getByRole("button", { name: "返回", exact: true }));
+    view.unmount();
+    render(<Spelling words={words} />);
+    expect(screen.getByText("设置本次学习")).toBeInTheDocument();
+    expect(screen.getByText("已经背诵 1 个单词 · 剩余 1 个")).toBeInTheDocument();
+  });
   it.each(["word", "wrong"])("waits for manual navigation after answering %s", async value => {
     render(<Spelling words={words} />); start();
     await answer(value);
@@ -87,6 +199,45 @@ describe("study interactions", () => {
     expect(screen.getByText("A new word.")).toBeInTheDocument();
     fireEvent.click(screen.getByText("记住了，下一个"));
     expect(screen.queryByText("下一个")).not.toBeInTheDocument();
+  });
+  it("automatically advances after the answer pause and saves completion at the session limit", async () => {
+    vi.useFakeTimers();
+    const view = render(<Flashcard words={words} />);
+    fireEvent.change(screen.getByLabelText("停顿时间（秒）"), { target: { value: "0.5" } });
+    start();
+    for (const word of words) {
+      expect(spoken.at(-1)?.text).toBe(word.spelling);
+      await act(async () => { spoken.at(-1)?.onend?.(); });
+      await act(async () => { await vi.advanceTimersByTimeAsync(500); });
+      expect(screen.getByText(word.meaning)).toBeInTheDocument();
+      await act(async () => { await vi.advanceTimersByTimeAsync(499); });
+      expect(screen.getByText(word.meaning)).toBeInTheDocument();
+      await act(async () => { await vi.advanceTimersByTimeAsync(1); });
+    }
+    expect(screen.getByText("设置本次学习")).toBeInTheDocument();
+    await act(async () => { await vi.runAllTimersAsync(); });
+    expect(spoken).toHaveLength(2);
+    expect(vi.getTimerCount()).toBe(0);
+    view.unmount();
+    render(<Flashcard words={words} />);
+    expect(screen.getByText("已经背诵 2 个单词 · 剩余 0 个")).toBeInTheDocument();
+  });
+  it.each(["记住了，下一个", "重新朗读", "单词导航", "返回设置", "unmount"])("cancels the answer timer on %s", async action => {
+    vi.useFakeTimers();
+    const view = render(<Flashcard words={words} />); start();
+    await act(async () => { spoken[0].onend?.(); });
+    await act(async () => { await vi.advanceTimersByTimeAsync(10000); });
+    expect(screen.getByText("单词")).toBeInTheDocument();
+    if (action === "unmount") view.unmount();
+    else fireEvent.click(screen.getByText(action));
+    const readings = spoken.length;
+    await act(async () => { await vi.advanceTimersByTimeAsync(20000); });
+    expect(spoken).toHaveLength(readings);
+    expect(vi.getTimerCount()).toBe(0);
+    if (action === "记住了，下一个") {
+      expect(screen.getByText(/已经背诵 1 个 · 本次还剩 1 个/)).toBeInTheDocument();
+      expect(spoken.at(-1)?.text).toBe("next");
+    }
   });
   it("repeats with a pause after every reading and cancels pending work on return", async () => {
     vi.useFakeTimers();
@@ -198,11 +349,16 @@ describe("study interactions", () => {
     expect(screen.getByText("设置本次学习")).toBeInTheDocument();
   });
   it("reads English, Chinese, each letter and the whole word before waiting; cancels on exit", async () => {
+    localStorage.setItem("quicklang:speech-settings", JSON.stringify({ rate: 0.8 }));
     vi.useFakeTimers(); const view = render(<AutoRecite words={[words[0]]} />);
     fireEvent.click(screen.getByText("开始朗读"));
     expect(spoken[0]).toMatchObject({ text: "word", lang: "en-US" });
     for (let i = 0; i < 7; i++) await act(async () => { spoken[i].onend?.(); });
     expect(spoken.map(u => u.text)).toEqual(["word", "单词", "w", "o", "r", "d", "word"]);
+    expect(spoken[0].rate).toBe(0.8);
+    expect(spoken[1].rate).toBe(1);
+    for (const utterance of spoken.slice(2, 6)) expect(utterance.rate).toBeCloseTo(0.96);
+    expect(spoken[6].rate).toBe(0.8);
     await act(async () => { vi.advanceTimersByTime(2999); }); expect(spoken).toHaveLength(7);
     await act(async () => { vi.advanceTimersByTime(1); }); expect(spoken[7].text).toBe("word");
     view.unmount(); expect(window.speechSynthesis.cancel).toHaveBeenCalled(); expect(vi.getTimerCount()).toBe(0);
@@ -276,6 +432,28 @@ describe("study interactions", () => {
     const length = spoken.length;
     await act(async () => { vi.runAllTimers(); });
     expect(spoken).toHaveLength(length);
+  });
+  it("continues to the next word after focus loss and still cancels a manual pause", async () => {
+    vi.useFakeTimers();
+    render(<AutoRecite words={words} />);
+    fireEvent.change(screen.getByLabelText("每次朗诵次数"), { target: { value: "1" } });
+    fireEvent.change(screen.getByLabelText("每次朗诵间隔（秒）"), { target: { value: "0.5" } });
+    fireEvent.click(screen.getByText("开始朗读"));
+    fireEvent.blur(window);
+    expect(screen.getByRole("button", { name: "暂停" })).toBeInTheDocument();
+    for (let i = 0; i < 7; i++) await act(async () => { spoken[i].onend?.(); });
+    expect(spoken.map(u => u.text)).toEqual(["word", "单词", "w", "o", "r", "d", "word"]);
+    await act(async () => { await vi.advanceTimersByTimeAsync(500); });
+    expect(screen.getByText("本次 2 / 2 · 词书第 2 个")).toBeInTheDocument();
+    expect(spoken.at(-1)?.text).toBe("next");
+    fireEvent.click(screen.getByRole("button", { name: "暂停" }));
+    await act(async () => {
+      spoken.at(-1)?.onend?.();
+      await vi.runAllTimersAsync();
+    });
+    expect(spoken).toHaveLength(8);
+    expect(window.speechSynthesis.cancel).toHaveBeenCalled();
+    expect(screen.getByRole("button", { name: "继续朗读" })).toBeInTheDocument();
   });
   it("validates settings and limits the session to the end of the book", () => {
     render(<AutoRecite words={words} />);

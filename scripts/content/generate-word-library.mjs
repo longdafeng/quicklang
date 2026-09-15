@@ -58,7 +58,7 @@ export function convertLibrary(books, source) {
   });
   return { words, wordbooks, mappings, conflicts };
 }
-export function generateLibrary(input = join(root, 'src/ui/public/content/ink'), output = join(root, 'build/content/word-library')) {
+export function generateLibrary(input = join(root, 'src/mac_ui/public/content/ink'), output = join(root, 'build/content/word-library')) {
   const catalog = JSON.parse(readFileSync(join(input, 'catalog.json'), 'utf8'));
   if (catalog.length !== 11) throw new Error('Expected all 11 Ink wordbooks');
   const inputs = [], books = catalog.map(item => {

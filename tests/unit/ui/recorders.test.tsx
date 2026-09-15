@@ -1,7 +1,7 @@
 import { act, cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
-import { Recorder } from "../../../src/ui/src/features/listening/Recorder";
-import { Recorder as ConversationRecorder } from "../../../src/ui/src/features/conversation/Recorder";
+import { Recorder } from "../../../src/mac_ui/src/features/listening/Recorder";
+import { Recorder as ConversationRecorder } from "../../../src/mac_ui/src/features/conversation/Recorder";
 class FakeRecorder {
   static supported = true;
   static instances: FakeRecorder[] = [];

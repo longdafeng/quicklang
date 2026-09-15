@@ -1,9 +1,9 @@
 import React from "react";
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
-import { WordSearch, type SearchBook } from "../../../src/ui/src/features/search/WordSearch";
-import { loadBook } from "../../../src/ui/src/features/library/books";
-vi.mock("../../../src/ui/src/features/library/books", () => ({ loadBook: vi.fn() }));
+import { WordSearch, type SearchBook } from "../../../src/mac_ui/src/features/search/WordSearch";
+import { loadBook } from "../../../src/mac_ui/src/features/library/books";
+vi.mock("../../../src/mac_ui/src/features/library/books", () => ({ loadBook: vi.fn() }));
 const books: SearchBook[] = [
   { id: "one", name: "第一本", bundled: false, words: [{ id: "a", spelling: "remember", meaning: "记住；回想起", example: "Remember me." }] },
   { id: "two", name: "第二本", bundled: false, words: [{ id: "b", spelling: "memory", meaning: "记忆" }] },

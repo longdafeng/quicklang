@@ -1,7 +1,7 @@
 import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, expect, it, vi } from "vitest";
-import { PhraseCards } from "../../../src/ui/src/features/listening/PhraseCards";
-import { newMaterial } from "../../../src/ui/src/features/listening/model";
+import { PhraseCards } from "../../../src/mac_ui/src/features/listening/PhraseCards";
+import { newMaterial } from "../../../src/mac_ui/src/features/listening/model";
 const material = { ...newMaterial("Lesson", "audio/mpeg"), cues: [{ start: 0, end: 1, text: "Keep practicing every day." }] };
 afterEach(cleanup);
 it("validates phrase context, trims inputs and prevents duplicate bookmarks", async () => {

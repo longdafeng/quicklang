@@ -283,7 +283,7 @@ quicklang/
 ├── Cargo.toml                       # Rust workspace，仅引用 src/ 下成员
 ├── Cargo.lock                       # 锁定 Rust 依赖
 ├── rust-toolchain.toml              # 固定 Rust channel/components/targets
-├── package.json                     # npm workspace：src/ui 与 docs
+├── package.json                     # npm workspace：src/mac_ui 与 docs
 ├── package-lock.json                # 锁定前端和文档站依赖
 ├── .env.example                     # 非秘密环境变量说明
 ├── .editorconfig
@@ -292,7 +292,7 @@ quicklang/
 │   └── workflows/                   # CI、文档站和发布流水线
 │
 ├── src/                             # QuickLang 全部产品源码
-│   ├── ui/                          # React + TypeScript 共享 UI
+│   ├── mac_ui/                      # React + TypeScript macOS 应用 UI
 │   ├── shell/                       # Tauri 2 桌面/移动壳
 │   ├── server/                      # Rust/Axum 个人同步服务
 │   ├── crates/                      # Rust 领域与基础设施 crates
@@ -360,10 +360,10 @@ quicklang/
 
 ## 12. `src/` 源码详细设计
 
-### 12.1 `src/ui/`：共享界面
+### 12.1 `src/mac_ui/`：macOS 应用界面
 
 ```text
-src/ui/
+src/mac_ui/
 ├── package.json
 ├── tsconfig.json
 ├── vite.config.ts

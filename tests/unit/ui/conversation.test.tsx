@@ -1,12 +1,12 @@
 import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { Conversation } from "../../../src/ui/src/features/conversation/Conversation";
-import { compareSentence, parseGeneratedLesson } from "../../../src/ui/src/features/conversation/lessons";
-import { emptySettings, endpoint } from "../../../src/ui/src/features/conversation/ai";
-import { ProfileContext } from "../../../src/ui/src/features/users/profiles";
-import { Recorder } from "../../../src/ui/src/features/conversation/Recorder";
+import { Conversation } from "../../../src/mac_ui/src/features/conversation/Conversation";
+import { compareSentence, parseGeneratedLesson } from "../../../src/mac_ui/src/features/conversation/lessons";
+import { emptySettings, endpoint } from "../../../src/mac_ui/src/features/conversation/ai";
+import { ProfileContext } from "../../../src/mac_ui/src/features/users/profiles";
+import { Recorder } from "../../../src/mac_ui/src/features/conversation/Recorder";
 const ask = vi.hoisted(() => vi.fn());
-vi.mock("../../../src/ui/src/features/conversation/ai", async importOriginal => ({ ...await importOriginal<object>(), askCoach: ask }));
+vi.mock("../../../src/mac_ui/src/features/conversation/ai", async importOriginal => ({ ...await importOriginal<object>(), askCoach: ask }));
 const words = [{ id: "test", spelling: "practice", meaning: "练习", example: "We practice every day.", exampleTranslation: "我们每天练习。" }];
 function view(configured = false) { return render(<ProfileContext.Provider value="learner"><Conversation words={words} bookId="book" onWrong={vi.fn()} settings={configured ? { baseUrl: "http://localhost:11434/v1", model: "local", transcriptionModel: "" } : emptySettings} apiKey="secret" openSettings={vi.fn()} /></ProfileContext.Provider>); }
 beforeEach(() => { localStorage.clear(); ask.mockReset(); });
