@@ -1,5 +1,7 @@
 //! seekdb 1.4 embedded adapter: native driver, local socket, atomic review writes.
+pub mod ai_profiles;
 pub mod listening;
+mod speech_preferences;
 mod native;
 pub mod word_library;
 use fs2::FileExt;
@@ -25,6 +27,10 @@ const MIGRATIONS: &[(u64, &str)] = &[
     (
         4,
         include_str!("../../../migrations/embedded/V0004__listening.sql"),
+    ),
+    (
+        5,
+        include_str!("../../../migrations/embedded/V0005__ai_profiles.sql"),
     ),
 ];
 pub struct SeekDbEmbeddedAdapter {

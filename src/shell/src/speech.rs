@@ -125,6 +125,57 @@ mod tests {
         );
         assert!(parse_voice("invalid").is_none());
     }
+    /// Verify opt-out persistence across a real seekdb close/reopen and permit later opt-in.
+    #[test]
+    #[ignore = "requires real embedded seekdb"]
+    fn persists_download_refusal() {
+        let runtime = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+            .join("../../deps/cache/seekdb-runtime");
+        if let Some(path) = std::env::var_os("QUICKLANG_SPEECH_REOPEN_PATH") {
+            let db = quicklang_storage_seekdb::SeekDbEmbeddedAdapter::open_with_runtime(
+                std::path::Path::new(&path),
+                &runtime,
+            )
+            .unwrap();
+            assert!(db.speech_enhanced_available(None, 3).unwrap());
+            assert!(db.speech_enhanced_declined(None, 3).unwrap());
+            assert!(!db.speech_enhanced_declined(Some(false), 4).unwrap());
+            assert!(!db.speech_enhanced_declined(None, 5).unwrap());
+            assert!(db.speech_enhanced_available(None, 5).unwrap());
+            return;
+        }
+        let test_root =
+            std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../build/test-databases");
+        std::fs::create_dir_all(&test_root).unwrap();
+        let directory = tempfile::Builder::new()
+            .prefix("speech-")
+            .tempdir_in(test_root)
+            .unwrap()
+            .keep();
+        eprintln!("Speech preference database: {}", directory.display());
+        {
+            let db = quicklang_storage_seekdb::SeekDbEmbeddedAdapter::open_with_runtime(
+                &directory, &runtime,
+            )
+            .unwrap();
+            assert!(!db.speech_enhanced_available(None, 1).unwrap());
+            assert!(db.speech_enhanced_available(Some(true), 2).unwrap());
+            assert!(!db.speech_enhanced_declined(None, 1).unwrap());
+            assert!(db.speech_enhanced_declined(Some(true), 2).unwrap());
+        }
+        let status = Command::new(std::env::current_exe().unwrap())
+            .args([
+                "--exact",
+                "speech::tests::persists_download_refusal",
+                "--ignored",
+                "--nocapture",
+            ])
+            .env("QUICKLANG_SPEECH_REOPEN_PATH", &directory)
+            .status()
+            .unwrap();
+        assert!(status.success(), "Refusal must survive process restart");
+    }
+
     /// Reject bad input before attempting native speech generation.
     #[test]
     fn rejects_invalid_render() {
@@ -146,4 +197,46 @@ mod tests {
         assert_eq!(&wav[8..12], b"WAVE");
         assert!(wav.len() > 1000);
     }
+}
+
+/// Read or persist an explicit download decision in the embedded database.
+#[tauri::command]
+pub async fn speech_download_preference(
+    storage: tauri::State<'_, crate::storage::StorageService>,
+    declined: Option<bool>,
+) -> Result<bool, quicklang_domain::AppError> {
+    storage.speech_preference(declined).await
+}
+
+/// Read or persist a previously confirmed enhanced voice, without native checks.
+#[tauri::command]
+pub async fn speech_enhanced_available(
+    storage: tauri::State<'_, crate::storage::StorageService>,
+    available: Option<bool>,
+) -> Result<bool, quicklang_domain::AppError> {
+    storage.speech_enhanced_available(available).await
+}
+
+/// Open Apple's system speech settings; downloading is completed by the user in macOS.
+#[tauri::command]
+pub async fn speech_open_download_settings() -> Result<(), String> {
+    tauri::async_runtime::spawn_blocking(|| {
+        let status = Command::new("/usr/bin/open")
+            .arg("x-apple.systempreferences:com.apple.preference.universalaccess?SpokenContent")
+            .status()
+            .map_err(|e| e.to_string())?;
+        if status.success() {
+            Ok(())
+        } else {
+            Err("无法打开系统音色设置，请从系统设置的辅助功能进入".into())
+        }
+    })
+    .await
+    .map_err(|e| e.to_string())?
+}
+
+/// Check the native inventory before opening or automating any system UI.
+pub(crate) fn preferred_enhanced_installed() -> Result<bool, String> {
+    Ok(installed_voices()?.iter().any(|voice| voice.lang == "en-US"
+        && matches!(voice.name.as_str(), "Nathan (Enhanced)" | "Samantha (Enhanced)")))
 }

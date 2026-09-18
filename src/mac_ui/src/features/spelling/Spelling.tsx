@@ -34,7 +34,11 @@ export function Spelling({ words, bookId = "demo", onWrong = () => {}, onAddWord
     lock.current = true; setBusy(true); setError("");
     try {
       const result = await evaluateSpelling(word.spelling, answer.trim(), { hint_count: 0, backspaces: 0 });
-      setSaved(p => p.session ? { learned: p.learned + (p.session.phase === "test" ? 1 : 0), session: grade(p.session, result.correct, answer) } : p);
+      // Insertions can leave gaps in an existing queue; advance by word position, not answer count.
+      setSaved(p => p.session ? {
+        learned: p.session.phase === "test" ? p.session.queue[p.session.index] + 1 : p.learned,
+        session: grade(p.session, result.correct, answer),
+      } : p);
       if (!result.correct) onWrong(word.id);
     } catch { setError("暂时无法检查拼写，请重试。"); }
     finally { lock.current = false; setBusy(false); }

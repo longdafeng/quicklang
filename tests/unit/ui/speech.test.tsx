@@ -70,6 +70,41 @@ it("updates delayed lists and recovers from an unavailable saved voice", () => {
   expect(utterances[0].voice).toBe(voices[0]);
 });
 
+it.each([
+  voice("Nathan (Enhanced)"),
+  { ...voice("Nathan", "en_US"), voiceURI: "com.apple.voice.enhanced.en-US.Nathan" },
+  voice("Samantha（增强）"),
+  voice("Daniel Enhanced", "en-GB"),
+  voice("Ava Premium"),
+])("hides download help when $name is installed even if a basic voice is selected", installed => {
+  voices = [voice("Basic"), installed];
+  saveSpeechSettings({ accent: "en-US", voiceURI: "Basic", rate: 1 });
+  render(<SpeechSettings />);
+  expect(screen.queryByText("想使用增强版音色？")).not.toBeInTheDocument();
+  expect(screen.queryByLabelText("下载增强版音色")).not.toBeInTheDocument();
+});
+
+it("keeps download help for basic, remote, or non-English voices", () => {
+  voices = [voice("Samantha"), voice("Nathan Enhanced", "en-US", false), voice("Tingting Enhanced", "zh-CN")];
+  render(<SpeechSettings />);
+  expect(screen.getByText("想使用增强版音色？")).toBeInTheDocument();
+});
+
+it("updates download help after voice discovery, focus, and manual refresh", async () => {
+  voices = [voice("Samantha")];
+  render(<SpeechSettings />);
+  expect(screen.getByText("想使用增强版音色？")).toBeInTheDocument();
+  voices.push(voice("Nathan Enhanced"));
+  act(() => { synth.dispatchEvent(new Event("voiceschanged")); });
+  expect(screen.queryByLabelText("下载增强版音色")).not.toBeInTheDocument();
+  voices = [voice("Samantha")];
+  fireEvent(window, new Event("focus"));
+  expect(screen.getByText("想使用增强版音色？")).toBeInTheDocument();
+  voices.push(voice("Nathan Enhanced"));
+  await act(async () => { fireEvent.click(screen.getByText("刷新音色列表")); });
+  expect(screen.queryByLabelText("下载增强版音色")).not.toBeInTheDocument();
+});
+
 it("previews Apple with each letter separately and stops the sequence on cancellation", async () => {
   render(<SpeechSettings />);
   fireEvent.click(screen.getByText("试听发音"));

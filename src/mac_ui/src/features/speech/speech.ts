@@ -34,6 +34,11 @@ function quality(voice: SpeechSynthesisVoice): number {
   return /premium|优质/i.test(label) ? 3 : /enhanced|增强/i.test(label) ? 2 : voice.default ? 1 : 0;
 }
 
+/** Check installed English voices independently of the selected accent or voice. */
+export function hasEnhancedEnglishVoice(voices: SpeechSynthesisVoice[]): boolean {
+  return voices.some(voice => voice.localService && normalize(voice.lang).split("-")[0] === "en" && quality(voice) >= 2);
+}
+
 /** Prefer conventional narration voices when WebKit provides no default or quality labels. */
 function narrationPreference(voice: SpeechSynthesisVoice): number {
   return /^(Samantha|Alex|Daniel|Karen|Moira|Tessa|Tingting|Meijia)(\b|$)/i.test(voice.name) ? 1 : 0;

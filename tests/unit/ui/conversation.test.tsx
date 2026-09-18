@@ -11,6 +11,25 @@ const words = [{ id: "test", spelling: "practice", meaning: "练习", example: "
 function view(configured = false) { return render(<ProfileContext.Provider value="learner"><Conversation words={words} bookId="book" onWrong={vi.fn()} settings={configured ? { baseUrl: "http://localhost:11434/v1", model: "local", transcriptionModel: "" } : emptySettings} apiKey="secret" openSettings={vi.fn()} /></ProfileContext.Provider>); }
 beforeEach(() => { localStorage.clear(); ask.mockReset(); });
 describe("listening and speaking", () => {
+  it("resolves only on feedback and uses the resolved credentials", async () => {
+    const settings = { baseUrl: "https://models.example/v1", model: "chat", transcriptionModel: "asr" };
+    const resolveRuntime = vi.fn().mockResolvedValue({ settings, apiKey: "lazy-secret" });
+    ask.mockResolvedValue("反馈");
+    render(<ProfileContext.Provider value="learner"><Conversation words={words} bookId="book" onWrong={vi.fn()} settings={settings} apiKey="" resolveRuntime={resolveRuntime} openSettings={vi.fn()} /></ProfileContext.Provider>);
+    expect(resolveRuntime).not.toHaveBeenCalled();
+    fireEvent.change(screen.getByLabelText("我的表达 / 核对后的转写"), { target: { value: "My answer" } });
+    fireEvent.click(screen.getByText("发送回答，获取 AI 反馈"));
+    await waitFor(() => expect(ask).toHaveBeenCalledWith(settings, "lazy-secret", expect.any(Array), expect.any(AbortSignal)));
+    expect(JSON.stringify(localStorage)).not.toContain("lazy-secret");
+  });
+  it("never sends a request when the resolved credential lease is stale", async () => {
+    const settings = { baseUrl: "https://models.example/v1", model: "chat", transcriptionModel: "asr" };
+    const resolveRuntime = vi.fn().mockResolvedValue({ settings, apiKey: "old-secret", assertCurrent: () => { throw new Error("配置已更改"); } });
+    render(<ProfileContext.Provider value="learner"><Conversation words={words} bookId="book" onWrong={vi.fn()} settings={settings} apiKey="" resolveRuntime={resolveRuntime} openSettings={vi.fn()} /></ProfileContext.Provider>);
+    fireEvent.click(screen.getByText("发送词汇，AI 生成新情境"));
+    expect(await screen.findByRole("alert")).toHaveTextContent("配置已更改");
+    expect(ask).not.toHaveBeenCalled();
+  });
   it("aligns missing words without shifting the rest and tolerates punctuation", () => {
     expect(compareSentence("We practice every day.", "we every day!")).toEqual([{ text: "we", kind: "correct" }, { text: "practice", kind: "missing" }, { text: "every", kind: "correct" }, { text: "day", kind: "correct" }]);
     expect(compareSentence("I'll go.", "I’ll go!").every(t => t.kind === "correct")).toBe(true);

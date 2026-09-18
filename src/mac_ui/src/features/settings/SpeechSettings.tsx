@@ -1,6 +1,7 @@
+import { invoke } from "@tauri-apps/api/core";
 import { usesNativeSpeech } from "../speech/native";
 import { useEffect, useRef, useState } from "react";
-import { availableVoices, refreshSpeechVoices, loadSpeechSettings, saveSpeechSettings, selectVoice, speak, type SpeechSettings as Preferences } from "../speech/speech";
+import { availableVoices, hasEnhancedEnglishVoice, refreshSpeechVoices, loadSpeechSettings, saveSpeechSettings, selectVoice, speak, type SpeechSettings as Preferences } from "../speech/speech";
 
 /** Configure device speech preferences and preview unsaved voices without affecting study settings. */
 export function SpeechSettings() {
@@ -36,9 +37,9 @@ export function SpeechSettings() {
   }
 
   /** Persist this device's speech settings and report storage failures. */
-  function save() {
+  async function save() {
     setError(""); setMessage("");
-    try { saveSpeechSettings(draft); setMessage("发音设置已保存，所有学习模式的英文朗读均使用此设置。"); }
+    try { if (usesNativeSpeech()) await invoke("speech_download_preference", { declined: false }); saveSpeechSettings(draft); setMessage("发音设置已保存，所有学习模式的英文朗读均使用此设置。"); }
     catch { setError("发音设置保存失败，请检查本机存储空间后重试。"); }
   }
 
@@ -72,7 +73,7 @@ export function SpeechSettings() {
         {englishVoices.map(v => <option key={v.voiceURI} value={v.voiceURI}>{v.name} · {v.lang}</option>)}
       </select>
       {!englishVoices.length && <p className="muted">暂未发现此口音的本机音色。朗读将尝试其他英语音色或系统默认声音；可下载语音后刷新列表。</p>}
-      <aside aria-label="下载增强版音色" className="speech-download-help">
+      {!hasEnhancedEnglishVoice(voices) && <aside aria-label="下载增强版音色" className="speech-download-help">
         <strong>想使用增强版音色？</strong>
         <ol>
           <li>打开 Mac「系统设置 → 辅助功能 → 朗读与语音」（旧版叫「朗读内容」）。</li>
@@ -81,14 +82,14 @@ export function SpeechSettings() {
         </ol>
         <p className="muted">首次下载需要联网，安装后可离线朗读。找不到音色时，可在声音列表中搜索 Enhanced；刷新后仍未出现，可重启 QuickLang。</p>
         <a href="https://support.apple.com/zh-cn/guide/mac-help/mchlp2290/mac" target="_blank" rel="noopener noreferrer">查看 Apple 官方下载说明</a>
-      </aside>
+      </aside>}
       <label htmlFor="speech-rate">英文语速 · {draft.rate.toFixed(2)}×</label>
       <input id="speech-rate" type="range" min="0.7" max="1.2" step="0.05" value={draft.rate} onChange={e => change({ ...draft, rate: Number(e.target.value) })} />
       <div className="actions">
         <button type="button" disabled={!supported} onClick={() => void listen()}>试听发音</button>
         {playing && <button type="button" onClick={() => { preview.current?.abort(); setPlaying(false); }}>停止试听</button>}
         <button type="button" disabled={!supported} onClick={() => { void refreshSpeechVoices().then(setVoices).catch(() => setError("读取本机音色失败，请重试。")); }}>刷新音色列表</button>
-        <button type="button" className="primary" onClick={save}>保存发音设置</button>
+        <button type="button" className="primary" onClick={() => void save()}>保存发音设置</button>
       </div>
     </div>
     {error && <p role="alert">{error}</p>}{message && <p role="status">{message}</p>}

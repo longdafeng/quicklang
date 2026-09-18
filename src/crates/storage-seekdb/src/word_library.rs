@@ -53,6 +53,142 @@ pub struct LibrarySeed {
     words: Vec<Value>,
     books: Vec<Book>,
 }
+/// Resumable startup import. Every step ends outside a transaction so unrelated
+/// configuration writes can safely commit between batches on the owner thread.
+pub struct LibraryImport {
+    seed: LibrarySeed,
+    phase: u8,
+    offset: usize,
+    cursor: String,
+    words: HashSet<String>,
+}
+impl LibraryImport {
+    pub fn new(seed: LibrarySeed) -> Self {
+        Self {
+            seed,
+            phase: 0,
+            offset: 0,
+            cursor: String::new(),
+            words: HashSet::new(),
+        }
+    }
+
+    /// Returns true only after all persisted references have been validated.
+    /// Partial insert-only batches are durable and repaired on the next startup.
+    pub fn step(&mut self, db: &SeekDbEmbeddedAdapter) -> Result<bool, AppError> {
+        match self.phase {
+            0 => {
+                let tables: HashSet<String> = db.native.execute("SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME IN ('ql_word','wordbook')")?
+                    .into_iter().filter_map(|r| r.into_iter().next().flatten()).collect();
+                let schema = include_str!("../../../migrations/embedded/V0003__word_library.sql")
+                    .lines()
+                    .filter(|l| !l.trim_start().starts_with("--"))
+                    .collect::<Vec<_>>()
+                    .join("\n");
+                for statement in schema.split(';').map(str::trim).filter(|s| !s.is_empty()) {
+                    let table = statement
+                        .split_whitespace()
+                        .nth(5)
+                        .ok_or_else(|| invalid("Invalid bundled library schema"))?;
+                    if !tables.contains(table) {
+                        db.native.execute(statement)?;
+                    }
+                }
+                self.phase = 1;
+            }
+            1 => {
+                let end = (self.offset + 100).min(self.seed.words.len());
+                let batch = &self.seed.words[self.offset..end];
+                if !batch.is_empty() {
+                    db.native.transaction(|| {
+                        let keys = batch
+                            .iter()
+                            .map(|w| literal(w["spelling"].as_str().unwrap()))
+                            .collect::<Vec<_>>()
+                            .join(",");
+                        let existing: HashSet<String> = db
+                            .native
+                            .execute(&format!(
+                                "SELECT spelling FROM ql_word WHERE spelling IN ({keys})"
+                            ))?
+                            .into_iter()
+                            .filter_map(|r| r.into_iter().next().flatten())
+                            .collect();
+                        let values = batch
+                            .iter()
+                            .filter(|w| !existing.contains(w["spelling"].as_str().unwrap()))
+                            .map(word_values)
+                            .collect::<Result<Vec<_>, _>>()?;
+                        if !values.is_empty() {
+                            db.native.execute(&format!(
+                                "INSERT INTO ql_word ({}) VALUES {}",
+                                COLUMNS.join(","),
+                                values.join(",")
+                            ))?;
+                        }
+                        Ok(())
+                    })?;
+                }
+                self.offset = end;
+                if end == self.seed.words.len() {
+                    self.phase = 2;
+                    self.offset = 0;
+                }
+            }
+            2 => {
+                if let Some(book) = self.seed.books.get(self.offset) {
+                    db.native.transaction(|| {
+                        if db.native.execute(&format!("SELECT id FROM wordbook WHERE id={}", literal(&book.id)))?.is_empty() {
+                            db.native.execute(&format!("INSERT INTO wordbook (id,title,words) VALUES ({},{},{})", literal(&book.id), literal(&book.title), array_literal(&book.words)))?;
+                            let rows = db.native.execute(&format!("SELECT array_to_string(words,CONVERT(X'1f' USING utf8mb4),CONVERT(X'00' USING utf8mb4)) FROM wordbook WHERE id={}", literal(&book.id)))?;
+                            if decode_array(rows.first().and_then(|r| r.first()).and_then(Option::as_deref))? != book.words { return Err(invalid("Stored book order mismatch")); }
+                        }
+                        Ok(())
+                    })?;
+                    self.offset += 1;
+                } else {
+                    self.phase = 3;
+                }
+            }
+            3 => {
+                let rows = db.native.execute(&format!(
+                    "SELECT spelling FROM ql_word WHERE spelling>{} ORDER BY spelling LIMIT 100",
+                    literal(&self.cursor)
+                ))?;
+                if rows.is_empty() {
+                    self.phase = 4;
+                    self.cursor.clear();
+                } else {
+                    for row in rows {
+                        let key = row
+                            .into_iter()
+                            .next()
+                            .flatten()
+                            .ok_or_else(|| invalid("Missing stored spelling"))?;
+                        self.cursor = key.clone();
+                        self.words.insert(key);
+                    }
+                }
+            }
+            4 => {
+                let rows = db.native.execute(&format!("SELECT id,array_to_string(words,CONVERT(X'1f' USING utf8mb4),CONVERT(X'00' USING utf8mb4)) FROM wordbook WHERE id>{} ORDER BY id LIMIT 1", literal(&self.cursor)))?;
+                if let Some(row) = rows.first() {
+                    let members = decode_array(row.get(1).and_then(Option::as_deref))?;
+                    if members.iter().any(|w| !self.words.contains(w)) {
+                        return Err(invalid("Database contains a missing word reference"));
+                    }
+                    self.cursor = row[0]
+                        .clone()
+                        .ok_or_else(|| invalid("Missing stored book ID"))?;
+                } else {
+                    self.phase = 5;
+                }
+            }
+            _ => return Ok(true),
+        }
+        Ok(self.phase == 5)
+    }
+}
 #[derive(Debug, Serialize)]
 pub struct ImportReport {
     pub inserted_words: usize,
@@ -349,6 +485,42 @@ impl SeekDbEmbeddedAdapter {
 mod tests {
     use super::*;
     use std::time::{SystemTime, UNIX_EPOCH};
+    #[test]
+    #[ignore = "requires real seekdb and generated seed"]
+    fn incremental_import_yields_with_independently_committed_configuration() {
+        let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../..");
+        let seed = LibrarySeed::load(&root.join("build/content/word-library")).unwrap();
+        let directory = root.join(format!(
+            "build/test-databases/incremental-{}-{}",
+            std::process::id(),
+            SystemTime::now()
+                .duration_since(UNIX_EPOCH)
+                .unwrap()
+                .as_millis()
+        ));
+        let db = SeekDbEmbeddedAdapter::open_with_runtime(
+            &directory,
+            &root.join("deps/cache/seekdb-runtime"),
+        )
+        .unwrap();
+        let mut import = LibraryImport::new(seed);
+        assert!(!import.step(&db).unwrap());
+        assert!(!import.step(&db).unwrap());
+        assert!(db.speech_enhanced_declined(Some(true), 1).unwrap());
+        // A failed later import must not roll back the configuration transaction.
+        db.native.execute("DROP TABLE wordbook").unwrap();
+        while import.phase == 1 {
+            assert!(!import.step(&db).unwrap());
+        }
+        assert!(import.step(&db).is_err());
+        assert!(db.speech_enhanced_declined(None, 2).unwrap());
+        // Restart repairs partial batches and finishes validation.
+        let seed = LibrarySeed::load(&root.join("build/content/word-library")).unwrap();
+        let mut repaired = LibraryImport::new(seed);
+        while !repaired.step(&db).unwrap() {}
+        assert!(db.speech_enhanced_declined(None, 3).unwrap());
+    }
+
     #[test]
     #[ignore = "requires real seekdb and generated seed; run make test-db"]
     fn full_import_upgrade_preservation_and_rollback() {

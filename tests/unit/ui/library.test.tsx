@@ -2,21 +2,25 @@ import React from "react";
 import { beforeEach, afterEach, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import App from "../../../src/mac_ui/src/app/App";
+vi.mock("../../../src/mac_ui/src/features/library/addWord", () => ({
+  resolveNewWord: vi.fn(async (spelling: string) => ({ id: "resolved-word", spelling, meaning: "记住", example: "Remember this word." })),
+}));
 beforeEach(() => { localStorage.clear(); localStorage.setItem("quicklang:profiles", JSON.stringify([{ id: "test", name: "测试用户", level: "A1" }])); });
 function renderApp() { return render(<App />); }
 afterEach(() => { cleanup(); vi.restoreAllMocks(); });
 function maintenance() { fireEvent.click(screen.getByRole("button", { name: "工具", exact: true })); fireEvent.click(screen.getByRole("button", { name: /词库维护/ })); }
 function fill(label: string, value: string) { fireEvent.change(screen.getByLabelText(label, { exact: true }), { target: { value } }); }
-it("creates a book, adds and edits words, persists it and shares it with study", () => {
+it("creates a book, adds and edits words, persists it and shares it with study", async () => {
   const view = renderApp(); maintenance();
   fill("新词书名称", "工作英语"); fireEvent.click(screen.getByText("创建词书"));
   expect(screen.getByText("这本书还没有单词，请先添加。")).toBeInTheDocument();
-  fill("英文单词", "meeting"); fill("中文释义", "会议"); fill("英文例句", "Join the meeting.");
+  fill("英文单词", "remember");
+  expect(screen.queryByLabelText("中文释义")).not.toBeInTheDocument();
   fireEvent.click(screen.getByText("添加单词"));
-  fireEvent.click(screen.getByRole("button", { name: "修改 meeting" }));
+  fireEvent.click(await screen.findByRole("button", { name: "修改 remember" }));
   fill("中文释义", "会议；会面"); fireEvent.click(screen.getByText("保存单词"));
   expect(screen.getByText("会议；会面")).toBeInTheDocument();
-  fill("英文单词", "MEETING"); fireEvent.click(screen.getByText("添加单词"));
+  fill("英文单词", "REMEMBER"); fireEvent.click(screen.getByText("添加单词"));
   expect(screen.getByRole("alert")).toHaveTextContent("已存在该单词");
   view.unmount(); renderApp(); maintenance();
   expect(screen.getByLabelText("词书名称", { exact: true })).toHaveValue("工作英语");

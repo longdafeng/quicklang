@@ -1,3 +1,4 @@
+import { SpeechStartup } from "../features/speech/SpeechStartup";
 import { Conversation } from "../features/conversation/Conversation";
 import { useEffect, useMemo, useState } from "react";
 import type { Word } from "../contracts";
@@ -8,10 +9,13 @@ import { Flashcard } from "../features/flashcard/Flashcard";
 import { useSaved, WordCard } from "../features/study/shared";
 import { books as inkBooks, contentBase, loadBook } from "../features/library/books";
 import { LibraryMaintenance, type EditableBook } from "../features/library/LibraryMaintenance";
+import { resolveNewWord } from "../features/library/addWord";
+import { persistLibraryChanges, remapLibraryProgress } from "../features/library/progress";
 import { WordSearch } from "../features/search/WordSearch";
 import { ProfileContext, loadProfiles, saveProfiles, useStorageKey, levels, type Profile } from "../features/users/profiles";
 import { UserSettings, UserPicker } from "../features/users/Users";
-import { loadAISettings, SystemSettings } from "../features/settings/SystemSettings";
+import { SystemSettings, type SettingsTab } from "../features/settings/SystemSettings";
+import { AIProfilesProvider, useAIProfiles } from "../features/settings/AIProfiles";
 import { Listening } from "../features/listening/Listening";
 interface Book { id: string; name: string; words: Word[] }
 const defaults: Book[] = [
@@ -52,7 +56,13 @@ const menuGroups = [
 type MenuGroup = typeof menuGroups[number]["id"];
 type Page = typeof menuGroups[number]["pages"][number]["id"];
 const pages = menuGroups.flatMap(group => [...group.pages]);
+/** Check native speech availability before mounting user and learning flows. */
 export default function App() {
+  return <AIProfilesProvider><SpeechStartup><AppContent /></SpeechStartup></AIProfilesProvider>;
+}
+
+/** Manage the active learner after device startup checks have completed. */
+function AppContent() {
   const [initial] = useState(() => { try { const profiles = loadProfiles(); const last = localStorage.getItem("quicklang:last-user"); return { profiles, active: profiles.find(p => p.id === last)?.id ?? profiles[0]?.id ?? null, error: "" }; } catch { return { profiles: [] as Profile[], active: null, error: "用户数据无法读取，请检查本机存储后重新打开。" }; } });
   const [profiles, setProfiles] = useState(initial.profiles);
   const [active, setActive] = useState<string | null>(initial.active);
@@ -95,8 +105,11 @@ function LearningApp({ initialPage, profile, profiles, choose, createProfile, sa
     setCurrentPage(next);
     setExpandedGroup(menuGroups.find(group => group.pages.some(item => item.id === next))!.id);
   }
-  const [aiSettings, setAISettings] = useState(loadAISettings);
-  const [apiKey, setApiKey] = useState("");
+  const { snapshot: aiProfiles, resolveRuntime, runtimeError: aiError } = useAIProfiles();
+  const aiSettings = aiProfiles.profiles.find(item => item.id === aiProfiles.activeId) ?? { baseUrl: "", model: "", transcriptionModel: "" };
+  const apiKey = ""; // Secrets are resolved only inside an explicit AI action.
+  const [settingsTab, setSettingsTab] = useState<SettingsTab>("speech");
+  function openModelSettings() { setSettingsTab("models"); setPage("settings"); }
   const [imported, setImported] = useSaved<Book[]>("books", []);
   const [selected, setSelected] = useSaved("selected-book", "daily");
   const [vocabulary, setVocabulary] = useSaved<Record<string, string[]>>("vocabulary", {});
@@ -128,11 +141,21 @@ function LearningApp({ initialPage, profile, profiles, choose, createProfile, sa
     const updated = [...imported.filter(b => b.id !== next.id), { ...next, words: [...next.words] }];
     // Check persistence before reporting success or changing the selected book.
     try {
-      localStorage.setItem(getKey("books"), JSON.stringify(updated));
+      const flashKey = getKey(`flash:${next.id}`);
+      const spellKey = getKey(`spell:${next.id}`);
+      const changes: [string, string | null][] = [];
       if (resetProgress) {
-        localStorage.removeItem(getKey(`flash:${next.id}`));
-        localStorage.removeItem(getKey(`spell:${next.id}`));
+        changes.push([flashKey, null], [spellKey, null]);
+      } else if (next.id === book.id && next.words.length > book.words.length) {
+        const progress = remapLibraryProgress(book.words, next.words,
+          JSON.parse(localStorage.getItem(flashKey) ?? "null"),
+          JSON.parse(localStorage.getItem(spellKey) ?? "null"));
+        if (progress.flash) changes.push([flashKey, JSON.stringify(progress.flash)]);
+        if (progress.spell) changes.push([spellKey, JSON.stringify(progress.spell)]);
       }
+      changes.push([getKey("books"), JSON.stringify(updated)]);
+      persistLibraryChanges(changes);
+      console.info("[library] Book saved", { bookId: next.id, wordCount: next.words.length, resetProgress });
     } catch { setError("词书保存失败，请检查本机存储空间后重试。"); return false; }
     setImported(updated);
     const ids = new Set(next.words.map(w => w.id));
@@ -168,12 +191,13 @@ function LearningApp({ initialPage, profile, profiles, choose, createProfile, sa
     {page === "books" && <><p>选中的词书用于自动飘单词、强化学习、背诵和生词表。每本书分别保存学习进度。</p><div className="book-grid">{books.map(b => <button key={b.id} className={`book-choice ${b.id === book.id ? "selected" : ""}`} aria-pressed={b.id === book.id} onClick={() => setSelected(b.id)} onDoubleClick={() => { setSelected(b.id); setPage("flash"); }}><strong>{b.name}</strong><p>{b.count} 个单词</p><span>{b.id === book.id ? "正在学习" : "选择这本书"}</span></button>)}</div><p className="muted">11 本词书均已配有中文释义和双语例句，随应用打包供离线阅读；原先缺失的例句已由 AI 补充并标记。来源：<a href="https://github.com/suilang/ink-learner">Ink-Learner</a> · <a href={`${contentBase}LICENSE`}>CC BY-SA 4.0</a> · <a href={`${contentBase}ATTRIBUTION.md`}>原始署名</a> · <a href={`${contentBase}manifest.json`}>来源与修改记录</a> · <a href={`${contentBase}coverage.json`}>内容完整度</a></p><section className="study-card import"><h2>导入自己的词书</h2><p>除 11 本 Ink-Learner 词书外，还提供两本独立编写的示例书。可导入 JSON 单词清单，例句字段可选。</p><pre>{JSON.stringify({ name: "我的词书", words: [{ spelling: "hello", meaning: "你好", example: "Hello, my friend.", exampleTranslation: "你好，我的朋友。" }] }, null, 2)}</pre><label>选择 JSON 文件 <input type="file" accept=".json,application/json" onChange={e => { const file = e.target.files?.[0]; if (file) void importBook(file); e.target.value = ""; }} /></label></section><p className="actions"><button className="primary" onClick={() => setPage("flash")}>确定</button></p></>}
     {page !== "listening" && page !== "settings" && page !== "books" && page !== "search" && page !== "user-settings" && page !== "progress" && isInk && <p className="muted">中文释义和双语例句可离线阅读；AI 补充例句已单独标记。</p>}
     {page !== "listening" && page !== "settings" && page !== "books" && page !== "search" && page !== "user-settings" && page !== "progress" && !ready && (loadError ? <p role="alert">{loadError}<button onClick={() => setRetry(n => n + 1)}>重新加载</button></p> : <p role="status">正在加载词书…</p>)}
-    {page === "listening" && <Listening settings={aiSettings} apiKey={apiKey} openSettings={() => setPage("settings")} />}
-    {page === "settings" && <SystemSettings settings={aiSettings} apiKey={apiKey} onSave={(settings, key) => { setAISettings(settings); setApiKey(key); }} />}
+    {page === "listening" && <Listening settings={aiSettings} apiKey={apiKey} resolveRuntime={resolveRuntime} openSettings={openModelSettings} />}
+    {aiError && page !== "settings" && <p className="notice" role="alert">{aiError}<button onClick={openModelSettings}>打开大模型设置</button></p>}
+    {page === "settings" && <SystemSettings initialTab={settingsTab} />}
     {page === "search" && <WordSearch books={searchBooks} currentBookId={book.id} />}
-    {page === "maintenance" && <LibraryMaintenance key={book.id} book={book} books={books} ready={ready} select={setSelected} save={saveBook} create={createBook} />}
-    {ready && page === "ai-coach" && <Conversation key={`coach:${book.id}`} words={book.words} bookId={book.id} onWrong={addWord} settings={aiSettings} apiKey={apiKey} openSettings={() => setPage("settings")} coachOnly />}
-    {ready && page === "conversation" && <Conversation key={book.id} words={book.words} bookId={book.id} onWrong={addWord} settings={aiSettings} apiKey={apiKey} openSettings={() => setPage("settings")} />}
+    {page === "maintenance" && <LibraryMaintenance key={book.id} book={book} books={books} ready={ready} select={setSelected} save={saveBook} create={createBook} resolveWord={(spelling, signal) => resolveNewWord(spelling, searchBooks, resolveRuntime, signal)} openSettings={openModelSettings} />}
+    {ready && page === "ai-coach" && <Conversation key={`coach:${book.id}`} words={book.words} bookId={book.id} onWrong={addWord} settings={aiSettings} apiKey={apiKey} resolveRuntime={resolveRuntime} openSettings={openModelSettings} coachOnly />}
+    {ready && page === "conversation" && <Conversation key={book.id} words={book.words} bookId={book.id} onWrong={addWord} settings={aiSettings} apiKey={apiKey} resolveRuntime={resolveRuntime} openSettings={openModelSettings} />}
     {ready && page === "auto" && <AutoRecite key={book.id} words={book.words} />}
     {ready && page === "flash" && <Flashcard key={book.id} bookId={book.id} words={book.words} />}
     {ready && page === "spell" && <Spelling key={book.id} bookId={book.id} words={book.words} onWrong={addWord} onAddWord={addWord} vocabulary={known} />}

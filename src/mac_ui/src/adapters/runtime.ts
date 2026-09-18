@@ -4,7 +4,7 @@ import type { RuntimeStatus, TypingMetrics, TypingResult } from "../contracts";
 // Browser previews are explicitly ephemeral; desktop evaluations use Rust.
 export async function runtimeStatus(): Promise<RuntimeStatus> {
   if (isTauri()) return invoke("get_runtime_status");
-  return { phase: "browser_preview", storage: "not_connected", persistence_ready: false };
+  return { phase: "browser_preview", storage: "not_connected", persistence_ready: false, library_phase: "waiting", library_ready: false, library_error: null };
 }
 export async function evaluateSpelling(expected: string, actual: string, metrics: TypingMetrics): Promise<TypingResult> {
   if (isTauri()) return invoke("evaluate_spelling", { expected, actual, metrics });

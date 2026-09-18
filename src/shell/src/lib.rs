@@ -1,5 +1,7 @@
+mod ai_profiles;
 mod coach;
 mod speech;
+mod voice_download;
 mod storage;
 use quicklang_domain::{AppError, Rating, ReviewState};
 use quicklang_typing_engine::{evaluate, TypingMetrics, TypingResult};
@@ -69,6 +71,17 @@ pub fn run() {
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
+            ai_profiles::ai_profiles_list,
+            ai_profiles::ai_profiles_reset_credentials,
+            ai_profiles::ai_profile_save,
+            ai_profiles::ai_profile_delete,
+            ai_profiles::ai_profile_activate,
+            ai_profiles::ai_profile_resolve,
+            voice_download::speech_download_enhanced,
+            voice_download::speech_open_accessibility_settings,
+            speech::speech_download_preference,
+            speech::speech_enhanced_available,
+            speech::speech_open_download_settings,
             speech::speech_voices,
             speech::speech_render,
             get_runtime_status,
