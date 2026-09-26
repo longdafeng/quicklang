@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {"title": "QuickLang · 已实现的桌面架构", "locale": "zh-CN", "quality_profile": "showcase", "repository": {"url":"https://github.com/longdafeng/quicklang","revision":"3b573a931c5eafcb442d52ef554c5bfe5b34f46a"}},
+  "components": [
+    {"id":"web-state","type":"frontend","label":"应用状态内存视图","sublabel":"启动加载 · IPC 提交后更新","pos":[40,65],"size":[220,72],"sources":[{"path":"src/ui/src/features/study/shared.tsx","line":7}]},
+    {"id":"react-app","type":"frontend","label":"React 学习界面","sublabel":"单词、听力、会话与设置","pos":[40,300],"size":[220,72],"sources":[{"path":"src/ui/src/app/App.tsx","line":60}]},
+    {"id":"bundled-content","type":"external","label":"打包最终词库","sublabel":"内置 JSONL 种子资源","pos":[40,540],"size":[220,72],"sources":[{"path":"src/ui/src/features/library/books.ts"}]},
+    {"id":"tauri-shell","type":"backend","label":"Tauri Rust 命令层","sublabel":"IPC、拼写判定与系统能力","pos":[420,300],"size":[230,72],"sources":[{"path":"src/app/src/lib.rs","line":73}]},
+    {"id":"speech-system","type":"external","label":"macOS 语音","sublabel":"本地 TTS 与增强语音下载","pos":[420,540],"size":[230,72],"sources":[{"path":"src/app/src/speech.rs"},{"path":"src/app/native/voice_download.m"}]},
+    {"id":"coach-http","type":"backend","label":"coach.rs","sublabel":"reqwest · 对话与音频转写","pos":[420,65],"size":[230,72],"sources":[{"path":"src/app/src/coach.rs","line":68}]},
+    {"id":"provider","type":"external","label":"用户配置的 AI 服务","sublabel":"Chat Completions / ASR","pos":[810,65],"size":[230,72]},
+    {"id":"storage-worker","type":"backend","label":"StorageService","sublabel":"单线程持有原生数据库连接","pos":[810,300],"size":[230,72],"sources":[{"path":"src/app/src/storage.rs","line":92}]},
+    {"id":"keychain","type":"security","label":"macOS Keychain","sublabel":"AI 凭据加密主密钥","pos":[810,540],"size":[230,72],"sources":[{"path":"src/app/src/ai_profiles.rs"}]},
+    {"id":"seekdb","type":"database","label":"seekdb 1.4.0","sublabel":"应用状态、音频与业务数据","pos":[1110,300],"size":[230,72],"sources":[{"path":"src/crates/storage-seekdb/src/lib.rs","line":18},{"path":"src/crates/storage-seekdb/src/native.rs"}]}
+  ],
+  "connections": [
+    {"from":"react-app","to":"tauri-shell","label":"invoke IPC","variant":"emphasis"},
+    {"from":"react-app","to":"web-state","label":"读写"},
+    {"from":"react-app","to":"bundled-content","label":"加载词书","labelDy":94},
+    {"from":"tauri-shell","to":"speech-system","label":"本地朗读","labelDy":94},
+    {"from":"tauri-shell","to":"coach-http","label":"AI 命令"},
+    {"from":"coach-http","to":"provider","label":"HTTP 请求"},
+    {"from":"tauri-shell","to":"storage-worker","label":"有界消息队列","variant":"emphasis"},
+    {"from":"storage-worker","to":"seekdb","label":"原生适配器","variant":"emphasis"},
+    {"from":"storage-worker","to":"keychain","label":"凭据加解密","labelDy":94,"variant":"security"}
+  ],
+  "cards": [
+    {"dot":"cyan","title":"统一 seekdb 持久化","items":["应用状态经 IPC 原子批量提交；不使用或迁移浏览器存储。","同声翻译会话与音频使用专用表；Keychain 仅存主密钥。"]},
+    {"dot":"emerald","title":"原生复习能力的边界","items":["rate_card → application → scheduler → 事务提交已实现。","当前学习页面没有调用该复习适配器；拼写只调用判定命令。"]},
+    {"dot":"amber","title":"不是已上线的云后端","items":["server 仅健康检查骨架；存储、认证、同步未配置。","浏览器预览不连接 seekdb；嵌入运行时仅支持 macOS ARM64。"]}
+  ]
+}
