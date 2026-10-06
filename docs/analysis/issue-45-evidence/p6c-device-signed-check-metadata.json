@@ -1,0 +1,28 @@
+{
+  "start": "2026-10-05T19:48:33.713649+08:00",
+  "command": [
+    "/Users/longda/.codex/worktrees/longterm-integration/quicklang/deps/cache/cargo/bin/cargo",
+    "check",
+    "--locked",
+    "--offline",
+    "-p",
+    "quicklang-app",
+    "--lib",
+    "--target",
+    "aarch64-apple-ios"
+  ],
+  "environment": {
+    "CARGO_HOME": "/Users/longda/.codex/worktrees/longterm-integration/quicklang/deps/cache/cargo",
+    "RUSTUP_HOME": "/Users/longda/.codex/worktrees/longterm-integration/quicklang/deps/cache/rustup",
+    "CARGO_TARGET_DIR": "/Users/longda/.codex/worktrees/longterm-integration/quicklang/build/ios/cargo",
+    "DEVELOPER_DIR": "/Applications/Xcode.app/Contents/Developer",
+    "CARGO_PROFILE_DEV_DEBUG": "1",
+    "QUICKLANG_BUILD_PLATFORM": "ios",
+    "RUSTUP_TOOLCHAIN": null,
+    "RUSTFLAGS": null,
+    "CARGO_ENCODED_RUSTFLAGS": null
+  },
+  "end": "2026-10-05T19:49:08.665128+08:00",
+  "durationSeconds": 34.95,
+  "exitCode": 0
+}

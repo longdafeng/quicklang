@@ -1,0 +1,16 @@
+   Compiling quicklang-storage-api v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-api)
+   Compiling quicklang-storage-seekdb v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-seekdb)
+   Compiling quicklang-application v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/application)
+   Compiling quicklang-tests v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/tests/rust)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.54s
+     Running ../contract/longterm_import.rs (build/macos/cargo/debug/deps/longterm_import-10ca450bee00b3c2)
+
+running 6 tests
+test duplicate_words_do_not_hide_invalid_or_repeated_identities ... ok
+test late_receipt_conflict_rolls_back_the_whole_import ... ok
+test validates_batch_and_normalized_word_bounds ... ok
+test owner_isolation_and_global_identity_conflicts ... ok
+test imports_new_words_without_changing_existing_schedule_or_events ... ok
+test retries_are_idempotent_and_deletion_erases_only_the_deleted_word ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s

@@ -1,0 +1,95 @@
+node scripts/tasks.mjs build
+Verified canonical project version 0.8.0
+Building server and desktop: debug profile
+> /usr/local/bin/node scripts/bootstrap/seekdb.mjs --offline-check
+Verified seekdb 1.4.0 runtime (11 files)
+> /usr/local/bin/node scripts/compliance/check.mjs
+License/layout checks passed (236 source files). Release audit limitations are recorded.
+Verified canonical bundled word library (no generation required).
+> npm run build
+
+> quicklang@0.8.0 build
+> npm run build --workspace @quicklang/ui
+
+
+> @quicklang/ui@0.8.0 prebuild
+> node ../../scripts/build-ui-catalog.mjs --check
+
+[library] Startup catalog ready { bookCount: 14 }
+
+> @quicklang/ui@0.8.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 171 modules transformed.
+rendering chunks...
+computing gzip size...
+../../build/macos/ui/index.html                                       0.42 kB │ gzip:   0.28 kB
+../../build/macos/ui/celebrations/check-in-sprout.webp               17.10 kB
+../../build/macos/ui/celebrations/growing-plant.webp                 27.68 kB
+../../build/macos/ui/celebrations/book-steps.webp                    37.76 kB
+../../build/macos/ui/celebrations/paper-plane.webp                   39.05 kB
+../../build/macos/ui/celebrations/open-book-star.webp                41.09 kB
+../../build/macos/ui/celebrations/progress-rocket.webp               44.95 kB
+../../build/macos/ui/celebrations/trophy-laurel.webp                 49.44 kB
+../../build/macos/ui/celebrations/progress-zero-sprout.webp          56.75 kB
+../../build/macos/ui/celebrations/compass-stars.webp                 57.02 kB
+../../build/macos/ui/celebrations/progress-sail.webp                 61.95 kB
+../../build/macos/ui/celebrations/progress-summit.webp               61.96 kB
+../../build/macos/ui/celebrations/progress-zero-launchpad.webp       63.07 kB
+../../build/macos/ui/celebrations/progress-book-steps.webp           64.28 kB
+../../build/macos/ui/celebrations/summit.webp                        65.20 kB
+../../build/macos/ui/celebrations/rising-kite.webp                   72.16 kB
+../../build/macos/ui/celebrations/lantern-books.webp                 77.90 kB
+../../build/macos/ui/celebrations/progress-cycle.webp                78.87 kB
+../../build/macos/ui/celebrations/progress-zero-trailhead.webp       82.72 kB
+../../build/macos/ui/celebrations/sunrise-path.webp                  87.32 kB
+../../build/macos/ui/celebrations/bridge-dawn.webp                  104.91 kB
+../../build/macos/ui/assets/index-CXLrf3Nk.css                       50.93 kB │ gzip:  11.19 kB
+../../build/macos/ui/assets/AboutSettings-BEBobj_Y.js                 2.49 kB │ gzip:   1.24 kB
+../../build/macos/ui/assets/Interpretation-Dmy-Jz3X.js                3.19 kB │ gzip:   1.69 kB
+../../build/macos/ui/assets/ai-C9i3BMa6.js                            6.71 kB │ gzip:   3.37 kB
+../../build/macos/ui/assets/Interpretation-BphENN6i.js               11.55 kB │ gzip:   5.12 kB
+../../build/macos/ui/assets/Conversation-DyzWIurz.js                 22.37 kB │ gzip:   9.43 kB
+../../build/macos/ui/assets/SystemSettings-DnGxkPhR.js               27.42 kB │ gzip:  12.11 kB
+../../build/macos/ui/assets/Listening-DEY0e_Zu.js                    27.63 kB │ gzip:  10.57 kB
+../../build/macos/ui/assets/CaptionTranslationSettings-CTynMXdZ.js   47.68 kB │ gzip:  16.36 kB
+../../build/macos/ui/assets/index-Bs4wgIIm.js                       387.52 kB │ gzip: 125.64 kB
+✓ built in 8.22s
+> cargo build --locked --offline -p quicklang-server
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.33s
+> /usr/local/bin/node /Users/longda/.codex/worktrees/longterm-integration/quicklang/node_modules/@tauri-apps/cli/tauri.js build --debug --no-sign --bundles app -- --locked --offline
+        Warn --no-sign flag detected: Signing will be skipped.
+        Info Looking up installed tauri packages to check mismatched versions...
+   Compiling objc2-exception-helper v0.1.1
+   Compiling quicklang-domain v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/domain)
+   Compiling quicklang-app v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/app)
+   Compiling quicklang-storage-api v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-api)
+   Compiling quicklang-scheduler v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/scheduler)
+   Compiling quicklang-typing-engine v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/typing-engine)
+   Compiling objc2 v0.6.4
+   Compiling quicklang-application v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/application)
+   Compiling quicklang-storage-seekdb v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-seekdb)
+   Compiling objc2-core-foundation v0.3.2
+   Compiling block2 v0.6.2
+   Compiling dispatch2 v0.3.1
+   Compiling objc2-foundation v0.3.2
+   Compiling objc2-app-kit v0.3.2
+   Compiling objc2-web-kit v0.3.2
+   Compiling tao v0.35.3 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/deps/patches/tao)
+   Compiling window-vibrancy v0.6.0
+   Compiling muda v0.19.3
+   Compiling wry v0.55.1
+   Compiling tauri-runtime v2.11.3
+   Compiling tauri-runtime-wry v2.11.4
+   Compiling tauri v2.11.5
+   Compiling tauri-plugin-opener v2.5.5
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 49.91s
+       Built application at: /Users/longda/.codex/worktrees/longterm-integration/quicklang/build/macos/cargo/debug/quicklang
+    Bundling QuickLang.app (/Users/longda/.codex/worktrees/longterm-integration/quicklang/build/macos/cargo/debug/bundle/macos/QuickLang.app)
+        Warn Skipping signing due to --no-sign flag.
+    Finished 1 bundle at:
+        /Users/longda/.codex/worktrees/longterm-integration/quicklang/build/macos/cargo/debug/bundle/macos/QuickLang.app
+
+Verified local certificate signature: /Users/longda/.codex/worktrees/longterm-integration/quicklang/build/macos/cargo/debug/bundle/macos/QuickLang.app

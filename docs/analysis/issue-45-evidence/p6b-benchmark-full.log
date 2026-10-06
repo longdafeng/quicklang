@@ -1,0 +1,8 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.59s
+     Running benches/longterm_bench.rs (build/macos/cargo/debug/deps/longterm_bench-36cc6915ae1ca918)
+backend=sqlite, cards=20000, events=1000000, seed_seconds=26.289
+list/last_error_at: iterations=5, total_ms=3.776, mean_ms=0.755, min_ms=0.704, max_ms=0.861
+list/due_at: iterations=5, total_ms=3.474, mean_ms=0.695, min_ms=0.679, max_ms=0.722
+list/error_count: iterations=5, total_ms=3.480, mean_ms=0.696, min_ms=0.676, max_ms=0.760
+dashboard: iterations=5, total_ms=1920.049, mean_ms=384.010, min_ms=360.315, max_ms=407.828
+detail: iterations=5, total_ms=3.041, mean_ms=0.608, min_ms=0.543, max_ms=0.786

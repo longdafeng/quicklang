@@ -1,0 +1,31 @@
+   Compiling objc2-exception-helper v0.1.1
+   Compiling tauri v2.11.5
+   Compiling tauri-macros v2.6.3
+   Compiling quicklang-storage-seekdb v0.7.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-seekdb)
+   Compiling objc2 v0.6.4
+   Compiling block2 v0.6.2
+   Compiling objc2-core-foundation v0.3.2
+   Compiling tauri-plugin-opener v2.5.5
+   Compiling quicklang-app v0.7.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/app)
+   Compiling dispatch2 v0.3.1
+   Compiling objc2-foundation v0.3.2
+   Compiling objc2-app-kit v0.3.2
+   Compiling objc2-web-kit v0.3.2
+   Compiling tao v0.35.3 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/deps/patches/tao)
+   Compiling muda v0.19.3
+   Compiling window-vibrancy v0.6.0
+   Compiling wry v0.55.1
+   Compiling tauri-runtime v2.11.3
+   Compiling tauri-runtime-wry v2.11.4
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 18.39s
+     Running unittests src/lib.rs (build/macos/cargo/debug/deps/quicklang_app-8bb0c69dda81d460)
+
+running 6 tests
+test longterm_export::tests::cancellation_never_replaces_an_existing_destination ... ok
+test longterm_export::tests::early_cancellation_expires_and_has_a_hard_bound ... ok
+test longterm_export::tests::early_cancellation_is_owner_and_operation_scoped ... ok
+test longterm_export::tests::failed_write_does_not_publish_or_leave_a_temp ... ok
+test longterm_export::tests::successful_publication_replaces_the_selected_file ... ok
+test longterm_export::tests::symlink_destination_is_rejected_before_writing ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 174 filtered out; finished in 0.02s

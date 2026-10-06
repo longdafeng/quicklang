@@ -1,0 +1,18 @@
+
+> quicklang@0.8.0 test
+> vitest run --config tests/vitest.config.ts --run tests/unit/ui/longterm-import.test.tsx tests/unit/ui/longterm-dashboard.test.tsx tests/unit/ui/longterm-review-route.test.tsx tests/unit/ui/longterm-ipc.test.ts
+
+
+ RUN  v4.1.11 /Users/longda/.codex/worktrees/longterm-integration/quicklang
+
+ ✓ tests/unit/ui/longterm-ipc.test.ts (11 tests) 6ms
+ ✓ tests/unit/ui/longterm-import.test.tsx (8 tests) 154ms
+ ✓ tests/unit/ui/longterm-dashboard.test.tsx (14 tests) 205ms
+ ✓ tests/unit/ui/longterm-review-route.test.tsx (8 tests) 301ms
+
+ Test Files  4 passed (4)
+      Tests  41 passed (41)
+   Start at  20:10:52
+   Duration  1.08s (transform 413ms, setup 665ms, import 426ms, tests 667ms, environment 1.31s)
+
+JUNIT report written to /Users/longda/.codex/worktrees/longterm-integration/quicklang/build/test-results/ui.xml

@@ -1,0 +1,8 @@
+
+> quicklang@0.7.0 format:check
+> node scripts/format.mjs --check
+
+[format] Needs formatting: /Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-seekdb/src/sqlite_schema.sql
+[format] Needs formatting: /Users/longda/.codex/worktrees/longterm-integration/quicklang/src/schema/ql_longterm_event.sql
+[format] Checked 351 non-Rust source files; 2 unformatted.
+Source formatting check failed. Run make format.

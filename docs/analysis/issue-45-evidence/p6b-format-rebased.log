@@ -1,0 +1,11 @@
+node scripts/tasks.mjs format
+> npm run format
+
+> quicklang@0.8.0 format
+> node scripts/format.mjs
+
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/tests/unit/ui/longterm-dashboard-ipc.test.ts
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/tests/unit/ui/longterm-ipc.test.ts
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/tests/unit/ui/longterm-session-ipc.test.ts
+[format] Checked 370 non-Rust source files; 3 updated.
+> cargo fmt --all

@@ -1,0 +1,79 @@
+node scripts/tasks.mjs test
+> npm run format:check
+
+> quicklang@0.7.0 format:check
+> node scripts/format.mjs --check
+
+[format] Checked 353 non-Rust source files; 0 unformatted.
+> cargo fmt --all -- --check
+> /usr/local/bin/node scripts/compliance/check.mjs
+License/layout checks passed (219 source files). Release audit limitations are recorded.
+> cargo clippy --locked --offline --workspace --all-targets -- -D warnings
+    Checking quicklang-domain v0.7.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/domain)
+   Compiling quicklang-storage-seekdb v0.7.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-seekdb)
+    Checking quicklang-server v0.7.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/server)
+    Checking quicklang-tests v0.7.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/tests/rust)
+   Compiling quicklang-app v0.7.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/app)
+    Checking quicklang-storage-api v0.7.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-api)
+    Checking quicklang-scheduler v0.7.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/scheduler)
+    Checking quicklang-typing-engine v0.7.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/typing-engine)
+    Checking quicklang-sync-core v0.7.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/sync-core)
+    Checking quicklang-storage-oceanbase v0.7.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-oceanbase)
+    Checking quicklang-application v0.7.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/application)
+error: manual `!RangeInclusive::contains` implementation
+  --> src/crates/application/src/longterm.rs:17:8
+   |
+17 |     if now < 0 || now > 9_007_199_254_740_991 {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: use: `!(0..=9_007_199_254_740_991).contains(&now)`
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#manual_range_contains
+   = note: `-D clippy::manual-range-contains` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::manual_range_contains)]`
+
+error: could not compile `quicklang-application` (lib test) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `quicklang-application` (lib) due to 1 previous error
+error: this function has too many arguments (8/7)
+  --> src/crates/storage-seekdb/src/longterm_v2/export.rs:74:1
+   |
+74 | / fn stream_table(
+75 | |     db: &SeekDbEmbeddedAdapter,
+76 | |     table: &str,
+77 | |     key: &str,
+...  |
+82 | |     first: &mut bool,
+83 | | ) -> Result<(), AppError> {
+   | |_________________________^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#too_many_arguments
+   = note: `-D clippy::too-many-arguments` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::too_many_arguments)]`
+
+error: this boolean expression can be simplified
+   --> src/crates/storage-seekdb/src/longterm_v2/ordinary.rs:168:8
+    |
+168 |     if !study.get("learned").is_some_and(|v| v.as_u64().is_some()) {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: try: `study.get("learned").is_none_or(|v| v.as_u64().is_none())`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#nonminimal_bool
+    = note: `-D clippy::nonminimal-bool` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::nonminimal_bool)]`
+
+error: items after a test module
+   --> src/crates/storage-seekdb/src/lib.rs:345:1
+    |
+345 | mod unit_tests {
+    | ^^^^^^^^^^^^^^
+...
+388 | pub(crate) fn validate_longterm_columns(table: &str, columns: &[&str]) -> Result<(), AppError> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#items_after_test_module
+    = note: `-D clippy::items-after-test-module` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::items_after_test_module)]`
+    = help: move the items to before the test module was defined
+
+error: could not compile `quicklang-storage-seekdb` (lib) due to 2 previous errors
+error: could not compile `quicklang-storage-seekdb` (lib test) due to 3 previous errors
+cargo failed (101)
+make: *** [test] Error 1

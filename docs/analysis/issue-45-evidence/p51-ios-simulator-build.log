@@ -1,0 +1,89 @@
+node scripts/tasks.mjs build-ios
+Verified canonical project version 0.8.0
+> xcrun --sdk iphoneos --show-sdk-path
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS27.0.sdk
+> npm run build
+
+> quicklang@0.8.0 build
+> npm run build --workspace @quicklang/ui
+
+
+> @quicklang/ui@0.8.0 prebuild
+> node ../../scripts/build-ui-catalog.mjs --check
+
+[library] Startup catalog ready { bookCount: 14 }
+
+> @quicklang/ui@0.8.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 173 modules transformed.
+rendering chunks...
+computing gzip size...
+../../build/ios/ui/index.html                                       0.42 kB │ gzip:   0.28 kB
+../../build/ios/ui/celebrations/check-in-sprout.webp               17.10 kB
+../../build/ios/ui/celebrations/growing-plant.webp                 27.68 kB
+../../build/ios/ui/celebrations/book-steps.webp                    37.76 kB
+../../build/ios/ui/celebrations/paper-plane.webp                   39.05 kB
+../../build/ios/ui/celebrations/open-book-star.webp                41.09 kB
+../../build/ios/ui/celebrations/progress-rocket.webp               44.95 kB
+../../build/ios/ui/celebrations/trophy-laurel.webp                 49.44 kB
+../../build/ios/ui/celebrations/progress-zero-sprout.webp          56.75 kB
+../../build/ios/ui/celebrations/compass-stars.webp                 57.02 kB
+../../build/ios/ui/celebrations/progress-sail.webp                 61.95 kB
+../../build/ios/ui/celebrations/progress-summit.webp               61.96 kB
+../../build/ios/ui/celebrations/progress-zero-launchpad.webp       63.07 kB
+../../build/ios/ui/celebrations/progress-book-steps.webp           64.28 kB
+../../build/ios/ui/celebrations/summit.webp                        65.20 kB
+../../build/ios/ui/celebrations/rising-kite.webp                   72.16 kB
+../../build/ios/ui/celebrations/lantern-books.webp                 77.90 kB
+../../build/ios/ui/celebrations/progress-cycle.webp                78.87 kB
+../../build/ios/ui/celebrations/progress-zero-trailhead.webp       82.72 kB
+../../build/ios/ui/celebrations/sunrise-path.webp                  87.32 kB
+../../build/ios/ui/celebrations/bridge-dawn.webp                  104.91 kB
+../../build/ios/ui/assets/index-CXLrf3Nk.css                       50.93 kB │ gzip:  11.19 kB
+../../build/ios/ui/assets/AboutSettings-HYXv2B62.js                 2.49 kB │ gzip:   1.24 kB
+../../build/ios/ui/assets/Interpretation-Cjs1Qw2l.js                3.19 kB │ gzip:   1.69 kB
+../../build/ios/ui/assets/ai-DLc1kAiP.js                            6.71 kB │ gzip:   3.37 kB
+../../build/ios/ui/assets/Interpretation-x7vlycww.js               11.55 kB │ gzip:   5.12 kB
+../../build/ios/ui/assets/Conversation-B1zxB_cF.js                 22.37 kB │ gzip:   9.43 kB
+../../build/ios/ui/assets/SystemSettings-MxunhRrj.js               27.42 kB │ gzip:  12.11 kB
+../../build/ios/ui/assets/Listening-ZkZzS5cH.js                    27.63 kB │ gzip:  10.57 kB
+../../build/ios/ui/assets/CaptionTranslationSettings-8mD2qqYp.js   47.68 kB │ gzip:  16.36 kB
+../../build/ios/ui/assets/index-Cz0czTdn.js                       393.45 kB │ gzip: 127.43 kB
+✓ built in 8.13s
+> /usr/local/bin/node /Users/longda/.codex/worktrees/longterm-integration/quicklang/node_modules/@tauri-apps/cli/tauri.js ios build --debug --target aarch64-sim --no-sign --config tauri.ios.conf.json
+        Info Looking up installed tauri packages to check mismatched versions...
+Setting version of project quicklang-app to:
+    0.8.0.
+
+Also setting CFBundleVersion key (assuming it exists)
+
+Updating CFBundleVersion in Info.plist(s)...
+
+Updated CFBundleVersion in "quicklang-app.xcodeproj/../quicklang-app_iOS/Info.plist" to 0.8.0
+
+
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:iOS Simulator, id:dvtdevice-DVTiOSDeviceSimulatorPlaceholder-iphonesimulator:placeholder, name:Any iOS Simulator Device }
+{ platform:iOS, id:dvtdevice-DVTiPhonePlaceholder-iphoneos:placeholder, name:Any iOS Device }
+{ platform:iOS Simulator, arch:arm64, id:CBB9F107-DF44-4FB9-A0F8-EF04FCEE9C23, OS:27.0, name:QuickLang iPhone 17 Pro }
+{ platform:iOS Simulator, arch:arm64, id:073E9273-36DC-4F5F-AAE2-B29F30F9E67C, OS:27.0, name:QuickLang-P6c-20261005 }
+{ platform:iOS Simulator, arch:arm64, id:C659F8EE-5E83-414E-81A5-D1A211596F79, OS:27.0, name:iPad (A16) }
+{ platform:iOS Simulator, arch:arm64, id:FD531B0B-773C-4FEB-9B3C-69E1B6CB3C38, OS:27.0, name:iPad Air 11-inch (M4) }
+{ platform:iOS Simulator, arch:arm64, id:45630AFF-E1F3-4081-A38F-3E81CED749D7, OS:27.0, name:iPad Air 13-inch (M4) }
+{ platform:iOS Simulator, arch:arm64, id:A019896F-A70A-4988-8ADA-1CEBBBFDF9E1, OS:27.0, name:iPad Pro 11-inch (M5) }
+{ platform:iOS Simulator, arch:arm64, id:30B1340C-95B9-4A41-98FB-BD430603561E, OS:27.0, name:iPad Pro 13-inch (M5) }
+{ platform:iOS Simulator, arch:arm64, id:B7066B7E-249D-426C-AFEA-17C95DFFD894, OS:27.0, name:iPad mini (A17 Pro) }
+{ platform:iOS Simulator, arch:arm64, id:76814629-72BD-4202-87F5-D939061462FD, OS:27.0, name:iPhone 17 }
+{ platform:iOS Simulator, arch:arm64, id:0646E5BD-170F-4C0F-8305-0E07B0AE2B7A, OS:27.0, name:iPhone 17e }
+{ platform:iOS Simulator, arch:arm64, id:49D8C325-F36C-40E4-9DB0-511E3599F5C8, OS:27.0, name:iPhone 18 Pro }
+{ platform:iOS Simulator, arch:arm64, id:6CB14CDA-30D6-4F1A-89CC-39E0CB338C7E, OS:27.0, name:iPhone 18 Pro Max }
+{ platform:iOS Simulator, arch:arm64, id:FDF775C9-9B4E-456F-8CCF-0C9420700F10, OS:27.0, name:iPhone Air }
+{ platform:macOS, arch:arm64, variant:Designed for [iPad,iPhone], id:00006030-000A58500C84001C, name:My Mac }
+{ platform:iOS, arch:arm64, id:00008110-0016258A212A801E, name:longda13 }
+        Info connection; remote_addr=127.0.0.1:55040 conn_id=0
+[iOS] Still running: /usr/local/bin/node /Users/longda/.codex/worktrees/longterm-integration/quicklang/node_modules/@tauri-apps/cli/tauri.js ios
+    Finished 1 iOS Bundle at:
+        /Users/longda/.codex/worktrees/longterm-integration/quicklang/src/app/gen/apple/build/arm64-sim/QuickLang.app

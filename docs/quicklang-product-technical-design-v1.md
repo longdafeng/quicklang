@@ -119,7 +119,7 @@ macOS Keychain 保存 AI 凭据的加密主密钥，API Key 密文保存在 seek
 
 数据库初始化验证清单、文件集合、校验和、计数及成员关系，再分批补齐缺失词条和词书；保留已有内容及用户修改。数据库词条位于 `ql_word`，`wordbook.words` 使用原生 `VARCHAR(256)[]` 保存顺序，不是 JSON 数组列。
 
-`make init`、`make dev`、`make build` 不生成词库，也不依赖上游仓库 checkout。旧 `make content`、`src/content/` 和 `scripts/content/` 已移除，来源清单中的历史路径不是运行依赖。
+`make init`、`make build` 不生成词库，也不依赖上游仓库 checkout。旧 `make content`、`src/content/` 和 `scripts/content/` 已移除，来源清单中的历史路径不是运行依赖。
 
 ## 6. 数据库生命周期与迁移
 
@@ -188,7 +188,7 @@ macOS 系统/混合音频使用 ScreenCaptureKit，纯麦克风使用 AVAudioEng
 任务统一由 `scripts/tasks.mjs` 分派，Makefile 是薄入口。
 
 - `make init`：准备锁定依赖、项目内 Rust/npm、原生运行时，并实际初始化词库数据库。需要独立数据目录时从初始化开始设置 `QUICKLANG_DATA_DIR`。
-- `make dev`：启动 Tauri 桌面开发；`npm run dev`：仅浏览器 UI。
+- `npm run dev`：仅预览浏览器 UI；原生应用使用 `make build` 或 `make release` 构建。
 - `make test`：许可、Rust fmt/clippy/默认测试、TypeScript、UI 和脚本测试。
 - `make test-db`：需要真实运行时的数据库及桌面存储测试。
 - `make review`：许可、Git 空白差异检查、clippy 和类型检查，不是人工安全审计。

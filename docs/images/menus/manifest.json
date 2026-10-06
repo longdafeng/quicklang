@@ -1,0 +1,3061 @@
+{
+  "demo": true,
+  "provenance": "Actual LearningApp and DesktopShell; synthetic in-memory native fixtures; no real database, microphone, AI requests, or learner records.",
+  "screenshots": [
+    {
+      "page": "books",
+      "label": "选书",
+      "path": "docs/images/menus/books.png",
+      "status": "ready",
+      "selectedPage": "books",
+      "errors": [],
+      "width": 1440,
+      "height": 1100,
+      "text": "Q\nQuickLang\n\n每天一点，记得更久\n\n演示用户\nB1 · 中级\n切换用户\n单词背诵\n⌄\n选书\n自动飘单词\n强化学习\n背诵\n中文背诵\n复习\n生词表\n学习进度\n听说训练\n›\n同声翻译\n›\n工具\n›\n设置\n›\n当前词书\n日常英语 · 演示词书\n6 个单词\n选书\n\n选中的词书用于自动飘单词、强化学习、背诵和生词表。学习进度保存在当前用户的数据中。\n\n初中词汇\n\n1987 个单词\n\n选择这本书\n高中词汇\n\n3911 个单词\n\n含初中词汇\n\n选择这本书\n大学英语四级完整版\n\n5664 个单词\n\n含初中和高中词汇\n\n选择这本书\n大学英语四级纯版\n\n1753 个单词\n\n不含初中和高中词汇\n\n选择这本书\n大学英语六级完整版\n\n7551 个单词\n\n含完整版四级词汇\n\n选择这本书\n大学英语六级纯版\n\n1887 个单词\n\n不含完整版四级词汇\n\n选择这本书\n考研英语完整版\n\n7790 个单词\n\n含完整版六级词汇\n\n选择这本书\n考研英语纯版\n\n239 个单词\n\n不含完整版六级词汇\n\n选择这本书\n托福词汇\n\n4264 个单词\n\n选择这本书\nSAT 词汇\n\n4459 个单词\n\n选择这本书\n雅思词汇\n\n5274 个单词\n\n选择这本书\nGRE 词汇\n\n9983 个单词\n\n选择这本书\nGMAT 词汇\n\n3311 个单词\n\n选择这本书\nBEC 商务英语\n\n2824 个单词\n\n选择这本书\n日常英语 · 演示词书\n\n6 个单词\n\n正在学习\n旅行英语 · 示例书\n\n3 个单词\n\n选择这本书\n\n14 本词书均已配有中文释义和双语例句，随应用打包供离线阅读；原先缺失的例句已由 AI 补充并标记。词库许可：CC BY-SA 4.0 · 署名与素材来源 · 来源与修改记录 · 原始来源记录\n\n新增、导入和修改词书，请进入词库维护。\n\n词库维护\n\n确定\n\n日常英语 · 演示词书 · 6 个单词\n\n反馈意见\n\n学习进度保存在当前设备，清除应用数据会删除记录。",
+      "images": [],
+      "scrollWidth": 1440,
+      "geometry": {
+        "viewportHeight": 1100,
+        "documentHeight": 1100,
+        "sidebarHeight": 1100,
+        "mainHeight": 1100
+      },
+      "selected": [
+        "选书"
+      ],
+      "requests": [
+        {
+          "command": "app_state_list"
+        },
+        {
+          "command": "ai_profiles_list"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "打开导航",
+          "aria": null
+        },
+        {
+          "text": "切换用户",
+          "aria": null
+        },
+        {
+          "text": "单词背诵\n⌄",
+          "aria": null
+        },
+        {
+          "text": "选书",
+          "aria": null
+        },
+        {
+          "text": "自动飘单词",
+          "aria": null
+        },
+        {
+          "text": "强化学习",
+          "aria": null
+        },
+        {
+          "text": "背诵",
+          "aria": null
+        },
+        {
+          "text": "中文背诵",
+          "aria": null
+        },
+        {
+          "text": "复习",
+          "aria": null
+        },
+        {
+          "text": "生词表",
+          "aria": null
+        },
+        {
+          "text": "学习进度",
+          "aria": null
+        },
+        {
+          "text": "听说训练\n›",
+          "aria": null
+        },
+        {
+          "text": "飘例句",
+          "aria": null
+        },
+        {
+          "text": "听说练习",
+          "aria": null
+        },
+        {
+          "text": "听力训练",
+          "aria": null
+        },
+        {
+          "text": "AI 陪练",
+          "aria": null
+        },
+        {
+          "text": "同声翻译\n›",
+          "aria": null
+        },
+        {
+          "text": "启动",
+          "aria": null
+        },
+        {
+          "text": "历史记录",
+          "aria": null
+        },
+        {
+          "text": "工具\n›",
+          "aria": null
+        },
+        {
+          "text": "查询",
+          "aria": null
+        },
+        {
+          "text": "词库维护",
+          "aria": null
+        },
+        {
+          "text": "设置\n›",
+          "aria": null
+        },
+        {
+          "text": "用户设置",
+          "aria": null
+        },
+        {
+          "text": "系统设置",
+          "aria": null
+        },
+        {
+          "text": "关于 QuickLang",
+          "aria": null
+        },
+        {
+          "text": "初中词汇\n\n1987 个单词\n\n选择这本书",
+          "aria": null
+        },
+        {
+          "text": "高中词汇\n\n3911 个单词\n\n含初中词汇\n\n选择这本书",
+          "aria": null
+        },
+        {
+          "text": "大学英语四级完整版\n\n5664 个单词\n\n含初中和高中词汇\n\n选择这本书",
+          "aria": null
+        },
+        {
+          "text": "大学英语四级纯版\n\n1753 个单词\n\n不含初中和高中词汇\n\n选择这本书",
+          "aria": null
+        },
+        {
+          "text": "大学英语六级完整版\n\n7551 个单词\n\n含完整版四级词汇\n\n选择这本书",
+          "aria": null
+        },
+        {
+          "text": "大学英语六级纯版\n\n1887 个单词\n\n不含完整版四级词汇\n\n选择这本书",
+          "aria": null
+        },
+        {
+          "text": "考研英语完整版\n\n7790 个单词\n\n含完整版六级词汇\n\n选择这本书",
+          "aria": null
+        },
+        {
+          "text": "考研英语纯版\n\n239 个单词\n\n不含完整版六级词汇\n\n选择这本书",
+          "aria": null
+        },
+        {
+          "text": "托福词汇\n\n4264 个单词\n\n选择这本书",
+          "aria": null
+        },
+        {
+          "text": "SAT 词汇\n\n4459 个单词\n\n选择这本书",
+          "aria": null
+        },
+        {
+          "text": "雅思词汇\n\n5274 个单词\n\n选择这本书",
+          "aria": null
+        },
+        {
+          "text": "GRE 词汇\n\n9983 个单词\n\n选择这本书",
+          "aria": null
+        },
+        {
+          "text": "GMAT 词汇\n\n3311 个单词\n\n选择这本书",
+          "aria": null
+        },
+        {
+          "text": "BEC 商务英语\n\n2824 个单词\n\n选择这本书",
+          "aria": null
+        },
+        {
+          "text": "日常英语 · 演示词书\n\n6 个单词\n\n正在学习",
+          "aria": null
+        },
+        {
+          "text": "旅行英语 · 示例书\n\n3 个单词\n\n选择这本书",
+          "aria": null
+        },
+        {
+          "text": "词库维护",
+          "aria": null
+        },
+        {
+          "text": "确定",
+          "aria": null
+        }
+      ]
+    },
+    {
+      "page": "auto",
+      "label": "自动飘单词",
+      "path": "docs/images/menus/auto.png",
+      "status": "ready",
+      "selectedPage": "auto",
+      "errors": [],
+      "width": 1440,
+      "height": 1100,
+      "text": "Q\nQuickLang\n\n每天一点，记得更久\n\n演示用户\nB1 · 中级\n切换用户\n单词背诵\n⌄\n选书\n自动飘单词\n强化学习\n背诵\n中文背诵\n复习\n生词表\n学习进度\n听说训练\n›\n同声翻译\n›\n工具\n›\n设置\n›\n当前词书\n日常英语 · 演示词书\n6 个单词\n自动飘单词\n自动飘单词\n上一个\n暂停\n下一个\n\n第 1 / 1 次 · 美式发音 1 / 3\n\napple\n\n美式 ˈæpəl\n英式 ˈæpəl\n\n苹果\n\nAn apple a day keeps the doctor away.\n\n一天一个苹果，医生远离我。\n\n本次 1 / 6 · 词书第 1 个\n\n单词导航\n返回设置\n更多操作\n\n日常英语 · 演示词书 · 6 个单词\n\n反馈意见\n\n学习进度保存在当前设备，清除应用数据会删除记录。",
+      "images": [
+        {
+          "src": "http://127.0.0.1:4191/content/word-images/images/apple.webp",
+          "complete": true,
+          "naturalWidth": 320
+        }
+      ],
+      "scrollWidth": 1440,
+      "geometry": {
+        "viewportHeight": 1100,
+        "documentHeight": 1100,
+        "sidebarHeight": 1100,
+        "mainHeight": 1100
+      },
+      "selected": [
+        "自动飘单词"
+      ],
+      "requests": [
+        {
+          "command": "app_state_list"
+        },
+        {
+          "command": "ai_profiles_list"
+        },
+        {
+          "command": "speech_background_mode"
+        },
+        {
+          "command": "app_state_write"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "打开导航",
+          "aria": null
+        },
+        {
+          "text": "切换用户",
+          "aria": null
+        },
+        {
+          "text": "单词背诵\n⌄",
+          "aria": null
+        },
+        {
+          "text": "选书",
+          "aria": null
+        },
+        {
+          "text": "自动飘单词",
+          "aria": null
+        },
+        {
+          "text": "强化学习",
+          "aria": null
+        },
+        {
+          "text": "背诵",
+          "aria": null
+        },
+        {
+          "text": "中文背诵",
+          "aria": null
+        },
+        {
+          "text": "复习",
+          "aria": null
+        },
+        {
+          "text": "生词表",
+          "aria": null
+        },
+        {
+          "text": "学习进度",
+          "aria": null
+        },
+        {
+          "text": "听说训练\n›",
+          "aria": null
+        },
+        {
+          "text": "飘例句",
+          "aria": null
+        },
+        {
+          "text": "听说练习",
+          "aria": null
+        },
+        {
+          "text": "听力训练",
+          "aria": null
+        },
+        {
+          "text": "AI 陪练",
+          "aria": null
+        },
+        {
+          "text": "同声翻译\n›",
+          "aria": null
+        },
+        {
+          "text": "启动",
+          "aria": null
+        },
+        {
+          "text": "历史记录",
+          "aria": null
+        },
+        {
+          "text": "工具\n›",
+          "aria": null
+        },
+        {
+          "text": "查询",
+          "aria": null
+        },
+        {
+          "text": "词库维护",
+          "aria": null
+        },
+        {
+          "text": "设置\n›",
+          "aria": null
+        },
+        {
+          "text": "用户设置",
+          "aria": null
+        },
+        {
+          "text": "系统设置",
+          "aria": null
+        },
+        {
+          "text": "关于 QuickLang",
+          "aria": null
+        },
+        {
+          "text": "上一个",
+          "aria": null
+        },
+        {
+          "text": "暂停",
+          "aria": null
+        },
+        {
+          "text": "下一个",
+          "aria": null
+        },
+        {
+          "text": "单词导航",
+          "aria": null
+        },
+        {
+          "text": "返回设置",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        }
+      ]
+    },
+    {
+      "page": "flash",
+      "label": "强化学习",
+      "path": "docs/images/menus/flash.png",
+      "status": "ready",
+      "selectedPage": "flash",
+      "errors": [],
+      "width": 1440,
+      "height": 1100,
+      "text": "Q\nQuickLang\n\n每天一点，记得更久\n\n演示用户\nB1 · 中级\n切换用户\n单词背诵\n⌄\n选书\n自动飘单词\n强化学习\n背诵\n中文背诵\n复习\n生词表\n学习进度\n听说训练\n›\n同声翻译\n›\n工具\n›\n设置\n›\n当前词书\n日常英语 · 演示词书\n6 个单词\n强化学习\n\n强化学习 · 已经背诵 0 个 · 本次还剩 6 个\n\napple\n\n美式 ˈæpəl\n英式 ˈæpəl\n\n苹果\n\nAn apple a day keeps the doctor away.\n\n一天一个苹果，医生远离我。\n\n美式英语复读\n\n按 Enter 进入下一个单词\n\n记住了，下一个\n重新朗读\n添加到生词表\n单词导航\n返回设置\n\n日常英语 · 演示词书 · 6 个单词\n\n反馈意见\n\n学习进度保存在当前设备，清除应用数据会删除记录。",
+      "images": [
+        {
+          "src": "http://127.0.0.1:4191/content/word-images/images/apple.webp",
+          "complete": true,
+          "naturalWidth": 320
+        }
+      ],
+      "scrollWidth": 1440,
+      "geometry": {
+        "viewportHeight": 1100,
+        "documentHeight": 1100,
+        "sidebarHeight": 1100,
+        "mainHeight": 1100
+      },
+      "selected": [
+        "强化学习"
+      ],
+      "requests": [
+        {
+          "command": "app_state_list"
+        },
+        {
+          "command": "ai_profiles_list"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "打开导航",
+          "aria": null
+        },
+        {
+          "text": "切换用户",
+          "aria": null
+        },
+        {
+          "text": "单词背诵\n⌄",
+          "aria": null
+        },
+        {
+          "text": "选书",
+          "aria": null
+        },
+        {
+          "text": "自动飘单词",
+          "aria": null
+        },
+        {
+          "text": "强化学习",
+          "aria": null
+        },
+        {
+          "text": "背诵",
+          "aria": null
+        },
+        {
+          "text": "中文背诵",
+          "aria": null
+        },
+        {
+          "text": "复习",
+          "aria": null
+        },
+        {
+          "text": "生词表",
+          "aria": null
+        },
+        {
+          "text": "学习进度",
+          "aria": null
+        },
+        {
+          "text": "听说训练\n›",
+          "aria": null
+        },
+        {
+          "text": "飘例句",
+          "aria": null
+        },
+        {
+          "text": "听说练习",
+          "aria": null
+        },
+        {
+          "text": "听力训练",
+          "aria": null
+        },
+        {
+          "text": "AI 陪练",
+          "aria": null
+        },
+        {
+          "text": "同声翻译\n›",
+          "aria": null
+        },
+        {
+          "text": "启动",
+          "aria": null
+        },
+        {
+          "text": "历史记录",
+          "aria": null
+        },
+        {
+          "text": "工具\n›",
+          "aria": null
+        },
+        {
+          "text": "查询",
+          "aria": null
+        },
+        {
+          "text": "词库维护",
+          "aria": null
+        },
+        {
+          "text": "设置\n›",
+          "aria": null
+        },
+        {
+          "text": "用户设置",
+          "aria": null
+        },
+        {
+          "text": "系统设置",
+          "aria": null
+        },
+        {
+          "text": "关于 QuickLang",
+          "aria": null
+        },
+        {
+          "text": "记住了，下一个",
+          "aria": null
+        },
+        {
+          "text": "重新朗读",
+          "aria": null
+        },
+        {
+          "text": "添加到生词表",
+          "aria": null
+        },
+        {
+          "text": "单词导航",
+          "aria": null
+        },
+        {
+          "text": "返回设置",
+          "aria": null
+        }
+      ]
+    },
+    {
+      "page": "spell",
+      "label": "背诵",
+      "path": "docs/images/menus/spell.png",
+      "status": "ready",
+      "selectedPage": "spell",
+      "errors": [],
+      "width": 1440,
+      "height": 1100,
+      "text": "Q\nQuickLang\n\n每天一点，记得更久\n\n演示用户\nB1 · 中级\n切换用户\n单词背诵\n⌄\n选书\n自动飘单词\n强化学习\n背诵\n中文背诵\n复习\n生词表\n学习进度\n听说训练\n›\n同声翻译\n›\n工具\n›\n设置\n›\n当前词书\n日常英语 · 演示词书\n6 个单词\n背诵\n\n背诵 · 1 / 6 · 已经背诵 2 个\n\n听发音，拼出单词\n重新朗读\n添加到生词表\n拼写正确\n\n600 秒后自动继续，也可点击下方按钮立即继续。\n\napple\n\n美式 ˈæpəl\n英式 ˈæpəl\n\n苹果\n\nAn apple a day keeps the doctor away.\n\n一天一个苹果，医生远离我。\n\n上一个\n下一个单词 ↵\n\n上一个：退回重新作答，撤销上一题及当前题已提交的成绩。\n\n返回无保存\n保存进度并返回\n\n🚀\n直接起飞\n\n日常英语 · 演示词书 · 6 个单词\n\n反馈意见\n\n学习进度保存在当前设备，清除应用数据会删除记录。",
+      "images": [
+        {
+          "src": "http://127.0.0.1:4191/content/word-images/images/apple.webp",
+          "complete": true,
+          "naturalWidth": 320
+        }
+      ],
+      "scrollWidth": 1440,
+      "geometry": {
+        "viewportHeight": 1100,
+        "documentHeight": 1100,
+        "sidebarHeight": 1100,
+        "mainHeight": 1100
+      },
+      "selected": [
+        "背诵"
+      ],
+      "requests": [
+        {
+          "command": "app_state_list"
+        },
+        {
+          "command": "ai_profiles_list"
+        },
+        {
+          "command": "evaluate_spelling"
+        },
+        {
+          "command": "app_state_write"
+        },
+        {
+          "command": "app_state_write"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "打开导航",
+          "aria": null
+        },
+        {
+          "text": "切换用户",
+          "aria": null
+        },
+        {
+          "text": "单词背诵\n⌄",
+          "aria": null
+        },
+        {
+          "text": "选书",
+          "aria": null
+        },
+        {
+          "text": "自动飘单词",
+          "aria": null
+        },
+        {
+          "text": "强化学习",
+          "aria": null
+        },
+        {
+          "text": "背诵",
+          "aria": null
+        },
+        {
+          "text": "中文背诵",
+          "aria": null
+        },
+        {
+          "text": "复习",
+          "aria": null
+        },
+        {
+          "text": "生词表",
+          "aria": null
+        },
+        {
+          "text": "学习进度",
+          "aria": null
+        },
+        {
+          "text": "听说训练\n›",
+          "aria": null
+        },
+        {
+          "text": "飘例句",
+          "aria": null
+        },
+        {
+          "text": "听说练习",
+          "aria": null
+        },
+        {
+          "text": "听力训练",
+          "aria": null
+        },
+        {
+          "text": "AI 陪练",
+          "aria": null
+        },
+        {
+          "text": "同声翻译\n›",
+          "aria": null
+        },
+        {
+          "text": "启动",
+          "aria": null
+        },
+        {
+          "text": "历史记录",
+          "aria": null
+        },
+        {
+          "text": "工具\n›",
+          "aria": null
+        },
+        {
+          "text": "查询",
+          "aria": null
+        },
+        {
+          "text": "词库维护",
+          "aria": null
+        },
+        {
+          "text": "设置\n›",
+          "aria": null
+        },
+        {
+          "text": "用户设置",
+          "aria": null
+        },
+        {
+          "text": "系统设置",
+          "aria": null
+        },
+        {
+          "text": "关于 QuickLang",
+          "aria": null
+        },
+        {
+          "text": "重新朗读",
+          "aria": null
+        },
+        {
+          "text": "添加到生词表",
+          "aria": null
+        },
+        {
+          "text": "上一个",
+          "aria": null
+        },
+        {
+          "text": "下一个单词 ↵",
+          "aria": null
+        },
+        {
+          "text": "返回无保存",
+          "aria": null
+        },
+        {
+          "text": "保存进度并返回",
+          "aria": null
+        }
+      ]
+    },
+    {
+      "page": "chinese-spell",
+      "label": "中文背诵",
+      "path": "docs/images/menus/chinese-spell.png",
+      "status": "ready",
+      "selectedPage": "chinese-spell",
+      "errors": [],
+      "width": 1440,
+      "height": 1100,
+      "text": "Q\nQuickLang\n\n每天一点，记得更久\n\n演示用户\nB1 · 中级\n切换用户\n单词背诵\n⌄\n选书\n自动飘单词\n强化学习\n背诵\n中文背诵\n复习\n生词表\n学习进度\n听说训练\n›\n同声翻译\n›\n工具\n›\n设置\n›\n当前词书\n日常英语 · 演示词书\n6 个单词\n中文背诵\n\n中文背诵 · 1 / 6 · 已经背诵 1 个\n\n中文背诵：先展示配图和中文释义 10 秒，随后自动开始录音； 本地英文识别正确即自动继续，错误或 30 秒未发音将暂停并等待手动继续； 错误单词不计入统计，也不增加生词错误次数。\n\n看图和中文，朗读单词\n\n苹果\n\n10 秒后自动开始录音…\n\n重新识别\n添加到生词表\n上一个\n暂停\n\n上一个：退回重新作答，撤销上一题及当前题已提交的成绩。\n\n返回设置\n保存进度并返回\n\n日常英语 · 演示词书 · 6 个单词\n\n反馈意见\n\n学习进度保存在当前设备，清除应用数据会删除记录。",
+      "images": [
+        {
+          "src": "http://127.0.0.1:4191/content/word-images/images/apple.webp",
+          "complete": true,
+          "naturalWidth": 320
+        }
+      ],
+      "scrollWidth": 1440,
+      "geometry": {
+        "viewportHeight": 1100,
+        "documentHeight": 1100,
+        "sidebarHeight": 1100,
+        "mainHeight": 1100
+      },
+      "selected": [
+        "中文背诵"
+      ],
+      "requests": [
+        {
+          "command": "app_state_list"
+        },
+        {
+          "command": "ai_profiles_list"
+        },
+        {
+          "command": "app_state_write"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "打开导航",
+          "aria": null
+        },
+        {
+          "text": "切换用户",
+          "aria": null
+        },
+        {
+          "text": "单词背诵\n⌄",
+          "aria": null
+        },
+        {
+          "text": "选书",
+          "aria": null
+        },
+        {
+          "text": "自动飘单词",
+          "aria": null
+        },
+        {
+          "text": "强化学习",
+          "aria": null
+        },
+        {
+          "text": "背诵",
+          "aria": null
+        },
+        {
+          "text": "中文背诵",
+          "aria": null
+        },
+        {
+          "text": "复习",
+          "aria": null
+        },
+        {
+          "text": "生词表",
+          "aria": null
+        },
+        {
+          "text": "学习进度",
+          "aria": null
+        },
+        {
+          "text": "听说训练\n›",
+          "aria": null
+        },
+        {
+          "text": "飘例句",
+          "aria": null
+        },
+        {
+          "text": "听说练习",
+          "aria": null
+        },
+        {
+          "text": "听力训练",
+          "aria": null
+        },
+        {
+          "text": "AI 陪练",
+          "aria": null
+        },
+        {
+          "text": "同声翻译\n›",
+          "aria": null
+        },
+        {
+          "text": "启动",
+          "aria": null
+        },
+        {
+          "text": "历史记录",
+          "aria": null
+        },
+        {
+          "text": "工具\n›",
+          "aria": null
+        },
+        {
+          "text": "查询",
+          "aria": null
+        },
+        {
+          "text": "词库维护",
+          "aria": null
+        },
+        {
+          "text": "设置\n›",
+          "aria": null
+        },
+        {
+          "text": "用户设置",
+          "aria": null
+        },
+        {
+          "text": "系统设置",
+          "aria": null
+        },
+        {
+          "text": "关于 QuickLang",
+          "aria": null
+        },
+        {
+          "text": "重新识别",
+          "aria": null
+        },
+        {
+          "text": "添加到生词表",
+          "aria": null
+        },
+        {
+          "text": "上一个",
+          "aria": null
+        },
+        {
+          "text": "暂停",
+          "aria": null
+        },
+        {
+          "text": "返回设置",
+          "aria": null
+        },
+        {
+          "text": "保存进度并返回",
+          "aria": null
+        }
+      ]
+    },
+    {
+      "page": "longterm",
+      "label": "复习",
+      "path": "docs/images/menus/longterm.png",
+      "status": "ready",
+      "selectedPage": "longterm",
+      "errors": [],
+      "width": 1440,
+      "height": 1100,
+      "text": "Q\nQuickLang\n\n每天一点，记得更久\n\n演示用户\nB1 · 中级\n切换用户\n单词背诵\n⌄\n选书\n自动飘单词\n强化学习\n背诵\n中文背诵\n复习\n生词表\n学习进度\n听说训练\n›\n同声翻译\n›\n工具\n›\n设置\n›\n当前词书\n日常英语 · 演示词书\n6 个单词\n复习\n\n按记忆曲线安排今日到期卡片，并查看长期学习指标\n\n复习\n今日复习\n\n正确率只统计正式复习中每张卡的首次作答；提前练习与普通背诵不计入。\n\n今日已复习\t8 个\n今日正式复习已作答 8 个单词，同一单词重复作答只计一次\n\n今日待复习\t3 张\n今日待复习 3 张卡片\n\n已掌握\t2 张\n已掌握 2 张卡片\n\n7 日正确率\t85%\n最近 7 日正式复习首次作答正确率 85%\n\n30 日错误数\t12 次\n最近 30 日易错 12 次\n开始今日复习\n反馈意见\n\n学习进度保存在当前设备，清除应用数据会删除记录。",
+      "images": [],
+      "scrollWidth": 1440,
+      "geometry": {
+        "viewportHeight": 1100,
+        "documentHeight": 1100,
+        "sidebarHeight": 1100,
+        "mainHeight": 1100
+      },
+      "selected": [
+        "复习"
+      ],
+      "requests": [
+        {
+          "command": "app_state_list"
+        },
+        {
+          "command": "longterm_command",
+          "operation": "dashboard"
+        },
+        {
+          "command": "longterm_command",
+          "operation": "list"
+        },
+        {
+          "command": "longterm_command",
+          "operation": "active"
+        },
+        {
+          "command": "ai_profiles_list"
+        },
+        {
+          "command": "longterm_command",
+          "operation": "dashboard"
+        },
+        {
+          "command": "longterm_command",
+          "operation": "list"
+        },
+        {
+          "command": "longterm_command",
+          "operation": "active"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "打开导航",
+          "aria": null
+        },
+        {
+          "text": "切换用户",
+          "aria": null
+        },
+        {
+          "text": "单词背诵\n⌄",
+          "aria": null
+        },
+        {
+          "text": "选书",
+          "aria": null
+        },
+        {
+          "text": "自动飘单词",
+          "aria": null
+        },
+        {
+          "text": "强化学习",
+          "aria": null
+        },
+        {
+          "text": "背诵",
+          "aria": null
+        },
+        {
+          "text": "中文背诵",
+          "aria": null
+        },
+        {
+          "text": "复习",
+          "aria": null
+        },
+        {
+          "text": "生词表",
+          "aria": null
+        },
+        {
+          "text": "学习进度",
+          "aria": null
+        },
+        {
+          "text": "听说训练\n›",
+          "aria": null
+        },
+        {
+          "text": "飘例句",
+          "aria": null
+        },
+        {
+          "text": "听说练习",
+          "aria": null
+        },
+        {
+          "text": "听力训练",
+          "aria": null
+        },
+        {
+          "text": "AI 陪练",
+          "aria": null
+        },
+        {
+          "text": "同声翻译\n›",
+          "aria": null
+        },
+        {
+          "text": "启动",
+          "aria": null
+        },
+        {
+          "text": "历史记录",
+          "aria": null
+        },
+        {
+          "text": "工具\n›",
+          "aria": null
+        },
+        {
+          "text": "查询",
+          "aria": null
+        },
+        {
+          "text": "词库维护",
+          "aria": null
+        },
+        {
+          "text": "设置\n›",
+          "aria": null
+        },
+        {
+          "text": "用户设置",
+          "aria": null
+        },
+        {
+          "text": "系统设置",
+          "aria": null
+        },
+        {
+          "text": "关于 QuickLang",
+          "aria": null
+        },
+        {
+          "text": "开始今日复习",
+          "aria": null
+        },
+        {
+          "text": "词库维护",
+          "aria": null
+        },
+        {
+          "text": "导入单词",
+          "aria": null
+        },
+        {
+          "text": "导出生词表",
+          "aria": null
+        },
+        {
+          "text": "apple",
+          "aria": null
+        },
+        {
+          "text": "remember",
+          "aria": null
+        },
+        {
+          "text": "practice",
+          "aria": null
+        },
+        {
+          "text": "journey",
+          "aria": null
+        },
+        {
+          "text": "habit",
+          "aria": null
+        },
+        {
+          "text": "zebra",
+          "aria": null
+        },
+        {
+          "text": "刷新列表",
+          "aria": null
+        },
+        {
+          "text": "下一页",
+          "aria": null
+        },
+        {
+          "text": "提前练习（0/100）",
+          "aria": null
+        }
+      ]
+    },
+    {
+      "page": "longterm-notebook",
+      "label": "生词表",
+      "path": "docs/images/menus/longterm-notebook.png",
+      "status": "ready",
+      "selectedPage": "longterm-notebook",
+      "errors": [],
+      "width": 1440,
+      "height": 1100,
+      "text": "Q\nQuickLang\n\n每天一点，记得更久\n\n演示用户\nB1 · 中级\n切换用户\n单词背诵\n⌄\n选书\n自动飘单词\n强化学习\n背诵\n中文背诵\n复习\n生词表\n学习进度\n听说训练\n›\n同声翻译\n›\n工具\n›\n设置\n›\n当前词书\n日常英语 · 演示词书\n6 个单词\n生词表\n\n管理当前用户的生词，选择单词提前练习\n\n词库管理\n词库维护\n导入单词\n导出生词表\n生词表\n筛选\n全部\n已到期\n已掌握\n排序\n最近答错\n到期时间\n错误次数\napple\n· 已到期 · 易错 6 次\nremember\n· 明天到期 · 易错 5 次\npractice\n· 10月8日到期 · 易错 4 次\njourney\n· 10月9日到期 · 易错 3 次\nhabit\n· 10月10日到期 · 易错 2 次 · 已掌握\nzebra\n· 10月11日到期 · 易错 1 次 · 已掌握\n刷新列表\n下一页\n提前练习（0/100）\n反馈意见\n\n学习进度保存在当前设备，清除应用数据会删除记录。",
+      "images": [],
+      "scrollWidth": 1440,
+      "geometry": {
+        "viewportHeight": 1100,
+        "documentHeight": 1100,
+        "sidebarHeight": 1100,
+        "mainHeight": 1100
+      },
+      "selected": [
+        "生词表"
+      ],
+      "requests": [
+        {
+          "command": "app_state_list"
+        },
+        {
+          "command": "longterm_command",
+          "operation": "dashboard"
+        },
+        {
+          "command": "longterm_command",
+          "operation": "list"
+        },
+        {
+          "command": "longterm_command",
+          "operation": "active"
+        },
+        {
+          "command": "ai_profiles_list"
+        },
+        {
+          "command": "longterm_command",
+          "operation": "dashboard"
+        },
+        {
+          "command": "longterm_command",
+          "operation": "list"
+        },
+        {
+          "command": "longterm_command",
+          "operation": "active"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "打开导航",
+          "aria": null
+        },
+        {
+          "text": "切换用户",
+          "aria": null
+        },
+        {
+          "text": "单词背诵\n⌄",
+          "aria": null
+        },
+        {
+          "text": "选书",
+          "aria": null
+        },
+        {
+          "text": "自动飘单词",
+          "aria": null
+        },
+        {
+          "text": "强化学习",
+          "aria": null
+        },
+        {
+          "text": "背诵",
+          "aria": null
+        },
+        {
+          "text": "中文背诵",
+          "aria": null
+        },
+        {
+          "text": "复习",
+          "aria": null
+        },
+        {
+          "text": "生词表",
+          "aria": null
+        },
+        {
+          "text": "学习进度",
+          "aria": null
+        },
+        {
+          "text": "听说训练\n›",
+          "aria": null
+        },
+        {
+          "text": "飘例句",
+          "aria": null
+        },
+        {
+          "text": "听说练习",
+          "aria": null
+        },
+        {
+          "text": "听力训练",
+          "aria": null
+        },
+        {
+          "text": "AI 陪练",
+          "aria": null
+        },
+        {
+          "text": "同声翻译\n›",
+          "aria": null
+        },
+        {
+          "text": "启动",
+          "aria": null
+        },
+        {
+          "text": "历史记录",
+          "aria": null
+        },
+        {
+          "text": "工具\n›",
+          "aria": null
+        },
+        {
+          "text": "查询",
+          "aria": null
+        },
+        {
+          "text": "词库维护",
+          "aria": null
+        },
+        {
+          "text": "设置\n›",
+          "aria": null
+        },
+        {
+          "text": "用户设置",
+          "aria": null
+        },
+        {
+          "text": "系统设置",
+          "aria": null
+        },
+        {
+          "text": "关于 QuickLang",
+          "aria": null
+        },
+        {
+          "text": "开始今日复习",
+          "aria": null
+        },
+        {
+          "text": "词库维护",
+          "aria": null
+        },
+        {
+          "text": "导入单词",
+          "aria": null
+        },
+        {
+          "text": "导出生词表",
+          "aria": null
+        },
+        {
+          "text": "apple",
+          "aria": null
+        },
+        {
+          "text": "remember",
+          "aria": null
+        },
+        {
+          "text": "practice",
+          "aria": null
+        },
+        {
+          "text": "journey",
+          "aria": null
+        },
+        {
+          "text": "habit",
+          "aria": null
+        },
+        {
+          "text": "zebra",
+          "aria": null
+        },
+        {
+          "text": "刷新列表",
+          "aria": null
+        },
+        {
+          "text": "下一页",
+          "aria": null
+        },
+        {
+          "text": "提前练习（0/100）",
+          "aria": null
+        }
+      ]
+    },
+    {
+      "page": "progress",
+      "label": "学习进度",
+      "path": "docs/images/menus/progress.png",
+      "status": "ready",
+      "selectedPage": "progress",
+      "errors": [],
+      "width": 1440,
+      "height": 1100,
+      "text": "Q\nQuickLang\n\n每天一点，记得更久\n\n演示用户\nB1 · 中级\n切换用户\n单词背诵\n⌄\n选书\n自动飘单词\n强化学习\n背诵\n中文背诵\n复习\n生词表\n学习进度\n听说训练\n›\n同声翻译\n›\n工具\n›\n设置\n›\n当前词书\n日常英语 · 演示词书\n6 个单词\n学习进度\n状态越来越好\n\n最近三次学习量持续上升，乘着这股劲继续向前！\n\n今天学习\n26\n个单词\n今日学习进度\n背诵\n12\n个\n中文背诵\n6\n个\n今日复习\n8\n个\n最近学习记录\n10月4日\n16 个\n10月5日\n21 个\n10月6日\n26 个\n正在学习\n日常英语 · 演示词书\n\n共 6 个单词\n\n总学习进度\n\n复习：2 / 6\n\n背诵：2 / 6\n\n中文背诵：1 / 6\n\n强化学习：0 / 6\n\n复习为当前用户生词表的已掌握词数 / 生词总数，跨词书统计。背诵数量包含已作答的错词，不代表已掌握。\n\n今天学习与最近学习记录为背诵、中文背诵与正式复习的合计；正式复习按当地日期，同一天同一生词只计首次作答，错误也计入，不含提前练习。强化学习仅展示累计进度。旧合计记录不用于当前模式统计，同一背诵会话退回重答不重复累计。\n\n继续位置：词书第 1 词 · 本轮第 1/6 题 · 首轮背诵 · 待作答\n\n继续背诵\n重设背诵进度\n\n继续位置：词书第 1 词 · 本轮第 1/6 题 · 首轮中文背诵 · 待作答\n\n继续中文背诵\n重设中文背诵进度\n其他词书的进度\n初中词汇\n\n背诵：0 / 1987\n\n中文背诵：0 / 1987\n\n强化学习：0 / 1987\n\n继续学习\n高中词汇\n\n背诵：0 / 3911\n\n中文背诵：0 / 3911\n\n强化学习：0 / 3911\n\n继续学习\n大学英语四级完整版\n\n背诵：0 / 5664\n\n中文背诵：0 / 5664\n\n强化学习：0 / 5664\n\n继续学习\n大学英语四级纯版\n\n背诵：0 / 1753\n\n中文背诵：0 / 1753\n\n强化学习：0 / 1753\n\n继续学习\n大学英语六级完整版\n\n背诵：0 / 7551\n\n中文背诵：0 / 7551\n\n强化学习：0 / 7551\n\n继续学习\n大学英语六级纯版\n\n背诵：0 / 1887\n\n中文背诵：0 / 1887\n\n强化学习：0 / 1887\n\n继续学习\n考研英语完整版\n\n背诵：0 / 7790\n\n中文背诵：0 / 7790\n\n强化学习：0 / 7790\n\n继续学习\n考研英语纯版\n\n背诵：0 / 239\n\n中文背诵：0 / 239\n\n强化学习：0 / 239\n\n继续学习\n托福词汇\n\n背诵：0 / 4264\n\n中文背诵：0 / 4264\n\n强化学习：0 / 4264\n\n继续学习\nSAT 词汇\n\n背诵：0 / 4459\n\n中文背诵：0 / 4459\n\n强化学习：0 / 4459\n\n继续学习\n雅思词汇\n\n背诵：0 / 5274\n\n中文背诵：0 / 5274\n\n强化学习：0 / 5274\n\n继续学习\nGRE 词汇\n\n背诵：0 / 9983\n\n中文背诵：0 / 9983\n\n强化学习：0 / 9983\n\n继续学习\nGMAT 词汇\n\n背诵：0 / 3311\n\n中文背诵：0 / 3311\n\n强化学习：0 / 3311\n\n继续学习\nBEC 商务英语\n\n背诵：0 / 2824\n\n中文背诵：0 / 2824\n\n强化学习：0 / 2824\n\n继续学习\n旅行英语 · 示例书\n\n背诵：0 / 3\n\n中文背诵：0 / 3\n\n强化学习：0 / 3\n\n继续学习\n\n日常英语 · 演示词书 · 6 个单词\n\n反馈意见\n\n学习进度保存在当前设备，清除应用数据会删除记录。",
+      "images": [
+        {
+          "src": "http://127.0.0.1:4191/celebrations/progress-summit.webp",
+          "complete": true,
+          "naturalWidth": 960
+        }
+      ],
+      "scrollWidth": 1440,
+      "geometry": {
+        "viewportHeight": 1100,
+        "documentHeight": 1100,
+        "sidebarHeight": 1100,
+        "mainHeight": 1100
+      },
+      "selected": [
+        "学习进度"
+      ],
+      "requests": [
+        {
+          "command": "app_state_list"
+        },
+        {
+          "command": "longterm_command",
+          "operation": "dashboard"
+        },
+        {
+          "command": "ai_profiles_list"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "打开导航",
+          "aria": null
+        },
+        {
+          "text": "切换用户",
+          "aria": null
+        },
+        {
+          "text": "单词背诵\n⌄",
+          "aria": null
+        },
+        {
+          "text": "选书",
+          "aria": null
+        },
+        {
+          "text": "自动飘单词",
+          "aria": null
+        },
+        {
+          "text": "强化学习",
+          "aria": null
+        },
+        {
+          "text": "背诵",
+          "aria": null
+        },
+        {
+          "text": "中文背诵",
+          "aria": null
+        },
+        {
+          "text": "复习",
+          "aria": null
+        },
+        {
+          "text": "生词表",
+          "aria": null
+        },
+        {
+          "text": "学习进度",
+          "aria": null
+        },
+        {
+          "text": "听说训练\n›",
+          "aria": null
+        },
+        {
+          "text": "飘例句",
+          "aria": null
+        },
+        {
+          "text": "听说练习",
+          "aria": null
+        },
+        {
+          "text": "听力训练",
+          "aria": null
+        },
+        {
+          "text": "AI 陪练",
+          "aria": null
+        },
+        {
+          "text": "同声翻译\n›",
+          "aria": null
+        },
+        {
+          "text": "启动",
+          "aria": null
+        },
+        {
+          "text": "历史记录",
+          "aria": null
+        },
+        {
+          "text": "工具\n›",
+          "aria": null
+        },
+        {
+          "text": "查询",
+          "aria": null
+        },
+        {
+          "text": "词库维护",
+          "aria": null
+        },
+        {
+          "text": "设置\n›",
+          "aria": null
+        },
+        {
+          "text": "用户设置",
+          "aria": null
+        },
+        {
+          "text": "系统设置",
+          "aria": null
+        },
+        {
+          "text": "关于 QuickLang",
+          "aria": null
+        },
+        {
+          "text": "继续背诵",
+          "aria": "继续背诵"
+        },
+        {
+          "text": "重设背诵进度",
+          "aria": null
+        },
+        {
+          "text": "继续中文背诵",
+          "aria": "继续中文背诵"
+        },
+        {
+          "text": "重设中文背诵进度",
+          "aria": null
+        },
+        {
+          "text": "继续学习",
+          "aria": "继续学习初中词汇"
+        },
+        {
+          "text": "继续学习",
+          "aria": "继续学习高中词汇"
+        },
+        {
+          "text": "继续学习",
+          "aria": "继续学习大学英语四级完整版"
+        },
+        {
+          "text": "继续学习",
+          "aria": "继续学习大学英语四级纯版"
+        },
+        {
+          "text": "继续学习",
+          "aria": "继续学习大学英语六级完整版"
+        },
+        {
+          "text": "继续学习",
+          "aria": "继续学习大学英语六级纯版"
+        },
+        {
+          "text": "继续学习",
+          "aria": "继续学习考研英语完整版"
+        },
+        {
+          "text": "继续学习",
+          "aria": "继续学习考研英语纯版"
+        },
+        {
+          "text": "继续学习",
+          "aria": "继续学习托福词汇"
+        },
+        {
+          "text": "继续学习",
+          "aria": "继续学习SAT 词汇"
+        },
+        {
+          "text": "继续学习",
+          "aria": "继续学习雅思词汇"
+        },
+        {
+          "text": "继续学习",
+          "aria": "继续学习GRE 词汇"
+        },
+        {
+          "text": "继续学习",
+          "aria": "继续学习GMAT 词汇"
+        },
+        {
+          "text": "继续学习",
+          "aria": "继续学习BEC 商务英语"
+        },
+        {
+          "text": "继续学习",
+          "aria": "继续学习旅行英语 · 示例书"
+        }
+      ]
+    },
+    {
+      "page": "sentence-auto",
+      "label": "飘例句",
+      "path": "docs/images/menus/sentence-auto.png",
+      "status": "ready",
+      "selectedPage": "sentence-auto",
+      "errors": [],
+      "width": 1440,
+      "height": 1100,
+      "text": "Q\nQuickLang\n\n每天一点，记得更久\n\n演示用户\nB1 · 中级\n切换用户\n单词背诵\n›\n听说训练\n⌄\n飘例句\n听说练习\n听力训练\nAI 陪练\n同声翻译\n›\n工具\n›\n设置\n›\n当前词书\n日常英语 · 演示词书\n6 个单词\n飘例句\n自动飘例句\n上一个\n暂停\n下一个\n\n第 1 / 1 次 · 美式发音 1 / 3\n\nAn apple a day keeps the doctor away.\n\n一天一个苹果，医生远离我。\n\n目标单词：apple · 苹果\n\n本次 1 / 6 · 例句列表第 1 个\n\n例句导航\n返回设置\n更多操作\n\n日常英语 · 演示词书 · 6 个单词\n\n反馈意见\n\n学习进度保存在当前设备，清除应用数据会删除记录。",
+      "images": [
+        {
+          "src": "http://127.0.0.1:4191/content/word-images/images/apple.webp",
+          "complete": true,
+          "naturalWidth": 320
+        }
+      ],
+      "scrollWidth": 1440,
+      "geometry": {
+        "viewportHeight": 1100,
+        "documentHeight": 1100,
+        "sidebarHeight": 1100,
+        "mainHeight": 1100
+      },
+      "selected": [
+        "飘例句"
+      ],
+      "requests": [
+        {
+          "command": "app_state_list"
+        },
+        {
+          "command": "ai_profiles_list"
+        },
+        {
+          "command": "speech_background_mode"
+        },
+        {
+          "command": "app_state_write"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "打开导航",
+          "aria": null
+        },
+        {
+          "text": "切换用户",
+          "aria": null
+        },
+        {
+          "text": "单词背诵\n›",
+          "aria": null
+        },
+        {
+          "text": "选书",
+          "aria": null
+        },
+        {
+          "text": "自动飘单词",
+          "aria": null
+        },
+        {
+          "text": "强化学习",
+          "aria": null
+        },
+        {
+          "text": "背诵",
+          "aria": null
+        },
+        {
+          "text": "中文背诵",
+          "aria": null
+        },
+        {
+          "text": "复习",
+          "aria": null
+        },
+        {
+          "text": "生词表",
+          "aria": null
+        },
+        {
+          "text": "学习进度",
+          "aria": null
+        },
+        {
+          "text": "听说训练\n⌄",
+          "aria": null
+        },
+        {
+          "text": "飘例句",
+          "aria": null
+        },
+        {
+          "text": "听说练习",
+          "aria": null
+        },
+        {
+          "text": "听力训练",
+          "aria": null
+        },
+        {
+          "text": "AI 陪练",
+          "aria": null
+        },
+        {
+          "text": "同声翻译\n›",
+          "aria": null
+        },
+        {
+          "text": "启动",
+          "aria": null
+        },
+        {
+          "text": "历史记录",
+          "aria": null
+        },
+        {
+          "text": "工具\n›",
+          "aria": null
+        },
+        {
+          "text": "查询",
+          "aria": null
+        },
+        {
+          "text": "词库维护",
+          "aria": null
+        },
+        {
+          "text": "设置\n›",
+          "aria": null
+        },
+        {
+          "text": "用户设置",
+          "aria": null
+        },
+        {
+          "text": "系统设置",
+          "aria": null
+        },
+        {
+          "text": "关于 QuickLang",
+          "aria": null
+        },
+        {
+          "text": "上一个",
+          "aria": null
+        },
+        {
+          "text": "暂停",
+          "aria": null
+        },
+        {
+          "text": "下一个",
+          "aria": null
+        },
+        {
+          "text": "例句导航",
+          "aria": null
+        },
+        {
+          "text": "返回设置",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        }
+      ]
+    },
+    {
+      "page": "conversation",
+      "label": "听说练习",
+      "path": "docs/images/menus/conversation.png",
+      "status": "ready",
+      "selectedPage": "conversation",
+      "errors": [],
+      "width": 1440,
+      "height": 1100,
+      "text": "Q\nQuickLang\n\n每天一点，记得更久\n\n演示用户\nB1 · 中级\n切换用户\n单词背诵\n›\n听说训练\n⌄\n飘例句\n听说练习\n听力训练\nAI 陪练\n同声翻译\n›\n工具\n›\n设置\n›\n当前词书\n日常英语 · 演示词书\n6 个单词\n听说练习\n听懂，再用自己的话说\n\n先听材料、完成听写或理解题，再跟读和脱稿表达。文字练习记录按词书保存在本机。\n\n练习材料\n旅行 · 改签车票\n工作 · 协商期限\n日常 · 安排练习\napple · 例句精听\nremember · 例句精听\npractice · 例句精听\njourney · 例句精听\nhabit · 例句精听\nzebra · 例句精听\n词书单词位置\n定位\n发送词汇，AI 生成新情境\n\n生成时发送当前例句的目标词；选择短对话时发送词书前五个词。最多保留十组生成练习，题目与答案需自行核对。\n\n01 / LISTEN\n旅行 · 改签车票\n\nQuickLang 原创示例 · 合成语音\n\n播放整段\n重听当前句\n停止播放\n\n第 1 / 4 句\n\n上一句\n下一句\n字幕\n隐藏文字\n英文\n中英双语\n听写当前句\n检查听写并保存\n听后理解\n乘客想改到什么时候？\n周五晚上\n周五上午\n周四上午\n工作人员要求乘客做什么？\n支付额外费用\n提前二十分钟到达\n改乘下午的车\n检查理解并保存\n02 / SPEAK\n跟读，然后脱稿表达\n\n先重听当前句，录下自己的跟读并回放对照。准备好后隐藏字幕，完成下面的新场景。\n\n你要把车票改到周六下午。向工作人员说明需求，并询问费用和出发时间。\n\n录制回答\n\n每次最多 60 秒。录音暂存在本次练习中，离开前可下载保留；不会自动上传。\n\n我的表达 / 核对后的转写\n自评\n需要继续练习\n借助提示完成\n独立表达清楚\n保存表达与自评\n发送回答，获取 AI 反馈\n练习记录 · 最近 0 次\n\n日常英语 · 演示词书 · 6 个单词\n\n反馈意见\n\n学习进度保存在当前设备，清除应用数据会删除记录。",
+      "images": [],
+      "scrollWidth": 1440,
+      "geometry": {
+        "viewportHeight": 1100,
+        "documentHeight": 1100,
+        "sidebarHeight": 1100,
+        "mainHeight": 1100
+      },
+      "selected": [
+        "听说练习"
+      ],
+      "requests": [
+        {
+          "command": "app_state_list"
+        },
+        {
+          "command": "ai_profiles_list"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "打开导航",
+          "aria": null
+        },
+        {
+          "text": "切换用户",
+          "aria": null
+        },
+        {
+          "text": "单词背诵\n›",
+          "aria": null
+        },
+        {
+          "text": "选书",
+          "aria": null
+        },
+        {
+          "text": "自动飘单词",
+          "aria": null
+        },
+        {
+          "text": "强化学习",
+          "aria": null
+        },
+        {
+          "text": "背诵",
+          "aria": null
+        },
+        {
+          "text": "中文背诵",
+          "aria": null
+        },
+        {
+          "text": "复习",
+          "aria": null
+        },
+        {
+          "text": "生词表",
+          "aria": null
+        },
+        {
+          "text": "学习进度",
+          "aria": null
+        },
+        {
+          "text": "听说训练\n⌄",
+          "aria": null
+        },
+        {
+          "text": "飘例句",
+          "aria": null
+        },
+        {
+          "text": "听说练习",
+          "aria": null
+        },
+        {
+          "text": "听力训练",
+          "aria": null
+        },
+        {
+          "text": "AI 陪练",
+          "aria": null
+        },
+        {
+          "text": "同声翻译\n›",
+          "aria": null
+        },
+        {
+          "text": "启动",
+          "aria": null
+        },
+        {
+          "text": "历史记录",
+          "aria": null
+        },
+        {
+          "text": "工具\n›",
+          "aria": null
+        },
+        {
+          "text": "查询",
+          "aria": null
+        },
+        {
+          "text": "词库维护",
+          "aria": null
+        },
+        {
+          "text": "设置\n›",
+          "aria": null
+        },
+        {
+          "text": "用户设置",
+          "aria": null
+        },
+        {
+          "text": "系统设置",
+          "aria": null
+        },
+        {
+          "text": "关于 QuickLang",
+          "aria": null
+        },
+        {
+          "text": "定位",
+          "aria": null
+        },
+        {
+          "text": "发送词汇，AI 生成新情境",
+          "aria": null
+        },
+        {
+          "text": "播放整段",
+          "aria": null
+        },
+        {
+          "text": "重听当前句",
+          "aria": null
+        },
+        {
+          "text": "停止播放",
+          "aria": null
+        },
+        {
+          "text": "上一句",
+          "aria": null
+        },
+        {
+          "text": "下一句",
+          "aria": null
+        },
+        {
+          "text": "检查听写并保存",
+          "aria": null
+        },
+        {
+          "text": "检查理解并保存",
+          "aria": null
+        },
+        {
+          "text": "录制回答",
+          "aria": null
+        },
+        {
+          "text": "保存表达与自评",
+          "aria": null
+        },
+        {
+          "text": "发送回答，获取 AI 反馈",
+          "aria": null
+        }
+      ]
+    },
+    {
+      "page": "listening",
+      "label": "听力训练",
+      "path": "docs/images/menus/listening.png",
+      "status": "ready",
+      "selectedPage": "listening",
+      "errors": [],
+      "width": 1440,
+      "height": 1100,
+      "text": "Q\nQuickLang\n\n每天一点，记得更久\n\n演示用户\nB1 · 中级\n切换用户\n单词背诵\n›\n听说训练\n⌄\n飘例句\n听说练习\n听力训练\nAI 陪练\n同声翻译\n›\n工具\n›\n设置\n›\n当前词书\n日常英语 · 演示词书\n6 个单词\n听力训练\n\n用自己的材料，练习听懂与表达\n\n配置 AI 服务\n返回材料库\n演示材料 · A morning conversation\n复习 1 / 7\n播放速度 \n0.5×\n0.75×\n1×\n1.25×\n1.5×\n片段重复 \n1 次\n2 次\n3 次\n5 次\n从头播放\n1精听\n2跟读\n3盲听\n4复述\n难句闪卡（1）\n收藏当前难句\n\n片段 1 / 3 · 0.0–4.0 秒\n\nGood morning. How are you today?\n\n上一句\n循环播放本句\n下一句\nAI 翻译、意群与词汇讲解\n词汇与意群闪卡 · 1 条\n完成精听，进入跟读\n全部片段 · 快速定位\n\n训练进度在操作后保存到本机 · 听力 2 秒 · 录音 1 秒 · 材料词汇 18 个（去重）\n\n删除这段材料\n反馈意见\n\n学习进度保存在当前设备，清除应用数据会删除记录。",
+      "images": [],
+      "scrollWidth": 1440,
+      "geometry": {
+        "viewportHeight": 1100,
+        "documentHeight": 1100,
+        "sidebarHeight": 1100,
+        "mainHeight": 1100
+      },
+      "selected": [
+        "听力训练",
+        "1精听"
+      ],
+      "requests": [
+        {
+          "command": "app_state_list"
+        },
+        {
+          "command": "ai_profiles_list"
+        },
+        {
+          "command": "listening_repository"
+        },
+        {
+          "command": "listening_repository"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "打开导航",
+          "aria": null
+        },
+        {
+          "text": "切换用户",
+          "aria": null
+        },
+        {
+          "text": "单词背诵\n›",
+          "aria": null
+        },
+        {
+          "text": "选书",
+          "aria": null
+        },
+        {
+          "text": "自动飘单词",
+          "aria": null
+        },
+        {
+          "text": "强化学习",
+          "aria": null
+        },
+        {
+          "text": "背诵",
+          "aria": null
+        },
+        {
+          "text": "中文背诵",
+          "aria": null
+        },
+        {
+          "text": "复习",
+          "aria": null
+        },
+        {
+          "text": "生词表",
+          "aria": null
+        },
+        {
+          "text": "学习进度",
+          "aria": null
+        },
+        {
+          "text": "听说训练\n⌄",
+          "aria": null
+        },
+        {
+          "text": "飘例句",
+          "aria": null
+        },
+        {
+          "text": "听说练习",
+          "aria": null
+        },
+        {
+          "text": "听力训练",
+          "aria": null
+        },
+        {
+          "text": "AI 陪练",
+          "aria": null
+        },
+        {
+          "text": "同声翻译\n›",
+          "aria": null
+        },
+        {
+          "text": "启动",
+          "aria": null
+        },
+        {
+          "text": "历史记录",
+          "aria": null
+        },
+        {
+          "text": "工具\n›",
+          "aria": null
+        },
+        {
+          "text": "查询",
+          "aria": null
+        },
+        {
+          "text": "词库维护",
+          "aria": null
+        },
+        {
+          "text": "设置\n›",
+          "aria": null
+        },
+        {
+          "text": "用户设置",
+          "aria": null
+        },
+        {
+          "text": "系统设置",
+          "aria": null
+        },
+        {
+          "text": "关于 QuickLang",
+          "aria": null
+        },
+        {
+          "text": "配置 AI 服务",
+          "aria": null
+        },
+        {
+          "text": "返回材料库",
+          "aria": null
+        },
+        {
+          "text": "从头播放",
+          "aria": null
+        },
+        {
+          "text": "难句闪卡（1）",
+          "aria": null
+        },
+        {
+          "text": "收藏当前难句",
+          "aria": null
+        },
+        {
+          "text": "上一句",
+          "aria": null
+        },
+        {
+          "text": "循环播放本句",
+          "aria": null
+        },
+        {
+          "text": "下一句",
+          "aria": null
+        },
+        {
+          "text": "AI 翻译、意群与词汇讲解",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "完成精听，进入跟读",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "删除这段材料",
+          "aria": null
+        }
+      ]
+    },
+    {
+      "page": "ai-coach",
+      "label": "AI 陪练",
+      "path": "docs/images/menus/ai-coach.png",
+      "status": "ready",
+      "selectedPage": "ai-coach",
+      "errors": [],
+      "width": 1440,
+      "height": 1100,
+      "text": "Q\nQuickLang\n\n每天一点，记得更久\n\n演示用户\nB1 · 中级\n切换用户\n单词背诵\n›\n听说训练\n⌄\n飘例句\n听说练习\n听力训练\nAI 陪练\n同声翻译\n›\n工具\n›\n设置\n›\n当前词书\n日常英语 · 演示词书\n6 个单词\nAI 陪练\n选一个场景，开始 AI 陪练\n\n用文字或录音回答场景问题，获得 AI 反馈，再继续回答追问。表达记录按用户和词书保存在本机。\n\n练习材料\n旅行 · 改签车票\n工作 · 协商期限\n日常 · 安排练习\napple · 例句精听\nremember · 例句精听\npractice · 例句精听\njourney · 例句精听\nhabit · 例句精听\nzebra · 例句精听\n词书单词位置\n定位\n发送词汇，AI 生成新情境\n\n生成时发送当前例句的目标词；选择短对话时发送词书前五个词。最多保留十组生成练习，题目与答案需自行核对。\n\nAI / PRACTICE\n说说你会怎么回答\n\n先独立完成下面的场景任务。可以直接输入英文，也可以录音后转写，再发送给 AI 教练。\n\n你要把车票改到周六下午。向工作人员说明需求，并询问费用和出发时间。\n\n录制回答\n\n每次最多 60 秒。录音暂存在本次练习中，离开前可下载保留；不会自动上传。\n\n我的表达 / 核对后的转写\n自评\n需要继续练习\n借助提示完成\n独立表达清楚\n保存表达与自评\n发送回答，获取 AI 反馈\n练习记录 · 最近 0 次\n\n日常英语 · 演示词书 · 6 个单词\n\n反馈意见\n\n学习进度保存在当前设备，清除应用数据会删除记录。",
+      "images": [],
+      "scrollWidth": 1440,
+      "geometry": {
+        "viewportHeight": 1100,
+        "documentHeight": 1100,
+        "sidebarHeight": 1100,
+        "mainHeight": 1100
+      },
+      "selected": [
+        "AI 陪练"
+      ],
+      "requests": [
+        {
+          "command": "app_state_list"
+        },
+        {
+          "command": "ai_profiles_list"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "打开导航",
+          "aria": null
+        },
+        {
+          "text": "切换用户",
+          "aria": null
+        },
+        {
+          "text": "单词背诵\n›",
+          "aria": null
+        },
+        {
+          "text": "选书",
+          "aria": null
+        },
+        {
+          "text": "自动飘单词",
+          "aria": null
+        },
+        {
+          "text": "强化学习",
+          "aria": null
+        },
+        {
+          "text": "背诵",
+          "aria": null
+        },
+        {
+          "text": "中文背诵",
+          "aria": null
+        },
+        {
+          "text": "复习",
+          "aria": null
+        },
+        {
+          "text": "生词表",
+          "aria": null
+        },
+        {
+          "text": "学习进度",
+          "aria": null
+        },
+        {
+          "text": "听说训练\n⌄",
+          "aria": null
+        },
+        {
+          "text": "飘例句",
+          "aria": null
+        },
+        {
+          "text": "听说练习",
+          "aria": null
+        },
+        {
+          "text": "听力训练",
+          "aria": null
+        },
+        {
+          "text": "AI 陪练",
+          "aria": null
+        },
+        {
+          "text": "同声翻译\n›",
+          "aria": null
+        },
+        {
+          "text": "启动",
+          "aria": null
+        },
+        {
+          "text": "历史记录",
+          "aria": null
+        },
+        {
+          "text": "工具\n›",
+          "aria": null
+        },
+        {
+          "text": "查询",
+          "aria": null
+        },
+        {
+          "text": "词库维护",
+          "aria": null
+        },
+        {
+          "text": "设置\n›",
+          "aria": null
+        },
+        {
+          "text": "用户设置",
+          "aria": null
+        },
+        {
+          "text": "系统设置",
+          "aria": null
+        },
+        {
+          "text": "关于 QuickLang",
+          "aria": null
+        },
+        {
+          "text": "定位",
+          "aria": null
+        },
+        {
+          "text": "发送词汇，AI 生成新情境",
+          "aria": null
+        },
+        {
+          "text": "录制回答",
+          "aria": null
+        },
+        {
+          "text": "保存表达与自评",
+          "aria": null
+        },
+        {
+          "text": "发送回答，获取 AI 反馈",
+          "aria": null
+        }
+      ]
+    },
+    {
+      "page": "interpretation-start",
+      "label": "启动",
+      "path": "docs/images/menus/interpretation-start.png",
+      "status": "ready",
+      "selectedPage": "interpretation-start",
+      "errors": [],
+      "width": 1440,
+      "height": 1100,
+      "text": "Q\nQuickLang\n\n每天一点，记得更久\n\n演示用户\nB1 · 中级\n切换用户\n单词背诵\n›\n听说训练\n›\n同声翻译\n⌄\n启动\n历史记录\n工具\n›\n设置\n›\n当前词书\n日常英语 · 演示词书\n6 个单词\n启动\n\n采集声音，实时转写并翻译，自动保留会话记录\n\n同声翻译\nAI 设置\n刷新配置\n\n默认使用本地英文实时字幕，无需 AI 配置。首次使用可能需要下载系统语言资源。 可选双语字幕会将稳定英文文字发送至所选 AI 服务，并按配置上传分段录音生成历史字幕；关闭时录音不会送去翻译。\n\n本地英文实时字幕\n\n固定识别英文，由系统原生浮层显示字幕；主窗口显隐由原生服务管理。录音保存在本机文件中；历史字幕由后台远程模型根据音频生成。\n\n音频来源\n系统音频\n麦克风\n系统 + 麦克风\n分段录音翻译与历史字幕设置\n开启双语字幕（将稳定英文文字发送至所选 AI 服务）\n字幕目标语言\n中文\nEnglish\n日本語\n한국어\nFrançais\nDeutsch\nEspañol\n字幕翻译模型\n请选择翻译模型\n演示 AI 配置 · demo-chat\n开始本地英文字幕\n停止本地字幕\n取消本地字幕\n\n尚未开始本地字幕\n\n反馈意见\n\n学习进度保存在当前设备，清除应用数据会删除记录。",
+      "images": [],
+      "scrollWidth": 1440,
+      "geometry": {
+        "viewportHeight": 1100,
+        "documentHeight": 1100,
+        "sidebarHeight": 1100,
+        "mainHeight": 1100
+      },
+      "selected": [
+        "启动"
+      ],
+      "requests": [
+        {
+          "command": "app_state_list"
+        },
+        {
+          "command": "ai_profiles_list"
+        },
+        {
+          "command": "interpretation_repository",
+          "operation": "list_sessions"
+        },
+        {
+          "command": "ai_profiles_list"
+        },
+        {
+          "command": "ai_profiles_list"
+        },
+        {
+          "command": "local_recordings_info"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "打开导航",
+          "aria": null
+        },
+        {
+          "text": "切换用户",
+          "aria": null
+        },
+        {
+          "text": "单词背诵\n›",
+          "aria": null
+        },
+        {
+          "text": "选书",
+          "aria": null
+        },
+        {
+          "text": "自动飘单词",
+          "aria": null
+        },
+        {
+          "text": "强化学习",
+          "aria": null
+        },
+        {
+          "text": "背诵",
+          "aria": null
+        },
+        {
+          "text": "中文背诵",
+          "aria": null
+        },
+        {
+          "text": "复习",
+          "aria": null
+        },
+        {
+          "text": "生词表",
+          "aria": null
+        },
+        {
+          "text": "学习进度",
+          "aria": null
+        },
+        {
+          "text": "听说训练\n›",
+          "aria": null
+        },
+        {
+          "text": "飘例句",
+          "aria": null
+        },
+        {
+          "text": "听说练习",
+          "aria": null
+        },
+        {
+          "text": "听力训练",
+          "aria": null
+        },
+        {
+          "text": "AI 陪练",
+          "aria": null
+        },
+        {
+          "text": "同声翻译\n⌄",
+          "aria": null
+        },
+        {
+          "text": "启动",
+          "aria": null
+        },
+        {
+          "text": "历史记录",
+          "aria": null
+        },
+        {
+          "text": "工具\n›",
+          "aria": null
+        },
+        {
+          "text": "查询",
+          "aria": null
+        },
+        {
+          "text": "词库维护",
+          "aria": null
+        },
+        {
+          "text": "设置\n›",
+          "aria": null
+        },
+        {
+          "text": "用户设置",
+          "aria": null
+        },
+        {
+          "text": "系统设置",
+          "aria": null
+        },
+        {
+          "text": "关于 QuickLang",
+          "aria": null
+        },
+        {
+          "text": "AI 设置",
+          "aria": null
+        },
+        {
+          "text": "刷新配置",
+          "aria": null
+        },
+        {
+          "text": "开始本地英文字幕",
+          "aria": null
+        },
+        {
+          "text": "停止本地字幕",
+          "aria": null
+        },
+        {
+          "text": "取消本地字幕",
+          "aria": null
+        }
+      ]
+    },
+    {
+      "page": "interpretation-history",
+      "label": "历史记录",
+      "path": "docs/images/menus/interpretation-history.png",
+      "status": "ready",
+      "selectedPage": "interpretation-history",
+      "errors": [],
+      "width": 1440,
+      "height": 1100,
+      "text": "Q\nQuickLang\n\n每天一点，记得更久\n\n演示用户\nB1 · 中级\n切换用户\n单词背诵\n›\n听说训练\n›\n同声翻译\n⌄\n启动\n历史记录\n工具\n›\n设置\n›\n当前词书\n日常英语 · 演示词书\n6 个单词\n历史记录\n\n回放原始音频，查看文字记录，测试不同模型的全文翻译与汇总\n\n同声翻译\nAI 设置\n刷新配置\n\n默认使用本地英文实时字幕，无需 AI 配置。首次使用可能需要下载系统语言资源。 可选双语字幕会将稳定英文文字发送至所选 AI 服务，并按配置上传分段录音生成历史字幕；关闭时录音不会送去翻译。\n\n刷新历史\n1 条记录 · 包含测试运行\n\n10/5/2026, 1:52:09 AM\n本地字幕 · microphone · 已完成 · 1 次分析\n· 31.3 KiB删除\n\n原始录音与转写\n\n· 音频占用 31.3 KiB\n文件：demo-audio\n\n2 个有序分段 · 0 个分段待处理或失败\n\n使用启动页识别配置重试缺失转写\n实时识别与实时翻译留存\n\n保留 Apple 本地实时英文识别，以及当时显示的实时翻译。\n\n转写与实时翻译\n\n00:00：Welcome to our English learning session.\n\n欢迎参加我们的英语学习活动。\n\n00:04：Let's build a daily practice habit.\n\n让我们养成每天练习的习惯。\n\n原文字幕与中文字幕\n\n历史录音先由本地 ASR 或远程语音模型生成原文，再由文本模型翻译。两份字幕共用同一时间轴。\n\n2 / 2 批已完成 · 处理完成\n\n历史转写方式\n请选择语音转写方式\nApple 本地 ASR（macOS / iOS）\n演示转写配置 · demo-asr\n中文字幕模型\n请选择\n演示 AI 配置 · demo-chat\n原文语言\n英语\n自动识别\n中文\n日语\n重试后台字幕\n\n下载原文字幕 SRT · 下载中文字幕 SRT\n\n00:00:00–00:00:04\n\nWelcome to our English learning session.\n\n欢迎参加我们的英语学习活动。\n\n00:00:04–00:00:08\n\nLet's build a daily practice habit.\n\n让我们养成每天练习的习惯。\n\n全文分析与会议纪要\n\n每次运行独立保留；不会覆盖实时翻译。长文本逐段完整翻译，再合并生成整场会话汇总。模型可能出错，请核对原文。\n\n分析模型\n请选择\n演示 AI 配置 · demo-chat\n演示转写配置 ·\n目标语言\n全文翻译并摘要\n简单润色并生成长摘要\n深度翻译片段\n0:00\n0:04\n深度翻译\n生成会议纪要\n\n使用上方分析模型，根据历史字幕生成中文纪要。每次生成独立保存，缺失信息标为未提及。\n\n会议纪要模板\n客户拜访\n内部项目会议\n\n拜访概况与客户背景 · 客户业务现状、需求与痛点 · 方案讨论与客户反馈 · 商机、采购计划与决策流程 · 风险、异议与待确认事项 · 后续行动（事项、负责人、截止时间） · 用户关注点回应\n\n关注点（可选）\n生成会议纪要\n10/5/2026, 3:38:49 AM · 演示 AI 配置 · zh\n\ncomplete\n\n会议纪要 · 通用会议纪要\n\n关注点：未指定\n\n演示纪要：每天练习 15 分钟，记录生词，定期完成复习。\n\n反馈意见\n\n学习进度保存在当前设备，清除应用数据会删除记录。",
+      "images": [],
+      "scrollWidth": 1440,
+      "geometry": {
+        "viewportHeight": 1100,
+        "documentHeight": 1100,
+        "sidebarHeight": 1100,
+        "mainHeight": 1100
+      },
+      "selected": [
+        "历史记录"
+      ],
+      "requests": [
+        {
+          "command": "app_state_list"
+        },
+        {
+          "command": "ai_profiles_list"
+        },
+        {
+          "command": "interpretation_repository",
+          "operation": "list_sessions"
+        },
+        {
+          "command": "ai_profiles_list"
+        },
+        {
+          "command": "interpretation_repository",
+          "operation": "list_sessions"
+        },
+        {
+          "command": "ai_profiles_list"
+        },
+        {
+          "command": "local_recordings_info"
+        },
+        {
+          "command": "local_recordings_info"
+        },
+        {
+          "command": "local_recordings_info"
+        },
+        {
+          "command": "interpretation_repository",
+          "operation": "load_chunks"
+        },
+        {
+          "command": "history_subtitles_get"
+        },
+        {
+          "command": "app_state_write"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "打开导航",
+          "aria": null
+        },
+        {
+          "text": "切换用户",
+          "aria": null
+        },
+        {
+          "text": "单词背诵\n›",
+          "aria": null
+        },
+        {
+          "text": "选书",
+          "aria": null
+        },
+        {
+          "text": "自动飘单词",
+          "aria": null
+        },
+        {
+          "text": "强化学习",
+          "aria": null
+        },
+        {
+          "text": "背诵",
+          "aria": null
+        },
+        {
+          "text": "中文背诵",
+          "aria": null
+        },
+        {
+          "text": "复习",
+          "aria": null
+        },
+        {
+          "text": "生词表",
+          "aria": null
+        },
+        {
+          "text": "学习进度",
+          "aria": null
+        },
+        {
+          "text": "听说训练\n›",
+          "aria": null
+        },
+        {
+          "text": "飘例句",
+          "aria": null
+        },
+        {
+          "text": "听说练习",
+          "aria": null
+        },
+        {
+          "text": "听力训练",
+          "aria": null
+        },
+        {
+          "text": "AI 陪练",
+          "aria": null
+        },
+        {
+          "text": "同声翻译\n⌄",
+          "aria": null
+        },
+        {
+          "text": "启动",
+          "aria": null
+        },
+        {
+          "text": "历史记录",
+          "aria": null
+        },
+        {
+          "text": "工具\n›",
+          "aria": null
+        },
+        {
+          "text": "查询",
+          "aria": null
+        },
+        {
+          "text": "词库维护",
+          "aria": null
+        },
+        {
+          "text": "设置\n›",
+          "aria": null
+        },
+        {
+          "text": "用户设置",
+          "aria": null
+        },
+        {
+          "text": "系统设置",
+          "aria": null
+        },
+        {
+          "text": "关于 QuickLang",
+          "aria": null
+        },
+        {
+          "text": "AI 设置",
+          "aria": null
+        },
+        {
+          "text": "刷新配置",
+          "aria": null
+        },
+        {
+          "text": "刷新历史",
+          "aria": null
+        },
+        {
+          "text": "10/5/2026, 1:52:09 AM\n本地字幕 · microphone · 已完成 · 1 次分析\n· 31.3 KiB",
+          "aria": null
+        },
+        {
+          "text": "删除",
+          "aria": "删除 10/5/2026, 1:52:09 AM 的历史记录"
+        },
+        {
+          "text": "使用启动页识别配置重试缺失转写",
+          "aria": null
+        },
+        {
+          "text": "重试后台字幕",
+          "aria": null
+        },
+        {
+          "text": "00:00:00–00:00:04",
+          "aria": "跳到 00:00:00"
+        },
+        {
+          "text": "00:00:04–00:00:08",
+          "aria": "跳到 00:00:04"
+        },
+        {
+          "text": "全文翻译并摘要",
+          "aria": null
+        },
+        {
+          "text": "简单润色并生成长摘要",
+          "aria": null
+        },
+        {
+          "text": "深度翻译",
+          "aria": null
+        },
+        {
+          "text": "生成会议纪要",
+          "aria": null
+        }
+      ]
+    },
+    {
+      "page": "search",
+      "label": "查询",
+      "path": "docs/images/menus/search.png",
+      "status": "ready",
+      "selectedPage": "search",
+      "errors": [],
+      "width": 1440,
+      "height": 1100,
+      "text": "Q\nQuickLang\n\n每天一点，记得更久\n\n演示用户\nB1 · 中级\n切换用户\n单词背诵\n›\n听说训练\n›\n同声翻译\n›\n工具\n⌄\n查询\n词库维护\n设置\n›\n当前词书\n日常英语 · 演示词书\n6 个单词\n查询\n中文或英文\n查询范围\n全部词书\n当前词书\n查询单词\n\n支持英文和中文释义的部分匹配，英文不区分大小写。优先显示完全匹配的结果；同一单词在不同词书中分别展示。\n\n“apple” · 找到 1 条\n\n所属词书：日常英语 · 演示词书\n\napple\n\n美式 ˈæpəl\n英式 ˈæpəl\n\n苹果\n\nAn apple a day keeps the doctor away.\n\n一天一个苹果，医生远离我。\n\n日常英语 · 演示词书 · 6 个单词\n\n反馈意见\n\n学习进度保存在当前设备，清除应用数据会删除记录。",
+      "images": [
+        {
+          "src": "http://127.0.0.1:4191/content/word-images/images/apple.webp",
+          "complete": true,
+          "naturalWidth": 320
+        }
+      ],
+      "scrollWidth": 1440,
+      "geometry": {
+        "viewportHeight": 1100,
+        "documentHeight": 1100,
+        "sidebarHeight": 1100,
+        "mainHeight": 1100
+      },
+      "selected": [
+        "查询"
+      ],
+      "requests": [
+        {
+          "command": "app_state_list"
+        },
+        {
+          "command": "ai_profiles_list"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "打开导航",
+          "aria": null
+        },
+        {
+          "text": "切换用户",
+          "aria": null
+        },
+        {
+          "text": "单词背诵\n›",
+          "aria": null
+        },
+        {
+          "text": "选书",
+          "aria": null
+        },
+        {
+          "text": "自动飘单词",
+          "aria": null
+        },
+        {
+          "text": "强化学习",
+          "aria": null
+        },
+        {
+          "text": "背诵",
+          "aria": null
+        },
+        {
+          "text": "中文背诵",
+          "aria": null
+        },
+        {
+          "text": "复习",
+          "aria": null
+        },
+        {
+          "text": "生词表",
+          "aria": null
+        },
+        {
+          "text": "学习进度",
+          "aria": null
+        },
+        {
+          "text": "听说训练\n›",
+          "aria": null
+        },
+        {
+          "text": "飘例句",
+          "aria": null
+        },
+        {
+          "text": "听说练习",
+          "aria": null
+        },
+        {
+          "text": "听力训练",
+          "aria": null
+        },
+        {
+          "text": "AI 陪练",
+          "aria": null
+        },
+        {
+          "text": "同声翻译\n›",
+          "aria": null
+        },
+        {
+          "text": "启动",
+          "aria": null
+        },
+        {
+          "text": "历史记录",
+          "aria": null
+        },
+        {
+          "text": "工具\n⌄",
+          "aria": null
+        },
+        {
+          "text": "查询",
+          "aria": null
+        },
+        {
+          "text": "词库维护",
+          "aria": null
+        },
+        {
+          "text": "设置\n›",
+          "aria": null
+        },
+        {
+          "text": "用户设置",
+          "aria": null
+        },
+        {
+          "text": "系统设置",
+          "aria": null
+        },
+        {
+          "text": "关于 QuickLang",
+          "aria": null
+        },
+        {
+          "text": "查询单词",
+          "aria": null
+        }
+      ]
+    },
+    {
+      "page": "maintenance",
+      "label": "词库维护",
+      "path": "docs/images/menus/maintenance.png",
+      "status": "ready",
+      "selectedPage": "maintenance",
+      "errors": [],
+      "width": 1440,
+      "height": 1100,
+      "text": "Q\nQuickLang\n\n每天一点，记得更久\n\n演示用户\nB1 · 中级\n切换用户\n单词背诵\n›\n听说训练\n›\n同声翻译\n›\n工具\n⌄\n查询\n词库维护\n设置\n›\n当前词书\n日常英语 · 演示词书\n6 个单词\n词库维护\n导入自己的词书\n\n除内置词书外，也可导入自己的 JSON 单词清单，例句字段可选。\n\n{\n  \"name\": \"我的词书\",\n  \"words\": [\n    {\n      \"spelling\": \"hello\",\n      \"meaning\": \"你好\",\n      \"example\": \"Hello, my friend.\",\n      \"exampleTranslation\": \"你好，我的朋友。\"\n    }\n  ]\n}\n选择 JSON 文件\n新增单词书\n新词书名称\n创建词书\n维护现有词书\n选择要维护的词书\n初中词汇\n高中词汇\n大学英语四级完整版\n大学英语四级纯版\n大学英语六级完整版\n大学英语六级纯版\n考研英语完整版\n考研英语纯版\n托福词汇\nSAT 词汇\n雅思词汇\nGRE 词汇\nGMAT 词汇\nBEC 商务英语\n日常英语 · 演示词书\n旅行英语 · 示例书\n词书名称\n保存名称\n\n修改保存在本机，选书和各学习模式同步使用。新增只需输入英文，优先复用词库内容，未找到时由 AI 补全。\n\n新增单词\n英文单词\n插入位置\n书首\n书尾\n指定单词之前\n指定单词之后\n添加单词\n单词清单 · 6 个\n搜索单词\napple\n\n苹果\n\nAn apple a day keeps the doctor away.\n\n前插\n后插\n修改\n删除\nremember\n\n记住；回想起\n\nI remember your name.\n\n前插\n后插\n修改\n删除\npractice\n\n练习；实践\n\nPractice makes progress.\n\n前插\n后插\n修改\n删除\njourney\n\n旅程；旅行\n\nLearning is a journey.\n\n前插\n后插\n修改\n删除\nhabit\n\n习惯\n\nReading is a good habit.\n\n前插\n后插\n修改\n删除\nzebra\n\n斑马\n\nThe zebra is walking in the grass.\n\n前插\n后插\n修改\n删除\n\n日常英语 · 演示词书 · 6 个单词\n\n反馈意见\n\n学习进度保存在当前设备，清除应用数据会删除记录。",
+      "images": [],
+      "scrollWidth": 1440,
+      "geometry": {
+        "viewportHeight": 1100,
+        "documentHeight": 1100,
+        "sidebarHeight": 1100,
+        "mainHeight": 1100
+      },
+      "selected": [
+        "词库维护"
+      ],
+      "requests": [
+        {
+          "command": "app_state_list"
+        },
+        {
+          "command": "ai_profiles_list"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "打开导航",
+          "aria": null
+        },
+        {
+          "text": "切换用户",
+          "aria": null
+        },
+        {
+          "text": "单词背诵\n›",
+          "aria": null
+        },
+        {
+          "text": "选书",
+          "aria": null
+        },
+        {
+          "text": "自动飘单词",
+          "aria": null
+        },
+        {
+          "text": "强化学习",
+          "aria": null
+        },
+        {
+          "text": "背诵",
+          "aria": null
+        },
+        {
+          "text": "中文背诵",
+          "aria": null
+        },
+        {
+          "text": "复习",
+          "aria": null
+        },
+        {
+          "text": "生词表",
+          "aria": null
+        },
+        {
+          "text": "学习进度",
+          "aria": null
+        },
+        {
+          "text": "听说训练\n›",
+          "aria": null
+        },
+        {
+          "text": "飘例句",
+          "aria": null
+        },
+        {
+          "text": "听说练习",
+          "aria": null
+        },
+        {
+          "text": "听力训练",
+          "aria": null
+        },
+        {
+          "text": "AI 陪练",
+          "aria": null
+        },
+        {
+          "text": "同声翻译\n›",
+          "aria": null
+        },
+        {
+          "text": "启动",
+          "aria": null
+        },
+        {
+          "text": "历史记录",
+          "aria": null
+        },
+        {
+          "text": "工具\n⌄",
+          "aria": null
+        },
+        {
+          "text": "查询",
+          "aria": null
+        },
+        {
+          "text": "词库维护",
+          "aria": null
+        },
+        {
+          "text": "设置\n›",
+          "aria": null
+        },
+        {
+          "text": "用户设置",
+          "aria": null
+        },
+        {
+          "text": "系统设置",
+          "aria": null
+        },
+        {
+          "text": "关于 QuickLang",
+          "aria": null
+        },
+        {
+          "text": "创建词书",
+          "aria": null
+        },
+        {
+          "text": "保存名称",
+          "aria": null
+        },
+        {
+          "text": "添加单词",
+          "aria": null
+        },
+        {
+          "text": "前插",
+          "aria": "在 apple 前插入"
+        },
+        {
+          "text": "后插",
+          "aria": "在 apple 后插入"
+        },
+        {
+          "text": "修改",
+          "aria": "修改 apple"
+        },
+        {
+          "text": "删除",
+          "aria": "删除 apple"
+        },
+        {
+          "text": "前插",
+          "aria": "在 remember 前插入"
+        },
+        {
+          "text": "后插",
+          "aria": "在 remember 后插入"
+        },
+        {
+          "text": "修改",
+          "aria": "修改 remember"
+        },
+        {
+          "text": "删除",
+          "aria": "删除 remember"
+        },
+        {
+          "text": "前插",
+          "aria": "在 practice 前插入"
+        },
+        {
+          "text": "后插",
+          "aria": "在 practice 后插入"
+        },
+        {
+          "text": "修改",
+          "aria": "修改 practice"
+        },
+        {
+          "text": "删除",
+          "aria": "删除 practice"
+        },
+        {
+          "text": "前插",
+          "aria": "在 journey 前插入"
+        },
+        {
+          "text": "后插",
+          "aria": "在 journey 后插入"
+        },
+        {
+          "text": "修改",
+          "aria": "修改 journey"
+        },
+        {
+          "text": "删除",
+          "aria": "删除 journey"
+        },
+        {
+          "text": "前插",
+          "aria": "在 habit 前插入"
+        },
+        {
+          "text": "后插",
+          "aria": "在 habit 后插入"
+        },
+        {
+          "text": "修改",
+          "aria": "修改 habit"
+        },
+        {
+          "text": "删除",
+          "aria": "删除 habit"
+        },
+        {
+          "text": "前插",
+          "aria": "在 zebra 前插入"
+        },
+        {
+          "text": "后插",
+          "aria": "在 zebra 后插入"
+        },
+        {
+          "text": "修改",
+          "aria": "修改 zebra"
+        },
+        {
+          "text": "删除",
+          "aria": "删除 zebra"
+        }
+      ]
+    }
+  ]
+}

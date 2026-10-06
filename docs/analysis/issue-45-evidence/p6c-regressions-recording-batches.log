@@ -1,0 +1,1 @@
+PASS: shared 15s cap, 5s+pause split, short-pause rejection and arbitrary buffer boundaries

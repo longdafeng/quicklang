@@ -43,7 +43,7 @@ iOS 语音桥已通过真机和模拟器 SDK 的严格编译。独立原生朗�
 
 ## 应用图标统一
 
-iOS 生成工程原先仍引用 Tauri 默认图标。`scripts/ios.mjs` 现在在初始化后、构建或运行前，将仓库 `src/app/icons/ios/` 中已有的 QuickLang 图标同步到 Xcode asset catalog；18 个尺寸均与源文件逐字节核对一致，使用与 Mac 相同的绿色 Q 图案。没有重新设计图标。
+iOS 生成工程原先仍引用 Tauri 默认图标。`scripts/ios.mjs` 在初始化后、构建或运行前，将仓库 `src/app/icons/ios/` 中的 QuickLang 图标同步到 Xcode asset catalog。`scripts/generate-app-icons.swift` 以同一组几何和颜色生成 Mac 与 iOS 的绿色 Q 图案：iOS 的 18 个尺寸使用无透明通道的白色全画布方图，内嵌绿色圆角底板以保留白色边框，再由系统应用外部圆角遮罩；Mac 使用同一 Q 图案和白色边框，保留透明外边距，并生成对应 ICNS。资产检查覆盖各尺寸的白色边框和 iOS 全图不透明性。`npm run generate:icons` 可重建资产，`npm run check:icons` 会检查提交文件是否与生成器一致。
 
 ## 重建与证据
 

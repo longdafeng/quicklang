@@ -1,0 +1,252 @@
+
+> quicklang@0.7.0 test:scripts
+> node --test tests/unit/scripts/*.test.mjs
+
+✔ make test owns live-model testing without a separate test-ai target (4.941167ms)
+✔ skips both live-model groups when .env.test is absent or empty (4.228667ms)
+✔ reads ignored real-model settings and rejects unsafe service URLs (4.368833ms)
+✔ forwards independent services to native live-model tests (0.116584ms)
+✔ validates chat and transcription settings independently (3.841667ms)
+✔ sends the exact text translation request without exposing provider details (14.927583ms)
+✔ rejects multibyte provider payloads by UTF-8 byte count (0.8485ms)
+✔ rejects declared oversized responses before buffering and cancels the body (0.538042ms)
+✔ Apple runner retries one silent startup SIGKILL and can recover (130.27775ms)
+✔ Apple runner does not retry ordinary failures or SIGKILL after output (164.817333ms)
+✔ Apple runner limits silent SIGKILL to two launches and records diagnostics (1029.6925ms)
+✔ Swift speech checks run each executable through the bounded Apple runner (0.958208ms)
+✔ artifact tasks reject a concurrent build and release after completion (11.715834ms)
+✔ artifact tasks recover a lock owned by a dead local process (7.960166ms)
+Cloning into '/var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-driver-5sMBVA/driver'...
+done.
+HEAD is now at 14f8f31 fixture
+Cloning into '/var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-driver-5sMBVA/legacy'...
+done.
+HEAD is now at 14f8f31 fixture
+HEAD is now at 14f8f31 fixture
+HEAD is now at 14f8f31 fixture
+Verified seekdb 1.4.0 runtime (4 files)
+✔ driver checkout supports fresh clones and retries while preserving local changes (1675.98ms)
+✔ offline runtime verification accepts complete pinned files (5.693834ms)
+✔ offline runtime verification rejects changed pins and tampered bytes (6.026333ms)
+✔ offline runtime verification rejects missing manifest entries and unexpected files (5.613041ms)
+✔ offline runtime verification rejects symlinked files (3.004792ms)
+✔ build cache reuses complete outputs and invalidates source, configuration, or output changes (1656.579167ms)
+✔ Mac and iOS ignore inherited cross-platform output paths without changing caller env (0.598875ms)
+✔ native validation shares desktop dependencies without redirecting coverage or other tasks (0.44275ms)
+✔ each packaged frontend matches its platform's Vite output root (7.241416ms)
+✔ shared celebration media keeps one source and one relative path across platform builds (1.042708ms)
+✔ version preflight rejects stale metadata without modifying shared source files (16.653541ms)
+✔ build catalog validation is read-only (62.379583ms)
+✔ normal builds use debug for both server and desktop (0.394334ms)
+✔ release builds use release for both server and desktop (0.061958ms)
+✔ release command explicitly requests the release profile (1.392333ms)
+✔ configured signing identity enables signing in both build profiles (1.051417ms)
+[clean] Cleaning Mac, iOS, web and test build outputs.
+✔ make clean removes outputs, preserves dependencies and data, and is repeatable (411.633791ms)
+[clean] Removing /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-clean-links-vF3Vnu/build
+[clean] Removed /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-clean-links-vF3Vnu/build (0.0s)
+[clean] Removing source metadata.
+[clean] Complete (0.0s). Dependencies, toolchains and user data retained.
+[clean] Cleaning Mac, iOS, web and test build outputs.
+✔ clean never traverses symlinked outputs or parent directories (8.367458ms)
+[clean] Removing /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-derived-ycXOBq/quicklang-app-owned
+[clean] Removed /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-derived-ycXOBq/quicklang-app-owned (0.0s)
+[clean] Removing source metadata.
+[clean] Complete (0.1s). Dependencies, toolchains and user data retained.
+✔ clean removes only Xcode caches owned by this checkout (68.374ms)
+✔ desktop build and resources resolve from the renamed sibling layout (3.001375ms)
+✔ desktop CSP permits bundled data, version checks and native IPC (0.754333ms)
+✔ desktop opener permits QuickLang feedback and release pages only (1.221708ms)
+✔ docs launcher rejects unsupported modes with diagnostics (43.435ms)
+✔ documentation tools are outside the original document directory (1.601292ms)
+✔ VitePress directly builds original documents with external outputs and automatic navigation (1.918458ms)
+﹣ live VitePress navigation follows nested page creation, title changes and deletion (0.291292ms) # SKIP
+✔ legacy documentation migration preserves sources and relocates only tools and diagnostics (145.881625ms)
+✔ buildSidebar recursively discovers pages, nests indexes, and encodes routes (11.322417ms)
+✔ titles prefer common frontmatter strings then real h1 then basename (4.212959ms)
+✔ skips excluded directories and non-Markdown, rescans and sorts deterministically (11.620042ms)
+✔ plugin watches external source, reloads for add/remove/title but not body or excluded changes (7.048583ms)
+✔ plugin coalesces bursts and disposes listeners without config reload loops (2.491042ms)
+✔ plugin logs notification/read failures and replaces listeners on reconfiguration (2.362041ms)
+✔ scripts/tasks.mjs exposes help without initialization (52.702208ms)
+✔ scripts/bootstrap/seekdb.mjs exposes help without initialization (41.966084ms)
+✔ scripts/compliance/check.mjs exposes help without initialization (39.970375ms)
+✔ docs runs the docs workspace dev script (536.98775ms)
+✔ docs-build runs the docs workspace build script (524.798333ms)
+✔ docs-build is available in Make and CI uses the non-blocking build (85.58975ms)
+✔ macOS Rust linking avoids malformed chained-fixup dylibs (0.708583ms)
+✔ task runner rejects unknown commands (75.876375ms)
+✔ doctor explains how to recover when Cargo is missing (118.86675ms)
+✔ initialization and desktop tasks consume canonical assets without generators (0.939083ms)
+✔ content generation is no longer a task or Make target (46.784417ms)
+✔ make exposes format (45.651792ms)
+✔ make exposes format-check (41.349ms)
+[format] Needs formatting: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-NBpU2b/src/example.css
+[format] Needs formatting: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-NBpU2b/src/example.html
+[format] Needs formatting: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-NBpU2b/src/example.m
+[format] Needs formatting: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-NBpU2b/src/example.sql
+[format] Needs formatting: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-NBpU2b/src/example.ts
+[format] Needs formatting: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-NBpU2b/scripts/example.mjs
+[format] Needs formatting: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-NBpU2b/scripts/example.sh
+[format] Needs formatting: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-NBpU2b/tests/example.tsx
+[format] Checked 8 non-Rust source files; 8 unformatted.
+Source formatting check failed. Run make format.
+[format] Formatted: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-NBpU2b/src/example.css
+[format] Formatted: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-NBpU2b/src/example.html
+[format] Formatted: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-NBpU2b/src/example.m
+[format] Formatted: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-NBpU2b/src/example.sql
+[format] Formatted: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-NBpU2b/src/example.ts
+[format] Formatted: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-NBpU2b/scripts/example.mjs
+[format] Formatted: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-NBpU2b/scripts/example.sh
+[format] Formatted: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-NBpU2b/tests/example.tsx
+[format] Checked 8 non-Rust source files; 8 updated.
+[format] Checked 8 non-Rust source files; 0 unformatted.
+✔ format checks without writing, fixes all supported non-Rust sources, and is idempotent (759.364167ms)
+✔ make test fails at formatting before running tests (446.598083ms)
+✔ Apple app icons are generated from the shared QuickLang artwork (2478.415084ms)
+✔ icon checks reject iOS assets with the white frame removed (1567.910375ms)
+✔ icon checks reject macOS assets with the white frame removed (1559.04925ms)
+✔ icon checks reject macOS assets that omit the shared Q artwork (1631.835583ms)
+✔ icon checks reject macOS Q colors that differ from iOS (1610.718458ms)
+Invalid cached download preserved at /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-download-ELbLwn/artifact.invalid-1791197204978; downloading again.
+Download 1/3: artifact
+Download 2/3: artifact
+Download 3/3: artifact
+Verified download: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-download-ELbLwn/artifact
+✔ downloads ranges, repairs bad cache, and reuses only verified artifacts (141.136167ms)
+Range download unavailable: Server did not honor the requested byte range; trying a single stream.
+Verified download: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-download-sOsRHs/artifact
+✔ falls back to a complete GET when byte ranges are ignored (104.226458ms)
+Download 3/3: artifact
+Download 2/3: artifact
+Download 1/3: artifact
+Download attempt failed: Checksum mismatch for http://127.0.0.1:58011/artifact
+✔ never publishes a checksum mismatch (80.350833ms)
+✔ initialization lock rejects concurrent runs and releases cleanly (5.723625ms)
+✔ toolchain is derived from the repository pin (6.141625ms)
+✔ direct network selection is isolated from the caller environment (0.103167ms)
+/usr/local/bin/node was killed; retrying (1/2).
+✔ read-only launch retry recovers SIGKILL but normal failures are not retried (1208.612708ms)
+/usr/local/bin/node was killed; retrying (1/2).
+/usr/local/bin/node was killed; retrying (2/2).
+/usr/local/bin/node was killed; retrying (1/2).
+/usr/local/bin/node was killed; retrying (2/2).
+✔ read-only retry recognizes Cargo SIGKILL diagnostics and remains bounded (4215.892208ms)
+✔ shell entrypoint is usable outside the repository and exposes help (32.036916ms)
+[iOS] Signing team: AUTOTEAM01
+✔ discovery accepts phones and tablets but excludes simulators and Macs (0.513958ms)
+✔ legacy CoreDevice schema remains supported (0.759834ms)
+✔ automatic selection excludes stale devices and reports ambiguity before building (0.39625ms)
+✔ only available or connected devices qualify, regardless of remembered wired transport (0.583667ms)
+✔ team selection respects explicit settings, project settings and certificate fallback (0.272459ms)
+✔ certificate discovery falls back to Xcode certificates when no private identity is listed (0.721834ms)
+✔ device builds discover a unique certificate team without an environment variable (1.862667ms)
+✔ current-schema disabled developer mode is rejected before building (0.220167ms)
+✔ real Python plist decoding handles dates and data while retaining only validation fields (200.1925ms)
+✔ real Python plist decoding preserves missing fields for validation (209.636916ms)
+✔ real Python plist decoding fails without exposing malformed input (142.620209ms)
+✔ valid profiles authorize the requested device, team and bundle (0.139042ms)
+✔ expired profiles and profiles expiring exactly now are rejected (1.390459ms)
+✔ missing and invalid expiration dates are rejected (0.262333ms)
+✔ a profile containing only iPhone 17 does not authorize iPhone 13 (0.223791ms)
+✔ all-device profiles bypass the device list only for boolean true (0.243708ms)
+✔ different signing teams and malformed team lists are rejected (0.268084ms)
+✔ different bundles and unknown application identifier prefixes are rejected (0.162917ms)
+✔ application identifier prefixes take precedence over the signing team (1.098166ms)
+✔ trailing wildcards authorize matching bundles but preserve the literal prefix (0.189ms)
+✔ missing entitlement and device fields return issues (0.213417ms)
+✔ iOS launch manifest and pinned Tao ownership backport stay compatible (394.533041ms)
+SKIP: no booted iOS simulator; boot one and rerun make test-ios-smoke
+✔ iOS smoke selects the first available booted simulator (1.197542ms)
+✔ iOS smoke returns null only when no simulator is booted (0.503708ms)
+✔ iOS smoke skips without a device but fails when simctl fails (2.07825ms)
+✔ iOS icon sync copies changed artwork while preserving unchanged asset timestamps (13.71875ms)
+✔ iOS builds select the simulator architecture and never require a signing team (0.610417ms)
+✔ iOS environment uses project-local Rust while preserving explicit Xcode and team choices (0.166625ms)
+✔ iOS commands preserve device selection and reject unknown actions (0.086166ms)
+✔ node tauri runner repair preserves paths, signing and arguments (7.312959ms)
+✔ npm run -- tauri runner repair preserves paths, signing and arguments (8.731125ms)
+✔ npm run tauri runner repair preserves paths, signing and arguments (7.136875ms)
+✔ /opt/node/bin/node tauri runner repair preserves paths, signing and arguments (6.36875ms)
+✔ iOS environment disables brew background maintenance while honoring explicit overrides (0.355541ms)
+✔ repeat simulator builds remove only the generated app and refuse symlink traversal (9.171958ms)
+✔ generated deployment target follows config, preserves signing and rejects malformed versions (13.914333ms)
+✔ iPhone build and release select the device with distinct optimization profiles (0.496334ms)
+✔ iPhone installation selects the signed device archive and requires an explicit phone (0.322125ms)
+✔ public iPhone make targets reach iOS validation without entering desktop builds (1039.36475ms)
+✔ the pinned Apple toolchain includes Swift archive symbol repair tools (6.939583ms)
+✔ iOS release retains optimized Rust and Swift-compatible debug information without changing desktop defaults (0.225666ms)
+✔ reference migration handles relative paths, joins, regexes and directory trees (0.900292ms)
+✔ reference migration preserves commit-pinned historical source URLs (0.196834ms)
+✔ npm and Cargo workspaces declare the ui and app entrypoints (3.628167ms)
+✔ shared Rust crates never depend on application entrypoints (4.719ms)
+✔ directory migration keeps external package identities and current build paths (1.878583ms)
+✔ local signing requires a pinned certificate and fails closed on invalid config (6.13975ms)
+✔ release allows system libraries and bundled colocated dependencies (2.425375ms)
+✔ release rejects incomplete or corrupted bundled libraries (10.636125ms)
+✔ coverage report creates its output directory and enables bounded read-only retry (3.391166ms)
+✔ both coverage entrypoints share the bounded report helper (0.757833ms)
+✔ excludes inline tests while retaining production code after test modules (1.795583ms)
+✔ handles conditional test modules, duplicate counts, empty files and malformed reports (1.11175ms)
+✔ excludes external test modules without hiding later production code (0.507375ms)
+✔ excludes test-only functions and external module files (0.40325ms)
+✔ excludes files explicitly declared as test-only (0.135625ms)
+✔ database test cases exclude live and manual ignored probes (1.168334ms)
+✔ database tests and coverage share exact ignored-only case selection (0.40225ms)
+✔ database cases accept the bounded macOS Cargo runner configuration (0.853667ms)
+✔ coverage uses the host target runner environment without unsupported config arguments (0.541125ms)
+✔ filtered coverage uses the explicit llvm-cov test subcommand and exact argument order (0.225083ms)
+✔ task entrypoints consume the shared database matrix and expose iOS smoke (104.750667ms)
+✔ every workspace coverage run uses the bounded macOS test runner (0.375667ms)
+✔ Cargo runner recovers a silent startup kill and forwards test arguments and output (1134.912417ms)
+✔ Cargo runner exposes the same bounded launcher to nested test processes (1167.868292ms)
+✔ Cargo runner limits persistent startup kills to three launches (2111.728792ms)
+✔ Cargo runner never retries assertion failures or kills after test output (171.917125ms)
+[build] Reusing ui-macos artifacts.
+[build] Reusing ui-macos artifacts.
+[build] Reusing ui-macos artifacts.
+[build] Reusing ui-ios artifacts.
+[build] Reusing ui-windows artifacts.
+[build] Reusing ui-web artifacts.
+[build] Reusing ui-web artifacts.
+[build] Reusing ui-macos artifacts.
+[build] Reusing ui-macos artifacts.
+✔ UI builds reuse complete outputs and ignore Rust-only source changes (34.471333ms)
+✔ UI source, public assets, media, configs, packages and catalog script invalidate the cache (68.396292ms)
+✔ missing, replaced, changed and newly added output descendants invalidate the cache (47.755666ms)
+✔ all four platforms maintain isolated UI caches, with web as the default (52.567917ms)
+✔ runner failures and incomplete outputs never record success (26.390167ms)
+✔ force bypasses reuse and successful forced builds remain cacheable (26.665542ms)
+✔ a failed forced rebuild invalidates the old marker even if previous outputs remain (19.935ms)
+✔ VITE variables and Node build settings invalidate UI cache independently of env ordering (36.639542ms)
+Synchronized /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-version-GAyrFR/Cargo.toml to 0.2.0
+Synchronized /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-version-GAyrFR/src/app/tauri.conf.json to 0.2.0
+Synchronized /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-version-GAyrFR/Cargo.lock to 0.2.0
+Synchronized /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-version-GAyrFR/package-lock.json to 0.2.0
+Synchronized /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-version-GAyrFR/package.json to 0.2.0
+Synchronized /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-version-GAyrFR/src/ui/package.json to 0.2.0
+Synchronized /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-version-GAyrFR/scripts/docs/package.json to 0.2.0
+Verified canonical project version 0.2.0
+Verified canonical project version 0.2.0
+✔ version file synchronizes every project manifest and is idempotent (25.59825ms)
+✔ checked-in manifests agree with the canonical version (4.240417ms)
+✔ prompt planning is deterministic, spelling-related, and includes both strategies (2.813125ms)
+✔ publisher derives catalog metadata and verifier accepts the fixture asset (10.357875ms)
+✔ empty catalog is valid and provides the runtime fallback contract (4.539417ms)
+✔ verifier rejects orphaned, missing, non-WebP, and oversized assets (18.277083ms)
+✔ publisher rejects unsafe or non-deterministic relative paths (2.165459ms)
+✔ publisher rejects assets reached through a parent-directory symbolic link (5.122542ms)
+✔ canonical final dataset retains all files, exact counts and original data hashes (39.861208ms)
+✔ every final word is unique, normalized and complete for offline bilingual learning (30.829916ms)
+✔ all fourteen books contain unique valid memberships and cover the complete word library (31.447625ms)
+✔ curriculum books implement the cumulative and pure hierarchy (112.136125ms)
+✔ legacy mappings preserve every pinned source position (23.881458ms)
+✔ final assets preserve source provenance and bundled license attribution (0.832625ms)
+ℹ tests 165
+ℹ suites 0
+ℹ pass 164
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 1
+ℹ todo 0
+ℹ duration_ms 9017.00625

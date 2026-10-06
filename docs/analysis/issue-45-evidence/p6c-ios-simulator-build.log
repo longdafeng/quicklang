@@ -1,0 +1,340 @@
+node scripts/tasks.mjs build-ios
+Verified canonical project version 0.8.0
+Verified canonical project version 0.8.0
+> xcrun --sdk iphoneos --show-sdk-path
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS27.0.sdk
+> /Users/longda/.codex/worktrees/longterm-integration/quicklang/deps/cache/cargo/bin/cargo --version
+cargo 1.93.1 (083ac5135 2025-12-15)
+> /Users/longda/.codex/worktrees/longterm-integration/quicklang/deps/cache/cargo/bin/rustc --version
+rustc 1.93.1 (01f6ddf75 2026-02-11)
+> /Users/longda/.codex/worktrees/longterm-integration/quicklang/deps/cache/cargo/bin/rustdoc --version
+rustdoc 1.93.1 (01f6ddf75 2026-02-11)
+> /Users/longda/.codex/worktrees/longterm-integration/quicklang/deps/cache/cargo/bin/rustfmt --version
+rustfmt 1.8.0-stable (01f6ddf758 2026-02-11)
+> /Users/longda/.codex/worktrees/longterm-integration/quicklang/deps/cache/cargo/bin/cargo clippy --version
+clippy 0.1.93 (01f6ddf758 2026-02-11)
+> npm run build
+
+> quicklang@0.8.0 build
+> npm run build --workspace @quicklang/ui
+
+
+> @quicklang/ui@0.8.0 prebuild
+> node ../../scripts/build-ui-catalog.mjs --check
+
+[library] Startup catalog ready { bookCount: 14 }
+
+> @quicklang/ui@0.8.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 163 modules transformed.
+rendering chunks...
+computing gzip size...
+../../build/ios/ui/index.html                                       0.42 kB │ gzip:   0.28 kB
+../../build/ios/ui/celebrations/growing-plant.webp                 27.68 kB
+../../build/ios/ui/celebrations/book-steps.webp                    37.76 kB
+../../build/ios/ui/celebrations/paper-plane.webp                   39.05 kB
+../../build/ios/ui/celebrations/open-book-star.webp                41.09 kB
+../../build/ios/ui/celebrations/progress-rocket.webp               44.95 kB
+../../build/ios/ui/celebrations/trophy-laurel.webp                 49.44 kB
+../../build/ios/ui/celebrations/progress-zero-sprout.webp          56.75 kB
+../../build/ios/ui/celebrations/compass-stars.webp                 57.02 kB
+../../build/ios/ui/celebrations/progress-sail.webp                 61.95 kB
+../../build/ios/ui/celebrations/progress-summit.webp               61.96 kB
+../../build/ios/ui/celebrations/progress-zero-launchpad.webp       63.07 kB
+../../build/ios/ui/celebrations/progress-book-steps.webp           64.28 kB
+../../build/ios/ui/celebrations/summit.webp                        65.20 kB
+../../build/ios/ui/celebrations/rising-kite.webp                   72.16 kB
+../../build/ios/ui/celebrations/lantern-books.webp                 77.90 kB
+../../build/ios/ui/celebrations/progress-cycle.webp                78.87 kB
+../../build/ios/ui/celebrations/progress-zero-trailhead.webp       82.72 kB
+../../build/ios/ui/celebrations/sunrise-path.webp                  87.32 kB
+../../build/ios/ui/celebrations/bridge-dawn.webp                  104.91 kB
+../../build/ios/ui/assets/index-BE6_OEAr.css                       43.84 kB │ gzip:   9.94 kB
+../../build/ios/ui/assets/AboutSettings-DjZHfSeW.js                 2.49 kB │ gzip:   1.24 kB
+../../build/ios/ui/assets/Interpretation-CKm52oDl.js                3.19 kB │ gzip:   1.69 kB
+../../build/ios/ui/assets/ai-DmAHVzus.js                            6.71 kB │ gzip:   3.37 kB
+../../build/ios/ui/assets/Interpretation-Boe66sHa.js               11.55 kB │ gzip:   5.12 kB
+../../build/ios/ui/assets/Conversation-up9AFNsY.js                 22.37 kB │ gzip:   9.43 kB
+../../build/ios/ui/assets/SystemSettings-BdeaGT_f.js               27.42 kB │ gzip:  12.11 kB
+../../build/ios/ui/assets/Listening-DyZdq-Ke.js                    27.63 kB │ gzip:  10.57 kB
+../../build/ios/ui/assets/CaptionTranslationSettings-BtPhDddA.js   47.68 kB │ gzip:  16.36 kB
+../../build/ios/ui/assets/index-C-k-Z1HG.js                       364.86 kB │ gzip: 118.27 kB
+✓ built in 6.43s
+> /usr/local/bin/node /Users/longda/.codex/worktrees/longterm-integration/quicklang/node_modules/@tauri-apps/cli/tauri.js ios init --ci --config tauri.ios.conf.json
+/opt/homebrew/bin/xcodegen
+/opt/homebrew/bin/idevicesyslog
+/opt/homebrew/bin/pod
+Apple dependencies are up to date
+        Info "/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/app" relative to "/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/app/gen/apple" is "../../"
+Generating Xcode project...
+⚙️  Generating plists...
+⚙️  Generating project...
+⚙️  Writing project...
+Created project at /Users/longda/.codex/worktrees/longterm-integration/quicklang/src/app/gen/apple/quicklang-app.xcodeproj
+victory: Project generated successfully!
+    Make cool apps! 🌻 🐕 🎉
+> xcrun --sdk iphoneos --show-sdk-path
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS27.0.sdk
+> npm run build
+
+> quicklang@0.8.0 build
+> npm run build --workspace @quicklang/ui
+
+
+> @quicklang/ui@0.8.0 prebuild
+> node ../../scripts/build-ui-catalog.mjs --check
+
+[library] Startup catalog ready { bookCount: 14 }
+
+> @quicklang/ui@0.8.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 163 modules transformed.
+rendering chunks...
+computing gzip size...
+../../build/ios/ui/index.html                                       0.42 kB │ gzip:   0.28 kB
+../../build/ios/ui/celebrations/growing-plant.webp                 27.68 kB
+../../build/ios/ui/celebrations/book-steps.webp                    37.76 kB
+../../build/ios/ui/celebrations/paper-plane.webp                   39.05 kB
+../../build/ios/ui/celebrations/open-book-star.webp                41.09 kB
+../../build/ios/ui/celebrations/progress-rocket.webp               44.95 kB
+../../build/ios/ui/celebrations/trophy-laurel.webp                 49.44 kB
+../../build/ios/ui/celebrations/progress-zero-sprout.webp          56.75 kB
+../../build/ios/ui/celebrations/compass-stars.webp                 57.02 kB
+../../build/ios/ui/celebrations/progress-sail.webp                 61.95 kB
+../../build/ios/ui/celebrations/progress-summit.webp               61.96 kB
+../../build/ios/ui/celebrations/progress-zero-launchpad.webp       63.07 kB
+../../build/ios/ui/celebrations/progress-book-steps.webp           64.28 kB
+../../build/ios/ui/celebrations/summit.webp                        65.20 kB
+../../build/ios/ui/celebrations/rising-kite.webp                   72.16 kB
+../../build/ios/ui/celebrations/lantern-books.webp                 77.90 kB
+../../build/ios/ui/celebrations/progress-cycle.webp                78.87 kB
+../../build/ios/ui/celebrations/progress-zero-trailhead.webp       82.72 kB
+../../build/ios/ui/celebrations/sunrise-path.webp                  87.32 kB
+../../build/ios/ui/celebrations/bridge-dawn.webp                  104.91 kB
+../../build/ios/ui/assets/index-BE6_OEAr.css                       43.84 kB │ gzip:   9.94 kB
+../../build/ios/ui/assets/AboutSettings-DjZHfSeW.js                 2.49 kB │ gzip:   1.24 kB
+../../build/ios/ui/assets/Interpretation-CKm52oDl.js                3.19 kB │ gzip:   1.69 kB
+../../build/ios/ui/assets/ai-DmAHVzus.js                            6.71 kB │ gzip:   3.37 kB
+../../build/ios/ui/assets/Interpretation-Boe66sHa.js               11.55 kB │ gzip:   5.12 kB
+../../build/ios/ui/assets/Conversation-up9AFNsY.js                 22.37 kB │ gzip:   9.43 kB
+../../build/ios/ui/assets/SystemSettings-BdeaGT_f.js               27.42 kB │ gzip:  12.11 kB
+../../build/ios/ui/assets/Listening-DyZdq-Ke.js                    27.63 kB │ gzip:  10.57 kB
+../../build/ios/ui/assets/CaptionTranslationSettings-BtPhDddA.js   47.68 kB │ gzip:  16.36 kB
+../../build/ios/ui/assets/index-C-k-Z1HG.js                       364.86 kB │ gzip: 118.27 kB
+✓ built in 9.19s
+> /usr/local/bin/node /Users/longda/.codex/worktrees/longterm-integration/quicklang/node_modules/@tauri-apps/cli/tauri.js ios build --debug --target aarch64-sim --no-sign --config tauri.ios.conf.json
+        Info Looking up installed tauri packages to check mismatched versions...
+Setting version of project quicklang-app to:
+    0.8.0.
+
+Also setting CFBundleVersion key (assuming it exists)
+
+Updating CFBundleVersion in Info.plist(s)...
+
+Updated CFBundleVersion in "quicklang-app.xcodeproj/../quicklang-app_iOS/Info.plist" to 0.8.0
+
+
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:iOS Simulator, id:dvtdevice-DVTiOSDeviceSimulatorPlaceholder-iphonesimulator:placeholder, name:Any iOS Simulator Device }
+{ platform:iOS, id:dvtdevice-DVTiPhonePlaceholder-iphoneos:placeholder, name:Any iOS Device }
+{ platform:iOS Simulator, arch:arm64, id:CBB9F107-DF44-4FB9-A0F8-EF04FCEE9C23, OS:27.0, name:QuickLang iPhone 17 Pro }
+{ platform:iOS Simulator, arch:arm64, id:C659F8EE-5E83-414E-81A5-D1A211596F79, OS:27.0, name:iPad (A16) }
+{ platform:iOS Simulator, arch:arm64, id:FD531B0B-773C-4FEB-9B3C-69E1B6CB3C38, OS:27.0, name:iPad Air 11-inch (M4) }
+{ platform:iOS Simulator, arch:arm64, id:45630AFF-E1F3-4081-A38F-3E81CED749D7, OS:27.0, name:iPad Air 13-inch (M4) }
+{ platform:iOS Simulator, arch:arm64, id:A019896F-A70A-4988-8ADA-1CEBBBFDF9E1, OS:27.0, name:iPad Pro 11-inch (M5) }
+{ platform:iOS Simulator, arch:arm64, id:30B1340C-95B9-4A41-98FB-BD430603561E, OS:27.0, name:iPad Pro 13-inch (M5) }
+{ platform:iOS Simulator, arch:arm64, id:B7066B7E-249D-426C-AFEA-17C95DFFD894, OS:27.0, name:iPad mini (A17 Pro) }
+{ platform:iOS Simulator, arch:arm64, id:76814629-72BD-4202-87F5-D939061462FD, OS:27.0, name:iPhone 17 }
+{ platform:iOS Simulator, arch:arm64, id:0646E5BD-170F-4C0F-8305-0E07B0AE2B7A, OS:27.0, name:iPhone 17e }
+{ platform:iOS Simulator, arch:arm64, id:49D8C325-F36C-40E4-9DB0-511E3599F5C8, OS:27.0, name:iPhone 18 Pro }
+{ platform:iOS Simulator, arch:arm64, id:6CB14CDA-30D6-4F1A-89CC-39E0CB338C7E, OS:27.0, name:iPhone 18 Pro Max }
+{ platform:iOS Simulator, arch:arm64, id:FDF775C9-9B4E-456F-8CCF-0C9420700F10, OS:27.0, name:iPhone Air }
+{ platform:macOS, arch:arm64, variant:Designed for [iPad,iPhone], id:00006030-000A58500C84001C, name:My Mac }
+{ platform:iOS, arch:arm64, id:00008110-0016258A212A801E, name:longda13 }
+        Info connection; remote_addr=127.0.0.1:52770 conn_id=0
+[1m[92m   Compiling[0m proc-macro2 v1.0.107
+[1m[92m   Compiling[0m quote v1.0.47
+[1m[92m   Compiling[0m unicode-ident v1.0.24
+[1m[92m   Compiling[0m libc v0.2.189
+[1m[92m   Compiling[0m serde_core v1.0.229
+[1m[92m   Compiling[0m zmij v1.0.23
+[1m[92m   Compiling[0m version_check v0.9.5
+[1m[92m   Compiling[0m find-msvc-tools v0.1.12
+[1m[92m   Compiling[0m shlex v2.0.1
+[1m[92m   Compiling[0m icu_properties_data v2.3.0
+[1m[92m   Compiling[0m icu_normalizer_data v2.3.0
+[1m[92m   Compiling[0m cc v1.4.5
+[1m[92m   Compiling[0m serde v1.0.229
+[1m[92m   Compiling[0m siphasher v1.0.3
+[1m[92m   Compiling[0m memchr v2.8.3
+[1m[92m   Compiling[0m phf_shared v0.13.1
+[1m[92m   Compiling[0m fastrand v2.5.0
+[1m[92m   Compiling[0m generic-array v0.14.7
+[1m[92m   Compiling[0m stable_deref_trait v1.2.1
+[1m[92m   Compiling[0m cfg-if v1.0.4
+[1m[92m   Compiling[0m thiserror v2.0.20
+[1m[92m   Compiling[0m phf_generator v0.13.1
+[1m[92m   Compiling[0m itoa v1.0.18
+[1m[92m   Compiling[0m bitflags v2.13.1
+[1m[92m   Compiling[0m smallvec v1.16.0
+[1m[92m   Compiling[0m serde_json v1.0.151
+[1m[92m   Compiling[0m typeid v1.0.3
+[1m[92m   Compiling[0m num-conv v0.2.2
+[1m[92m   Compiling[0m time-core v0.1.9
+[1m[92m   Compiling[0m phf_codegen v0.13.1
+[1m[92m   Compiling[0m erased-serde v0.4.10
+[1m[92m   Compiling[0m strsim v0.11.1
+[1m[92m   Compiling[0m getrandom v0.4.3
+[1m[92m   Compiling[0m ident_case v1.0.1
+[1m[92m   Compiling[0m thiserror v1.0.69
+[1m[92m   Compiling[0m writeable v0.6.4
+[1m[92m   Compiling[0m litemap v0.8.3
+[1m[92m   Compiling[0m utf8_iter v1.0.4
+[1m[92m   Compiling[0m parking_lot_core v0.9.12
+[1m[92m   Compiling[0m syn v3.0.5
+[1m[92m   Compiling[0m syn v2.0.119
+[1m[92m   Compiling[0m objc2 v0.6.4
+[1m[92m   Compiling[0m getrandom v0.2.17
+[1m[92m   Compiling[0m typenum v1.20.1
+[1m[92m   Compiling[0m anyhow v1.0.104
+[1m[92m   Compiling[0m scopeguard v1.2.0
+[1m[92m   Compiling[0m new_debug_unreachable v1.0.6
+[1m[92m   Compiling[0m objc2-encode v4.1.0
+[1m[92m   Compiling[0m objc2-exception-helper v0.1.1
+[1m[92m   Compiling[0m lock_api v0.4.14
+[1m[92m   Compiling[0m rand_core v0.6.4
+[1m[92m   Compiling[0m string_cache_codegen v0.6.1
+[1m[92m   Compiling[0m winnow v1.0.4
+[1m[92m   Compiling[0m precomputed-hash v0.1.1
+[1m[92m   Compiling[0m parking_lot v0.12.5
+[1m[92m   Compiling[0m toml_parser v1.1.3+spec-1.1.0
+[1m[92m   Compiling[0m ctor-proc-macro v0.0.7
+[1m[92m   Compiling[0m serde_spanned v1.1.1
+[1m[92m   Compiling[0m toml_writer v1.1.2+spec-1.1.0
+[1m[92m   Compiling[0m web_atoms v0.2.6
+[1m[92m   Compiling[0m semver v1.0.28
+[1m[92m   Compiling[0m string_cache v0.9.0
+[1m[92m   Compiling[0m log v0.4.34
+[1m[92m   Compiling[0m dtoa v1.0.11
+[1m[92m   Compiling[0m percent-encoding v2.3.2
+[1m[92m   Compiling[0m autocfg v1.5.1
+[1m[92m   Compiling[0m crypto-common v0.1.7
+[1m[92m   Compiling[0m dtoa-short v0.3.5
+[1m[92m   Compiling[0m uuid v1.26.0
+[1m[92m   Compiling[0m form_urlencoded v1.2.2
+[1m[92m   Compiling[0m toml_datetime v1.1.1+spec-1.1.0
+[1m[92m   Compiling[0m tendril v0.5.1
+[1m[92m   Compiling[0m indexmap v1.9.3
+[1m[92m   Compiling[0m selectors v0.36.1
+[1m[92m   Compiling[0m aho-corasick v1.1.5
+[1m[92m   Compiling[0m unic-char-range v0.9.0
+[1m[92m   Compiling[0m regex-syntax v0.8.11
+[1m[92m   Compiling[0m byteorder v1.5.0
+[1m[92m   Compiling[0m camino v1.2.5
+[1m[92m   Compiling[0m alloc-no-stdlib v2.0.4
+[1m[92m   Compiling[0m unic-common v0.9.0
+[1m[92m   Compiling[0m unic-ucd-version v0.9.0
+[1m[92m   Compiling[0m alloc-stdlib v0.2.4
+[1m[92m   Compiling[0m unic-char-property v0.9.0
+[1m[92m   Compiling[0m toml v1.1.5+spec-1.1.0
+[1m[92m   Compiling[0m synstructure v0.13.2
+[1m[92m   Compiling[0m darling_core v0.23.0
+[1m[92m   Compiling[0m serde_derive_internals v0.29.1
+[1m[92m   Compiling[0m regex-automata v0.4.18
+[1m[92m   Compiling[0m servo_arc v0.4.3
+[1m[92m   Compiling[0m schemars v0.8.22
+[1m[92m   Compiling[0m bit-vec v0.8.0
+[1m[92m   Compiling[0m powerfmt v0.2.0
+[1m[92m   Compiling[0m rustc-hash v2.1.3
+[1m[92m   Compiling[0m hashbrown v0.12.3
+[1m[92m   Compiling[0m hashbrown v0.17.1
+[1m[92m   Compiling[0m fnv v1.0.7
+[1m[92m   Compiling[0m deranged v0.5.8
+[1m[92m   Compiling[0m equivalent v1.0.2
+[1m[92m   Compiling[0m cfb v0.7.3
+[1m[92m   Compiling[0m bit-set v0.8.0
+[1m[92m   Compiling[0m indexmap v2.14.2
+[1m[92m   Compiling[0m serde_derive v1.0.229
+[1m[92m   Compiling[0m zerovec-derive v0.11.6
+[1m[92m   Compiling[0m displaydoc v0.2.7
+[1m[92m   Compiling[0m thiserror-impl v2.0.20
+[1m[92m   Compiling[0m zerofrom-derive v0.1.7
+[1m[92m   Compiling[0m yoke-derive v0.8.2
+[1m[92m   Compiling[0m phf_macros v0.13.1
+[1m[92m   Compiling[0m thiserror-impl v1.0.69
+[1m[92m   Compiling[0m cssparser-macros v0.6.1
+[1m[92m   Compiling[0m derive_more-impl v2.1.1
+[1m[92m   Compiling[0m time v0.3.55
+[1m[92m   Compiling[0m phf v0.13.1
+[1m[92m   Compiling[0m regex v1.13.1
+[1m[92m   Compiling[0m darling_macro v0.23.0
+[1m[92m   Compiling[0m cssparser v0.36.0
+[1m[92m   Compiling[0m objc2-core-foundation v0.3.2
+[1m[92m   Compiling[0m markup5ever v0.38.0
+[1m[92m   Compiling[0m schemars_derive v0.8.22
+[1m[92m   Compiling[0m darling v0.23.0
+[1m[92m   Compiling[0m serde_with_macros v3.22.0
+[1m[92m   Compiling[0m html5ever v0.38.0
+[1m[92m   Compiling[0m unic-ucd-ident v0.9.0
+[1m[92m   Compiling[0m brotli-decompressor v5.0.3
+[1m[92m   Compiling[0m quick-xml v0.42.0
+[1m[92m   Compiling[0m zerofrom v0.1.8
+[1m[92m   Compiling[0m yoke v0.8.3
+[1m[92m   Compiling[0m objc2-foundation v0.3.2
+[1m[92m   Compiling[0m pin-project-lite v0.2.17
+[1m[92m   Compiling[0m zerovec v0.11.8
+[1m[92m   Compiling[0m zerotrie v0.2.5
+[1m[92m   Compiling[0m base64 v0.23.1
+[1m[92m   Compiling[0m bytes v1.12.1
+[1m[92m   Compiling[0m foldhash v0.2.0
+[1m[92m   Compiling[0m derive_more v2.1.1
+[1m[92m   Compiling[0m same-file v1.0.6
+[1m[92m   Compiling[0m dunce v1.0.5
+[1m[92m   Compiling[0m base64 v0.21.7
+[1m[92m   Compiling[0m tinystr v0.8.4
+[1m[92m   Compiling[0m potential_utf v0.1.6
+[1m[92m   Compiling[0m dyn-clone v1.0.20
+[1m[92m   Compiling[0m http v1.5.0
+[1m[92m   Compiling[0m walkdir v2.5.0
+[1m[92m   Compiling[0m icu_collections v2.3.0
+[1m[92m   Compiling[0m icu_locale_core v2.3.0
+[1m[92m   Compiling[0m serde_with v3.22.0
+[1m[92m   Compiling[0m swift-rs v1.0.8
+[1m[92m   Compiling[0m cargo-platform v0.1.9
+[1m[92m   Compiling[0m jsonptr v0.6.3
+[1m[92m   Compiling[0m cargo_metadata v0.19.2
+[1m[92m   Compiling[0m dom_query v0.27.0
+[1m[92m   Compiling[0m plist v1.10.1
+[1m[92m   Compiling[0m json-patch v3.0.1
+[1m[92m   Compiling[0m brotli v8.0.4
+[1m[92m   Compiling[0m icu_provider v2.3.1
+[1m[92m   Compiling[0m icu_normalizer v2.3.0
+[1m[92m   Compiling[0m icu_properties v2.3.0
+[1m[92m   Compiling[0m serde-untagged v0.1.9
+[1m[92m   Compiling[0m infer v0.19.0
+[1m[92m   Compiling[0m ctor v0.8.0
+[1m[92m   Compiling[0m futures-core v0.3.34
+[1m[92m   Compiling[0m glob v0.3.4
+[1m[92m   Compiling[0m tokio-macros v2.7.2
+[1m[91merror[0m: failed to run custom build command for `swift-rs v1.0.8`
+
+Caused by:
+  process didn't exit successfully: `/Users/longda/.codex/worktrees/longterm-integration/quicklang/build/ios/cargo/debug/build/swift-rs-f3dd84b893e75946/build-script-test-build` (signal: 9, SIGKILL: kill)
+[1m[33mwarning[0m: build failed, waiting for other jobs to finish...
+failed to compile iOS app: Failed to run `cargo build`: command ["cargo", "build", "--package", "quicklang-app", "--manifest-path", "/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/app/Cargo.toml", "--target", "aarch64-apple-ios-sim", "--features", "tauri/custom-protocol tauri/custom-protocol", "--lib"] exited with code 101
+[1m[31m       Error[0m failed to compile iOS app: Failed to run `cargo build`: command ["cargo", "build", "--package", "quicklang-app", "--manifest-path", "/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/app/Cargo.toml", "--target", "aarch64-apple-ios-sim", "--features", "tauri/custom-protocol tauri/custom-protocol", "--lib"] exited with code 101
+Command PhaseScriptExecution failed with a nonzero exit code
+note: Using codesigning identity override: ""
+note: Run script build phase 'Build Rust Code' will be run during every build because the option to run the script phase "Based on dependency analysis" is unchecked. (in target 'quicklang-app_iOS' from project 'quicklang-app')
+** ARCHIVE FAILED **
+
+failed to archive iOS app: Failed to archive via `xcodebuild`: command ["xcodebuild"] exited with code 65
+       Error failed to archive iOS app: Failed to archive via `xcodebuild`: command ["xcodebuild"] exited with code 65
+/usr/local/bin/node failed (1). For device errors: unlock, trust this Mac and enable Developer Mode; for signing errors: check Xcode Accounts and signing certificates.
+make: *** [build-ios] Error 1

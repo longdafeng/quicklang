@@ -1,0 +1,286 @@
+
+> quicklang@0.8.0 test
+> vitest run --config tests/vitest.config.ts tests/unit/ui/study.test.tsx tests/unit/ui/longterm-ordinary-error.test.tsx
+
+
+ RUN  v4.1.11 /Users/longda/.codex/worktrees/longterm-integration/quicklang
+
+ ❯ tests/unit/ui/longterm-ordinary-error.test.tsx (8 tests | 1 failed) 144ms
+   × records a wrong answer with one atomic command and applies its snapshot 36ms
+   ✓ addresses the learner scope that owns the session key 9ms
+   ✓ keeps the local commit path for correct answers 9ms
+   ✓ keeps the current question and retries idempotently when the command fails 37ms
+   ✓ starts a new operation when the answer changes after a failure 11ms
+   ✓ never records an ordinary error when leaving without saving 12ms
+   ✓ keeps one card identity and advances the token across errors 14ms
+   ✓ records wrong answers during the error-review round too 15ms
+ ❯ tests/unit/ui/study.test.tsx (59 tests | 2 failed) 1146ms
+     ✓ shows available accents and handles missing or blank phonetics 16ms
+     ✓ displays phonetics when auto recitation starts 16ms
+     ✓ keeps phonetics visible before and after flashcard reveal and updates on advance 19ms
+     ✓ shows phonetics during spelling, feedback and wrong-word retry without revealing the answer early 17ms
+     ✓ shows a flashcard image before revealing the meaning 26ms
+     ✓ shows an auto-recite image through WordCard 8ms
+     ✓ keeps spelling image hidden until answer feedback 13ms
+     ✓ keeps one vocabulary action before and after checking without revealing the answer 39ms
+     ✓ reanswers after restoring without lowering coverage or duplicating daily totals 41ms
+     ✓ adds the active automatic-recite word and disables an existing word 10ms
+     ✓ adds the active flashcard word and disables an existing word 8ms
+     ✓ keeps at least six non-repeating celebration sets with a music replay control 3ms
+     ✓ synthesizes every note in a celebration melody and can stop it 0ms
+     ✓ lets '强化学习' choose the starting position by dragging 13ms
+     ✓ lets '自动飘单词' choose the starting position by dragging 12ms
+     ✓ groups automatic recitation controls by playback, tools and session scope 23ms
+     ✓ advances flashcards one step per Enter and cancels stale speech and timers 17ms
+     ✓ leaves button Enter uncanceled without changing flashcards when revealed=false 14ms
+     ✓ leaves button Enter uncanceled without changing flashcards when revealed=true 17ms
+     ✓ does not advance flashcards with Enter while configuring or navigating 8ms
+     ✓ returns from spelling without saving, stops speech and preserves learned count 21ms
+     ✓ saves a spelling session, returns to progress and resumes without the input draft 118ms
+     ✓ stays on progress when selecting another book cannot be saved 70ms
+     ✓ waits for manual navigation after answering word 14ms
+     × waits for manual navigation after answering wrong 12ms
+     ✓ saves words from spelling feedback once and restores them only for their owner 186ms
+     × hides the answer until submission, persists progress, scores and retries wrong words twice 28ms
+     ✓ reveals meaning and example after the default ten-second pause 7ms
+     ✓ automatically advances after the answer pause and saves completion at the session limit 14ms
+     ✓ cancels the answer timer on 记住了，下一个 6ms
+     ✓ cancels the answer timer on 重新朗读 5ms
+     ✓ cancels the answer timer on 单词导航 5ms
+     ✓ cancels the answer timer on 返回设置 7ms
+     ✓ cancels the answer timer on unmount 5ms
+     ✓ repeats with a pause after every reading and cancels pending work on return 14ms
+     ✓ previews five words on either side, validates inputs and starts at the chosen position 16ms
+     ✓ navigates flashcards from setup with pagination, search and a bounded saved session 25ms
+     ✓ cancels flashcard speech and waits in navigation, resumes or jumps without stale reveals 20ms
+     ✓ uses native spelling before recall, repeats the sequence and replays after reveal 6ms
+     ✓ cancels the spelling pause when revealing the answer early 3ms
+     ✓ spells abruptly in one native request with internal pauses 3ms
+     ✓ spells abuse in one native request with internal pauses 2ms
+     ✓ spells disappear in one native request with internal pauses 2ms
+     ✓ spells abcdefghijklmnopqrstuvwxyz in one native request with internal pauses 2ms
+     ✓ reads word, letters, word, Chinese and word before the configured gap 6ms
+     ✓ spells abruptly without uppercase announcements 4ms
+     ✓ spells abuse without uppercase announcements 3ms
+     ✓ spells disappear without uppercase announcements 4ms
+     ✓ omits part-of-speech labels in speech while preserving the displayed definition 4ms
+     ✓ restarts the current word during playback, a gap, pause and completion 16ms
+     ✓ pauses for navigation and starts a fresh bounded session at the selected word 14ms
+     ✓ paginates the book and can select a starting word before playback 19ms
+     ✓ sets up a bounded session, automatically advances and replays from its starting position 12ms
+     ✓ keeps one playback task alive across automatic word boundaries 5ms
+     ✓ does not treat an iOS native clip boundary as a manual recitation pause 4ms
+     ✓ publishes lock-screen controls and routes remote playback actions 9ms
+     ✓ continues to the next word after focus loss and still cancels a manual pause 12ms
+     ✓ validates settings and limits the session to the end of the book 9ms
+     ✓ shares the selected book across navigation and remembers counts per mode 109ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/ui/longterm-ordinary-error.test.tsx > records a wrong answer with one atomic command and applies its snapshot
+AssertionError: expected { learned: 1, session: { …(11) } } to deeply equal { learned: +0, …(1) }
+
+- Expected
++ Received
+
+@@ -1,7 +1,7 @@
+  {
+-   "learned": 0,
++   "learned": 1,
+    "session": {
+      "correct": 0,
+      "counted": [
+        0,
+      ],
+
+ ❯ tests/unit/ui/longterm-ordinary-error.test.tsx:61:23
+     59|
+     60|   // The canonical snapshot commits session, activity, vocabulary and …
+     61|   expect(committed()).toEqual({
+       |                       ^
+     62|     learned: 0,
+     63|     session: expect.objectContaining({
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/unit/ui/study.test.tsx > study interactions > waits for manual navigation after answering wrong
+TestingLibraryElementError: Unable to find an element with the text: 背诵 · 1 / 2 · 已经背诵 0 个. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33mclass[39m=[32m"study-card"[39m
+    [36m>[39m
+      [36m<p>[39m
+        [0m背诵[0m
+        [0m ·[0m
+        [0m [0m
+        [0m1[0m
+        [0m / [0m
+        [0m2[0m
+        [0m ·[0m
+        [0m [0m
+        [0m已经背诵 1 个[0m
+      [36m</p>[39m
+      [36m<h2>[39m
+        [0m听发音，拼出单词[0m
+      [36m</h2>[39m
+      [36m<form[39m
+        [33mclass[39m=[32m"spelling-answer-form"[39m
+      [36m>[39m
+        [36m<input[39m
+          [33maria-label[39m=[32m"英文拼写"[39m
+          [33mautocapitalize[39m=[32m"none"[39m
+          [33mautocomplete[39m=[32m"off"[39m
+          [33mautocorrect[39m=[32m"off"[39m
+          [33mclass[39m=[32m"answer"[39m
+          [33mdisabled[39m=[32m""[39m
+          [33menterkeyhint[39m=[32m"done"[39m
+          [33mmaxlength[39m=[32m"128"[39m
+          [33mspellcheck[39m=[32m"false"[39m
+          [33mvalue[39m=[32m"wrong"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33maria-label[39m=[32m"辅助操作"[39m
+          [33mclass[39m=[32m"spelling-tool-actions"[39m
+          [33mrole[39m=[32m"group"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0m重新朗读[0m
+          [36m</button>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"feedback incorrect"[39m
+          [33mrole[39m=[32m"status"[39m
+        [36m>[39m
+          [36m<strong>[39m
+            [0m拼写错误，再记一次[0m
+          [36m</strong>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"word-card"[39m
+          [36m>[39m
+            [36m<img[39m
+              [33malt[39m=[32m"word 配图"[39m
+              [33mclass[39m=[32m"word-image"[39m
+              [33mdecoding[39m=[32m"async"[39m
+              [33mdraggable[39m=[32m"false"[39m
+              [33mheight[39m=[32m"320"[39m
+              [33msrc[39m=[32m"/content/word-images/images/word.webp"[39m
+              [33mwidth[39m=[32m"320"[39m
+            [36m/>[39m
+            [36m<h2[39m
+              [33mclass[39m=[32m"word"[39m
+            [36m>[39m
+              [0mword[0m
+            [36m</h2>[39m
+            [36m<p[39m
+              [33maria-label[39m=[32m"发音音标"[39m
+              [33mclass[39m=[32m"phonetics"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"muted"[39m
+              [36m>[39m
+                [0m暂无音标[0m
+              [36m</span>[39m
+            [36m</p>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"meaning"[39m
+            [36m>[39m
+              [0m单词[0m
+            [36m</p>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"example"[39m
+            [36m>[39m
+              [0mA new word.[0m
+            [36m</p>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33maria-label[39m=[32m"答题导航"[39m
+          [33mclass[39m=[32m"spelling-answer-actions"[39m
+          [33mrole[39m=[32m"group"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-describedby[39m=[32m"spelling-back-help"[39m
+            [33mdisabled[39m=[32m""[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0m上一个[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"primary"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0m下一个单词[0m
+            [0m ↵[0m
+          [36m</button>[39m
+        [36m</div>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"muted spelling-back-help"[39m
+          [33mid[39m=[32m"spelling-back-help"[39m
+        [36m>[39m
+          [0m上一个：退回重新作答，撤销上一题及当前题已提交的成绩。[0m
+        [36m</p>[39m
+      [36m</form>[39m
+      [36m<div[39m
+        [33maria-label[39m=[32m"背诵进度操作"[39m
+        [33mclass[39m=[32m"spelling-session-actions"[39m
+        [33mrole[39m=[32m"group"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m返回无保存[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m保存进度并返回[0m
+        [36m</button>[39m
+      [36m</div>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError ../../../../work/repo/myself/quicklang/node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ ../../../../work/repo/myself/quicklang/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ ../../../../work/repo/myself/quicklang/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ ../../../../work/repo/myself/quicklang/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ tests/unit/ui/study.test.tsx:522:19
+    520|     // A wrong answer commits through the native transaction, which le…
+    521|     // learned cursor alone until the learner spells the word correctl…
+    522|     expect(screen.getByText(`背诵 · 1 / 2 · 已经背诵 ${learned} 个`)).toBeInT…
+       |                   ^
+    523|     await fireEvent.click(screen.getByRole("button", { name: /下一个单词/ }…
+    524|     expect(screen.getByLabelText("英文拼写")).toHaveValue("");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/unit/ui/study.test.tsx > study interactions > hides the answer until submission, persists progress, scores and retries wrong words twice
+AssertionError: expected 2 to be 3 // Object.is equality
+
+- Expected
++ Received
+
+- 3
++ 2
+
+ ❯ tests/unit/ui/study.test.tsx:599:72
+    597|       days: readonly { date: string; count: number }[];
+    598|     };
+    599|     expect(activity.days.reduce((total, day) => total + day.count, 0))…
+       |                                                                        ^
+    600|     expect(activity.days.some((day) => day.date === localDateKey())).t…
+    601|     expect(activity.days.every((day) => day.date <= localDateKey())).t…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  3 failed | 64 passed (67)
+   Start at  18:57:59
+   Duration  2.11s (transform 462ms, setup 261ms, import 522ms, tests 1.29s, environment 692ms)
+
+JUNIT report written to /Users/longda/.codex/worktrees/longterm-integration/quicklang/build/test-results/ui.xml

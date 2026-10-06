@@ -1,0 +1,11 @@
+   Compiling quicklang-tests v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/tests/rust)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.82s
+     Running benches/longterm_bench.rs (build/macos/cargo/debug/deps/longterm_bench-fc48de54b08671fd)
+backend=sqlite, cards=20000, events=1000000, seed_seconds=26.330
+list/last_error_at: iterations=5, total_ms=3.636, mean_ms=0.727, min_ms=0.662, max_ms=0.968
+list/due_at: iterations=5, total_ms=3.399, mean_ms=0.680, min_ms=0.672, max_ms=0.701
+list/error_count: iterations=5, total_ms=3.624, mean_ms=0.725, min_ms=0.693, max_ms=0.761
+dashboard: iterations=5, total_ms=991.193, mean_ms=198.239, min_ms=196.193, max_ms=199.893
+detail: iterations=5, total_ms=3.056, mean_ms=0.611, min_ms=0.553, max_ms=0.798
+stream_export: seconds=15.561, bytes=248498541, MiB_per_second=15.229, sink=counting (file I/O and peak memory not measured)
+dataset=/var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/ql-four-table-bench-2591-1791198651058706000

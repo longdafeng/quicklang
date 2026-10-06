@@ -1,0 +1,7 @@
+
+> quicklang@0.8.0 format:check
+> node scripts/format.mjs --check
+
+[format] Needs formatting: /Users/longda/.codex/worktrees/longterm-integration/quicklang/tests/unit/ui/longterm-ipc.test.ts
+[format] Checked 394 non-Rust source files; 1 unformatted.
+Source formatting check failed. Run make format.

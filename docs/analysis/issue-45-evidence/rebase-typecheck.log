@@ -1,0 +1,7 @@
+
+> quicklang@0.8.0 typecheck
+> npm run typecheck --workspace @quicklang/ui
+
+
+> @quicklang/ui@0.8.0 typecheck
+> tsc --noEmit

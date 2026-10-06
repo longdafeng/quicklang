@@ -1,0 +1,4 @@
+    Checking quicklang-storage-seekdb v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-seekdb)
+    Checking quicklang-app v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/app)
+    Checking quicklang-tests v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/tests/rust)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 3.65s

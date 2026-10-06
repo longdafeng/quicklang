@@ -1,0 +1,8 @@
+   Compiling quicklang-storage-seekdb v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-seekdb)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.62s
+     Running unittests src/lib.rs (build/macos/cargo/debug/deps/quicklang_storage_seekdb-dbac3bbf72563954)
+
+running 1 test
+test longterm_v2::tests::import_receipts_do_not_retain_batch_data_after_deletion ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 75 filtered out; finished in 2.18s

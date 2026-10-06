@@ -1,0 +1,23 @@
+[
+  {
+    "stage": "native_import_contracts",
+    "start": 1791202321.73874,
+    "end": 1791202334.872124,
+    "durationSeconds": 13.133,
+    "exit": 0
+  },
+  {
+    "stage": "native_import_receipts",
+    "start": 1791202348.682959,
+    "end": 1791202353.901949,
+    "durationSeconds": 5.219,
+    "exit": 0
+  },
+  {
+    "stage": "make_test",
+    "start": 1791202368.936377,
+    "end": 1791202444.079523,
+    "durationSeconds": 75.143,
+    "exit": 0
+  }
+]

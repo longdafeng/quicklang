@@ -14,7 +14,7 @@ seekdb 支持 `VARCHAR(256)[]`，不支持 `TEXT[]` 和数组默认值。
 
 ```sh
 make init
-# 隔离数据库（make dev 使用同一变量即可连接）
+# 隔离数据库（运行构建产物时使用同一变量即可连接）
 QUICKLANG_DATA_DIR=/absolute/path/to/database make init
 ```
 

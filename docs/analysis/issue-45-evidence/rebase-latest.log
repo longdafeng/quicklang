@@ -1,0 +1,26 @@
+Rebasing (1/46)
+Rebasing (2/46)
+Rebasing (3/46)
+Rebasing (4/46)
+Rebasing (5/46)
+Rebasing (6/46)
+Rebasing (7/46)
+Rebasing (8/46)
+Rebasing (9/46)
+Rebasing (10/46)
+Rebasing (11/46)
+Rebasing (12/46)
+Rebasing (13/46)
+Auto-merging src/ui/src/shared/app/LearningApp.tsx
+CONFLICT (content): Merge conflict in src/ui/src/shared/app/LearningApp.tsx
+Auto-merging src/ui/src/shared/features/spelling/Spelling.tsx
+CONFLICT (content): Merge conflict in src/ui/src/shared/features/spelling/Spelling.tsx
+Auto-merging tests/unit/ui/study.test.tsx
+CONFLICT (content): Merge conflict in tests/unit/ui/study.test.tsx
+error: could not apply d0a452c0... feat(longterm): 普通背诵错误路径前端接入 (#48)
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+hint: You can instead skip this commit: run "git rebase --skip".
+hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+hint: Disable this message with "git config set advice.mergeConflict false"
+Could not apply d0a452c0... # feat(longterm): 普通背诵错误路径前端接入 (#48)

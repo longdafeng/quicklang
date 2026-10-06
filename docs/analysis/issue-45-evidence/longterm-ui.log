@@ -1,0 +1,23 @@
+
+> quicklang@0.7.0 test
+> vitest run --config tests/vitest.config.ts --run tests/unit/ui/longterm-dashboard-ipc.test.ts tests/unit/ui/longterm-ipc.test.ts tests/unit/ui/longterm-session-ipc.test.ts tests/unit/ui/longterm-session-rules.test.ts tests/unit/ui/longterm-dashboard.test.tsx tests/unit/ui/longterm-early-practice.test.tsx tests/unit/ui/longterm-ordinary-error.test.tsx tests/unit/ui/longterm-review-route.test.tsx tests/unit/ui/longterm-review-session.test.tsx
+
+
+ RUN  v4.1.11 /Users/longda/.codex/worktrees/longterm-integration/quicklang
+
+ ✓ tests/unit/ui/longterm-ipc.test.ts (7 tests) 4ms
+ ✓ tests/unit/ui/longterm-dashboard-ipc.test.ts (5 tests) 5ms
+ ✓ tests/unit/ui/longterm-session-ipc.test.ts (13 tests) 7ms
+ ✓ tests/unit/ui/longterm-session-rules.test.ts (11 tests) 5ms
+ ✓ tests/unit/ui/longterm-early-practice.test.tsx (6 tests) 129ms
+ ✓ tests/unit/ui/longterm-dashboard.test.tsx (13 tests) 207ms
+ ✓ tests/unit/ui/longterm-ordinary-error.test.tsx (8 tests) 178ms
+ ✓ tests/unit/ui/longterm-review-route.test.tsx (5 tests) 191ms
+ ✓ tests/unit/ui/longterm-review-session.test.tsx (26 tests) 444ms
+
+ Test Files  9 passed (9)
+      Tests  94 passed (94)
+   Start at  17:52:56
+   Duration  1.39s (transform 895ms, setup 1.83s, import 1.04s, tests 1.17s, environment 4.16s)
+
+JUNIT report written to /Users/longda/.codex/worktrees/longterm-integration/quicklang/build/test-results/ui.xml

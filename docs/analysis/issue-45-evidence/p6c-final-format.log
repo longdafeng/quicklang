@@ -1,0 +1,5 @@
+
+> quicklang@0.8.0 format:check
+> node scripts/format.mjs --check
+
+[format] Checked 390 non-Rust source files; 0 unformatted.

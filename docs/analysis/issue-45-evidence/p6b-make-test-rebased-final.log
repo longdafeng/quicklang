@@ -1,0 +1,50 @@
+node scripts/tasks.mjs test
+> npm run format:check
+
+> quicklang@0.8.0 format:check
+> node scripts/format.mjs --check
+
+[format] Checked 370 non-Rust source files; 0 unformatted.
+> cargo fmt --all -- --check
+> /usr/local/bin/node scripts/compliance/check.mjs
+License/layout checks passed (228 source files). Release audit limitations are recorded.
+> cargo clippy --locked --offline --workspace --all-targets -- -D warnings
+    Checking quicklang-storage-seekdb v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-seekdb)
+    Checking quicklang-app v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/app)
+    Checking quicklang-tests v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/tests/rust)
+error: this can be `std::io::Error::other(_)`
+   --> src/app/src/longterm_export.rs:305:24
+    |
+305 |               return Err(std::io::Error::new(
+    |  ________________________^
+306 | |                 std::io::ErrorKind::Other,
+307 | |                 "Export cancelled",
+308 | |             ));
+    | |_____________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#io_other_error
+    = note: `-D clippy::io-other-error` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::io_other_error)]`
+help: use `std::io::Error::other`
+    |
+305 ~             return Err(std::io::Error::other(
+306 ~                 "Export cancelled",
+    |
+
+error: could not compile `quicklang-app` (lib) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: method `longterm` is never used
+   --> src/app/src/storage.rs:670:18
+    |
+124 | impl StorageService {
+    | ------------------- method in this implementation
+...
+670 |     pub async fn longterm<R: Send + 'static>(
+    |                  ^^^^^^^^
+    |
+    = note: `-D dead-code` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(dead_code)]`
+
+error: could not compile `quicklang-app` (lib test) due to 2 previous errors
+cargo failed (101)
+make: *** [test] Error 1

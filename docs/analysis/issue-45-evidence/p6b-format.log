@@ -1,0 +1,12 @@
+node scripts/tasks.mjs format
+> npm run format
+
+> quicklang@0.7.0 format
+> node scripts/format.mjs
+
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-seekdb/src/sqlite_schema.sql
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/src/schema/ql_longterm_event.sql
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/tests/integration/native-export-harness.m
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/tests/integration/native-export-picker-harness.m
+[format] Checked 353 non-Rust source files; 4 updated.
+> cargo fmt --all

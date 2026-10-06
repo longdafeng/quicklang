@@ -1,0 +1,15 @@
+2026-10-05 19:19:13.195 pcm-capture-test[12747:5987969] [ios-capture] first input source=system rate=48000 frames=4800 pts_minus_host_s=-0.001763
+2026-10-05 19:19:13.202 pcm-capture-test[12747:5987969] [ios-capture] first input source=system rate=16000 frames=1600 pts_minus_host_s=-0.000008
+2026-10-05 19:19:13.202 pcm-capture-test[12747:5987969] [ios-capture] first input source=system rate=48000 frames=4800 pts_minus_host_s=-0.000032
+2026-10-05 19:19:13.203 pcm-capture-test[12747:5987969] [ios-capture] final=1 system_callbacks=0 mic_callbacks=0 accepted_buffers=2 ignored_buffers=0 nonzero_samples=3198 peak=0.260778 late_frames=0 emitted_frames=0 pending_frames=3200
+2026-10-05 19:19:13.205 pcm-capture-test[12747:5987969] [ios-capture] first input source=system rate=16000 frames=1600 pts_minus_host_s=-0.000008
+2026-10-05 19:19:13.205 pcm-capture-test[12747:5987969] [ios-capture] final=1 system_callbacks=0 mic_callbacks=0 accepted_buffers=2 ignored_buffers=0 nonzero_samples=3200 peak=0.100000 late_frames=0 emitted_frames=0 pending_frames=1600
+2026-10-05 19:19:13.206 pcm-capture-test[12747:5987969] [ios-capture] final=0 system_callbacks=0 mic_callbacks=0 accepted_buffers=0 ignored_buffers=0 nonzero_samples=0 peak=0.000000 late_frames=0 emitted_frames=0 pending_frames=0
+2026-10-05 19:19:13.207 pcm-capture-test[12747:5987969] [ios-capture] first input source=system rate=16000 frames=1600 pts_minus_host_s=-184005.399721
+2026-10-05 19:19:13.207 pcm-capture-test[12747:5987969] [ios-capture] first input source=system rate=16000 frames=1600 pts_minus_host_s=-184005.400094
+2026-10-05 19:19:13.207 pcm-capture-test[12747:5987969] [ios-capture] final=0 system_callbacks=0 mic_callbacks=0 accepted_buffers=1 ignored_buffers=0 nonzero_samples=1600 peak=0.200000 late_frames=0 emitted_frames=0 pending_frames=1600
+2026-10-05 19:19:13.208 pcm-capture-test[12747:5987969] [ios-capture] first input source=microphone rate=16000 frames=1600 pts_minus_host_s=-184005.301253
+2026-10-05 19:19:13.208 pcm-capture-test[12747:5987969] [ios-capture] final=0 system_callbacks=0 mic_callbacks=0 accepted_buffers=1 ignored_buffers=0 nonzero_samples=1600 peak=0.600000 late_frames=0 emitted_frames=0 pending_frames=1600
+2026-10-05 19:19:13.209 pcm-capture-test[12747:5987969] [ios-capture] final=1 system_callbacks=0 mic_callbacks=0 accepted_buffers=0 ignored_buffers=0 nonzero_samples=0 peak=0.000000 late_frames=0 emitted_frames=0 pending_frames=0
+2026-10-05 19:19:13.210 pcm-capture-test[12747:5987969] [ios-capture] final=1 system_callbacks=0 mic_callbacks=0 accepted_buffers=0 ignored_buffers=0 nonzero_samples=0 peak=0.000000 late_frames=0 emitted_frames=0 pending_frames=0
+PASS: PCM resampling, mixed timeline, raw PCM delivery, bounds, and cancelled generation

@@ -1,0 +1,19 @@
+
+> quicklang@0.8.0 test
+> vitest run --config tests/vitest.config.ts tests/unit/ui/longterm-ordinary-error.test.tsx tests/unit/ui/study.test.tsx tests/unit/ui/chinese-recite-modes.test.tsx tests/unit/ui/chinese-recite-lifecycle.test.tsx tests/unit/ui/learning-activity.test.ts
+
+
+ RUN  v4.1.11 /Users/longda/.codex/worktrees/longterm-integration/quicklang
+
+ ✓ tests/unit/ui/learning-activity.test.ts (16 tests) 19ms
+ ✓ tests/unit/ui/longterm-ordinary-error.test.tsx (9 tests) 215ms
+ ✓ tests/unit/ui/chinese-recite-modes.test.tsx (10 tests) 225ms
+ ✓ tests/unit/ui/chinese-recite-lifecycle.test.tsx (18 tests) 544ms
+ ✓ tests/unit/ui/study.test.tsx (60 tests) 1185ms
+
+ Test Files  5 passed (5)
+      Tests  113 passed (113)
+   Start at  19:34:27
+   Duration  2.38s (transform 1.01s, setup 791ms, import 1.14s, tests 2.19s, environment 1.95s)
+
+JUNIT report written to /Users/longda/.codex/worktrees/longterm-integration/quicklang/build/test-results/ui.xml

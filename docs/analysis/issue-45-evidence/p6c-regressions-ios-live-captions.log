@@ -1,0 +1,7 @@
+PASS: startup ASR policy selects fast and legacy backends
+PASS: main-created authorization callback safely returns on a background queue
+PASS: cancellation before authorization and late result suppression
+PASS: PCM input, MP3-path output, sidecar/batch persistence before stopped event
+PASS: bounded PCM admission rejects overflow with a terminal error
+PASS: cancel before C admission rejects delayed producer and fences terminal delivery
+PASS: iOS local-caption hardware-free lifecycle regressions

@@ -1,0 +1,53 @@
+   Compiling quicklang-storage-seekdb v0.7.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-seekdb)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.78s
+     Running unittests src/lib.rs (build/macos/cargo/debug/deps/quicklang_storage_seekdb-73a3210c912dfb47)
+
+running 46 tests
+test ai_profiles::tests::obsolete_combined_profiles_are_discarded ... ok
+test ai_profiles::tests::chat_and_transcription_profiles_have_independent_active_selections ... ok
+test ai_profiles::tests::lost_or_corrupt_master_key_fails_closed_even_after_clear ... ok
+test ai_profiles::tests::credential_snapshot_is_owned_and_preserves_authenticated_resolution ... ok
+test ai_profiles::tests::recovery_denies_present_malformed_and_inaccessible_keys_without_mutation ... ok
+test ai_profiles::tests::metadata_management_never_accesses_keychain ... ok
+test ai_profiles::tests::validates_frontend_url_policy_and_explicit_key_actions ... ok
+test ai_profiles::tests::encryption_is_random_authenticated_versioned_and_profile_bound ... ok
+test ai_profiles::tests::confirmed_missing_key_recovery_clears_all_secrets_and_allows_reentry ... ok
+test app_storage::tests::state_validation_accepts_raw_strings_but_rejects_invalid_batches ... ok
+test ai_profiles::tests::crud_selection_secret_actions_and_serialization ... ok
+test listening::tests::rejects_path_and_sql_identifiers ... ok
+test app_storage::tests::session_projection_excludes_credentials_and_validates_enums ... ok
+test app_storage::tests::chunk_validation_rejects_oversized_or_invalid_audio_and_status ... ok
+test listening::tests::validates_audio_encoding_and_metadata_size_before_writing ... ok
+test longterm_v2::tests::ordinary_error_preserves_short_term_atomicity ... ok
+test longterm_v2::tests::bounded_list_cursor_survives_anchor_deletion ... ok
+test longterm_v2::tests::idempotency_deduplication_and_atomic_rollback ... ok
+test longterm_v2::tests::formal_completion_receipt_and_deleted_replay ... ok
+test longterm_v2::tests::dashboard_aggregates_first_attempts_only ... ok
+test longterm_v2::tests::deletion_cleans_shared_round_and_owner_isolation ... ok
+test longterm_v2::tests::deleting_word_preserves_unrelated_manual_and_round_receipts ... ok
+test longterm_v2::tests::again_wait_and_early_schedule_isolation ... ok
+test listening::tests::persists_audio_isolates_profiles_and_rejects_stale_updates ... ok
+test unit_tests::identifiers_enforce_byte_and_control_limits ... ok
+test unit_tests::row_decoder_distinguishes_absence_from_corruption ... ok
+test user_settings::tests::setting_keys_do_not_capture_learning_progress_or_device_state ... ok
+test sqlite_tests::sqlite_schema_covers_every_canonical_table ... ok
+test sqlite_tests::obsolete_longterm_tables_require_a_fresh_database ... ok
+test ai_profiles::tests::native_profiles_persist_across_reopen ... ok
+test app_storage::tests::repository_roundtrip_transaction_and_reopen ... ok
+test word_library::validation_tests::validates_extra_examples_and_native_array_decoding ... ok
+test word_library::validation_tests::validates_required_columns_and_types ... ok
+test longterm_v2::tests::streaming_export_honors_mid_batch_cancellation ... ok
+test sqlite_tests::longterm_tables_exist_with_key_constraints_and_indexes ... ok
+test word_library::validation_tests::validates_text_limits_in_characters_and_bytes ... ok
+test sqlite_tests::longterm_schema_initialize_is_idempotent_across_reopen ... ok
+test sqlite_tests::ownership_schema_version_and_unwinding_fail_closed ... ok
+test sqlite_tests::review_commit_is_atomic_idempotent_and_durable ... ok
+test user_settings::tests::settings_migrate_isolate_reopen_and_fall_back_on_query_failure ... ok
+test sqlite_tests::incomplete_longterm_shapes_fail_closed_without_schema_repair ... ok
+test longterm_v2::tests::streaming_export_batches_and_cancellation ... ok
+test word_library::validation_tests::verifies_seed_files_checksums_counts_and_membership_without_database ... ok
+test word_library::tests::bundled_library_is_valid_without_generation ... ok
+test word_library::tests::incremental_import_yields_with_independently_committed_configuration ... ok
+test word_library::tests::full_import_schema_repair_preservation_and_rollback ... ok
+
+test result: ok. 46 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 19.98s

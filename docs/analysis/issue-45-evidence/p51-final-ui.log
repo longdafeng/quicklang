@@ -1,0 +1,443 @@
+
+> quicklang@0.8.0 test
+> vitest run --config tests/vitest.config.ts --reporter=dot
+
+
+ RUN  v4.1.11 /Users/longda/.codex/worktrees/longterm-integration/quicklang
+
+stdout | tests/unit/ui/speech-startup.test.tsx > skips native checks when the database already records an enhanced voice
+[speech] Skipping startup check: database confirms enhanced voice
+
+stdout | tests/unit/ui/speech-startup.test.tsx > skips prompting when a preferred enhanced voice exists
+[speech] Confirmed enhanced voice saved for future startups
+
+··stdout | tests/unit/ui/speech-startup.test.tsx > skips prompting when a preferred enhanced voice exists
+[speech] Confirmed enhanced voice saved for future startups
+
+··············stdout | tests/unit/ui/speech-startup.test.tsx > offers permission and manual download when automatic startup lacks access
+[speech] Confirmed enhanced voice saved for future startups
+
+················stdout | tests/unit/ui/settings.test.tsx > allows CRUD while resolution is pending and rejects stale credentials
+[ai-profiles] Database configuration updated
+
+···stdout | tests/unit/ui/settings.test.tsx > loads active credentials only into runtime and saves explicit key actions without echo
+[ai-profiles] Runtime credentials ready { elapsedMs: 1 }
+
+stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical assets loaded { bookCount: 14, wordCount: 17844 }
+
+stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-junior', wordCount: 1987 }
+
+stdout | tests/unit/ui/settings.test.tsx > loads active credentials only into runtime and saves explicit key actions without echo
+[ai-profiles] Database configuration updated
+
+······stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-senior', wordCount: 3911 }
+
+stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-cet4', wordCount: 5664 }
+
+·stdout | tests/unit/ui/settings.test.tsx > loads active credentials only into runtime and saves explicit key actions without echo
+[ai-profiles] Database configuration updated
+
+stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-cet4-pure', wordCount: 1753 }
+
+···stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-cet6', wordCount: 7551 }
+
+stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-cet6-pure', wordCount: 1887 }
+
+··stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-postgraduate', wordCount: 7790 }
+
+stdout | tests/unit/ui/settings.test.tsx > confirms deletion of active profile and clears runtime
+[ai-profiles] Database configuration updated
+
+stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-postgraduate-pure', wordCount: 239 }
+
+stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-toefl', wordCount: 4264 }
+
+··stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-sat', wordCount: 4459 }
+
+stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-ielts', wordCount: 5274 }
+
+·stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-gre', wordCount: 9983 }
+
+stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-gmat', wordCount: 3311 }
+
+stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-bec', wordCount: 2824 }
+
+·stdout | tests/unit/ui/settings.test.tsx > activates another saved profile and refreshes in-memory credentials
+[ai-profiles] Database configuration updated
+
+stdout | tests/unit/ui/settings.test.tsx > activates another saved profile and refreshes in-memory credentials
+[ai-profiles] Runtime credentials ready { elapsedMs: 1 }
+
+·······stdout | tests/unit/ui/settings.test.tsx > creates the first database profile and uses its auto-active snapshot
+[ai-profiles] Database configuration updated
+
+··stdout | tests/unit/ui/offline-content.test.tsx > renders canonical definitions and provenance
+[library] Canonical assets loaded { bookCount: 14, wordCount: 17844 }
+
+·stdout | tests/unit/ui/offline-content.test.tsx > renders canonical definitions and provenance
+[library] Canonical book loaded { bookId: 'ink-gre', wordCount: 9983 }
+
+stdout | tests/unit/ui/settings.test.tsx > clears saved keys explicitly and validates unsafe endpoints before writes
+[ai-profiles] Database configuration updated
+
+············stdout | tests/unit/ui/library.test.tsx > creates a book, adds and edits words, persists it and shares it with study
+[library] Book saved {
+  bookId: 'a3a03824-9e9c-4918-b046-4dd4c7cdf0e7',
+  wordCount: 0,
+  resetProgress: false
+}
+
+stdout | tests/unit/ui/library.test.tsx > creates a book, adds and edits words, persists it and shares it with study
+[library] Book saved {
+  bookId: 'a3a03824-9e9c-4918-b046-4dd4c7cdf0e7',
+  wordCount: 1,
+  resetProgress: false
+}
+
+stdout | tests/unit/ui/library.test.tsx > creates a book, adds and edits words, persists it and shares it with study
+[library] Word inserted { bookId: 'a3a03824-9e9c-4918-b046-4dd4c7cdf0e7', ordinal: 1 }
+
+···stdout | tests/unit/ui/library.test.tsx > creates a book, adds and edits words, persists it and shares it with study
+[library] Book saved {
+  bookId: 'a3a03824-9e9c-4918-b046-4dd4c7cdf0e7',
+  wordCount: 1,
+  resetProgress: false
+}
+
+····················stdout | tests/unit/ui/interpretation-ui.test.tsx > generates and persists template minutes with the user's focus without replacing older runs
+[interpretation] Transcript analysis started
+
+stdout | tests/unit/ui/interpretation-ui.test.tsx > generates and persists template minutes with the user's focus without replacing older runs
+[interpretation] Transcript analysis completed
+
+···stdout | tests/unit/ui/interpretation-ui.test.tsx > generates and persists template minutes with the user's focus without replacing older runs
+[interpretation] Transcript analysis started
+
+stdout | tests/unit/ui/interpretation-ui.test.tsx > generates and persists template minutes with the user's focus without replacing older runs
+[interpretation] Transcript analysis completed
+
+···stdout | tests/unit/ui/offline-content.test.tsx > rejects incomplete definitions and allows retry after failure
+[library] Canonical assets loaded { bookCount: 14, wordCount: 17844 }
+
+stdout | tests/unit/ui/offline-content.test.tsx > rejects incomplete definitions and allows retry after failure
+[library] Canonical book loaded { bookId: 'ink-cet4', wordCount: 5664 }
+
+·······stdout | tests/unit/ui/library.test.tsx > edits built-in books without duplicates and confirms deletion before resetting affected progress
+[library] Book saved { bookId: 'daily', wordCount: 3, resetProgress: false }
+
+·····stdout | tests/unit/ui/offline-content.test.tsx > deduplicates concurrent loads without letting one caller cancel another
+[library] Canonical assets loaded { bookCount: 14, wordCount: 17844 }
+
+stdout | tests/unit/ui/offline-content.test.tsx > deduplicates concurrent loads without letting one caller cancel another
+[library] Canonical book loaded { bookId: 'ink-gre', wordCount: 9983 }
+
+········stdout | tests/unit/ui/library.test.tsx > edits built-in books without duplicates and confirms deletion before resetting affected progress
+[library] Book saved { bookId: 'daily', wordCount: 2, resetProgress: true }
+
+·························stdout | tests/unit/ui/library.test.tsx > preserves phonetics, translations and attribution when editing a word
+[library] Book saved { bookId: 'daily', wordCount: 1, resetProgress: false }
+
+·········stdout | tests/unit/ui/settings.test.tsx > selects newly created B without activating it and reload discards stale drafts
+[ai-profiles] Database configuration updated
+
+···stdout | tests/unit/ui/settings.test.tsx > clears runtime after mutation failure and preserves database profiles
+[ai-profiles] Runtime credentials ready { elapsedMs: 0 }
+
+stdout | tests/unit/ui/settings.test.tsx > ignores a stale resolve after a newer reload
+[ai-profiles] Runtime credentials ready { elapsedMs: 0 }
+
+········stdout | tests/unit/ui/settings.test.tsx > invalidates the old learner runtime when a credential request completes after switching
+[ai-profiles] Runtime credentials ready { elapsedMs: 0 }
+
+·········stdout | tests/unit/ui/library-insertion.test.tsx > adds resolved words before an anchor and reports real neighbors
+[library] Word inserted { bookId: 'book', ordinal: 2 }
+
+···stdout | tests/unit/ui/speech-startup.test.tsx > starts automatically with permission and verifies inventory before continuing
+[speech] Confirmed enhanced voice saved for future startups
+
+····················stdout | tests/unit/ui/library-insertion.test.tsx > saves start order through the searchable insertion selector
+[library] Word inserted { bookId: 'book', ordinal: 1 }
+
+·············································stdout | tests/unit/ui/ai-credential-recovery.test.tsx > resets all credentials only after confirmation preserving metadata active selection and refreshing revision
+[ai-profiles] Database configuration updated
+
+stdout | tests/unit/ui/library-insertion.test.tsx > saves end order through the searchable insertion selector
+[library] Word inserted { bookId: 'book', ordinal: 3 }
+
+··············stdout | tests/unit/ui/library-insertion.test.tsx > saves before order through the searchable insertion selector
+[library] Word inserted { bookId: 'book', ordinal: 2 }
+
+··············stdout | tests/unit/ui/library-insertion.test.tsx > saves after order through the searchable insertion selector
+[library] Word inserted { bookId: 'book', ordinal: 3 }
+
+················stdout | tests/unit/ui/library-insertion.test.tsx > jumps to and highlights the saved word and marks AI provenance
+[library] Word inserted { bookId: 'book', ordinal: 32 }
+
+·····································································································································································································stdout | tests/unit/ui/interpretation-workspace.test.tsx > interpretation workspace > builds polish and deep-analysis requests from the selected transcript
+[interpretation] Transcript analysis started
+
+stdout | tests/unit/ui/interpretation-workspace.test.tsx > interpretation workspace > builds polish and deep-analysis requests from the selected transcript
+[interpretation] Transcript analysis completed
+
+stdout | tests/unit/ui/interpretation-workspace.test.tsx > interpretation workspace > builds polish and deep-analysis requests from the selected transcript
+[interpretation] Transcript analysis started
+
+stdout | tests/unit/ui/interpretation-workspace.test.tsx > interpretation workspace > builds polish and deep-analysis requests from the selected transcript
+[interpretation] Transcript analysis completed
+
+····················stdout | tests/unit/ui/backup-coordination.test.ts > clears cached AI credentials and invalidates retained runtime handles after committed import
+[ai-profiles] Runtime credentials ready { elapsedMs: 0 }
+
+·······················································stdout | tests/unit/ui/library-insertion-progress.test.tsx > persists insertion order while keeping in-progress study on the same word
+[library] Book saved { bookId: 'daily', wordCount: 3, resetProgress: false }
+
+stdout | tests/unit/ui/library-insertion-progress.test.tsx > persists insertion order while keeping in-progress study on the same word
+[library] Word inserted { bookId: 'daily', ordinal: 1 }
+
+···········stdout | tests/unit/ui/interpretation-live-captions.test.ts > subscribes before starting and waits for capturing, filtering other sessions
+[live-captions] Start requested { source: 'system' }
+
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > subscribes before starting and waits for capturing, filtering other sessions
+[live-captions] State changed { state: 'capturing' }
+
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > subscribes before starting and waits for capturing, filtering other sessions
+[live-captions] State changed { state: 'draining' }
+[live-captions] State changed { state: 'stopped' }
+
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > cancels disposal including an in-flight native start without publishing late events
+[live-captions] Start requested { source: 'system' }
+
+·stdout | tests/unit/ui/interpretation-live-captions.test.ts > surfaces mixed-source failure without fallback and permits a fresh session
+[live-captions] Start requested { source: 'mixed' }
+
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > surfaces mixed-source failure without fallback and permits a fresh session
+[live-captions] Start requested { source: 'microphone' }
+
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > remembers a stop requested while subscription is still preparing
+[live-captions] Start requested { source: 'system' }
+
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > cleans up on asynchronous native errors and ignores subsequent results
+[live-captions] Start requested { source: 'system' }
+
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > configures translation only after start acknowledgment, without credentials, and cleans up both listeners
+[live-captions] Start requested { source: 'system' }
+
+·········stdout | tests/unit/ui/interpretation-live-captions.test.ts > cancels translation immediately on stop while still accepting drained source results
+[live-captions] Start requested { source: 'system' }
+
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > cancels translation immediately on stop while still accepting drained source results
+[live-captions] State changed { state: 'stopped' }
+
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > forwards drained finals to background history and finalizes on disposal
+[live-captions] Start requested { source: 'system' }
+
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > forwards drained finals to background history and finalizes on disposal
+[live-captions] State changed { state: 'stopped' }
+
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > reports recording failure without stopping local recognition
+[live-captions] Start requested { source: 'system' }
+
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > reports recording failure without stopping local recognition
+[live-captions] State changed { state: 'capturing' }
+
+·················································································································································································································································stdout | tests/unit/ui/add-word.test.ts > add word > reuses a deeply cloned exact match with a fresh UUID without AI
+[add-word] Searching existing library
+[add-word] Reusing existing word with a new ID
+
+stdout | tests/unit/ui/add-word.test.ts > add word > loads bundled books and searches past partial matches
+[add-word] Searching existing library
+
+stdout | tests/unit/ui/add-word.test.ts > add word > loads bundled books and searches past partial matches
+[add-word] Reusing existing word with a new ID
+
+stdout | tests/unit/ui/add-word.test.ts > add word > does not generate when a bundled lookup fails
+[add-word] Searching existing library
+
+stdout | tests/unit/ui/add-word.test.ts > add word > generates complete words from strict JSON (fenced=false)
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > generates complete words from strict JSON (fenced=false)
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > generates complete words from strict JSON (fenced=false)
+[add-word] Validated AI word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > generates complete words from strict JSON (fenced=true)
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > generates complete words from strict JSON (fenced=true)
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > generates complete words from strict JSON (fenced=true)
+[add-word] Validated AI word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 0
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 0
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 1
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 1
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 2
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 2
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 3
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 3
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 4
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 4
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 5
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 5
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 6
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 6
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 7
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 7
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 8
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 8
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 9
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 9
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 10
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 10
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 11
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 11
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 12
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 12
+[add-word] Generating missing word data
+
+··············stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 13
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 13
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects non-strict JSON response 0
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects non-strict JSON response 0
+[add-word] Generating missing word data
+
+·························stdout | tests/unit/ui/add-word.test.ts > add word > rejects non-strict JSON response 1
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects non-strict JSON response 1
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects non-strict JSON response 2
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects non-strict JSON response 2
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects non-strict JSON response 3
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects non-strict JSON response 3
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > checks cancellation after bundled lookup
+[add-word] Searching existing library
+
+stdout | tests/unit/ui/add-word.test.ts > add word > checks cancellation after resolving runtime
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > checks cancellation after generation
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > checks cancellation after generation
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects results if the profile changed during generation
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects results if the profile changed during generation
+[add-word] Generating missing word data
+
+·····················································································································
+
+ Test Files  97 passed (97)
+      Tests  978 passed (978)
+   Start at  20:16:04
+   Duration  15.61s (transform 5.88s, setup 20.48s, import 10.52s, tests 44.81s, environment 63.46s)

@@ -1,0 +1,35 @@
+[iOS] Signing team: AUTOTEAM01
+✔ discovery accepts phones and tablets but excludes simulators and Macs (1.075417ms)
+✔ legacy CoreDevice schema remains supported (0.261ms)
+✔ unprepared paired iPhones remain visible when CoreDevice omits reality (0.348917ms)
+✔ automatic selection excludes stale devices and reports ambiguity before building (0.151917ms)
+✔ only available or connected devices qualify, regardless of remembered wired transport (0.197959ms)
+✔ wired tunnel probing requires verified reachability and skips stale or unrequested phones (0.590916ms)
+✔ team selection respects explicit settings, project settings and certificate fallback (0.113791ms)
+✔ certificate discovery falls back to Xcode certificates when no private identity is listed (0.129833ms)
+✔ device builds discover a unique certificate team without an environment variable (1.616167ms)
+✔ current-schema disabled developer mode is rejected before building (0.158209ms)
+✔ iOS icon sync copies changed artwork while preserving unchanged asset timestamps (10.846167ms)
+✔ iOS builds select the simulator architecture and never require a signing team (0.681542ms)
+✔ iOS environment uses project-local Rust while preserving explicit Xcode and team choices (0.190209ms)
+✔ iOS commands preserve device selection and reject unknown actions (0.085292ms)
+✔ node tauri runner repair preserves paths, signing and arguments (6.547333ms)
+✔ npm run -- tauri runner repair preserves paths, signing and arguments (6.878ms)
+✔ npm run tauri runner repair preserves paths, signing and arguments (5.9005ms)
+✔ /opt/node/bin/node tauri runner repair preserves paths, signing and arguments (5.702083ms)
+✔ iOS environment disables brew background maintenance while honoring explicit overrides (0.122833ms)
+✔ repeat simulator builds remove only the generated app and refuse symlink traversal (6.464167ms)
+✔ generated deployment target follows config, preserves signing and rejects malformed versions (11.995458ms)
+✔ iPhone build and release select the device with distinct optimization profiles (0.231625ms)
+✔ iPhone installation selects the signed device archive and requires an explicit phone (0.146584ms)
+✔ public iPhone make targets reach iOS validation without entering desktop builds (483.460958ms)
+✔ the pinned Apple toolchain includes Swift archive symbol repair tools (7.247375ms)
+✔ iOS release retains optimized Rust and Swift-compatible debug information without changing desktop defaults (0.086541ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 611.329959

@@ -13,7 +13,7 @@ make build
 
 公开证书和指纹配置位于 `~/.config/quicklang/`。重复初始化会保留现有身份；不要在每次构建时重新生成证书。需要迁移机器时，应通过钥匙串访问安全备份证书和私钥。
 
-`make build` 和 `make release` 在打包后、复制产物前自动应用本机配置，并执行 `codesign --verify --deep --strict`。显式设置 `APPLE_SIGNING_IDENTITY` 时优先交给 Tauri 签名。已配置但不可用的本地证书会让构建失败，不会静默退回临时签名。`make dev` 的裸可执行文件不走这个打包签名流程。
+`make build` 和 `make release` 在打包后、复制产物前自动应用本机配置，并执行 `codesign --verify --deep --strict`。显式设置 `APPLE_SIGNING_IDENTITY` 时优先交给 Tauri 签名。已配置但不可用的本地证书会让构建失败，不会静默退回临时签名。
 
 从旧临时签名切换后，需要退出应用并重新授予录音权限一次。固定证书与 bundle identifier 能保持代码身份，录音权限是否跨构建保留仍需实际验证。
 

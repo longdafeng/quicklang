@@ -1,0 +1,14 @@
+   Compiling quicklang-domain v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/domain)
+   Compiling quicklang-app v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/app)
+   Compiling quicklang-scheduler v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/scheduler)
+   Compiling quicklang-storage-api v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-api)
+   Compiling quicklang-typing-engine v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/typing-engine)
+   Compiling quicklang-storage-seekdb v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-seekdb)
+   Compiling quicklang-application v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/application)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 15.81s
+     Running unittests src/lib.rs (build/macos/cargo/debug/deps/quicklang_app-de0f38e083104441)
+
+running 1 test
+test storage::tests::import_rejects_delayed_first_session_write ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 186 filtered out; finished in 1.67s

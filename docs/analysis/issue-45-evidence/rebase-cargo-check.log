@@ -1,0 +1,68 @@
+    Checking quicklang-domain v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/domain)
+   Compiling quicklang-storage-seekdb v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-seekdb)
+    Checking quicklang-server v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/server)
+    Checking quicklang-tests v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/tests/rust)
+   Compiling quicklang-app v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/app)
+    Checking quicklang-storage-api v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-api)
+    Checking quicklang-scheduler v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/scheduler)
+    Checking quicklang-typing-engine v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/typing-engine)
+    Checking quicklang-sync-core v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/sync-core)
+    Checking quicklang-storage-oceanbase v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-oceanbase)
+    Checking quicklang-application v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/application)
+warning: function `decode_values` is never used
+   --> src/crates/storage-seekdb/src/app_storage.rs:398:4
+    |
+398 | fn decode_values(rows: Vec<Vec<Option<String>>>) -> Result<Value, AppError> {
+    |    ^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: method `create_user_document` is never used
+   --> src/crates/storage-seekdb/src/user_documents.rs:263:19
+    |
+223 | impl SeekDbEmbeddedAdapter {
+    | -------------------------- method in this implementation
+...
+263 |     pub(crate) fn create_user_document(&self, profile: Profile) -> Result<(), AppError> {
+    |                   ^^^^^^^^^^^^^^^^^^^^
+
+warning: `quicklang-storage-seekdb` (lib) generated 2 warnings
+warning: `quicklang-storage-seekdb` (lib test) generated 1 warning (1 duplicate)
+error[E0308]: mismatched types
+   --> src/app/src/lib.rs:390:13
+    |
+389 |         let error = tauri::async_runtime::block_on(interpretation_repository_with_storage(
+    |                                                    -------------------------------------- arguments to this function are incorrect
+390 |             &storage,
+    |             ^^^^^^^^ expected `&StorageService`, found `&(TempDir, StorageService)`
+    |
+    = note: expected reference `&storage::StorageService`
+               found reference `&(TempDir, storage::StorageService)`
+note: function defined here
+   --> src/app/src/lib.rs:98:10
+    |
+ 98 | async fn interpretation_repository_with_storage(
+    |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 99 |     storage: &StorageService,
+    |     ------------------------
+
+error[E0308]: mismatched types
+   --> src/app/src/lib.rs:411:13
+    |
+410 |         let error = tauri::async_runtime::block_on(interpretation_repository_with_storage(
+    |                                                    -------------------------------------- arguments to this function are incorrect
+411 |             &storage,
+    |             ^^^^^^^^ expected `&StorageService`, found `&(TempDir, StorageService)`
+    |
+    = note: expected reference `&storage::StorageService`
+               found reference `&(TempDir, storage::StorageService)`
+note: function defined here
+   --> src/app/src/lib.rs:98:10
+    |
+ 98 | async fn interpretation_repository_with_storage(
+    |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 99 |     storage: &StorageService,
+    |     ------------------------
+
+For more information about this error, try `rustc --explain E0308`.
+error: could not compile `quicklang-app` (lib test) due to 2 previous errors

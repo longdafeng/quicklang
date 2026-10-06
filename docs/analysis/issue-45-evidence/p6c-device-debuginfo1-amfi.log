@@ -1,0 +1,4 @@
+Timestamp               Ty Process[PID:TID]
+2026-10-05 19:43:51.394 Df kernel[0:5ccb62] (AppleMobileFileIntegrity) AMFI: '/Users/longda/.codex/worktrees/longterm-integration/quicklang/build/ios/cargo/debug/build/swift-rs-0ddccd98a2205d40/build-script-test-build' has no CMS blob?
+2026-10-05 19:43:51.394 Df kernel[0:5ccb62] (AppleMobileFileIntegrity) AMFI: '/Users/longda/.codex/worktrees/longterm-integration/quicklang/build/ios/cargo/debug/build/swift-rs-0ddccd98a2205d40/build-script-test-build': Unrecoverable CT signature issue, bailing out.
+2026-10-05 19:44:07.823 Df log[26063:5cd134] [com.apple.log:] log run noninteractively, parent: 26061 (zsh), args: '/usr/bin/log' 'show' '--last' '3m' '--style' 'compact' '--predicate' 'eventMessage CONTAINS "swift-rs-0ddccd98a2205d40"'

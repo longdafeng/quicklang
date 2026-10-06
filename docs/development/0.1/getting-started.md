@@ -4,7 +4,7 @@
 
 运行 `make init` 准备固定依赖、seekdb 运行时和词库数据库，再按需执行：
 
-- `make dev`：校验最终词库后启动 Tauri 桌面开发；`npm run dev` 仅启动 UI 浏览器预览（`127.0.0.1:1420`）。
+- `npm run dev`：仅启动 UI 浏览器预览（`127.0.0.1:1420`）；原生应用使用下方构建命令。
 - `make test`：许可检查、Rust fmt/Clippy/默认 workspace 测试、TypeScript、Vitest 和 Node 脚本测试。
 - `make test-db`：校验词库及本机运行时后，串行运行真实 seekdb 集成、词库 schema、存储 crate 和桌面存储测试；默认测试中忽略的用例不计为通过。
 - `make build`：运行时离线校验、许可与词库校验、UI 构建、离线 Rust server 编译及 Tauri 未签名打包。`npm run build` 仅做 UI 类型检查和 Vite 构建。

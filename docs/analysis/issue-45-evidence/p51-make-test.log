@@ -1,0 +1,1514 @@
+node scripts/tasks.mjs test
+> npm run format:check
+
+> quicklang@0.8.0 format:check
+> node scripts/format.mjs --check
+
+[format] Checked 394 non-Rust source files; 0 unformatted.
+> cargo fmt --all -- --check
+> /usr/local/bin/node scripts/compliance/check.mjs
+License/layout checks passed (239 source files). Release audit limitations are recorded.
+> cargo clippy --locked --offline --workspace --all-targets -- -D warnings
+    Checking quicklang-storage-api v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-api)
+   Compiling objc2-exception-helper v0.1.1
+   Compiling objc2 v0.6.4
+    Checking quicklang-storage-seekdb v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-seekdb)
+    Checking quicklang-application v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/application)
+    Checking block2 v0.6.2
+    Checking objc2-core-foundation v0.3.2
+    Checking dispatch2 v0.3.1
+    Checking quicklang-tests v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/tests/rust)
+    Checking objc2-foundation v0.3.2
+    Checking objc2-app-kit v0.3.2
+    Checking objc2-web-kit v0.3.2
+    Checking tao v0.35.3 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/deps/patches/tao)
+    Checking muda v0.19.3
+    Checking window-vibrancy v0.6.0
+    Checking wry v0.55.1
+    Checking tauri-runtime v2.11.3
+    Checking tauri-runtime-wry v2.11.4
+    Checking tauri v2.11.5
+    Checking tauri-plugin-opener v2.5.5
+    Checking quicklang-app v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/app)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 12.25s
+> cargo test --locked --offline --workspace --config target.'cfg(target_os = "macos")'.runner = ["/usr/local/bin/node","/Users/longda/.codex/worktrees/longterm-integration/quicklang/scripts/testing/rust-test-runner.mjs"]
+   Compiling quicklang-storage-api v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-api)
+   Compiling objc2-exception-helper v0.1.1
+   Compiling objc2 v0.6.4
+   Compiling quicklang-storage-seekdb v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-seekdb)
+   Compiling quicklang-application v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/application)
+   Compiling objc2-core-foundation v0.3.2
+   Compiling block2 v0.6.2
+   Compiling dispatch2 v0.3.1
+   Compiling objc2-foundation v0.3.2
+   Compiling quicklang-tests v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/tests/rust)
+   Compiling objc2-app-kit v0.3.2
+   Compiling objc2-web-kit v0.3.2
+   Compiling tao v0.35.3 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/deps/patches/tao)
+   Compiling window-vibrancy v0.6.0
+   Compiling muda v0.19.3
+   Compiling wry v0.55.1
+   Compiling tauri-runtime v2.11.3
+   Compiling tauri-runtime-wry v2.11.4
+   Compiling tauri v2.11.5
+   Compiling tauri-plugin-opener v2.5.5
+   Compiling quicklang-app v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/app)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 22.65s
+     Running unittests src/lib.rs (build/macos/cargo/debug/deps/quicklang_app-f91cfec14b77b18f)
+
+running 204 tests
+test ai_network::tests::live_connectivity_probe ... ignored, Manual live connectivity probe; set QUICKLANG_AI_PROBE_URL
+test ai_network::tests::loopback_routes_are_local ... ok
+test ai_gateway::tests::chat_text_accepts_supported_audio_response_shapes ... ok
+test ai_gateway::tests::chat_text_rejects_empty_truncated_and_malformed_output ... ok
+test ai_gateway::tests::validation_matches_existing_settings_rules ... ok
+test ai_profiles::tests::concurrent_resolutions_read_keychain_once ... ok
+test ai_profiles::tests::database_native_profile_backend_round_trips_without_credentials ... ignored, requires real seekdb runtime
+test ai_profiles::tests::database_profile_import_clears_only_target_credentials ... ignored, requires real seekdb runtime
+test ai_gateway::tests::endpoint_accepts_https_and_loopback_http_only ... ok
+test ai_profiles::tests::database_profile_recovery_requires_confirmation_and_missing_key ... ignored, requires real seekdb runtime
+test ai_profiles::tests::database_profiles_crud_is_user_scoped_and_purpose_safe ... ignored, requires real seekdb runtime
+test ai_profiles::tests::failed_and_missing_reads_can_be_retried ... ok
+test ai_profiles::tests::created_key_is_cached_without_overwriting_existing_key ... ok
+test auto_recite_overlay::tests::validates_bounded_overlay_words ... ok
+test auto_recite_overlay::tests::dispatches_only_supported_callback_actions ... ok
+test auto_recite_overlay::tests::rolls_back_overlay_when_main_window_hide_fails ... ok
+test auto_recite_overlay::tests::serializes_payload_and_orders_overlay_operations ... ok
+test caption_composer::tests::cjk_sentence_boundary_and_payload_bounds ... ok
+test caption_composer::tests::page_identity_survives_revisions_and_changes_at_sentence_boundary ... ok
+test caption_composer::tests::joins_adjacent_phrases_and_revises_only_overlap ... ok
+test caption_composer::tests::keeps_completed_sentence_until_next_phrase ... ok
+test caption_composer::tests::pause_starts_new_caption_and_invalid_ranges_do_not_mutate ... ok
+test caption_pip::tests::desktop_start_is_explicitly_unsupported ... ok
+test caption_pip::tests::desktop_stop_and_update_are_safe_noops ... ok
+test caption_scheduler::tests::duration_scales_and_clamps ... ok
+test caption_scheduler::tests::cjk_reading_units_and_invalid_input ... ok
+test caption_scheduler::tests::live_updates_bypass_old_pages_and_never_regress ... ok
+test ai_profiles::tests::native_profile_commands_preserve_operation_arguments ... ok
+test caption_scheduler::tests::long_phrase_is_delivered_in_readable_order ... ok
+test caption_scheduler::tests::hard_lag_keeps_latest_and_bounds_memory ... ok
+test caption_scheduler::tests::queued_revision_does_not_reset_arrival_or_duplicate ... ok
+test caption_scheduler::tests::soft_lag_accelerates_short_but_not_long_text ... ok
+test caption_scheduler::tests::source_and_translation_are_independent ... ok
+test caption_scheduler::tests::revisions_preserve_dwell_and_queue_position ... ok
+test caption_scheduler::tests::timer_advances_without_arrivals ... ok
+test caption_scheduler::tests::unicode_unbroken_input_is_bounded_without_loss ... ok
+test caption_scheduler::tests::streaming_growth_does_not_repeat_consumed_pages ... ok
+test caption_stream::tests::live_profile_translation_probe ... ignored, Manual saved-profile probe; requires QUICKLANG_AI_PROBE_DATA and QUICKLANG_AI_PROBE_PROFILE
+test caption_stream::tests::interrupted_or_truncated_stream_is_not_success ... ok
+test caption_stream::tests::fragmented_utf8_crlf_and_completion ... ok
+test caption_stream::tests::cancellation_before_registration_is_preserved ... ok
+test ai_profiles::tests::portable_profile_validation_rejects_duplicates_limits_and_invalid_activation ... ok
+test caption_stream::tests::registry_expires_stale_requests_before_capacity_check ... ok
+test ai_network::tests::refused_connection_has_safe_diagnostics ... ok
+test caption_stream::tests::registry_preserves_early_cancel_and_cleans_up_settled_requests ... ok
+test caption_stream::tests::provider_failures_map_to_safe_diagnostic_codes ... ok
+test caption_stream::tests::non_streaming_json_enforces_gateway_response_limit ... ok
+test caption_stream::tests::interrupted_response_uses_gateway_network_diagnostics ... ok
+test ai_gateway::tests::chat_completion_posts_json_and_returns_trimmed_text ... ok
+test caption_timing::tests::rejects_invalid_session_identifier_lengths ... ok
+test coach::live_model_tests::configured_chat_model_translates_fixed_text ... ignored, Live provider test; run by make test when chat is configured
+test coach::live_model_tests::configured_transcription_model_recognizes_fixed_audio ... ignored, Live provider test; run by make test when transcription is configured
+test caption_timing::tests::validates_browser_timing_metadata_without_a_webview ... ok
+test coach::live_model_tests::generated_audio_fixture_is_mp3 ... ok
+test caption_stream::tests::non_streaming_json_rejects_oversized_translation_text ... ok
+test ai_gateway::tests::json_response_rejects_oversized_bodies ... ok
+test ai_gateway::tests::json_response_rejects_invalid_json_and_http_errors ... ok
+test ai_gateway::tests::json_response_enforces_exact_content_length_boundary ... ok
+test coach::transport_tests::audio_preview_transcription_uses_chat_input_audio ... ok
+test coach::transport_tests::transcription_sends_multipart_and_rejects_invalid_audio ... ok
+test coach::transport_tests::chat_round_trip_and_provider_errors ... ok
+test caption_stream::tests::unsupported_stream_response_retries_with_stream_disabled ... ok
+test coach::transport_tests::rejects_malformed_chat_and_audio_before_network_access ... ok
+test caption_timing::tests::persists_metadata_without_transcript_fields ... ok
+test ai_gateway::tests::chat_completion_preserves_transport_and_protocol_errors ... ok
+test file_delivery::apple::tests::abandoning_request_does_not_delete_an_inflight_share ... ok
+test file_delivery::apple::tests::malformed_json_is_rejected_before_accessing_the_staging_root ... ok
+test coach::transport_tests::rejects_invalid_json_missing_text_and_oversized_provider_responses ... ok
+test file_delivery::apple::tests::staging_preserves_utf8_bytes_and_private_permissions ... ok
+test history_subtitles::local::tests::validates_and_offsets_local_transcript ... ok
+test file_delivery::apple::tests::staging_reports_missing_and_non_directory_roots_without_modifying_them ... ok
+test history_subtitles::model::tests::accepts_pause_window_and_rejects_oversized_batches ... ok
+test history_subtitles::model::tests::audio_mode_needs_only_translator_and_does_not_invent_source_srt ... ok
+test history_subtitles::model::tests::offsets_and_translations_share_one_validated_timeline ... ok
+test history_subtitles::model::tests::rejects_invented_timing_and_translation_mismatch ... ok
+test file_delivery::apple::tests::rejects_empty_invalid_and_oversized_json_without_staging ... ok
+test coach::transport_tests::listening_requests_real_segment_timestamps_and_preserves_response ... ok
+test file_delivery::apple::tests::callback_distinguishes_results_and_retains_files_until_completion ... ok
+test history_subtitles::remote::tests::audio_translation_rejects_invalid_wav_without_network ... ok
+test file_delivery::apple::tests::stages_fixed_private_filename_and_removes_on_drop ... ok
+test history_subtitles::remote::tests::audio_preview_dictation_uses_input_audio_directly ... ok
+test history_subtitles::remote::tests::audio_translation_uploads_wav_directly_and_uses_real_batch_interval ... ok
+test history_subtitles::remote::tests::audio_translation_rejects_missing_content_instead_of_treating_it_as_silence ... ok
+test history_subtitles::remote::tests::audio_translation_accepts_silence_without_fabricating_cues ... ok
+test file_delivery::apple::tests::failed_delivery_reports_error_and_releases_staging_and_permit ... ok
+test history_subtitles::remote::tests::digital_silence_never_contacts_provider ... ok
+test file_delivery::apple::tests::simultaneous_staging_does_not_overwrite_or_remove_other_backups ... ok
+test history_subtitles::remote::tests::audio_upload_requests_timestamps_and_translation_preserves_source_offsets ... ok
+test history_subtitles::remote::tests::rejects_provider_without_timestamp_support ... ok
+test history_subtitles::remote::tests::legacy_m4a_upload_uses_its_original_filename_and_media_type ... ok
+test history_subtitles::remote::tests::dictation_accepts_silence_and_rejects_missing_text ... ok
+test history_subtitles::remote::tests::chat_failures_keep_operation_specific_localized_context ... ok
+test history_subtitles::remote::tests::dictation_falls_back_to_audio_chat_before_text_translation ... ok
+test history_subtitles::tests::native_legacy_recovery_cfg_includes_ios_and_macos ... ok
+test history_subtitles::remote::tests::dictation_then_sol_translation_does_not_send_audio_to_text_model ... ok
+test history_subtitles::remote::tests::translation_uses_prior_text_only_and_refinement_replaces_recent_drafts ... ok
+test history_subtitles::tests::excludes_unclosed_audio_and_does_not_recreate_deleted_jobs ... ok
+test history_subtitles::tests::configuration_save_monotonically_advances_existing_revision ... ok
+test history_subtitles::worker::tests::audio_validation_rejects_unsafe_or_unbounded_files ... ok
+test caption_stream::tests::oversized_fallback_error_body_does_not_retry ... ok
+test history_subtitles::tests::legacy_m4a_sidecar_closes_an_empty_recording ... ok
+test caption_stream::tests::unrelated_400_response_does_not_retry ... ok
+test history_subtitles::worker::tests::parallel_claims_are_unique_and_release_for_retry ... ok
+test history_subtitles::tests::configuration_save_assigns_and_persists_revision ... ok
+test history_subtitles::tests::polling_does_not_treat_missing_batches_as_settled ... ok
+test caption_stream::tests::transport_delivers_before_completion_and_accepts_json_fallback ... ok
+test history_subtitles::tests::audio_revision_ignores_prior_transcript_results_and_needs_no_recognizer ... ok
+test history_subtitles::worker::tests::deleted_or_reconfigured_jobs_reject_stale_results ... ok
+test history_subtitles::tests::restart_reads_ordered_completed_results_and_keeps_failed_audio_pending ... ok
+test history_subtitles::worker::tests::commit_rejects_a_stale_configuration_revision ... ok
+test history_subtitles::worker::tests::preparation_marks_the_first_eligible_batch_processing ... ok
+test history_subtitles::tests::polling_waits_for_recording_tail_and_retry_exhaustion ... ok
+test history_subtitles::worker::tests::commit_persists_failure_backoff_and_later_success ... ok
+test file_delivery::apple::tests::accepts_the_exact_core_backup_byte_limit ... ok
+test history_subtitles::worker::tests::preparation_handles_idle_done_and_interrupted_terminal_jobs ... ok
+test interpretation_ai::tests::preserves_silence_and_rejects_truncated_output ... ok
+test interpretation_ai::tests::qwen_audio_flash_normalizes_timed_segments ... ok
+test interpretation_ai::tests::qwen_audio_flash_uses_native_dashscope_protocol ... ok
+test interpretation_ai::tests::shared_chat_completion_contract_is_available ... ok
+test interpretation_ai::tests::transform_preserves_chat_request_and_error_contract ... ok
+test interpretation_ai::tests::transform_preserves_empty_text_short_circuit ... ok
+test interpretation_ai::tests::validates_dashscope_protocol_base_paths ... ok
+test interpretation_ai::tests::validates_endpoints_and_preserves_base_path ... ok
+test interpretation_ai::tests::validates_input_bounds ... ok
+test interpretation_ai::tests::validates_meeting_minutes_options ... ok
+test live_captions::state::tests::action_parser_exposes_only_supported_commands ... ok
+test live_captions::state::tests::presentation_rejects_disabled_and_stopping_updates ... ok
+test live_captions::state::tests::presentation_rejects_stale_updates_and_emits_status_only_effects ... ok
+test live_captions::state::tests::session_discards_wrong_session_and_late_capturing_events ... ok
+test live_captions::state::tests::session_reservation_is_exclusive_until_terminal_cleanup ... ok
+test live_captions::tests::config_accepts_display_metadata_only ... ok
+test live_captions::tests::config_rejects_bounds_nuls_duplicates_and_unknown_selection ... ok
+test live_captions::tests::translation_and_action_bounds ... ok
+test history_subtitles::worker::tests::preparation_rejects_a_predecessor_from_an_older_revision ... ok
+test longterm_export::tests::early_cancellation_expires_and_has_a_hard_bound ... ok
+test longterm_export::tests::early_cancellation_is_owner_and_operation_scoped ... ok
+test history_subtitles::worker::tests::export_repairs_subtitles_and_records_completion ... ok
+test longterm_export::tests::cancellation_never_replaces_an_existing_destination ... ok
+test longterm_export::tests::failed_write_does_not_publish_or_leave_a_temp ... ok
+test history_subtitles::worker::tests::refinement_commit_rejects_a_reconfigured_job ... ok
+test longterm_export::tests::symlink_destination_is_rejected_before_writing ... ok
+test history_subtitles::worker::tests::preparation_enforces_backoff_order_and_revision_reset ... ok
+test longterm_export::tests::successful_publication_replaces_the_selected_file ... ok
+test recording_artifacts::tests::rejects_conflicting_permanent_audio_formats ... ok
+test recording_artifacts::tests::discovery_rejects_conflicting_batch_formats_for_one_sequence ... ok
+test recording_artifacts::tests::legacy_audio_can_use_recovered_mp3_batches ... ok
+test recording_artifacts::tests::rejects_linked_legacy_audio_sidecars_and_batches ... ok
+test history_subtitles::worker::tests::prior_context_keeps_only_recent_completed_cues ... ok
+test recordings::tests::deletion_collision_rolls_back_partial_staging_and_allows_retry ... ok
+test history_subtitles::worker::tests::refinement_plan_is_isolated_to_the_current_revision ... ok
+test history_subtitles::worker::tests::refinement_plan_waits_for_a_nonempty_thirty_second_window ... ok
+test history_subtitles::worker::tests::refinement_commit_updates_matching_cues_and_checkpoint ... ok
+test recordings::tests::discovers_legacy_m4a_audio_metadata_and_pending_batches ... ok
+test recordings::tests::recording_root_resolution_preserves_configuration_precedence ... ok
+test history_subtitles::worker::tests::refinement_plan_bounds_the_recent_completed_window ... ok
+test recordings::tests::deletion_rolls_back_or_removes_audio_and_metadata_together ... ok
+test recordings::tests::metadata_uses_actual_size_and_marks_missing_or_incomplete_files ... ok
+test recordings::tests::root_resolution_propagates_only_required_lookup_errors ... ok
+test speech::tests::desktop_audio_requires_wav_container ... ok
+test speech::tests::desktop_recitation_start_reports_unsupported ... ok
+test speech::tests::installed_voice_output_requires_success ... ok
+test recordings::tests::deletion_stages_and_removes_legacy_m4a_artifacts ... ok
+test speech::tests::persists_download_refusal ... ignored, requires real embedded seekdb
+test speech::tests::parses_enhanced_voice ... ok
+test speech::tests::preferred_enhanced_voice_requires_name_and_locale ... ok
+test speech::tests::rejects_invalid_render ... ok
+test recordings::tests::failed_metadata_retains_error_and_filters_negative_duration ... ok
+test speech::tests::validates_celebration_notes ... ok
+test startup_path_tests::desktop_debug_paths_use_checkout_resources ... ok
+test speech::tests::speech_render_command_rejects_invalid_input ... ok
+test speech::tests::system_settings_seam_runs_off_ui_thread ... ok
+test startup_path_tests::ios_debug_paths_keep_platform_specific_library_policy ... ok
+test recordings::tests::rejects_symlink_audio ... ok
+test startup_path_tests::ios_release_paths_use_bundle_and_honor_data_override ... ok
+test startup_path_tests::spelling_command_delegates_to_the_typing_engine ... ok
+test storage::tests::configuration_is_processed_while_validation_is_incomplete ... ignored, requires real seekdb runtime
+test storage::tests::configuration_survives_invalid_library ... ignored, requires real seekdb runtime
+test storage::tests::disconnected_and_full_workers_return_retryable_errors ... ok
+test storage::tests::import_invalidates_inflight_user_credentials_and_clears_secrets ... ignored, requires real seekdb runtime
+test storage::tests::import_rejects_delayed_first_session_write ... ignored, requires native storage runtime or the dependency sqlite feature
+test storage::tests::failed_startup_is_not_reported_ready ... ok
+test storage::tests::pending_keychain_resolution_does_not_block_metadata_crud ... ignored, requires real seekdb runtime
+test storage::tests::scheduler_dispatches_before_library_completion_and_after_error ... ok
+test storage::tests::stale_longterm_job_does_not_execute_its_callback ... ok
+test storage::tests::startup_separates_database_and_library_readiness ... ignored, requires real seekdb and generated seed
+test storage::tests::user_backup_preserves_failed_imports_and_retires_replaced_sessions ... ignored, requires real seekdb runtime
+test test_process::tests::bounded_command_wraps_the_test_executable_with_the_propagated_runner ... ok
+test storage::tests::receives_success_errors_and_disconnected_replies ... ok
+test transcription::tests::exposes_protocol_capabilities ... ok
+test transcription::tests::rejects_incompatible_inline_audio_workflows ... ok
+test transcription::tests::selects_protocols_for_known_model_families ... ok
+test voice_download::tests::accessibility_launcher_runs_off_the_async_runtime_thread ... ok
+test history_subtitles::worker::tests::refinement_commit_rejects_stale_targets_without_partial_writes ... ok
+test voice_download::tests::download_worker_rejects_overlap_and_releases_guard ... ok
+test voice_download::tests::native_results_map_to_public_statuses ... ok
+test recordings::tests::metadata_size_limit_and_malformed_content_fail_without_mutation ... ok
+test recordings::tests::missing_audio_preserves_metadata_and_pending_bytes_without_playback ... ok
+test history_subtitles::worker::tests::pending_refinement_is_retried_before_export_completion ... ok
+test startup_path_tests::interpretation_delete_requires_recordings_root ... ok
+test startup_path_tests::interpretation_delete_restores_audio_after_storage_failure ... ok
+test mp3_encoder::tests::ffi_validates_inputs_and_finishes_a_playable_file ... ok
+test mp3_encoder::tests::writes_an_mp3_bitstream_with_a_frame_sync ... ok
+test speech::tests::voice_commands_share_the_native_inventory ... ok
+test speech::tests::renders_installed_voice ... ok
+
+test result: ok. 188 passed; 0 failed; 16 ignored; 0 measured; 0 filtered out; finished in 3.60s
+
+     Running unittests src/main.rs (build/macos/cargo/debug/deps/quicklang-8ce897f629dc6f83)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (build/macos/cargo/debug/deps/quicklang_application-4e53ed0c8a35e9da)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (build/macos/cargo/debug/deps/quicklang_domain-3cdb8e8fa375bbee)
+
+running 7 tests
+test longterm::tests::event_kind_round_trips_through_stable_lowercase_strings ... ok
+test longterm::tests::next_generation_follows_tombstone_and_existing_max_plus_one ... ok
+test longterm::tests::enums_serialize_to_stable_lowercase_strings ... ok
+test longterm::tests::owner_hash_matches_fixed_vectors_and_is_user_specific ... ok
+test longterm::tests::domain_entry_rejects_empty_and_blank_strings ... ok
+test longterm::tests::nfkc_lower_v1_normalizes_compatibility_case_combining_and_edge_whitespace ... ok
+test longterm::tests::card_id_matches_fixed_vectors_and_is_deterministic ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (build/macos/cargo/debug/deps/quicklang_scheduler-44984f696d1a0f91)
+
+running 21 tests
+test longterm::tests::again_resets_the_step_and_reschedules_24_hours ... ok
+test longterm::tests::apply_early_attempt_never_touches_the_schedule ... ok
+test longterm::tests::apply_formal_attempt_dispatches_good_and_again ... ok
+test longterm::tests::due_selection_rejects_blank_session_ids_and_negative_times ... ok
+test longterm::tests::due_selection_applies_the_visibility_conditions ... ok
+test longterm::tests::due_selection_serves_the_longest_overdue_tier_first ... ok
+test longterm::tests::due_selection_orders_by_digest_within_a_tier ... ok
+test longterm::tests::first_good_schedules_one_day_from_the_effective_time ... ok
+test longterm::tests::good_chain_accumulates_the_ladder_intervals ... ok
+test longterm::tests::due_selection_validates_the_group_size ... ok
+test longterm::tests::good_ladder_is_fixed_then_doubles_and_caps_at_ten_years ... ok
+test longterm::tests::overdue_tier_boundaries_are_exact ... ok
+test longterm::tests::mastering_happens_once_at_the_first_30_day_interval ... ok
+test longterm::tests::retry_not_before_again_adds_one_minute ... ok
+test longterm::tests::scheduling_rejects_invalid_time_and_state ... ok
+test longterm::tests::today_count_uses_the_local_day_boundary ... ok
+test longterm::tests::today_count_shifts_with_the_timezone_offset ... ok
+test longterm::tests::today_count_validates_time_and_offset ... ok
+test longterm::tests::stable_random_key_matches_fixed_vectors ... ok
+test longterm::tests::due_selection_truncates_to_the_limit ... ok
+test longterm::tests::due_selection_is_replayable_for_identical_inputs ... ok
+
+test result: ok. 21 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (build/macos/cargo/debug/deps/quicklang_server-d03582f1472ae1b2)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (build/macos/cargo/debug/deps/quicklang_server-7f31d54911fdbdef)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (build/macos/cargo/debug/deps/quicklang_storage_api-8372be109f67f548)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (build/macos/cargo/debug/deps/quicklang_storage_oceanbase-14299cf80fa13ed2)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (build/macos/cargo/debug/deps/quicklang_storage_seekdb-b3e6a69511ae73ff)
+
+running 76 tests
+test ai_profiles::tests::native_profiles_persist_across_reopen ... ignored, requires pinned native seekdb runtime
+test app_storage::tests::repository_roundtrip_transaction_and_reopen ... ignored, requires real macOS ARM64 seekdb runtime
+test ai_profiles::tests::chat_and_transcription_profiles_have_independent_active_selections ... ok
+test ai_profiles::tests::obsolete_combined_profiles_are_discarded ... ok
+test ai_profiles::tests::validates_frontend_url_policy_and_explicit_key_actions ... ok
+test ai_profiles::tests::metadata_management_never_accesses_keychain ... ok
+test ai_profiles::tests::credential_snapshot_is_owned_and_preserves_authenticated_resolution ... ok
+test listening::tests::persists_audio_isolates_profiles_and_rejects_stale_updates ... ignored, requires real macOS ARM64 seekdb runtime
+test app_storage::tests::state_validation_accepts_raw_strings_but_rejects_invalid_batches ... ok
+test longterm_v2::tests::again_wait_and_early_schedule_isolation ... ignored, requires real seekdb runtime
+test longterm_v2::tests::bounded_list_cursor_survives_anchor_deletion ... ignored, requires real seekdb runtime
+test listening::tests::rejects_path_and_sql_identifiers ... ok
+test ai_profiles::tests::lost_or_corrupt_master_key_fails_closed_even_after_clear ... ok
+test longterm_v2::tests::combined_ordinary_formal_early_and_delete_are_owner_scoped ... ignored, requires real seekdb runtime
+test longterm_v2::tests::dashboard_aggregates_first_attempts_only ... ignored, requires real seekdb runtime
+test ai_profiles::tests::encryption_is_random_authenticated_versioned_and_profile_bound ... ok
+test longterm_v2::tests::deleting_word_preserves_unrelated_manual_and_round_receipts ... ignored, requires real seekdb runtime
+test longterm_v2::tests::deletion_cleans_shared_round_and_owner_isolation ... ignored, requires real seekdb runtime
+test ai_profiles::tests::recovery_denies_present_malformed_and_inaccessible_keys_without_mutation ... ok
+test longterm_v2::tests::derived_time_overflow_rolls_back_formal_and_early_attempts ... ignored, requires real seekdb runtime
+test longterm_v2::tests::formal_completion_receipt_and_deleted_replay ... ignored, requires real seekdb runtime
+test longterm_v2::tests::idempotency_deduplication_and_atomic_rollback ... ignored, requires real seekdb runtime
+test ai_profiles::tests::confirmed_missing_key_recovery_clears_all_secrets_and_allows_reentry ... ok
+test longterm_v2::tests::import_receipts_do_not_retain_batch_data_after_deletion ... ignored, requires real seekdb runtime
+test longterm_v2::tests::ordinary_activity_preserves_other_modes_and_legacy_totals ... ignored, requires real seekdb runtime
+test longterm_v2::tests::ordinary_activity_uses_the_frozen_local_timezone ... ignored, requires real seekdb runtime
+test ai_profiles::tests::crud_selection_secret_actions_and_serialization ... ok
+test app_storage::tests::session_projection_excludes_credentials_and_validates_enums ... ok
+test longterm_v2::tests::ordinary_document_revision_is_projected_and_read_only ... ignored, requires real seekdb runtime
+test longterm_v2::tests::ordinary_error_preserves_short_term_atomicity ... ignored, requires real seekdb runtime
+test longterm_v2::tests::ordinary_invalid_timezone_has_no_writes ... ignored, requires real seekdb runtime
+test longterm_v2::tests::ordinary_retry_preserves_history_and_unique_activity ... ignored, requires real seekdb runtime
+test longterm_v2::tests::streaming_export_batches_and_cancellation ... ignored, requires real seekdb runtime
+test longterm_v2::tests::streaming_export_honors_mid_batch_cancellation ... ignored, requires real seekdb runtime
+test schema::catalog_tests::native_catalog_creates_every_table_and_repairs_missing_tables_on_reopen ... ignored, requires real macOS ARM64 seekdb runtime
+test native::tests::rejects_nul_before_calling_native_query ... ok
+test native::tests::copies_null_empty_and_utf8_results_and_frees_them ... ok
+test longterm_v2::tests::ordinary_wrong_answer_retains_earned_across_retry_rounds ... ok
+test native::tests::failed_begin_skips_body_and_failed_commit_rolls_back ... ok
+test native::tests::nested_transactions_join_one_boundary_and_reset_after_failure ... ok
+test native::tests::frees_results_on_every_query_failure ... ok
+test schema::catalog_tests::ddl_literals_and_comments_do_not_create_phantom_statements ... ok
+test schema::catalog_tests::invalid_or_duplicate_definitions_fail_before_database_access ... ok
+test schema::tests::initialization_fails_if_creation_is_not_visible ... ok
+test schema::tests::initialization_propagates_check_and_create_errors ... ok
+test user_backup::tests::round_trip_isolated_users_stale_preview_and_transaction_rollback ... ignored, requires real macOS ARM64 seekdb runtime; run make test-db
+test schema::tests::initialization_skips_existing_tables_and_recovers_missing_tables ... ok
+test native::tests::transaction_commits_once_and_rolls_back_errors_and_panics ... ok
+test unit_tests::identifiers_enforce_byte_and_control_limits ... ok
+test unit_tests::row_decoder_distinguishes_absence_from_corruption ... ok
+test unit_tests::sql_literals_encode_utf8_and_metacharacters_as_data ... ok
+test user_learning::tests::learning_activity_accepts_strengthen_only_days_and_varied_counts ... ok
+test user_backup::tests::profile_names_follow_utf16_length_contract ... ok
+test user_learning::tests::learning_activity_rejects_duplicates_missing_fields_and_non_arrays ... ok
+test schema::tests::canonical_sources_initialize_every_required_table_in_order ... ok
+test user_learning::tests::legacy_spell_activity_keeps_lenient_format_contract ... ok
+test user_learning::tests::learning_activity_accepts_leap_day_and_rejects_non_calendar_dates ... ok
+test user_learning::tests::learning_activity_rejects_negative_fractional_and_unsafe_counts ... ok
+test user_backup::tests::learning_activity_survives_backup_parse_round_trip ... ok
+test user_validation::tests::accepts_complete_daily_check_ins_and_rejects_broken_streaks ... ok
+test user_validation::tests::learning_activity_dispatches_through_document_validation ... ok
+test user_validation::tests::validates_book_scoped_settings_and_rejects_unknown_or_secret_fields ... ok
+test word_library::tests::full_import_schema_repair_preservation_and_rollback ... ignored, requires real seekdb; run make test-db
+test word_library::tests::incremental_import_yields_with_independently_committed_configuration ... ignored, requires real seekdb
+test word_library::validation_tests::validates_extra_examples_and_native_array_decoding ... ok
+test user_validation::tests::accepts_cumulative_earned_answers_and_bounds_them_like_the_frontend ... ok
+test user_validation::tests::chinese_modes_validate_snapshots_settings_and_temporary_activity ... ok
+test app_storage::tests::chunk_validation_rejects_oversized_or_invalid_audio_and_status ... ok
+test word_library::validation_tests::validates_required_columns_and_types ... ok
+test schema::catalog_tests::new_sql_files_are_discovered_without_a_registration_list ... ok
+test user_backup::tests::validates_versions_secrets_and_references ... ok
+test word_library::validation_tests::validates_text_limits_in_characters_and_bytes ... ok
+test listening::tests::validates_audio_encoding_and_metadata_size_before_writing ... ok
+test word_library::validation_tests::verifies_seed_files_checksums_counts_and_membership_without_database ... ok
+test user_validation::tests::start_positions_follow_large_books_and_review_snapshots ... ok
+test word_library::tests::bundled_library_is_valid_without_generation ... ok
+
+test result: ok. 51 passed; 0 failed; 25 ignored; 0 measured; 0 filtered out; finished in 2.62s
+
+     Running unittests src/bin/init-word-library.rs (build/macos/cargo/debug/deps/init_word_library-2a4d4f1a28f9f9d3)
+
+running 2 tests
+test tests::requires_exactly_three_paths ... ok
+test tests::invalid_seed_fails_before_database_initialization ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (build/macos/cargo/debug/deps/quicklang_sync_core-6aa176ee90aee19f)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests lib.rs (build/macos/cargo/debug/deps/quicklang_tests-be8446f5e63d8492)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running ../unit/rust/core.rs (build/macos/cargo/debug/deps/core-38304733a7a5905f)
+
+running 22 tests
+test lapse_resets_streak_but_retains_history ... ok
+test scheduler_caps_long_intervals_and_ease ... ok
+test new_good_then_good_advances_one_then_six_days ... ok
+test initial_failure_is_learning_not_a_lapse ... ok
+test repeated_failures_do_not_inflate_lapse_count ... ok
+test scheduler_easy_has_four_then_eight_day_initial_intervals ... ok
+test scheduler_due_date_overflow_is_checked_for_success_and_failure ... ok
+test scheduler_checks_invalid_state_and_overflow ... ok
+test hard_never_reduces_interval_and_ease_is_bounded ... ok
+test scheduler_rejects_counter_overflow_without_mutation ... ok
+test corrected_and_hinted_answers_are_not_easy ... ok
+test scheduler_rejects_each_invalid_numeric_boundary ... ok
+test normalization_and_extra_characters_are_checked ... ok
+test typing_combining_unicode_and_case_are_equivalent ... ok
+test typing_hint_takes_precedence_over_backspaces ... ok
+test typing_empty_answer_marks_all_expected_characters_wrong ... ok
+test sync_validates_device_and_event_boundaries ... ok
+test seekdb_never_silently_falls_back ... ok
+test typing_mismatch_positions_are_characters_not_utf8_bytes ... ok
+test sync_rejects_duplicate_ids_and_large_batches ... ok
+test sync_accepts_maximum_unique_batch_and_empty_batch ... ok
+test typing_accepts_exact_byte_limit_but_rejects_multibyte_overflow ... ok
+
+test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running ../contract/longterm.rs (build/macos/cargo/debug/deps/longterm-3ba8d2f08a71bd77)
+
+running 4 tests
+test invalid_inputs_do_not_create_records ... ignored, requires real seekdb
+test normalized_word_dedup_keeps_schedule_and_identity ... ignored, requires real seekdb
+test owner_and_word_identity_are_independent ... ignored, requires real seekdb
+test retained_operation_payload_is_immutable ... ignored, requires real seekdb
+
+test result: ok. 0 passed; 0 failed; 4 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running ../contract/longterm_clear.rs (build/macos/cargo/debug/deps/longterm_clear-eff1262197c20481)
+
+running 4 tests
+test deleting_absent_target_does_not_write_a_receipt ... ignored, requires real seekdb
+test deleting_one_word_preserves_other_card_schedule ... ignored, requires real seekdb
+test deleting_word_removes_history_and_old_round ... ignored, requires real seekdb
+test readding_word_does_not_reuse_old_identity ... ignored, requires real seekdb
+
+test result: ok. 0 passed; 0 failed; 4 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running ../contract/longterm_export.rs (build/macos/cargo/debug/deps/longterm_export-9cd8cb5f11d9b3c6)
+
+running 3 tests
+test export_has_four_public_collections ... ignored, requires real seekdb
+test raw_answers_are_optional_and_receipts_are_always_private ... ignored, requires real seekdb
+test streamed_export_matches_retained_owner_snapshot_after_reopen ... ignored, requires real seekdb
+
+test result: ok. 0 passed; 0 failed; 3 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running ../contract/longterm_import.rs (build/macos/cargo/debug/deps/longterm_import-7f1529296b71b170)
+
+running 6 tests
+test duplicate_words_do_not_hide_invalid_or_repeated_identities ... ignored, requires real seekdb
+test imports_new_words_without_changing_existing_schedule_or_events ... ignored, requires real seekdb
+test late_receipt_conflict_rolls_back_the_whole_import ... ignored, requires real seekdb
+test owner_isolation_and_global_identity_conflicts ... ignored, requires real seekdb
+test retries_are_idempotent_and_deletion_erases_only_the_deleted_word ... ignored, requires real seekdb
+test validates_batch_and_normalized_word_bounds ... ignored, requires real seekdb
+
+test result: ok. 0 passed; 0 failed; 6 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running ../contract/longterm_list.rs (build/macos/cargo/debug/deps/longterm_list-827f89f48180f4cf)
+
+running 5 tests
+test dashboard_has_no_rate_without_formal_attempts ... ignored, requires real seekdb
+test deleted_history_is_removed_from_metrics ... ignored, requires real seekdb
+test history_pages_keep_tied_events_distinct_and_reject_foreign_targets ... ignored, requires real seekdb
+test manual_add_is_history_but_not_an_error ... ignored, requires real seekdb
+test notebook_page_cursor_binds_query ... ignored, requires real seekdb
+
+test result: ok. 0 passed; 0 failed; 5 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running ../contract/longterm_privacy.rs (build/macos/cargo/debug/deps/longterm_privacy-8e564d63d9e19dc3)
+
+running 3 tests
+test delete_all_cannot_invalidate_another_owners_retained_operation ... ignored, requires real seekdb
+test delete_all_leaves_no_longterm_history ... ignored, requires real seekdb
+test foreign_owner_cannot_read_or_delete_a_word ... ignored, requires real seekdb
+
+test result: ok. 0 passed; 0 failed; 3 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running ../contract/ordinary_error.rs (build/macos/cargo/debug/deps/ordinary_error-623723a4cf58e952)
+
+running 2 tests
+test ordinary_error_commits_feedback_and_card_together ... ignored, requires real seekdb
+test stale_ordinary_snapshot_creates_nothing ... ignored, requires real seekdb
+
+test result: ok. 0 passed; 0 failed; 2 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running ../contract/repository.rs (build/macos/cargo/debug/deps/repository-d128f007297a1617)
+
+running 3 tests
+test failed_transaction_leaves_event_and_schedule_unchanged ... ok
+test event_retry_is_idempotent_even_with_old_version ... ok
+test stale_review_and_reused_event_id_do_not_mutate_state ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running ../integration/seekdb.rs (build/macos/cargo/debug/deps/seekdb-c1c759b356c0581e)
+
+running 8 tests
+test embedded_persistence_and_atomicity ... ignored, requires real macOS ARM64 seekdb runtime; run make test-db
+test reopen_probe_command_uses_the_configured_bounded_runner ... ok
+test native::tests::rejects_nul_before_calling_native_query ... ok
+test native::tests::nested_transactions_join_one_boundary_and_reset_after_failure ... ok
+test native::tests::failed_begin_skips_body_and_failed_commit_rolls_back ... ok
+test native::tests::copies_null_empty_and_utf8_results_and_frees_them ... ok
+test native::tests::frees_results_on_every_query_failure ... ok
+test native::tests::transaction_commits_once_and_rolls_back_errors_and_panics ... ok
+
+test result: ok. 7 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running ../integration/server.rs (build/macos/cargo/debug/deps/server-8b04f0956b0aaa7e)
+
+running 1 test
+test live_is_ok_but_readiness_and_unimplemented_endpoints_fail_closed ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running ../contract/session_state.rs (build/macos/cargo/debug/deps/session_state-4b65266d079650bb)
+
+running 4 tests
+test formal_and_early_are_separate_and_early_preserves_schedule ... ignored, requires real seekdb
+test last_good_completes_without_active_round ... ignored, requires real seekdb
+test resume_never_reselects_existing_round ... ignored, requires real seekdb
+test waiting_and_frozen_queue_survive_reopen ... ignored, requires real seekdb
+
+test result: ok. 0 passed; 0 failed; 4 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running ../integration/word_library_schema.rs (build/macos/cargo/debug/deps/word_library_schema-29c79f2dedb4d27f)
+
+running 7 tests
+test shared_words_and_ordered_array_books ... ignored, requires bundled macOS ARM64 seekdb runtime
+test native::tests::failed_begin_skips_body_and_failed_commit_rolls_back ... ok
+test native::tests::copies_null_empty_and_utf8_results_and_frees_them ... ok
+test native::tests::nested_transactions_join_one_boundary_and_reset_after_failure ... ok
+test native::tests::rejects_nul_before_calling_native_query ... ok
+test native::tests::frees_results_on_every_query_failure ... ok
+test native::tests::transaction_commits_once_and_rolls_back_errors_and_panics ... ok
+
+test result: ok. 6 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (build/macos/cargo/debug/deps/quicklang_typing_engine-4bc4e8105f8a6289)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests quicklang_app
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests quicklang_application
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests quicklang_domain
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests quicklang_scheduler
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests quicklang_server
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests quicklang_storage_api
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests quicklang_storage_oceanbase
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests quicklang_storage_seekdb
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests quicklang_sync_core
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests quicklang_tests
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests quicklang_typing_engine
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+> npm run typecheck
+
+> quicklang@0.8.0 typecheck
+> npm run typecheck --workspace @quicklang/ui
+
+
+> @quicklang/ui@0.8.0 typecheck
+> tsc --noEmit
+
+> npm test
+
+> quicklang@0.8.0 test
+> vitest run --config tests/vitest.config.ts
+
+
+ RUN  v4.1.11 /Users/longda/.codex/worktrees/longterm-integration/quicklang
+
+stdout | tests/unit/ui/speech-startup.test.tsx > skips native checks when the database already records an enhanced voice
+[speech] Skipping startup check: database confirms enhanced voice
+
+stdout | tests/unit/ui/speech-startup.test.tsx > skips prompting when a preferred enhanced voice exists
+[speech] Confirmed enhanced voice saved for future startups
+
+stdout | tests/unit/ui/speech-startup.test.tsx > skips prompting when a preferred enhanced voice exists
+[speech] Confirmed enhanced voice saved for future startups
+
+stdout | tests/unit/ui/settings.test.tsx > allows CRUD while resolution is pending and rejects stale credentials
+[ai-profiles] Database configuration updated
+
+stdout | tests/unit/ui/speech-startup.test.tsx > offers permission and manual download when automatic startup lacks access
+[speech] Confirmed enhanced voice saved for future startups
+
+stdout | tests/unit/ui/settings.test.tsx > loads active credentials only into runtime and saves explicit key actions without echo
+[ai-profiles] Runtime credentials ready { elapsedMs: 1 }
+
+stdout | tests/unit/ui/settings.test.tsx > loads active credentials only into runtime and saves explicit key actions without echo
+[ai-profiles] Database configuration updated
+
+stdout | tests/unit/ui/settings.test.tsx > loads active credentials only into runtime and saves explicit key actions without echo
+[ai-profiles] Database configuration updated
+
+stdout | tests/unit/ui/settings.test.tsx > confirms deletion of active profile and clears runtime
+[ai-profiles] Database configuration updated
+
+stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical assets loaded { bookCount: 14, wordCount: 17844 }
+
+stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-junior', wordCount: 1987 }
+
+stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-senior', wordCount: 3911 }
+
+stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-cet4', wordCount: 5664 }
+
+stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-cet4-pure', wordCount: 1753 }
+
+stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-cet6', wordCount: 7551 }
+
+stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-cet6-pure', wordCount: 1887 }
+
+stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-postgraduate', wordCount: 7790 }
+
+stdout | tests/unit/ui/settings.test.tsx > activates another saved profile and refreshes in-memory credentials
+[ai-profiles] Database configuration updated
+
+stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-postgraduate-pure', wordCount: 239 }
+
+stdout | tests/unit/ui/settings.test.tsx > activates another saved profile and refreshes in-memory credentials
+[ai-profiles] Runtime credentials ready { elapsedMs: 0 }
+
+stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-toefl', wordCount: 4264 }
+
+stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-sat', wordCount: 4459 }
+
+stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-ielts', wordCount: 5274 }
+
+stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-gre', wordCount: 9983 }
+
+stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-gmat', wordCount: 3311 }
+
+stdout | tests/unit/ui/settings.test.tsx > creates the first database profile and uses its auto-active snapshot
+[ai-profiles] Database configuration updated
+
+stdout | tests/unit/ui/offline-content.test.tsx > loads canonical IDs and order, without fetching legacy mappings, and caches shared assets
+[library] Canonical book loaded { bookId: 'ink-bec', wordCount: 2824 }
+
+stdout | tests/unit/ui/settings.test.tsx > clears saved keys explicitly and validates unsafe endpoints before writes
+[ai-profiles] Database configuration updated
+
+stdout | tests/unit/ui/offline-content.test.tsx > renders canonical definitions and provenance
+[library] Canonical assets loaded { bookCount: 14, wordCount: 17844 }
+
+stdout | tests/unit/ui/offline-content.test.tsx > renders canonical definitions and provenance
+[library] Canonical book loaded { bookId: 'ink-gre', wordCount: 9983 }
+
+stdout | tests/unit/ui/library.test.tsx > creates a book, adds and edits words, persists it and shares it with study
+[library] Book saved {
+  bookId: 'b05a0a82-b09c-4298-a036-dd81c3ea94de',
+  wordCount: 0,
+  resetProgress: false
+}
+
+stdout | tests/unit/ui/library.test.tsx > creates a book, adds and edits words, persists it and shares it with study
+[library] Book saved {
+  bookId: 'b05a0a82-b09c-4298-a036-dd81c3ea94de',
+  wordCount: 1,
+  resetProgress: false
+}
+
+stdout | tests/unit/ui/library.test.tsx > creates a book, adds and edits words, persists it and shares it with study
+[library] Word inserted { bookId: 'b05a0a82-b09c-4298-a036-dd81c3ea94de', ordinal: 1 }
+
+stdout | tests/unit/ui/library.test.tsx > creates a book, adds and edits words, persists it and shares it with study
+[library] Book saved {
+  bookId: 'b05a0a82-b09c-4298-a036-dd81c3ea94de',
+  wordCount: 1,
+  resetProgress: false
+}
+
+ ✓ tests/unit/ui/app-shell-navigation.test.tsx (3 tests) 1127ms
+   ✓ opens each group's first page in the desktop shell  587ms
+   ✓ opens each group's first page in the iOS shell  460ms
+stdout | tests/unit/ui/interpretation-ui.test.tsx > generates and persists template minutes with the user's focus without replacing older runs
+[interpretation] Transcript analysis started
+
+stdout | tests/unit/ui/interpretation-ui.test.tsx > generates and persists template minutes with the user's focus without replacing older runs
+[interpretation] Transcript analysis completed
+
+stdout | tests/unit/ui/interpretation-ui.test.tsx > generates and persists template minutes with the user's focus without replacing older runs
+[interpretation] Transcript analysis started
+
+stdout | tests/unit/ui/interpretation-ui.test.tsx > generates and persists template minutes with the user's focus without replacing older runs
+[interpretation] Transcript analysis completed
+
+stdout | tests/unit/ui/offline-content.test.tsx > rejects incomplete definitions and allows retry after failure
+[library] Canonical assets loaded { bookCount: 14, wordCount: 17844 }
+
+stdout | tests/unit/ui/offline-content.test.tsx > rejects incomplete definitions and allows retry after failure
+[library] Canonical book loaded { bookId: 'ink-cet4', wordCount: 5664 }
+
+stdout | tests/unit/ui/library.test.tsx > edits built-in books without duplicates and confirms deletion before resetting affected progress
+[library] Book saved { bookId: 'daily', wordCount: 3, resetProgress: false }
+
+stdout | tests/unit/ui/offline-content.test.tsx > deduplicates concurrent loads without letting one caller cancel another
+[library] Canonical assets loaded { bookCount: 14, wordCount: 17844 }
+
+stdout | tests/unit/ui/offline-content.test.tsx > deduplicates concurrent loads without letting one caller cancel another
+[library] Canonical book loaded { bookId: 'ink-gre', wordCount: 9983 }
+
+ ✓ tests/unit/ui/offline-content.test.tsx (6 tests) 1445ms
+   ✓ loads canonical IDs and order, without fetching legacy mappings, and caches shared assets  384ms
+   ✓ rejects incomplete definitions and allows retry after failure  507ms
+ ✓ tests/unit/ui/listening.test.tsx (21 tests) 1435ms
+stdout | tests/unit/ui/library.test.tsx > edits built-in books without duplicates and confirms deletion before resetting affected progress
+[library] Book saved { bookId: 'daily', wordCount: 2, resetProgress: true }
+
+ ✓ tests/unit/ui/encouragement.test.tsx (34 tests) 1647ms
+     ✓ celebrates a second time at the twentieth correct answer  537ms
+ ✓ tests/unit/ui/chinese-recite-lifecycle.test.tsx (18 tests) 1673ms
+ ✓ tests/unit/ui/interpretation-ui.test.tsx (23 tests) 1472ms
+stdout | tests/unit/ui/library.test.tsx > preserves phonetics, translations and attribution when editing a word
+[library] Book saved { bookId: 'daily', wordCount: 1, resetProgress: false }
+
+ ✓ tests/unit/ui/library.test.tsx (5 tests) 1463ms
+   ✓ creates a book, adds and edits words, persists it and shares it with study  471ms
+   ✓ edits built-in books without duplicates and confirms deletion before resetting affected progress  502ms
+stdout | tests/unit/ui/settings.test.tsx > selects newly created B without activating it and reload discards stale drafts
+[ai-profiles] Database configuration updated
+
+stdout | tests/unit/ui/settings.test.tsx > clears runtime after mutation failure and preserves database profiles
+[ai-profiles] Runtime credentials ready { elapsedMs: 1 }
+
+stdout | tests/unit/ui/settings.test.tsx > ignores a stale resolve after a newer reload
+[ai-profiles] Runtime credentials ready { elapsedMs: 0 }
+
+stdout | tests/unit/ui/settings.test.tsx > invalidates the old learner runtime when a credential request completes after switching
+[ai-profiles] Runtime credentials ready { elapsedMs: 0 }
+
+ ✓ tests/unit/ui/settings.test.tsx (18 tests) 2467ms
+   ✓ retries delayed database readiness automatically  1514ms
+ ✓ tests/unit/ui/progress-spelling-resume.test.tsx (9 tests) 333ms
+ ✓ tests/unit/ui/progress-encouragement.test.tsx (19 tests) 225ms
+ ✓ tests/unit/ui/users.test.tsx (7 tests) 2062ms
+   ✓ restores the last user on launch and isolates settings, progress and vocabulary  1030ms
+ ✓ tests/unit/ui/conversation.test.tsx (19 tests) 367ms
+ ✓ tests/unit/ui/app-ios-navigation.test.tsx (3 tests) 429ms
+   ✓ starts every existing iOS learner session on learning progress  400ms
+stdout | tests/unit/ui/library-insertion-progress.test.tsx > persists insertion order while keeping in-progress study on the same word
+[library] Book saved { bookId: 'daily', wordCount: 3, resetProgress: false }
+
+stdout | tests/unit/ui/library-insertion-progress.test.tsx > persists insertion order while keeping in-progress study on the same word
+[library] Word inserted { bookId: 'daily', ordinal: 1 }
+
+ ✓ tests/unit/ui/library-insertion-progress.test.tsx (1 test) 200ms
+ ✓ tests/unit/ui/longterm-review-session.test.tsx (26 tests) 669ms
+stdout | tests/unit/ui/speech-startup.test.tsx > starts automatically with permission and verifies inventory before continuing
+[speech] Confirmed enhanced voice saved for future startups
+
+ ✓ tests/unit/ui/speech-startup.test.tsx (13 tests) 3464ms
+   ✓ starts automatically with permission and verifies inventory before continuing  3012ms
+ ✓ tests/unit/ui/longterm-ordinary-error.test.tsx (11 tests) 417ms
+stdout | tests/unit/ui/library-insertion.test.tsx > adds resolved words before an anchor and reports real neighbors
+[library] Word inserted { bookId: 'book', ordinal: 2 }
+
+ ✓ tests/unit/ui/chinese-recite-modes.test.tsx (10 tests) 498ms
+ ✓ tests/unit/ui/study.test.tsx (60 tests) 3625ms
+     ✓ saves a spelling session, returns to progress and resumes without the input draft  403ms
+     ✓ stays on progress when selecting another book cannot be saved  316ms
+     ✓ saves words from spelling feedback once and restores them only for their owner  365ms
+     ✓ shares the selected book across navigation and remembers counts per mode  494ms
+ ✓ tests/unit/ui/user-settings.test.tsx (6 tests) 404ms
+stdout | tests/unit/ui/library-insertion.test.tsx > saves start order through the searchable insertion selector
+[library] Word inserted { bookId: 'book', ordinal: 1 }
+
+stdout | tests/unit/ui/library-insertion.test.tsx > saves end order through the searchable insertion selector
+[library] Word inserted { bookId: 'book', ordinal: 3 }
+
+ ✓ tests/unit/ui/learning-layout.test.tsx (3 tests) 554ms
+   ✓ keeps desktop setup and active practice ahead of supplementary information  424ms
+stdout | tests/unit/ui/library-insertion.test.tsx > saves before order through the searchable insertion selector
+[library] Word inserted { bookId: 'book', ordinal: 2 }
+
+ ✓ tests/unit/ui/speech.test.tsx (14 tests) 340ms
+ ✓ tests/unit/ui/async-persistence-regressions.test.tsx (13 tests) 663ms
+   ✓ filters two rapid vocabulary removals against the latest queued snapshot  329ms
+stdout | tests/unit/ui/library-insertion.test.tsx > saves after order through the searchable insertion selector
+[library] Word inserted { bookId: 'book', ordinal: 3 }
+
+ ✓ tests/unit/ui/feature-boundary.test.tsx (2 tests) 446ms
+   ✓ contains chunk failures and offers reload instead of crashing the app  310ms
+ ✓ tests/unit/ui/user-backup-ui.test.tsx (6 tests) 394ms
+stdout | tests/unit/ui/library-insertion.test.tsx > jumps to and highlights the saved word and marks AI provenance
+[library] Word inserted { bookId: 'book', ordinal: 32 }
+
+ ✓ tests/unit/ui/library-insertion.test.tsx (13 tests) 683ms
+ ✓ tests/unit/ui/review.test.tsx (14 tests) 327ms
+ ✓ tests/unit/ui/daily-checkin.test.tsx (35 tests) 665ms
+ ✓ tests/unit/ui/longterm-early-practice.test.tsx (6 tests) 239ms
+stdout | tests/unit/ui/ai-credential-recovery.test.tsx > resets all credentials only after confirmation preserving metadata active selection and refreshing revision
+[ai-profiles] Database configuration updated
+
+ ✓ tests/unit/ui/recorders.test.tsx (11 tests) 235ms
+ ✓ tests/unit/ui/interpretation-history-subtitles.test.tsx (9 tests) 275ms
+stdout | tests/unit/ui/interpretation-workspace.test.tsx > interpretation workspace > builds polish and deep-analysis requests from the selected transcript
+[interpretation] Transcript analysis started
+
+stdout | tests/unit/ui/interpretation-workspace.test.tsx > interpretation workspace > builds polish and deep-analysis requests from the selected transcript
+[interpretation] Transcript analysis completed
+
+stdout | tests/unit/ui/interpretation-workspace.test.tsx > interpretation workspace > builds polish and deep-analysis requests from the selected transcript
+[interpretation] Transcript analysis started
+
+stdout | tests/unit/ui/interpretation-workspace.test.tsx > interpretation workspace > builds polish and deep-analysis requests from the selected transcript
+[interpretation] Transcript analysis completed
+
+ ✓ tests/unit/ui/interpretation-workspace.test.tsx (5 tests) 327ms
+ ✓ tests/unit/ui/auto-recite-controls.test.tsx (2 tests) 321ms
+ ✓ tests/unit/ui/progress-learning-metrics.test.tsx (5 tests) 410ms
+ ✓ tests/unit/ui/ai-credential-recovery.test.tsx (8 tests) 621ms
+ ✓ tests/unit/ui/spelling-auto-advance.test.tsx (22 tests) 655ms
+ ✓ tests/unit/ui/longterm-review-route.test.tsx (8 tests) 547ms
+stdout | tests/unit/ui/backup-coordination.test.ts > clears cached AI credentials and invalidates retained runtime handles after committed import
+[ai-profiles] Runtime credentials ready { elapsedMs: 0 }
+
+ ✓ tests/unit/ui/backup-coordination.test.ts (6 tests) 259ms
+ ✓ tests/unit/ui/search.test.tsx (3 tests) 164ms
+ ✓ tests/unit/ui/spelling-insertion.test.tsx (1 test) 139ms
+ ✓ tests/unit/ui/auto-sentence-recite.test.tsx (4 tests) 230ms
+ ✓ tests/unit/ui/longterm-export-confirmation.test.tsx (4 tests) 187ms
+ ✓ tests/unit/ui/native-speech.test.ts (8 tests) 179ms
+ ✓ tests/unit/ui/interpretation-audio-panels.test.tsx (9 tests) 258ms
+ ✓ tests/unit/ui/auto-recite-overlay.test.tsx (1 test) 161ms
+ ✓ tests/unit/ui/spelling-settings.test.tsx (9 tests) 146ms
+ ✓ tests/unit/ui/longterm-dashboard.test.tsx (14 tests) 404ms
+ ✓ tests/unit/ui/interpretation-pip.test.tsx (5 tests) 239ms
+ ✓ tests/unit/ui/app-startup.test.tsx (3 tests) 136ms
+ ✓ tests/unit/ui/ios-recite.test.tsx (1 test) 218ms
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > subscribes before starting and waits for capturing, filtering other sessions
+[live-captions] Start requested { source: 'system' }
+
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > subscribes before starting and waits for capturing, filtering other sessions
+[live-captions] State changed { state: 'capturing' }
+
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > subscribes before starting and waits for capturing, filtering other sessions
+[live-captions] State changed { state: 'draining' }
+[live-captions] State changed { state: 'stopped' }
+
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > cancels disposal including an in-flight native start without publishing late events
+[live-captions] Start requested { source: 'system' }
+
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > surfaces mixed-source failure without fallback and permits a fresh session
+[live-captions] Start requested { source: 'mixed' }
+
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > surfaces mixed-source failure without fallback and permits a fresh session
+[live-captions] Start requested { source: 'microphone' }
+
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > remembers a stop requested while subscription is still preparing
+[live-captions] Start requested { source: 'system' }
+
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > cleans up on asynchronous native errors and ignores subsequent results
+[live-captions] Start requested { source: 'system' }
+
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > configures translation only after start acknowledgment, without credentials, and cleans up both listeners
+[live-captions] Start requested { source: 'system' }
+
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > cancels translation immediately on stop while still accepting drained source results
+[live-captions] Start requested { source: 'system' }
+
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > cancels translation immediately on stop while still accepting drained source results
+[live-captions] State changed { state: 'stopped' }
+
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > forwards drained finals to background history and finalizes on disposal
+[live-captions] Start requested { source: 'system' }
+
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > forwards drained finals to background history and finalizes on disposal
+[live-captions] State changed { state: 'stopped' }
+
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > reports recording failure without stopping local recognition
+[live-captions] Start requested { source: 'system' }
+
+stdout | tests/unit/ui/interpretation-live-captions.test.ts > reports recording failure without stopping local recognition
+[live-captions] State changed { state: 'capturing' }
+
+ ✓ tests/unit/ui/interpretation-live-captions.test.ts (11 tests) 127ms
+ ✓ tests/unit/ui/about-settings.test.tsx (6 tests) 133ms
+stdout | tests/unit/ui/add-word.test.ts > add word > reuses a deeply cloned exact match with a fresh UUID without AI
+[add-word] Searching existing library
+[add-word] Reusing existing word with a new ID
+
+stdout | tests/unit/ui/add-word.test.ts > add word > loads bundled books and searches past partial matches
+[add-word] Searching existing library
+
+stdout | tests/unit/ui/add-word.test.ts > add word > loads bundled books and searches past partial matches
+[add-word] Reusing existing word with a new ID
+
+stdout | tests/unit/ui/add-word.test.ts > add word > does not generate when a bundled lookup fails
+[add-word] Searching existing library
+
+stdout | tests/unit/ui/add-word.test.ts > add word > generates complete words from strict JSON (fenced=false)
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > generates complete words from strict JSON (fenced=false)
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > generates complete words from strict JSON (fenced=false)
+[add-word] Validated AI word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > generates complete words from strict JSON (fenced=true)
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > generates complete words from strict JSON (fenced=true)
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > generates complete words from strict JSON (fenced=true)
+[add-word] Validated AI word data
+
+ ✓ tests/unit/ui/interpretation-local-video.test.tsx (2 tests) 121ms
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 0
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 0
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 1
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 1
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 2
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 2
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 3
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 3
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 4
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 4
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 5
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 5
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 6
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 6
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 7
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 7
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 8
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 8
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 9
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 9
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 10
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 10
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 11
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 11
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 12
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 12
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 13
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects incomplete, mismatched, oversized or unexpected AI fields 13
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects non-strict JSON response 0
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects non-strict JSON response 0
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects non-strict JSON response 1
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects non-strict JSON response 1
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects non-strict JSON response 2
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects non-strict JSON response 2
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects non-strict JSON response 3
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects non-strict JSON response 3
+[add-word] Generating missing word data
+
+ ✓ tests/unit/ui/word-image.test.tsx (10 tests) 128ms
+stdout | tests/unit/ui/add-word.test.ts > add word > checks cancellation after bundled lookup
+[add-word] Searching existing library
+
+stdout | tests/unit/ui/add-word.test.ts > add word > checks cancellation after resolving runtime
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > checks cancellation after generation
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > checks cancellation after generation
+[add-word] Generating missing word data
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects results if the profile changed during generation
+[add-word] Searching existing library
+[add-word] Resolving configured AI runtime
+
+stdout | tests/unit/ui/add-word.test.ts > add word > rejects results if the profile changed during generation
+[add-word] Generating missing word data
+
+ ✓ tests/unit/ui/add-word.test.ts (34 tests) 32ms
+ ✓ tests/unit/ui/book-selection.test.tsx (1 test) 35ms
+ ✓ tests/unit/ui/phrase-cards.test.tsx (4 tests) 134ms
+ ✓ tests/unit/ui/interpretation-platform-boundary.test.ts (1 test) 188ms
+ ✓ tests/unit/ui/longterm-import.test.tsx (8 tests) 329ms
+ ✓ tests/unit/ui/platform-boundary.test.ts (4 tests) 121ms
+ ✓ tests/unit/ui/app-state.test.ts (7 tests) 68ms
+ ✓ tests/unit/ui/desktop-ai.test.ts (12 tests) 14ms
+ ✓ tests/unit/ui/caption-translation.test.ts (20 tests) 74ms
+ ✓ tests/unit/ui/interpretation-repository.test.ts (5 tests) 18ms
+ ✓ tests/unit/ui/longterm-session-ipc.test.ts (13 tests) 35ms
+ ✓ tests/unit/ui/listening-repository.test.ts (13 tests) 46ms
+ ✓ tests/unit/ui/learning-activity.test.ts (16 tests) 56ms
+ ✓ tests/unit/ui/longterm-import-file.test.ts (35 tests) 144ms
+ ✓ tests/unit/ui/interpretation-ai.test.ts (13 tests) 26ms
+ ✓ tests/unit/ui/quality-boundaries.test.ts (72 tests) 111ms
+ ✓ tests/unit/ui/interpretation-local-caption-session.test.tsx (1 test) 42ms
+ ✓ tests/unit/ui/browser-ai-client.test.ts (7 tests) 25ms
+ ✓ tests/unit/ui/desktop-adapter.test.ts (8 tests) 8ms
+ ✓ tests/unit/ui/longterm-session-rules.test.ts (11 tests) 23ms
+ ✓ tests/unit/ui/ai-gateway.test.ts (4 tests) 55ms
+ ✓ tests/unit/ui/interpretation-local-history.test.ts (5 tests) 14ms
+ ✓ tests/unit/ui/interpretation-analysis-workflow.test.ts (7 tests) 24ms
+ ✓ tests/unit/ui/chinese-recite-engine.test.ts (12 tests) 43ms
+ ✓ tests/unit/ui/model-test.test.ts (8 tests) 34ms
+ ✓ tests/unit/ui/interpretation.test.ts (4 tests) 23ms
+ ✓ tests/unit/ui/chinese-recite-machine.test.ts (11 tests) 9ms
+ ✓ tests/unit/ui/longterm-dashboard-ipc.test.ts (5 tests) 9ms
+ ✓ tests/unit/ui/seekdb.test.ts (2 tests) 9ms
+ ✓ tests/unit/ui/interpretation-recordings.test.ts (5 tests) 7ms
+ ✓ tests/unit/ui/caption-clauses.test.ts (3 tests) 13ms
+ ✓ tests/unit/ui/caption-stream.test.ts (2 tests) 15ms
+ ✓ tests/unit/ui/auto-recite-overlay-adapter.test.ts (2 tests) 6ms
+ ✓ tests/unit/ui/interpretation-minutes.test.ts (3 tests) 7ms
+ ✓ tests/unit/ui/silence.test.ts (2 tests) 6ms
+ ✓ tests/unit/ui/longterm-ipc.test.ts (11 tests) 17ms
+ ✓ tests/unit/ui/library-progress.test.ts (6 tests) 8ms
+ ✓ tests/unit/ui/user-backup.test.ts (4 tests) 11ms
+ ✓ tests/unit/ui/chinese-recite-routing.test.ts (3 tests) 4ms
+ ✓ tests/unit/ui/ios-player-adapter.test.ts (1 test) 4ms
+ ✓ tests/unit/ui/interpretation-audio-contract.test.ts (3 tests) 3ms
+ ✓ tests/unit/ui/mobile-platform.test.ts (1 test) 3ms
+ ✓ tests/unit/ui/recite.test.ts (3 tests) 3ms
+
+ Test Files  97 passed (97)
+      Tests  977 passed (977)
+   Start at  20:13:42
+   Duration  12.25s (transform 5.45s, setup 16.80s, import 10.20s, tests 38.21s, environment 46.75s)
+
+JUNIT report written to /Users/longda/.codex/worktrees/longterm-integration/quicklang/build/test-results/ui.xml
+> npm run test:scripts
+
+> quicklang@0.8.0 test:scripts
+> node --test tests/unit/scripts/*.test.mjs
+
+✔ make test owns live-model testing without a separate test-ai target (2.892917ms)
+✔ skips both live-model groups when .env.test is absent or empty (4.824667ms)
+✔ reads ignored real-model settings and rejects unsafe service URLs (4.725334ms)
+✔ forwards independent services to native live-model tests (0.141792ms)
+✔ validates chat and transcription settings independently (7.131875ms)
+✔ sends the exact text translation request without exposing provider details (22.959958ms)
+✔ rejects multibyte provider payloads by UTF-8 byte count (1.755292ms)
+✔ rejects declared oversized responses before buffering and cancels the body (1.08775ms)
+✔ Apple runner retries one silent startup SIGKILL and can recover (154.4305ms)
+✔ Apple runner does not retry ordinary failures or SIGKILL after output (183.917541ms)
+✔ Apple runner limits silent SIGKILL to two launches and records diagnostics (926.588917ms)
+✔ Swift speech checks run each executable through the bounded Apple runner (0.574458ms)
+✔ artifact tasks reject a concurrent build and release after completion (16.739292ms)
+✔ artifact tasks recover a lock owned by a dead local process (7.389917ms)
+Cloning into '/var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-driver-xrFTuJ/driver'...
+done.
+HEAD is now at 099df6b fixture
+Cloning into '/var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-driver-xrFTuJ/legacy'...
+done.
+HEAD is now at 099df6b fixture
+HEAD is now at 099df6b fixture
+HEAD is now at 099df6b fixture
+Verified seekdb 1.4.0 runtime (4 files)
+✔ driver checkout supports fresh clones and retries while preserving local changes (1788.335584ms)
+✔ offline runtime verification accepts complete pinned files (3.439041ms)
+✔ offline runtime verification rejects changed pins and tampered bytes (3.957583ms)
+✔ offline runtime verification rejects missing manifest entries and unexpected files (3.003917ms)
+✔ offline runtime verification rejects symlinked files (2.710167ms)
+✔ build cache reuses complete outputs and invalidates source, configuration, or output changes (1750.022875ms)
+✔ Mac and iOS ignore inherited cross-platform output paths without changing caller env (1.294584ms)
+✔ native validation shares desktop dependencies without redirecting coverage or other tasks (0.844ms)
+✔ each packaged frontend matches its platform's Vite output root (2.533833ms)
+✔ shared celebration media keeps one source and one relative path across platform builds (1.39025ms)
+✔ version preflight rejects stale metadata without modifying shared source files (17.690833ms)
+✔ build catalog validation is read-only (62.567041ms)
+✔ normal builds use debug for both server and desktop (0.967542ms)
+✔ release builds use release for both server and desktop (0.185167ms)
+✔ release command explicitly requests the release profile (0.868375ms)
+✔ configured signing identity enables signing in both build profiles (1.157709ms)
+[clean] Cleaning Mac, iOS, web and test build outputs.
+✔ make clean removes outputs, preserves dependencies and data, and is repeatable (1073.67775ms)
+[clean] Removing /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-clean-links-NL9uag/build
+[clean] Removed /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-clean-links-NL9uag/build (0.0s)
+[clean] Removing source metadata.
+[clean] Complete (0.0s). Dependencies, toolchains and user data retained.
+[clean] Cleaning Mac, iOS, web and test build outputs.
+✔ clean never traverses symlinked outputs or parent directories (12.092458ms)
+[clean] Removing /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-derived-vTd6Ps/quicklang-app-owned
+[clean] Removed /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-derived-vTd6Ps/quicklang-app-owned (0.0s)
+[clean] Removing source metadata.
+[clean] Complete (0.1s). Dependencies, toolchains and user data retained.
+✔ clean removes only Xcode caches owned by this checkout (75.607334ms)
+✔ desktop build and resources resolve from the renamed sibling layout (2.126583ms)
+✔ desktop CSP permits bundled data, version checks and native IPC (0.73ms)
+✔ desktop opener permits QuickLang feedback and release pages only (0.714666ms)
+✔ docs launcher rejects unsupported modes with diagnostics (51.377083ms)
+✔ documentation tools are outside the original document directory (1.227791ms)
+✔ VitePress directly builds original documents with external outputs and automatic navigation (0.774875ms)
+﹣ live VitePress navigation follows nested page creation, title changes and deletion (0.35975ms) # SKIP
+✔ legacy documentation migration preserves sources and relocates only tools and diagnostics (166.300417ms)
+✔ buildSidebar recursively discovers pages, nests indexes, and encodes routes (13.567042ms)
+✔ titles prefer common frontmatter strings then real h1 then basename (5.573833ms)
+✔ skips excluded directories and non-Markdown, rescans and sorts deterministically (14.404625ms)
+✔ plugin watches external source, reloads for add/remove/title but not body or excluded changes (9.24375ms)
+✔ plugin coalesces bursts and disposes listeners without config reload loops (3.603959ms)
+✔ plugin logs notification/read failures and replaces listeners on reconfiguration (4.377458ms)
+✔ scripts/tasks.mjs exposes help without initialization (49.281334ms)
+✔ scripts/bootstrap/seekdb.mjs exposes help without initialization (58.327792ms)
+✔ scripts/compliance/check.mjs exposes help without initialization (45.472167ms)
+✔ docs runs the docs workspace dev script (465.279458ms)
+✔ docs-build runs the docs workspace build script (545.076375ms)
+✔ docs-build is available in Make and CI uses the non-blocking build (108.251791ms)
+✔ macOS Rust linking avoids malformed chained-fixup dylibs (0.621416ms)
+✔ task runner rejects unknown commands (52.708583ms)
+✔ doctor explains how to recover when Cargo is missing (100.361791ms)
+✔ initialization and desktop tasks consume canonical assets without generators (0.836334ms)
+✔ content generation is no longer a task or Make target (42.424542ms)
+✔ make exposes format (160.99625ms)
+✔ make exposes format-check (134.08925ms)
+[format] Needs formatting: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-j0EISa/src/example.css
+[format] Needs formatting: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-j0EISa/src/example.html
+[format] Needs formatting: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-j0EISa/src/example.m
+[format] Needs formatting: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-j0EISa/src/example.sql
+[format] Needs formatting: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-j0EISa/src/example.ts
+[format] Needs formatting: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-j0EISa/scripts/example.mjs
+[format] Needs formatting: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-j0EISa/scripts/example.sh
+[format] Needs formatting: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-j0EISa/tests/example.tsx
+[format] Checked 8 non-Rust source files; 8 unformatted.
+Source formatting check failed. Run make format.
+[format] Formatted: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-j0EISa/src/example.css
+[format] Formatted: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-j0EISa/src/example.html
+[format] Formatted: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-j0EISa/src/example.m
+[format] Formatted: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-j0EISa/src/example.sql
+[format] Formatted: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-j0EISa/src/example.ts
+[format] Formatted: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-j0EISa/scripts/example.mjs
+[format] Formatted: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-j0EISa/scripts/example.sh
+[format] Formatted: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-format-j0EISa/tests/example.tsx
+[format] Checked 8 non-Rust source files; 8 updated.
+[format] Checked 8 non-Rust source files; 0 unformatted.
+✔ format checks without writing, fixes all supported non-Rust sources, and is idempotent (501.848667ms)
+✔ make test fails at formatting before running tests (481.985833ms)
+✔ Apple app icons are generated from the shared QuickLang artwork (2193.800875ms)
+✔ icon checks reject iOS assets with the white frame removed (1639.031292ms)
+✔ icon checks reject macOS assets with the white frame removed (1565.891458ms)
+✔ icon checks reject macOS assets that omit the shared Q artwork (1663.795792ms)
+✔ icon checks reject macOS Q colors that differ from iOS (1691.284709ms)
+Invalid cached download preserved at /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-download-DcTSuO/artifact.invalid-1791202435073; downloading again.
+Download 1/3: artifact
+Download 2/3: artifact
+Download 3/3: artifact
+Verified download: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-download-DcTSuO/artifact
+✔ downloads ranges, repairs bad cache, and reuses only verified artifacts (189.997583ms)
+Range download unavailable: Server did not honor the requested byte range; trying a single stream.
+Verified download: /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-download-lycfyn/artifact
+✔ falls back to a complete GET when byte ranges are ignored (251.470666ms)
+Download 1/3: artifact
+Download 2/3: artifact
+Download 3/3: artifact
+Download attempt failed: Checksum mismatch for http://127.0.0.1:53764/artifact
+✔ never publishes a checksum mismatch (119.303417ms)
+✔ initialization lock rejects concurrent runs and releases cleanly (4.56725ms)
+✔ toolchain is derived from the repository pin (1.626208ms)
+✔ direct network selection is isolated from the caller environment (0.089875ms)
+/usr/local/bin/node was killed; retrying (1/2).
+✔ read-only launch retry recovers SIGKILL but normal failures are not retried (1131.990666ms)
+/usr/local/bin/node was killed; retrying (1/2).
+/usr/local/bin/node was killed; retrying (2/2).
+/usr/local/bin/node was killed; retrying (1/2).
+/usr/local/bin/node was killed; retrying (2/2).
+✔ read-only retry recognizes Cargo SIGKILL diagnostics and remains bounded (4219.94025ms)
+✔ shell entrypoint is usable outside the repository and exposes help (55.454833ms)
+[iOS] Signing team: AUTOTEAM01
+✔ discovery accepts phones and tablets but excludes simulators and Macs (1.041958ms)
+✔ legacy CoreDevice schema remains supported (0.922167ms)
+✔ automatic selection excludes stale devices and reports ambiguity before building (0.401291ms)
+✔ only available or connected devices qualify, regardless of remembered wired transport (0.541458ms)
+✔ team selection respects explicit settings, project settings and certificate fallback (0.330625ms)
+✔ certificate discovery falls back to Xcode certificates when no private identity is listed (0.471459ms)
+✔ device builds discover a unique certificate team without an environment variable (1.913125ms)
+✔ current-schema disabled developer mode is rejected before building (0.126834ms)
+✔ real Python plist decoding handles dates and data while retaining only validation fields (209.984083ms)
+✔ real Python plist decoding preserves missing fields for validation (214.367583ms)
+✔ real Python plist decoding fails without exposing malformed input (210.661958ms)
+✔ valid profiles authorize the requested device, team and bundle (0.369666ms)
+✔ expired profiles and profiles expiring exactly now are rejected (1.371125ms)
+✔ missing and invalid expiration dates are rejected (0.145083ms)
+✔ a profile containing only iPhone 17 does not authorize iPhone 13 (0.076417ms)
+✔ all-device profiles bypass the device list only for boolean true (0.086416ms)
+✔ different signing teams and malformed team lists are rejected (0.232375ms)
+✔ different bundles and unknown application identifier prefixes are rejected (1.024ms)
+✔ application identifier prefixes take precedence over the signing team (0.196125ms)
+✔ trailing wildcards authorize matching bundles but preserve the literal prefix (0.179ms)
+✔ missing entitlement and device fields return issues (0.168958ms)
+✔ iOS launch manifest and pinned Tao ownership backport stay compatible (249.929291ms)
+SKIP: no booted iOS simulator; boot one and rerun make test-ios-smoke
+✔ iOS smoke selects the first available booted simulator (1.4885ms)
+✔ iOS smoke returns null only when no simulator is booted (0.675458ms)
+✔ iOS smoke skips without a device but fails when simctl fails (1.584625ms)
+✔ iOS icon sync copies changed artwork while preserving unchanged asset timestamps (11.125708ms)
+✔ iOS builds select the simulator architecture and never require a signing team (1.270125ms)
+✔ iOS environment uses project-local Rust while preserving explicit Xcode and team choices (0.478375ms)
+✔ iOS commands preserve device selection and reject unknown actions (0.240042ms)
+✔ node tauri runner repair preserves paths, signing and arguments (8.304333ms)
+✔ npm run -- tauri runner repair preserves paths, signing and arguments (8.228084ms)
+✔ npm run tauri runner repair preserves paths, signing and arguments (8.572333ms)
+✔ /opt/node/bin/node tauri runner repair preserves paths, signing and arguments (7.954875ms)
+✔ iOS environment disables brew background maintenance while honoring explicit overrides (0.381167ms)
+✔ repeat simulator builds remove only the generated app and refuse symlink traversal (7.512708ms)
+✔ generated deployment target follows config, preserves signing and rejects malformed versions (9.943584ms)
+✔ iPhone build and release select the device with distinct optimization profiles (0.194958ms)
+✔ iPhone installation selects the signed device archive and requires an explicit phone (0.136ms)
+✔ public iPhone make targets reach iOS validation without entering desktop builds (1097.518875ms)
+✔ the pinned Apple toolchain includes Swift archive symbol repair tools (7.009333ms)
+✔ iOS release retains optimized Rust and Swift-compatible debug information without changing desktop defaults (0.087542ms)
+✔ reference migration handles relative paths, joins, regexes and directory trees (0.91675ms)
+✔ reference migration preserves commit-pinned historical source URLs (0.442ms)
+✔ npm and Cargo workspaces declare the ui and app entrypoints (4.09875ms)
+✔ shared Rust crates never depend on application entrypoints (4.176292ms)
+✔ directory migration keeps external package identities and current build paths (1.093459ms)
+✔ local signing requires a pinned certificate and fails closed on invalid config (5.520084ms)
+✔ release allows system libraries and bundled colocated dependencies (3.387791ms)
+✔ release rejects incomplete or corrupted bundled libraries (7.860167ms)
+✔ coverage report creates its output directory and enables bounded read-only retry (3.464917ms)
+✔ both coverage entrypoints share the bounded report helper (1.335875ms)
+✔ excludes inline tests while retaining production code after test modules (4.038ms)
+✔ handles conditional test modules, duplicate counts, empty files and malformed reports (0.864083ms)
+✔ excludes external test modules without hiding later production code (0.439208ms)
+✔ excludes test-only functions and external module files (0.3865ms)
+✔ handles multiline signatures, tuple variants and nested match bodies exactly (0.737417ms)
+✔ restricted visibility functions are not tuple enum variants (2.383583ms)
+✔ create_user_document integration regression retains its production neighbor (0.272167ms)
+✔ ignores braces and fake cfg attributes in literals and nested comments (0.198833ms)
+✔ retains production predicates and refuses ambiguous same-line production code (0.655416ms)
+✔ parses real app profile and storage layouts without excluding production neighbors (10.231916ms)
+✔ nested inner cfg excludes only its block, regardless of indentation (0.445833ms)
+✔ inner cfg scope tracking ignores strings and comments and retains parent production (0.738083ms)
+✔ only leading file inner cfg can exclude a whole file (0.870792ms)
+✔ excludes files explicitly declared as test-only (0.107375ms)
+✔ database test cases exclude live and manual ignored probes (1.142333ms)
+✔ real profile database tests are opt-in and selected by database coverage (2.644833ms)
+✔ database tests and coverage share exact ignored-only case selection (0.220833ms)
+✔ database cases accept the bounded macOS Cargo runner configuration (0.139334ms)
+✔ coverage uses the host target runner environment without unsupported config arguments (0.329042ms)
+✔ filtered coverage uses the explicit llvm-cov test subcommand and exact argument order (0.23375ms)
+✔ task entrypoints consume the shared database matrix and expose iOS smoke (168.023833ms)
+✔ every workspace coverage run uses the bounded macOS test runner (0.409834ms)
+✔ Cargo runner recovers a silent startup kill and forwards test arguments and output (1127.473417ms)
+✔ Cargo runner exposes the same bounded launcher to nested test processes (1149.994625ms)
+✔ Cargo runner limits persistent startup kills to three launches (2112.848292ms)
+✔ Cargo runner never retries assertion failures or kills after test output (166.696459ms)
+[build] Reusing ui-macos artifacts.
+[build] Reusing ui-macos artifacts.
+[build] Reusing ui-macos artifacts.
+[build] Reusing ui-ios artifacts.
+[build] Reusing ui-windows artifacts.
+[build] Reusing ui-web artifacts.
+[build] Reusing ui-web artifacts.
+[build] Reusing ui-macos artifacts.
+[build] Reusing ui-macos artifacts.
+✔ UI builds reuse complete outputs and ignore Rust-only source changes (25.451ms)
+✔ UI source, public assets, media, configs, packages and catalog script invalidate the cache (55.989916ms)
+✔ missing, replaced, changed and newly added output descendants invalidate the cache (35.043625ms)
+✔ all four platforms maintain isolated UI caches, with web as the default (44.610208ms)
+✔ runner failures and incomplete outputs never record success (19.655ms)
+✔ force bypasses reuse and successful forced builds remain cacheable (19.946834ms)
+✔ a failed forced rebuild invalidates the old marker even if previous outputs remain (16.609625ms)
+✔ VITE variables and Node build settings invalidate UI cache independently of env ordering (28.3605ms)
+Synchronized /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-version-2sNsHh/Cargo.toml to 0.2.0
+Synchronized /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-version-2sNsHh/src/app/tauri.conf.json to 0.2.0
+Synchronized /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-version-2sNsHh/Cargo.lock to 0.2.0
+Synchronized /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-version-2sNsHh/package-lock.json to 0.2.0
+Synchronized /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-version-2sNsHh/package.json to 0.2.0
+Synchronized /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-version-2sNsHh/src/ui/package.json to 0.2.0
+Synchronized /var/folders/4g/7tqgvm2518sg7rht3rtw5fhc0000gn/T/quicklang-version-2sNsHh/scripts/docs/package.json to 0.2.0
+Verified canonical project version 0.2.0
+Verified canonical project version 0.2.0
+✔ version file synchronizes every project manifest and is idempotent (22.088333ms)
+✔ checked-in manifests agree with the canonical version (3.868666ms)
+✔ prompt planning is deterministic, spelling-related, and includes both strategies (2.825959ms)
+✔ publisher derives catalog metadata and verifier accepts the fixture asset (8.903667ms)
+✔ empty catalog is valid and provides the runtime fallback contract (4.552542ms)
+✔ verifier rejects orphaned, missing, non-WebP, and oversized assets (15.674041ms)
+✔ publisher rejects unsafe or non-deterministic relative paths (2.875417ms)
+✔ publisher rejects assets reached through a parent-directory symbolic link (3.530458ms)
+✔ canonical final dataset retains all files, exact counts and original data hashes (35.716417ms)
+✔ every final word is unique, normalized and complete for offline bilingual learning (17.489708ms)
+✔ all fourteen books contain unique valid memberships and cover the complete word library (24.986416ms)
+✔ curriculum books implement the cumulative and pure hierarchy (108.511709ms)
+✔ legacy mappings preserve every pinned source position (19.676459ms)
+✔ final assets preserve source provenance and bundled license attribution (1.218125ms)
+ℹ tests 175
+ℹ suites 0
+ℹ pass 174
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 1
+ℹ todo 0
+ℹ duration_ms 8935.499125
+> npm run test:ai
+
+> quicklang@0.8.0 test:ai
+> node scripts/testing/run-ai-model-tests.mjs
+
+﹣ configured text model translates nice to meet you into Chinese (0.34ms) # chat model is not configured
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 1
+ℹ todo 0
+ℹ duration_ms 46.553375
+SKIP: chat model live test is not configured in .env.test
+SKIP: transcription model live test is not configured in .env.test

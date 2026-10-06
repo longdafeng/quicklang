@@ -1,0 +1,9 @@
+
+ RUN  v4.1.11 /Users/longda/.codex/worktrees/longterm-integration/quicklang
+
+····································
+
+ Test Files  1 passed (1)
+      Tests  36 passed (36)
+   Start at  20:15:02
+   Duration  601ms (transform 34ms, setup 132ms, import 16ms, tests 52ms, environment 310ms)

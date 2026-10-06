@@ -1,0 +1,30 @@
+
+> quicklang@0.7.0 format
+> node scripts/format.mjs
+
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-seekdb/src/sqlite_schema.sql
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/src/schema/ql_longterm_card.sql
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/src/schema/ql_longterm_event.sql
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/src/schema/ql_longterm_session_item.sql
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/src/schema/ql_longterm_session.sql
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/src/ui/src/shared/app/LearningApp.tsx
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/src/ui/src/shared/features/longterm/ExportConfirmation.tsx
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/src/ui/src/shared/features/longterm/LongtermCardDetail.tsx
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/src/ui/src/shared/features/longterm/LongtermDashboard.tsx
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/src/ui/src/shared/features/longterm/LongtermManualAdd.tsx
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/src/ui/src/shared/features/longterm/LongtermNotebook.tsx
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/src/ui/src/shared/features/longterm/LongtermWorkspace.tsx
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/src/ui/src/shared/features/longterm/ReviewSession.tsx
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/src/ui/src/shared/features/longterm/session.ts
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/src/ui/src/shared/features/longterm/useReviewSession.ts
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/src/ui/src/shared/features/speech/native.ts
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/src/ui/src/shared/features/speech/speech.ts
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/src/ui/src/shared/native/longterm.ts
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/tests/unit/ui/longterm-dashboard-ipc.test.ts
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/tests/unit/ui/longterm-early-practice.test.tsx
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/tests/unit/ui/longterm-ipc.test.ts
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/tests/unit/ui/longterm-review-route.test.tsx
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/tests/unit/ui/longterm-review-session.test.tsx
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/tests/unit/ui/longterm-session-ipc.test.ts
+[format] Formatted: /Users/longda/.codex/worktrees/longterm-integration/quicklang/tests/unit/ui/longterm-session-rules.test.ts
+[format] Checked 350 non-Rust source files; 25 updated.

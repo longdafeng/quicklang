@@ -1,0 +1,26 @@
+   Compiling quicklang-storage-seekdb v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-seekdb)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.33s
+     Running unittests src/lib.rs (build/macos/cargo/debug/deps/quicklang_storage_seekdb-d956120bda278031)
+
+running 19 tests
+test longterm_v2::tests::ordinary_document_failure_rolls_back_card_and_receipt ... ok
+test longterm_v2::tests::idempotency_deduplication_and_atomic_rollback ... ok
+test longterm_v2::tests::bounded_list_cursor_survives_anchor_deletion ... ok
+test longterm_v2::tests::ordinary_activity_preserves_other_modes_and_legacy_totals ... ok
+test longterm_v2::tests::deletion_cleans_shared_round_and_owner_isolation ... ok
+test longterm_v2::tests::ordinary_wrong_answer_retains_earned_across_retry_rounds ... ok
+test longterm_v2::tests::deleting_word_preserves_unrelated_manual_and_round_receipts ... ok
+test longterm_v2::tests::dashboard_aggregates_first_attempts_only ... ok
+test longterm_v2::tests::formal_completion_receipt_and_deleted_replay ... ok
+test longterm_v2::tests::again_wait_and_early_schedule_isolation ... ok
+test longterm_v2::tests::combined_ordinary_formal_early_and_delete_are_owner_scoped ... ok
+test longterm_v2::tests::ordinary_document_revision_is_projected_and_read_only ... ok
+test longterm_v2::tests::ordinary_activity_uses_the_frozen_local_timezone ... ok
+test longterm_v2::tests::ordinary_invalid_timezone_has_no_writes ... ok
+test longterm_v2::tests::derived_time_overflow_rolls_back_formal_and_early_attempts ... ok
+test longterm_v2::tests::ordinary_retry_preserves_history_and_unique_activity ... ok
+test longterm_v2::tests::streaming_export_honors_mid_batch_cancellation ... ok
+test longterm_v2::tests::ordinary_error_preserves_short_term_atomicity ... ok
+test longterm_v2::tests::streaming_export_batches_and_cancellation ... ok
+
+test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 52 filtered out; finished in 0.10s

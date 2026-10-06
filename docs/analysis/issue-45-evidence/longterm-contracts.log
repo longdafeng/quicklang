@@ -1,0 +1,100 @@
+   Compiling syn v3.0.5
+   Compiling quicklang-storage-seekdb v0.7.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-seekdb)
+   Compiling rusqlite v0.37.0
+   Compiling quicklang-tests v0.7.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/tests/rust)
+   Compiling zerovec-derive v0.11.6
+   Compiling serde_derive v1.0.229
+   Compiling displaydoc v0.2.7
+   Compiling thiserror-impl v2.0.20
+   Compiling tokio-macros v2.7.2
+   Compiling zerotrie v0.2.5
+   Compiling tokio v1.53.1
+   Compiling zerovec v0.11.8
+   Compiling thiserror v2.0.20
+   Compiling tinystr v0.8.4
+   Compiling potential_utf v0.1.6
+   Compiling icu_collections v2.3.0
+   Compiling icu_locale_core v2.3.0
+   Compiling serde v1.0.229
+   Compiling icu_provider v2.3.1
+   Compiling quicklang-domain v0.7.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/domain)
+   Compiling serde_urlencoded v0.7.1
+   Compiling icu_normalizer v2.3.0
+   Compiling icu_properties v2.3.0
+   Compiling quicklang-scheduler v0.7.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/scheduler)
+   Compiling quicklang-storage-api v0.7.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-api)
+   Compiling quicklang-typing-engine v0.7.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/typing-engine)
+   Compiling quicklang-sync-core v0.7.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/sync-core)
+   Compiling hyper v1.11.1
+   Compiling tower v0.5.3
+   Compiling idna_adapter v1.2.2
+   Compiling quicklang-application v0.7.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/application)
+   Compiling idna v1.1.0
+   Compiling hyper-util v0.1.20
+   Compiling url v2.5.8
+   Compiling axum v0.8.9
+   Compiling quicklang-server v0.7.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/server)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 8.05s
+     Running ../contract/longterm.rs (build/macos/cargo/debug/deps/longterm-a158f0f7795e814a)
+
+running 4 tests
+test invalid_inputs_do_not_create_records ... ok
+test retained_operation_payload_is_immutable ... ok
+test normalized_word_dedup_keeps_schedule_and_identity ... ok
+test owner_and_word_identity_are_independent ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running ../contract/longterm_clear.rs (build/macos/cargo/debug/deps/longterm_clear-28fe75ed13d7ab26)
+
+running 4 tests
+test deleting_absent_target_does_not_write_a_receipt ... ok
+test readding_word_does_not_reuse_old_identity ... ok
+test deleting_one_word_preserves_other_card_schedule ... ok
+test deleting_word_removes_history_and_old_round ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running ../contract/longterm_export.rs (build/macos/cargo/debug/deps/longterm_export-b8c175885c693808)
+
+running 2 tests
+test export_has_four_public_collections ... ok
+test raw_answers_are_optional_and_receipts_are_always_private ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running ../contract/longterm_list.rs (build/macos/cargo/debug/deps/longterm_list-aebe1c4da524265d)
+
+running 4 tests
+test dashboard_has_no_rate_without_formal_attempts ... ok
+test manual_add_is_history_but_not_an_error ... ok
+test notebook_page_cursor_binds_query ... ok
+test deleted_history_is_removed_from_metrics ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running ../contract/longterm_privacy.rs (build/macos/cargo/debug/deps/longterm_privacy-1ee5ab3a21ccf512)
+
+running 2 tests
+test foreign_owner_cannot_read_or_delete_a_word ... ok
+test delete_all_leaves_no_longterm_history ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running ../contract/ordinary_error.rs (build/macos/cargo/debug/deps/ordinary_error-c64f3f2549399e00)
+
+running 2 tests
+test stale_ordinary_snapshot_creates_nothing ... ok
+test ordinary_error_commits_feedback_and_card_together ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running ../contract/session_state.rs (build/macos/cargo/debug/deps/session_state-85b26ff4b192976c)
+
+running 4 tests
+test resume_never_reselects_existing_round ... ok
+test last_good_completes_without_active_round ... ok
+test formal_and_early_are_separate_and_early_preserves_schedule ... ok
+test waiting_and_frozen_queue_survive_reopen ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s

@@ -1,0 +1,64 @@
+node scripts/tasks.mjs test
+> npm run format:check
+
+> quicklang@0.8.0 format:check
+> node scripts/format.mjs --check
+
+[format] Checked 370 non-Rust source files; 0 unformatted.
+> cargo fmt --all -- --check
+> /usr/local/bin/node scripts/compliance/check.mjs
+License/layout checks passed (228 source files). Release audit limitations are recorded.
+> cargo clippy --locked --offline --workspace --all-targets -- -D warnings
+    Checking quicklang-domain v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/domain)
+   Compiling quicklang-storage-seekdb v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-seekdb)
+    Checking quicklang-server v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/server)
+    Checking quicklang-tests v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/tests/rust)
+   Compiling quicklang-app v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/app)
+    Checking quicklang-scheduler v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/scheduler)
+    Checking quicklang-storage-api v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-api)
+    Checking quicklang-typing-engine v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/typing-engine)
+    Checking quicklang-sync-core v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/sync-core)
+    Checking quicklang-storage-oceanbase v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/storage-oceanbase)
+    Checking quicklang-application v0.8.0 (/Users/longda/.codex/worktrees/longterm-integration/quicklang/src/crates/application)
+error: this `if` statement can be collapsed
+   --> src/crates/storage-seekdb/src/user_learning.rs:89:9
+    |
+ 89 | /         if self.phase == "test" || self.phase == "retry" {
+ 90 | |             if self
+ 91 | |                 .wrong
+ 92 | |                 .iter()
+...   |
+101 | |         }
+    | |_________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#collapsible_if
+    = note: `-D clippy::collapsible-if` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::collapsible_if)]`
+help: collapse nested if block
+    |
+ 89 ~         if (self.phase == "test" || self.phase == "retry") {
+ 90 ~             && (self
+ 91 |                 .wrong
+...
+ 96 |                     .as_ref()
+ 97 ~                     .is_some_and(|f| self.wrong.contains(&self.queue[self.index]) == f.correct))
+ 98 |             {
+ 99 |                 return false;
+100 ~             }
+    |
+
+error: could not compile `quicklang-storage-seekdb` (lib) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: calling `push_str()` using a single-character string literal
+   --> src/crates/storage-seekdb/src/user_backup.rs:188:9
+    |
+188 |         backup.user.profile.name.push_str("😀");
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: consider using `push` with a character literal: `backup.user.profile.name.push('😀')`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.93.0/index.html#single_char_add_str
+    = note: `-D clippy::single-char-add-str` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::single_char_add_str)]`
+
+error: could not compile `quicklang-storage-seekdb` (lib test) due to 2 previous errors
+cargo failed (101)
+make: *** [test] Error 1
