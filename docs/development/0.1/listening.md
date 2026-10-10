@@ -18,7 +18,7 @@ QuickLang 的听力训练独立实现 Echo Loop 介绍中的训练方法，沿�
 - `Listening.tsx`、`Recorder.tsx`、`PhraseCards.tsx`：材料库、播放器、录音和语境闪卡。
 - `repository.ts`：类型化 Tauri IPC，复用当前 Profile ID；桌面数据库失败不会回退到浏览器存储。浏览器仅提供明确标记的临时页面预览，离开页面后丢失材料。
 - `src/app/src/storage.rs`：所有听力读写进入现有专用数据库线程，使用有界请求队列。
-- `src/crates/storage-seekdb/src/listening.rs`：seekdb 仓库，复合主键隔离用户，版本检查防止旧页面覆盖新进度。
+- `src/crates/storage-common/src/listening.rs`：seekdb 仓库，复合主键隔离用户，版本检查防止旧页面覆盖新进度。
 - `src/schema/ql_listening.sql`：独立表的规范建表语句，由构建自动收集并在启动时检查。首次写入将音频 BLOB 与 JSON 元数据原子保存。后续保存只更新元数据与版本，不重新上传音频。删除在事务中同时删除音频和元数据。
 
 录音只在当前页面保留，离开页面释放麦克风、媒体 URL 并中止前端 AI 请求。学习音频完整保存于 seekdb；未添加其他持久化数据库。浏览器预览不作为生产存储后备。当前 JSON 元数据上限 500 KB；每次桌面读取音频会通过 IPC 搬运完整文件，因此限制为 8 MB。大文件流式播放和分块转写可在后续扩展存储接口时加入。
@@ -36,6 +36,6 @@ QuickLang 的听力训练独立实现 Echo Loop 介绍中的训练方法，沿�
 - `npm test`：包含字幕校验、全部七轮调度、重复词对齐、用户隔离调用、数据库读取/保存失败和断点恢复测试。
 - `npm run build`：TypeScript 检查和 Vite 生产构建。
 - `cargo check --locked --offline -p quicklang-app`：验证 Rust/Tauri 接口。
-- `cargo test --locked --offline -p quicklang-storage-seekdb listening::tests -- --include-ignored --nocapture`：在 macOS ARM64 上用真实 seekdb 验证音频与进度重开恢复、用户隔离、版本冲突和删除事务。测试数据库保留在 `build/test-databases/`。
+- `cargo test --locked --offline -p quicklang-storage-common listening::tests -- --include-ignored --nocapture`：在 macOS ARM64 上用真实 seekdb 验证音频与进度重开恢复、用户隔离、版本冲突和删除事务。测试数据库保留在 `build/test-databases/`。
 
 真实麦克风和外部模型服务需要在配置服务后进行设备验收；自动测试不调用外部付费模型。

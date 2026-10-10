@@ -50,9 +50,9 @@ QuickLang 是本地优先的个人英语学习桌面应用，覆盖单词学习�
 - `scheduler`：版本化的 SM-2-inspired 调度器 `quicklang-sm2-v1`。
 - `storage-api`：复习仓库、时钟、原子提交及幂等结果契约。
 - `application`：组合仓库、时钟和调度器的复习用例。
-- `storage-seekdb`：原生驱动、迁移、复习、词库、听力、AI 配置及语音偏好存储。
+- `storage-common`：两种数据库共享的复习、词库、听力、AI 配置、备份与用户数据仓储。
+- `storage-seekdb` / `storage-sqlite`：各自的数据库驱动与 SQL 方言。
 - `sync-core`：推送批次 DTO 和校验，未实现完整网络同步。
-- `storage-oceanbase`：预留适配器，连接返回 `DB_NOT_CONFIGURED`。
 
 入口依赖共享层，共享层不反向依赖 UI、desktop 或 server；领域层不依赖具体数据库。
 
@@ -96,7 +96,7 @@ React WebView 通过窄 IPC 访问 Rust 命令。数据库、Keychain、系统�
 
 保存规范词库、Rust 复习状态/事件、听力材料原始音频和训练状态、AI 配置及加密凭据、增强音色下载偏好与确认缓存。
 
-默认目录为 `~/Library/Application Support/io.github.longdafeng.quicklang/seekdb-1.4.0/`；`QUICKLANG_DATA_DIR` 可覆盖。连接由专属线程创建和使用，Tauri 经容量 32 的有界队列提交请求，不跨线程共享原生句柄。
+默认目录为 `~/Library/Application Support/io.github.longdafeng.quicklang/seekdb-1.4.0-relational-v3/`；`QUICKLANG_DATA_DIR` 可覆盖。连接由专属线程创建和使用，Tauri 经容量 32 的有界队列提交请求，不跨线程共享原生句柄。
 
 ### Keychain 与临时数据
 

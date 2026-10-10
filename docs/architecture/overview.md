@@ -72,7 +72,7 @@
 
 `src/app/src/storage.rs` 的 `StorageService` 使用容量为 32 的同步请求队列，把数据库访问交给专属线程。原生连接在该线程创建和使用，不跨线程共享原生句柄。
 
-实际适配器为 `src/crates/storage-seekdb`，承接复习、词库导入、听力、AI 配置和语音偏好等数据。默认数据路径为应用数据目录下的 `seekdb-1.4.0`，可通过 `QUICKLANG_DATA_DIR` 指定。
+实际适配器为 `src/crates/storage-seekdb`，承接复习、词库导入、听力、AI 配置和语音偏好等数据。默认数据路径为应用数据目录下的 `seekdb-1.4.0-relational-v3`，可通过 `QUICKLANG_DATA_DIR` 指定。
 
 开发模式从 `deps/cache/seekdb-runtime` 和 `src/ui/public/content/word-library` 加载运行时及词库；发布模式从应用资源中的 `seekdb` 和 `word-library` 加载。浏览器与桌面共用这份最终词库，包含 17,844 个单词、14 本词书及 60,897 个有序成员。初始化、开发和构建不依赖上游仓库；初始化仅导入缺失记录并保留已有用户编辑。
 

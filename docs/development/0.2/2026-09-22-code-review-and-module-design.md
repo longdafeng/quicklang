@@ -95,7 +95,7 @@ src/ui/src/
 - `npm run test:scripts`：81 通过、1 跳过、0 失败。
 - `npm run format:check`：207 个非 Rust 文件中有 13 个需要格式化。
 - 使用仓库 `deps/cache` 内 Rust 工具链执行 `cargo fmt --all -- --check`：失败，`history_subtitles/remote.rs` 两处 `.await` 排版不符。
-- 同一工具链执行 `cargo test -p quicklang-storage-seekdb --features sqlite`：编译成功，测试进程启动后被 SIGKILL 终止；没有得到测试通过结果，原因尚未确定。
+- 同一工具链执行 `cargo test -p quicklang-storage-common --features sqlite`：编译成功，测试进程启动后被 SIGKILL 终止；没有得到测试通过结果，原因尚未确定。
 
 未执行：完整 macOS/iOS 打包、真机麦克风权限与 PiP 交互、真实模型服务验证。前端测试通过不覆盖这些原生时序问题。
 

@@ -6,7 +6,7 @@
 
 - `src/ui/`：React 19 / TypeScript / Vite 前端，`app/` 组合页面，`features/` 按词库、学习模式、听说、听力、语音、AI 设置、同声传译等功能组织；`adapters/` 封装桌面 IPC。
 - `src/app/`：Tauri 2 壳。`src/lib.rs` 注册命令，`storage.rs` 通过容量为 32 的有界队列将数据库操作交给专用线程；对话、系统发音、增强音色辅助下载及同声传译采集有独立模块。
-- `src/crates/`：`domain` 定义领域类型，`scheduler` 和 `typing-engine` 提供纯算法，`application` 编排复习，`storage-api` 定义持久化契约，`storage-seekdb` 实现本机存储，`storage-oceanbase` 和 `sync-core` 保留远端适配/同步边界。
+- `src/crates/`：`domain` 定义领域类型，`scheduler` 和 `typing-engine` 提供纯算法，`application` 编排复习，`storage-api` 定义持久化契约，`storage-seekdb` 实现本机存储，`sync-core` 保留同步边界。
 - `src/server/`：Axum 服务骨架；`/health/live` 返回存活，`/health/ready` 和未接通 API 返回 503，不能视为已实现可用的云同步服务。
 - `src/schema/`：唯一规范建表目录，一张表一个 SQL 文件，由构建自动发现并嵌入，不需要手动注册，覆盖复习、词库、听力、AI 配置、应用状态及同声翻译；启动逐表检查，跳过已有表，顺序补齐缺表并验证齐全后才就绪。不维护迁移版本或旧 schema 兼容链，不自动 ALTER 已有表。
 - `scripts/bootstrap/` 负责初始化及固定运行时；`scripts/release/` 校验并打包离线资源；`scripts/docs/` 独立维护文档工具。根目录 npm workspace 为 `src/ui` 和 `scripts/docs`。

@@ -137,7 +137,7 @@ cargo test --locked --offline --workspace --config "$RUNNER_CONFIG"
 | [2/6] | `selectNetwork()` + `ensureRust()`：装仓库本地 Rust 1.93.1 | 视 `QUICKLANG_NETWORK` | — |
 | [3/6] | `npm ci --fetch-retries=2 --fetch-timeout=60000` + `cargo fetch --locked`（`CARGO_HTTP_TIMEOUT=60`，被杀进程会重试） | **是** | 覆盖 `node_modules/` |
 | **[4/6]** | **`node scripts/bootstrap/seekdb.mjs`**：下载并构建 seekdb 1.4.0 ARM64 运行时 + OpenSSL 3 + C driver，落盘 `deps/cache/seekdb-runtime/` | **是** | 见 §3.4 |
-| [5/6] | `verifyLibrary()` 校验内置词库 → `cargo build -p quicklang-storage-seekdb --bin init-word-library` → 无参跑一次（退出码 1 视为通过，打印 usage） | 否 | 编译产物 |
+| [5/6] | `verifyLibrary()` 校验内置词库 → `cargo build -p quicklang-storage-common --bin init-word-library` → 无参跑一次（退出码 1 视为通过，打印 usage） | 否 | 编译产物 |
 | [6/6] | `init-word-library <library> <dataDir> deps/cache/seekdb-runtime`，`dataDir` 默认 `~/Library/Application Support/<tauri identifier>/seekdb-1.4.0` | 否 | **写用户数据目录** |
 
 **结论**：`make init` 是「**装运行时 + 首次初始化用户数据库**」，不是单纯装依赖。
@@ -184,7 +184,7 @@ cargo test --locked --offline --workspace --config "$RUNNER_CONFIG"
 时段 4（可并行）: T0 T5 T6 T7 T8 T10 # 纯 Node/只读，无 cargo 锁
 ```
 
-T3（longterm 定向）属于时段 1 内：它在 T1 之后跑，因为 T1 会先把 12 个成员的测试二进制编出来，
+T3（longterm 定向）属于时段 1 内：它在 T1 之后跑，因为 T1 会先把 10 个成员的测试二进制编出来，
 T3 随后基本是纯执行（秒级）。
 
 ### 2.2 `--offline` 的含义
@@ -205,7 +205,7 @@ RUNNER="target.'cfg(target_os = \"macos\")'.runner = [\"$(command -v node)\",\"$
 cargo test --locked --offline --workspace --config "$RUNNER"
 ```
 
-- **workspace 12 个成员**：`src/crates/{application,domain,scheduler,storage-api,storage-oceanbase,storage-seekdb,sync-core,typing-engine}`、`src/server`、`src/app`、`tests/rust`（包名 `quicklang-tests`）。
+- **workspace 10 个成员**：`src/crates/{application,domain,scheduler,storage-api,storage-seekdb,sync-core,typing-engine}`、`src/server`、`src/app`、`tests/rust`（包名 `quicklang-tests`）。
 - ⚠️ `src/app`（`quicklang-app`）**不在 `default-members`** 里（`Cargo.toml:4` 只有
   `src/crates/*`、`src/server`、`tests/rust`），所以裸 `cargo test`（无 `--workspace`）
   **会漏掉 quicklang-app 的全部测试**。必须写 `--workspace`，或用 `make test`。
@@ -229,7 +229,7 @@ cargo test --locked --offline --workspace --features quicklang-tests/sqlite --co
 ```toml
 # tests/rust/Cargo.toml
 [features]
-sqlite = ["quicklang-storage-seekdb/sqlite"]
+sqlite = ["quicklang-storage-common/sqlite"]
 
 # src/crates/storage-seekdb/Cargo.toml
 [features]
@@ -237,9 +237,9 @@ default = []
 sqlite  = ["dep:rusqlite"]
 ```
 
-- 只有 `quicklang-tests` 与 `quicklang-storage-seekdb` 有 `sqlite` feature；
+- 只有 `quicklang-tests` 与 `quicklang-storage-common` 有 `sqlite` feature；
   其余 10 个成员没有 → workspace 级启用必须写**包限定名** `quicklang-tests/sqlite`。
-- feature 沿链传播：`quicklang-tests/sqlite` → `quicklang-storage-seekdb/sqlite` → `dep:rusqlite`。
+- feature 沿链传播：`quicklang-tests/sqlite` → `quicklang-storage-common/sqlite` → `dep:rusqlite`。
 - 后端切换点在 `src/crates/storage-seekdb/src/lib.rs`：
   `#[cfg(any(target_os = "ios", feature = "sqlite"))]` 走 bundled rusqlite；
   `#[cfg(not(any(target_os = "ios", feature = "sqlite")))]` 走 `libloading` 加载
@@ -307,7 +307,7 @@ await runDatabaseTests();
 |---|---|---|---|
 | 1 | `quicklang-tests` | `--test seekdb` | `embedded_persistence_and_atomicity`（`--exact`） |
 | 2 | `quicklang-tests` | `--test word_library_schema` | `shared_words_and_ordered_array_books`（`--exact`） |
-| 3 | `quicklang-storage-seekdb` | `--lib` | （全部 `#[ignore]`） |
+| 3 | `quicklang-storage-common` | `--lib` | （全部 `#[ignore]`） |
 | 4 | `quicklang-app` | `--lib` | `storage::tests::` |
 | 5 | `quicklang-app` | `--lib` | `speech::tests::persists_download_refusal`（`--exact`） |
 
@@ -598,7 +598,7 @@ tests/unit/ui/longterm-session-rules.test.ts
 | **R1** | **磁盘不足** | `df -h` → **仅剩 20 GiB**，卷已用 **98%**。`build/cargo` **9.6 GiB** + `build/macos/cargo` **4.3 GiB** | T11 bench 需 release profile 全量编译（`build/cargo/release` 现仅 260 MiB）+ 播种 2 万卡/100 万事件数据库 + **756 MB 导出文件**（实测 `build/bench/longterm_bench_1m.md`） | ① 强制 `CARGO_TARGET_DIR=build/macos/cargo`（复用 4.3 GiB 调试缓存），**不开新 target-dir**；② T11 放最后；③ 若剩余 <10 GiB，**先跑 T1–T10，T11 记录跳过原因**；④ **禁止 `make clean`**；⑤ 可清理项：`build/test-databases`（294 MiB，测试残留） |
 | **R2** | **seekdb 运行时缺失** | `deps/cache/seekdb-runtime/` 为**空目录** | T4 在跑测试前就 ENOENT 失败；90 个 seekdb 系 `#[ignore]` 无法解除 | §3.4：优先 `make init`（需联网 10–30 min，含 OpenSSL 3 `perl Configure` + `make -j4` 源码编译）；不可用则走 sqlite 组合（方案 B），并在执行报告**明确分列**「sqlite 已验证 / seekdb 未验证」 |
 | **R3** | **macOS 静默 SIGKILL** | `scripts/testing/rust-test-runner.mjs` 专门为此存在（重试 2 次） | 未加 `--config runner` 的裸 cargo 会随机失败 | 所有 cargo test 都带 §1.3 的 runner 配置；或直接用 `make test` |
-| **R4** | **在途 WIP 让 clippy 挂掉** | `git status`：`tests/rust/benches/`（untracked，`longterm_bench.rs` 93 KB，23:14 仍在写）、`src/crates/storage-seekdb/src/longterm_flags.rs`（untracked，630 行）、`storage-seekdb/src/lib.rs`、`tests/contract/session_state.rs`（已改未提交） | `cargo clippy --all-targets` **会编译 bench 目标**（`cargo test` 不会），未完成的 bench 可能编译失败 → T9 整段红 | **收尾第一步先收齐 #55-A/#55-B 的 WIP 并提交**，再开始全量；或在跑 T9 前用 `git status --porcelain` 确认工作区无 untracked `tests/rust/benches/` |
+| **R4** | **在途 WIP 让 clippy 挂掉** | `git status`：`tests/rust/benches/`（untracked，`longterm_bench.rs` 93 KB，23:14 仍在写）、`src/crates/storage-common/src/longterm_flags.rs`（untracked，630 行）、`storage-seekdb/src/lib.rs`、`tests/contract/session_state.rs`（已改未提交） | `cargo clippy --all-targets` **会编译 bench 目标**（`cargo test` 不会），未完成的 bench 可能编译失败 → T9 整段红 | **收尾第一步先收齐 #55-A/#55-B 的 WIP 并提交**，再开始全量；或在跑 T9 前用 `git status --porcelain` 确认工作区无 untracked `tests/rust/benches/` |
 | **R5** | **全量 vitest 内存 / stderr 钩子** | 81 个 vitest 文件；`onConsoleLog` 遇 stderr 即 throw | 单个文件泄漏 console.error 会让整个 run 失败，且报错信息不直观 | 跑 T6 时保留完整输出；失败先 `npx vitest run --config tests/vitest.config.ts <单个文件>` 定位到文件；内存不足时 `--pool=forks --poolOptions.forks.maxForks=4`（**不要**改 `onConsoleLog`） |
 | **R6** | **iOS 工具链缺失** | `make test-apple` 需要 Xcode + `make ios-init` + simulator 构建；`rust-toolchain.toml` 注释提到 swift-rs 需要 `llvm-objcopy`（Xcode 27） | `make test-apple` 可能整段失败 | **本次全量不跑 `make test-apple`**（收尾范围是 §2 表的 T0–T11）。若用户要求 iOS 验证，单独立项：先 `xcodebuild -version` + `xcrun --find swiftc` 探测，再 `make ios-init` |
 | **R7** | **CI 与本机差异** | `.github/workflows/ci.yml` 在 `xcode-27` runner 上依次跑 `make init` → `npm audit --audit-level=high` → `make test` → `make test-coverage` → `make test-coverage-db` → `make docs-build` → `make build` → `make review` | 本机缺：`npm audit`、`make test-coverage`/`test-coverage-db`（需 `cargo install cargo-llvm-cov --version 0.9.1 --locked`）、`make docs-build`、`make build`、`make review`；本机多出：`make test-db`（CI 用 coverage-db 变体） | §4.1 判定表已把 CI 等价项单列。**收尾报告必须写明「哪些 CI 步骤本机未跑」**，不得笼统写「CI 通过」。`make review`（license + `git diff --check` + clippy + typecheck）本地可跑且低成本，建议跑 |
@@ -620,7 +620,7 @@ git status --porcelain          # 期望：只有本次要提交的 docs/** 文�
 git log --oneline -5            # 确认 #55-A / #55-B 的提交已在 HEAD 之上
 ```
 
-若仍有 untracked 的 `tests/rust/benches/` 或 `src/crates/storage-seekdb/src/longterm_flags.rs`
+若仍有 untracked 的 `tests/rust/benches/` 或 `src/crates/storage-common/src/longterm_flags.rs`
 → **先让对应代理收尾提交，再开始 §7.2**（否则费用统计与报告都对不上）。
 
 ### 7.2 重算最终 token / 费用（`session_v2`）
@@ -755,7 +755,7 @@ git diff --check                                  # make review 也会跑这条�
 | **E13** | **CI 还跑 5 件本机默认不跑的事** | `ci.yml:23-29`：`npm audit`、`make test-coverage`、`make test-coverage-db`、`make docs-build`、`make build` | 「全量通过」不等于「CI 通过」，报告要分列 |
 | **E14** | **`make test` 里 `npm run test:ai` 在本机会自动 SKIP 而非 FAIL** | `tests/integration/ai-models.test.mjs:14` 的 `skip:`；`native-ai-models.mjs:34-37` 的 `continue` | `make test` 可以完整跑通，AI live 测试不算失败 |
 | **E15** | **vitest 有「stderr 即抛错」的钩子** | `tests/vitest.config.ts` 的 `onConsoleLog` | 任何测试/被测代码往 stderr 写一行 → 整轮失败，且报错不直观。列为 §4.2 的「真失败」 |
-| **E16** | **workspace 有 12 个成员，含 `quicklang-storage-oceanbase`** | `ls src/crates/` → 8 个 crate + server + app + tests/rust | 执行报告与本手册的「Rust 全量」都应说明覆盖 oceanbase crate 的 `--lib` 测试 |
+| **E16** | **workspace 有 10 个成员** | `ls src/crates/` → 7 个 crate + server + app + tests/rust | 执行报告与本手册的「Rust 全量」都应覆盖当前全部 workspace 成员 |
 | **E17** | **`scripts/format.mjs` 不覆盖 `docs/`** | `format.mjs:64` 只收集 `["src","scripts","tests"]` | 本手册与执行报告这类纯 Markdown **既不会被 T8 判失败，也不会被 `make format` 改写** —— 收尾阶段可以放心写文档 |
 
 ---

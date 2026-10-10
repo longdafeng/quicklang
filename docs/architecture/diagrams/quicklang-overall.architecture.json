@@ -12,7 +12,7 @@
     {"id":"provider","type":"external","label":"用户配置的 AI 服务","sublabel":"Chat Completions / ASR","pos":[810,65],"size":[230,72]},
     {"id":"storage-worker","type":"backend","label":"StorageService","sublabel":"单线程持有原生数据库连接","pos":[810,300],"size":[230,72],"sources":[{"path":"src/app/src/storage.rs","line":92}]},
     {"id":"keychain","type":"security","label":"macOS Keychain","sublabel":"AI 凭据加密主密钥","pos":[810,540],"size":[230,72],"sources":[{"path":"src/app/src/ai_profiles.rs"}]},
-    {"id":"seekdb","type":"database","label":"seekdb 1.4.0","sublabel":"应用状态、音频与业务数据","pos":[1110,300],"size":[230,72],"sources":[{"path":"src/crates/storage-seekdb/src/lib.rs","line":18},{"path":"src/crates/storage-seekdb/src/native.rs"}]}
+    {"id":"seekdb","type":"database","label":"seekdb 1.4.0","sublabel":"应用状态、音频与业务数据","pos":[1110,300],"size":[230,72],"sources":[{"path":"src/crates/storage-common/src/lib.rs","line":43},{"path":"src/crates/storage-seekdb/src/lib.rs"}]}
   ],
   "connections": [
     {"from":"react-app","to":"tauri-shell","label":"invoke IPC","variant":"emphasis"},

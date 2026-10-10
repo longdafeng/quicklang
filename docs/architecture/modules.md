@@ -23,7 +23,7 @@
 - **系统钥匙串**：仅保存 AI 凭据加密主密钥；各服务 API Key 的密文保存在 seekdb，明文只在显式解析后进入运行时内存。
 - **临时内存/文件**：练习录音 Blob、播放 Object URL、会话聊天上下文、自动背诵当前位置；原生朗读生成临时 WAV，读取后由临时文件对象清理。
 
-seekdb 默认数据目录为 `~/Library/Application Support/io.github.longdafeng.quicklang/seekdb-1.4.0/`，由 Tauri 的 `app_data_dir()` 加版本子目录确定；`QUICKLANG_DATA_DIR` 可覆盖。全部应用持久化数据进入该数据库目录；系统钥匙串仅保留加密主密钥。数据库备份仍不包含 Keychain、打包静态资源或未保存的临时录音，且不等于已经实现完整备份恢复功能。不读取或迁移旧 localStorage/IndexedDB 数据，不以浏览器存储作为失败回退。
+seekdb 默认数据目录为 `~/Library/Application Support/io.github.longdafeng.quicklang/seekdb-1.4.0-relational-v3/`，由 Tauri 的 `app_data_dir()` 加版本子目录确定；`QUICKLANG_DATA_DIR` 可覆盖。全部应用持久化数据进入该数据库目录；系统钥匙串仅保留加密主密钥。数据库备份仍不包含 Keychain、打包静态资源或未保存的临时录音，且不等于已经实现完整备份恢复功能。不读取或迁移旧 localStorage/IndexedDB 数据，不以浏览器存储作为失败回退。
 
 ## 2. 词库加载、查询与维护
 
@@ -56,7 +56,7 @@ seekdb 默认数据目录为 `~/Library/Application Support/io.github.longdafeng
 
 `useSaved` 使用启动时加载的共享应用状态，持久化经异步 seekdb 写入完成。`app_state_list` 加载键/字符串值，`app_state_write` 原子提交批量修改；调用方等待提交后再确认动作成功，失败提示保存错误，不把仅内存更新当成已保存，也不回退到浏览器存储。
 
-生词表沿用 `ql_longterm_*` 长期卡片存储，按当前用户和规范词形去重，跨词书管理。普通拼写错误原子更新短期进度、活动和长期卡片；各学习页面可手动加入已有词，保留既有排期。生词表可查看历史、提前练习和独立导入导出；“复习”页面执行到期的正式复习。“词库维护”的生词表专用入口复用普通词书编辑器，通过有序词条快照与 revision 原子维护卡片，支持首尾及参考词前后插入、字段编辑和删除，不依赖当前词书。新增卡片追加末尾，保留卡片的排期与历史；顺序与词条资料存放在 `position` 和 `word_payload`。旧 `vocabulary` 收藏以及旧复习/中文复习状态和分类统计已退出当前模型；兼容读取旧用户文档或备份时丢弃。
+生词表沿用 `ql_longterm_*` 长期卡片存储，按当前用户和规范词形去重，跨词书管理。普通拼写错误原子更新短期进度、活动和长期卡片；各学习页面可手动加入已有词，保留既有排期。生词表可查看历史、提前练习和独立导入导出；“复习”页面执行到期的正式复习。“词库维护”的生词表专用入口复用普通词书编辑器，通过有序词条快照与 revision 原子维护卡片，支持首尾及参考词前后插入、字段编辑和删除，不依赖当前词书。新增卡片追加末尾，保留卡片的排期与历史；顺序存放在卡片的 `position`；卡片仅通过规范拼写引用单词，不保存释义、音标或例句。复习与生词表维护统一通过 `word_store` 读取 `ql_word`，用户自建词与显式编辑保存在按用户隔离、以规范拼写为键的 `ql_user_word`。修改单词后复习直接读取最新内容；删除复习卡片保留单词表数据。独立导出使用版本 3：`words` 保存单词表内容，`cards` 仅保存引用及排期，`sessions`、`sessionItems`、`events` 保存复习事实；回执不缓存单词详情。旧 `vocabulary` 收藏以及旧复习/中文复习状态和分类统计已退出当前模型；兼容读取旧用户文档或备份时丢弃。
 
 进度页读取 `flash:<书ID>`、`spell:<书ID>` 与 `chinese-spell:<书ID>` 的 `learned`，分别展示强化学习、背诵和中文背诵位置，损坏数据按 0 处理并把数值限制在书长以内。拼写 `learned` 包含已经作答的错词，不代表掌握度；这不是 Rust 调度状态、到期队列或全部学习行为的汇总。
 
@@ -96,7 +96,7 @@ seekdb 默认数据目录为 `~/Library/Application Support/io.github.longdafeng
 
 ## 6. 听力材料库与多轮训练
 
-入口为 `features/listening/Listening.tsx`、`model.ts`、`repository.ts`、`ai.ts`、`Recorder.tsx`、`PhraseCards.tsx`。持久化链路为 `listening_repository` → `StorageService` → `storage-seekdb/src/listening.rs`。
+入口为 `features/listening/Listening.tsx`、`model.ts`、`repository.ts`、`ai.ts`、`Recorder.tsx`、`PhraseCards.tsx`。持久化链路为 `listening_repository` → `StorageService` → `storage-common/src/listening.rs`。
 
 ### 6.1 材料与数据库
 
@@ -156,7 +156,7 @@ seekdb 默认数据目录为 `~/Library/Application Support/io.github.longdafeng
 
 ## 8. AI 配置、凭据与请求边界
 
-入口为 `features/settings/SystemSettings.tsx`、`AIProfiles.tsx`、`aiProfilesRepository.ts`；原生命令在 `src/app/src/ai_profiles.rs`，数据与加密在 `src/crates/storage-seekdb/src/ai_profiles.rs`。
+入口为 `features/settings/SystemSettings.tsx`、`AIProfiles.tsx`、`aiProfilesRepository.ts`；原生命令在 `src/app/src/ai_profiles.rs`，数据与加密在 `src/crates/storage-common/src/ai_profiles.rs`。
 
 ### 8.1 元数据与密钥
 
@@ -194,11 +194,11 @@ Tauri 的 `load_review_state` 通过 `ensure_card` 在不存在时创建初始�
 
 ## 10. seekdb 运行时、迁移与词库初始化
 
-核心为 `src/crates/storage-seekdb/src/lib.rs`、`native.rs`、`word_library.rs`，线程调度为 `src/app/src/storage.rs`。
+核心为 `src/crates/storage-common/src/lib.rs`、`word_library.rs`，驱动位于 `storage-seekdb/src/lib.rs` 和 `storage-sqlite/src/lib.rs`，线程调度为 `src/app/src/storage.rs`。
 
 ### 10.1 运行时与线程所有权
 
-当前固定原生运行时为 macOS ARM64 seekdb 1.4.0。开发态资源在 `deps/cache/seekdb-runtime`，发布态在应用 Resources 的 `seekdb`。驱动用 `libloading` 加载 `libseekdb.dylib` 的固定 C ABI，打开数据目录并建立本地 Unix socket 连接；不请求 TCP 监听端口，创建/使用数据库 `quicklang`。其含原生引擎与驱动依赖，不是 SQLite，也不是占位内存仓库。
+当前固定原生运行时为 macOS ARM64 seekdb 1.4.0。开发态资源在 `deps/cache/seekdb-runtime`，发布态在应用 Resources 的 `seekdb`。驱动用 `libloading` 加载 `libseekdb.dylib` 的固定 C ABI，打开数据目录并建立本地 Unix socket 连接；不请求 TCP 监听端口，创建/使用数据库 `quicklang`。默认通过 seekdb 驱动连接原生引擎；显式启用 `sqlite` feature 时使用 SQLite 驱动。
 
 数据库连接在专属工作线程创建并使用，句柄明确不实现跨线程 Send/Sync。Tauri 以容量 32 的有界请求队列提交操作，异步等待回复；队列满、线程退出或回复通道断开返回可重试 `DB_UNAVAILABLE`。
 
@@ -222,8 +222,6 @@ Tauri 的 `load_review_state` 通过 `ensure_card` 在不存在时创建初始�
 
 `src/crates/sync-core/src/lib.rs` 只实现 `PushBatch` DTO 校验：设备 ID、最多 500 个事件、事件标识/时间及批内去重。没有后台上传器、拉取协议、持久化 outbox、冲突合并、身份认证或端到端同步通路。
 
-`src/crates/storage-oceanbase/src/lib.rs::OceanBaseAdapter::connect` 仍直接返回 `DB_NOT_CONFIGURED`，未集成服务端存储。这个结论不能套用到已经实现的桌面 `storage-seekdb`。
-
 `src/server/src/main.rs` 启动 Axum，监听 `127.0.0.1:4318`，支持 Ctrl-C 优雅退出；`lib.rs` 中 `/health/live` 返回 alive，`/health/ready` 和 fallback 返回 503、`DB_NOT_CONFIGURED`。没有可用的词库/账户/复习同步 API。构建脚本编译 server 二进制，但 Tauri 启动逻辑没有启动该 server，也不通过它转发 AI 请求。
 
 iOS 有 Tauri 移动入口/配置，Windows 有打包配置分支；当前固定嵌入式运行时只支持 macOS ARM64，初始化也限制 macOS 15+ Apple Silicon。配置文件存在不代表其他平台已具备完整可运行产品。
@@ -237,7 +235,7 @@ iOS 有 Tauri 移动入口/配置，Windows 有打包配置分支；当前固定
 - `src/ui/public/content/word-library/` 是唯一维护的最终数据：`words.jsonl` 包含 17,844 个单词，`wordbooks.jsonl` 包含 14 本词书及 60,897 个有序成员。
 - `legacy-map.jsonl` 保留 49,436 条历史来源映射，`merge-conflicts.jsonl` 保留合并冲突；同时携带 `manifest.json`、`source-manifest.json`、`LICENSE` 和 `ATTRIBUTION.md`。AI 编写例句保留 `quicklang-ai-authored` 标记，不冒充上游原例句。
 - 开发、初始化和发布直接校验并消费最终词库，不执行内容生成，也不依赖本地上游仓库。来源清单中的历史路径和哈希仅用于追溯，不要求这些文件存在。
-- `src/crates/storage-seekdb/src/bin/init-word-library.rs` 直接校验并导入最终数据，只补齐缺失记录，不覆盖已有用户编辑或词书顺序。浏览器、桌面开发和发布均消费同一份最终数据，不重新生成。
+- `src/crates/storage-common/src/bin/init-word-library.rs` 直接校验并导入最终数据，只补齐缺失记录，不覆盖已有用户编辑或词书顺序。浏览器、桌面开发和发布均消费同一份最终数据，不重新生成。
 
 ### 12.2 初始化与开发
 
@@ -263,3 +261,11 @@ iOS 有 Tauri 移动入口/配置，Windows 有打包配置分支；当前固定
 6. 区分开发/发布脚本的跨平台分支与已固定可用的平台；不要把 server/OceanBase/sync 的预留接口描述为可用云同步。
 
 背诵与中文背诵在 Mac 和 iPhone 上共用 `Spelling`、`SpellingStudySurface` 及会话状态机。答题前，背诵播放英文并显示音标；中文背诵显示配图与中文释义，不播放语音、不显示音标。两种模式均输入英文后检查拼写，答题反馈、错词入库、成绩、退回、保存与错词复习采用同一流程。首轮正确和错误答案分别计入对应模式的每日学习统计；后台普通错词事务通过 `chinesePrompt` 选择会话和统计字段。
+
+自动飘单词在每个单词的最后一次朗读结束后保存下一词位置与本轮结束位置，设置页的“继续朗读”恢复未完成范围；进度以 `auto-progress:<bookId>` 和 `sentence-auto-progress:<bookId>` 保存于现有用户文档 JSON，并随用户备份导出。导入时进度字段可缺省，旧备份缺少字段即无未完成朗读轮次，不沿用目标用户原有进度；保留备份中的起始位置设置，丢弃目标不存在词书的进度，对超出目标词书范围的进度拒绝整次导入；原生 iOS 播放队列在词位置变化时同步保存。背诵和中文背诵沿用逐题事务保存，答题导航统一为“上一个／检查拼写（反馈后为下一个）／返回”，每次答题提交在同一事务中保存 `resumeIndex`，首次背诵阶段也同步保存该模式的起始位置设置，它指向下一题且独立于反馈页显示的 `index`；再次进入按该游标继续，末题进入本轮结果，成绩与错词重练要求保留。“返回”只等待已有写入完成并打开本模式的设置页，不负责推进游标。侧栏背诵入口及今日学习的“继续背诵／继续中文背诵”始终打开各自设置页，由用户继续已保存轮次或按当前起始位置开始新一轮。
+
+今日待复习只计当前已经到期（`due_at <= now`）的卡，与正式轮次创建使用相同筛选；当天稍后才到期的卡不会提前显示为可开始。今日复习每次提交都保存成绩与后端队列位置，同一天恢复该位置；跨本地日期首次进入时结束前一日未完成会话，保留已有成绩和排期，并重新选择当日到期队列，从第一张开始。iPhone 输入阶段第一行为“显示答案／检查拼写／上一个”，检查拼写保留主色；第二行“更多操作”收纳跳过这张、返回、放弃本轮、已掌握和删除这张，反馈阶段也共用该菜单；拼写正确后保留反馈 5 秒自动进入下一张，错误时必须手动点击下一个，回车不会推进；回看已保存作答时不自动推进；上一个回看本轮已提交反馈，下一个返回当前答题位置，浏览不重复评分或改变排期；Mac 输入阶段将三个答题按钮和更多操作放在同一行。返回首页或隐藏复习页面时清除已提交题目的本地反馈，重新进入直接显示后端保存的下一张卡，不重复提交或再次推进队列。已掌握和删除均需二次确认：手动掌握通过原生事务进入至少 30 天间隔、完成待练队列项，不生成拼写答对事件；删除沿用物理删除规则，移除相关记录及包含该词的轮次后返回首页。共享配图居中逻辑为桌面短卡片补充最少内部滚动余量；手机反馈聚焦图片，不再额外滚动到输入框。
+
+### 共享关系存储
+
+`storage-api` 定义存储合同；`storage-common` 持有选定驱动并实现共享仓储，包括 `longterm`。`StorageAdapter` 取代原先带 seekdb 名称的共享类型。`storage-seekdb` 和 `storage-sqlite` 只提供连接、查询、事务和 SQL 方言；驱动不依赖共享仓储。默认选择 seekdb，`sqlite` feature 选择 SQLite。导出格式版本独立于模块名称。

@@ -5,7 +5,7 @@
 ## 实现边界
 
 - iOS 编译目标自动使用静态链接 SQLite；macOS 默认仍使用 seekdb。
-- 连接、结果行和事务由存储驱动封装；SQL 差异集中在 `src/crates/storage-seekdb/src/dialect.rs`，复习、词库、听力、设置及 AI 配置共用业务实现。
+- 连接、结果行和事务由存储驱动封装；SQL 差异集中在 `src/crates/storage-common/src/dialect.rs`，复习、词库、听力、设置及 AI 配置共用业务实现。
 - SQLite 使用 WAL、完整同步、版本检查和原子事务，存储目录为应用沙盒内 `Library/Application Support/io.github.longdafeng.quicklang/sqlite/`。
 - 原生朗读使用 iOS AVSpeechSynthesizer；AI 配置加密主密钥使用 iOS Keychain。
 - 手机界面支持安全区域、触控目标和折叠导航。新增 iOS 27 同传采集与页内本地字幕；Mac 式跨应用悬浮字幕仍未移植。新增能力的真机验收状态见下文。

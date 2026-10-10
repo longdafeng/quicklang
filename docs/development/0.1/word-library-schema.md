@@ -177,6 +177,8 @@ SQL 字符串通过 UTF-8 十六进制字面量传递，不拼接原始用户文
 
 先完成内存校验，再在事务中写入单词和词书；校验引用、数量与例句完整度后提交。
 用户修改过的内容以 user_modified 标记，后续数据包更新必须保护它。
+`node scripts/audit-word-library.mjs` 检查全部词条的中英文内容、双音标和图片文件；
+`node scripts/word-images.mjs verify` 进一步检查图片格式、大小、目录和校验和。
 初始化导入器已经实现；现有学习会话、card_id 的正式迁移以及前端切换仍是后续工作。
 当前 UI 直接读取已提交的 `wordbooks.jsonl` 与拼写主键词库，不使用 `legacy-map.jsonl` 中的旧 ID 或旧位置；该映射仅作为固定来源记录保留。
 

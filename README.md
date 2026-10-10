@@ -6,111 +6,114 @@ QuickLang 是一款面向个人的英语学习应用，将单词背诵、听说�
 
 ## 功能与界面
 
-下面按应用菜单展示 **4 个功能分组、16 个二级菜单**，每个菜单都有截图和一句功能说明。截图来自当前源码的桌面界面预览；词条、学习记录及音频历史使用演示数据，不包含个人资料，浏览器截图不代表原生录音、识别或翻译服务的运行验收。所有截图统一使用 1440 × 1100 的应用窗口，导航栏与右侧主区域保持同高；长内容在对应区域内滚动。点击图片可查看原图。
+按当前 macOS 界面的 **4 个功能分组、16 个二级菜单** 展示（2026-10-10 更新；设置不展示截图）。每个一级菜单对应一个章节，二级菜单作为截图图注，每行最多展示三张。
+
+学习进度、查询、单词练习和飘例句截图来自本机 macOS 应用，其余截图来自当前源码的 macOS 界面预览，使用展示数据。学习进度展示本机真实学习记录；单词与例句以熟悉的名词 family（家庭／家族）为例。图片显示宽度为 400 像素，高度按原图比例缩放；窄屏会进一步缩放，点击可查看原图。长内容在界面内部滚动。截图仅展示界面，不代表原生录音、识别或翻译服务的运行验收。
 
 ### 单词背诵
 
-#### 选书
-
-按学习目标选择内置或自建词书，分别保存各词书的学习进度。
-
-[![单词背诵 · 选书](docs/images/menus/books.png)](docs/images/menus/books.png)
-
-#### 自动飘单词
-
-按设定的数量、朗读次数和间隔自动展示单词、释义及例句。
-
-[![单词背诵 · 自动飘单词](docs/images/menus/auto.png)](docs/images/menus/auto.png)
-
-#### 强化学习
-
-通过朗读、停顿回忆和词义展示加深单词记忆。
-
-[![单词背诵 · 强化学习](docs/images/menus/flash.png)](docs/images/menus/flash.png)
-
-#### 背诵
-
-听发音输入单词并检查拼写，拼错的单词自动加入生词表。
-
-[![单词背诵 · 背诵](docs/images/menus/spell.png)](docs/images/menus/spell.png)
-
-#### 中文背诵
-
-看图片和中文释义朗读英文单词，用语音识别检验记忆。
-
-[![单词背诵 · 中文背诵](docs/images/menus/chinese-spell.png)](docs/images/menus/chinese-spell.png)
-
-#### 复习
-
-按生词表到期排期完成正式复习，并查看正确率、掌握量和错误统计。
-
-[![单词背诵 · 复习](docs/images/menus/longterm.png)](docs/images/menus/longterm.png)
-
-#### 生词表
-
-管理跨词书的生词、导入导出词条，并选择单词提前练习。
-
-[![单词背诵 · 生词表](docs/images/menus/longterm-notebook.png)](docs/images/menus/longterm-notebook.png)
-
-#### 学习进度
-
-查看背诵、中文背诵与今日复习的每日合计，以及生词表掌握量和各词书累计进度。
-
-[![单词背诵 · 学习进度](docs/images/menus/progress.png)](docs/images/menus/progress.png)
-
-### 听说训练
-
-#### 飘例句
-
-按设定节奏自动展示并朗读双语例句，练习句子听读。
-
-[![听说训练 · 飘例句](docs/images/menus/sentence-auto.png)](docs/images/menus/sentence-auto.png)
-
-#### 听说练习
-
-围绕练习材料完成听写、理解题、录音跟读和脱稿表达。
-
-[![听说训练 · 听说练习](docs/images/menus/conversation.png)](docs/images/menus/conversation.png)
-
-#### 听力训练
-
-导入音频与字幕，通过精听、跟读、盲听和复述训练听力。
-
-[![听说训练 · 听力训练](docs/images/menus/listening.png)](docs/images/menus/listening.png)
-
-#### AI 陪练
-
-用文字或语音回答场景问题，获取表达反馈并继续回答追问。
-
-[![听说训练 · AI 陪练](docs/images/menus/ai-coach.png)](docs/images/menus/ai-coach.png)
+<table>
+  <tr>
+    <td width="33%" valign="top">
+      <a href="docs/images/menus/progress.png"><img src="docs/images/menus/progress.png" alt="单词背诵 · 学习进度" width="400"></a><br>
+      <strong>学习进度</strong>：查看背诵、中文背诵与今日复习的每日合计，以及生词表掌握量和各词书累计进度。
+    </td>
+    <td width="33%" valign="top">
+      <a href="docs/images/menus/books.png"><img src="docs/images/menus/books.png" alt="单词背诵 · 选书" width="400"></a><br>
+      <strong>选书</strong>：按学习目标选择内置或自建词书，分别保存各词书的学习进度。
+    </td>
+    <td width="33%" valign="top">
+      <a href="docs/images/menus/auto.png"><img src="docs/images/menus/auto.png" alt="单词背诵 · 自动飘单词" width="400"></a><br>
+      <strong>自动飘单词</strong>：按设定的数量、朗读次数和间隔自动展示单词、释义及例句。
+    </td>
+  </tr>
+  <tr>
+    <td width="33%" valign="top">
+      <a href="docs/images/menus/flash.png"><img src="docs/images/menus/flash.png" alt="单词背诵 · 强化学习" width="400"></a><br>
+      <strong>强化学习</strong>：通过朗读、停顿回忆和词义展示加深单词记忆。
+    </td>
+    <td width="33%" valign="top">
+      <a href="docs/images/menus/spell.png"><img src="docs/images/menus/spell.png" alt="单词背诵 · 背诵" width="400"></a><br>
+      <strong>背诵</strong>：听发音输入单词并检查拼写，拼错的单词自动加入生词表。
+    </td>
+    <td width="33%" valign="top">
+      <a href="docs/images/menus/chinese-spell.png"><img src="docs/images/menus/chinese-spell.png" alt="单词背诵 · 中文背诵" width="400"></a><br>
+      <strong>中文背诵</strong>：看配图和中文释义，输入对应的英文单词并检查拼写。
+    </td>
+  </tr>
+  <tr>
+    <td width="33%" valign="top">
+      <a href="docs/images/menus/longterm.png"><img src="docs/images/menus/longterm.png" alt="单词背诵 · 复习" width="400"></a><br>
+      <strong>复习</strong>：按生词表到期排期完成正式复习，并查看正确率、掌握量和错误统计。
+    </td>
+    <td width="33%" valign="top">
+      <a href="docs/images/menus/longterm-notebook.png"><img src="docs/images/menus/longterm-notebook.png" alt="单词背诵 · 生词表" width="400"></a><br>
+      <strong>生词表</strong>：管理跨词书的生词、导入导出词条，并选择单词提前练习。
+    </td>
+    <td width="33%"></td>
+  </tr>
+</table>
 
 ### 同声翻译
 
-#### 启动
+<table>
+  <tr>
+    <td width="33%" valign="top">
+      <a href="docs/images/menus/interpretation-start.png"><img src="docs/images/menus/interpretation-start.png" alt="同声翻译 · 启动" width="400"></a><br>
+      <strong>启动</strong>：选择音源和识别语言，通过系统浮层显示本地实时字幕；可选双语翻译，并在本机保存录音。
+    </td>
+    <td width="33%" valign="top">
+      <a href="docs/images/menus/interpretation-history.png"><img src="docs/images/menus/interpretation-history.png" alt="同声翻译 · 历史记录" width="400"></a><br>
+      <strong>历史记录</strong>：回放本机录音，查看同一时间轴的原文与中文字幕，并生成会议纪要、润色或深度分析。
+    </td>
+    <td width="33%"></td>
+  </tr>
+</table>
 
-采集音频生成英文实时字幕，并按配置显示翻译和保存录音。
+### 听说训练
 
-[![同声翻译 · 启动](docs/images/menus/interpretation-start.png)](docs/images/menus/interpretation-start.png)
-
-#### 历史记录
-
-查看历史字幕与译文、回放录音，并进行转写、全文翻译或摘要分析。
-
-[![同声翻译 · 历史记录](docs/images/menus/interpretation-history.png)](docs/images/menus/interpretation-history.png)
+<table>
+  <tr>
+    <td width="33%" valign="top">
+      <a href="docs/images/menus/sentence-auto.png"><img src="docs/images/menus/sentence-auto.png" alt="听说训练 · 飘例句" width="400"></a><br>
+      <strong>飘例句</strong>：按设定节奏自动展示并朗读双语例句，练习句子听读。
+    </td>
+    <td width="33%" valign="top">
+      <a href="docs/images/menus/conversation.png"><img src="docs/images/menus/conversation.png" alt="听说训练 · 听说练习" width="400"></a><br>
+      <strong>听说练习</strong>：围绕练习材料完成听写、理解题、录音跟读和脱稿表达。
+    </td>
+    <td width="33%" valign="top">
+      <a href="docs/images/menus/listening.png"><img src="docs/images/menus/listening.png" alt="听说训练 · 听力训练" width="400"></a><br>
+      <strong>听力训练</strong>：导入音频与字幕，通过精听、跟读、盲听和复述训练听力。
+    </td>
+  </tr>
+  <tr>
+    <td width="33%" valign="top">
+      <a href="docs/images/menus/ai-coach.png"><img src="docs/images/menus/ai-coach.png" alt="听说训练 · AI 陪练" width="400"></a><br>
+      <strong>AI 陪练</strong>：用文字或语音回答场景问题，获取表达反馈并继续回答追问。
+    </td>
+    <td width="33%"></td>
+    <td width="33%"></td>
+  </tr>
+</table>
 
 ### 工具
 
-#### 查询
+<table>
+  <tr>
+    <td width="33%" valign="top">
+      <a href="docs/images/menus/search.png"><img src="docs/images/menus/search.png" alt="工具 · 查询" width="400"></a><br>
+      <strong>查询</strong>：检索单词并查看释义、音标和例句。
+    </td>
+    <td width="33%" valign="top">
+      <a href="docs/images/menus/maintenance.png"><img src="docs/images/menus/maintenance.png" alt="工具 · 词库维护" width="400"></a><br>
+      <strong>词库维护</strong>：创建和编辑词书，在指定位置插入、编辑或删除单词及其资料。
+    </td>
+    <td width="33%"></td>
+  </tr>
+</table>
 
-检索单词并查看释义、音标和例句。
-
-[![工具 · 查询](docs/images/menus/search.png)](docs/images/menus/search.png)
-
-#### 词库维护
-
-创建和编辑词书，在指定位置插入、编辑或删除单词及其资料。
-
-[![工具 · 词库维护](docs/images/menus/maintenance.png)](docs/images/menus/maintenance.png)
+「设置 → 导入导出」位于系统设置之后、关于 QuickLang 之前，可保存或系统分享当前用户备份，也可导入用户备份和生词表 JSON。用户备份导入前会预览并确认替换；备份不包含 API Key、录音、音频文件、设备权限或普通词书内容。
 
 ## 开始使用
 
@@ -125,7 +128,7 @@ QuickLang 是一款面向个人的英语学习应用，将单词背诵、听说�
 
 ### 获取应用
 
-[直接下载 QuickLang 0.9.2 ZIP](https://github.com/longdafeng/quicklang/releases/download/v0.9.2/QuickLang-0.9.2-macos-arm64.zip)。用户只需下载这一个 ZIP，校验文件可按需下载。
+[直接下载 QuickLang 1.0.0 ZIP](https://github.com/longdafeng/quicklang/releases/download/v1.0.0/QuickLang-1.0.0-macos-arm64.zip)。用户只需下载这一个 ZIP，校验文件可按需下载。
 
 访问 [GitHub Releases](https://github.com/longdafeng/quicklang/releases)，以实际发布的安装包和平台说明为准。macOS 安装包解压后，将 `QuickLang.app` 放入应用程序目录；未经过 Apple 公证的开发包可能需要在系统隐私与安全设置中允许打开。
 
@@ -139,7 +142,7 @@ API Key、音频文件、录音和设备权限不包含在普通用户 JSON 备�
 
 ## 从源码运行
 
-项目采用 **Tauri 2、React / TypeScript、Rust**；macOS 使用 seekdb，iOS 使用 SQLite。当前源码版本为 **0.8.0**，macOS 包的最低系统版本按当前配置为 **27.0**，iOS 包配置为 **18.0**；各系统语音和采集能力还受设备及系统 API 支持限制。
+项目采用 **Tauri 2、React / TypeScript、Rust**；macOS 使用 seekdb，iOS 默认使用 SQLite，可通过 `IOS_DB=SEEKDB` 构建切换到 seekdb。当前源码版本为 **0.9.2**，macOS 包的最低系统版本按当前配置为 **27.0**，iOS 包配置为 **18.0**；各系统语音和采集能力还受设备及系统 API 支持限制。
 
 准备 Node.js 22.12 或更高版本、Apple Command Line Tools，以及构建 iOS 所需的完整 Xcode。初始化脚本按项目锁定版本准备 Rust、npm 和原生数据库依赖；详情见 [初始化与任务说明](scripts/README.md)。
 
@@ -157,6 +160,39 @@ npm run dev
 ```
 
 浏览器预览默认地址为 `http://127.0.0.1:1420`，不替代桌面和手机原生存储、录音、识别及分享功能。
+
+### iPhone 构建与数据库选择
+
+iPhone 默认使用 **SQLite**；通过环境变量 `IOS_DB=SEEKDB` 可在构建时选择 **seekdb**。构建需要 macOS 和完整 Xcode，首次使用先执行 `make ios-init`，并在 Xcode 配置 Apple 账号与签名。真机安装前需连接并解锁 iPhone，完成“信任此电脑”和开发者模式设置；签名与设备选择详见 [iOS 开发指南](scripts/ios-README.md)。
+
+```sh
+# Default iPhone backend: SQLite
+make build_ios
+make release_ios
+make install_ios
+
+# Build and install iPhone apps with seekdb
+IOS_DB=SEEKDB make build_ios
+IOS_DB=SEEKDB make release_ios
+IOS_DB=SEEKDB make install_ios
+
+# Build a simulator app with seekdb
+IOS_DB=SEEKDB IOS_TARGET=simulator make build_ios
+```
+
+`build_ios` 构建 Debug，`release_ios` 构建 Release；`install_ios` 会构建或复用所选后端的 Release 产物，再安装并启动。也可通过 `IOS_DB=SQLITE` 显式选择 SQLite；值不区分大小写。后端选择参与构建缓存判定，切换时不会复用另一后端的应用产物。
+
+使用 seekdb 前，需在本地 seekdb 项目中准备与真机或模拟器匹配的 `SeekDB.framework`。可通过 `QUICKLANG_SEEKDB_IOS_FRAMEWORK` 指定完整 framework 路径：
+
+```sh
+IOS_DB=SEEKDB \
+QUICKLANG_SEEKDB_IOS_FRAMEWORK=/absolute/path/to/SeekDB.framework \
+make install_ios
+```
+
+QuickLang 会验证、打包并签名该 framework；缺少或不匹配时会停止构建，不会自动下载引擎或回退到 SQLite。默认产物位置与 framework 准备要求见 [iOS seekdb 集成说明](scripts/ios-README.md#issue-5ios-动态-seekdb-集成)。默认 SQLite 构建无需准备该 framework。
+
+SQLite 和 seekdb 分别使用设备沙箱中的 `sqlite-relational-v3` 与 `seekdb-1.4.0-relational-v3` 数据目录。切换后端不会自动迁移、删除或共享已有学习数据；此选择不改变 macOS 默认的 seekdb 后端。
 
 ### 常用命令
 
